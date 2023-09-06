@@ -1,0 +1,346 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Undefined variable\\: \\$position_prefix$#"
+			count: 1
+			path: include/api_functions.php
+
+		-
+			message: "#^Undefined variable\\: \\$collection$#"
+			count: 4
+			path: include/collections_functions.php
+
+		-
+			message: "#^Undefined variable\\: \\$search_title$#"
+			count: 1
+			path: include/collections_functions.php
+
+		-
+			message: "#^Undefined variable\\: \\$share_collection$#"
+			count: 2
+			path: include/collections_functions.php
+
+		-
+			message: "#^Undefined variable\\: \\$share_group$#"
+			count: 1
+			path: include/collections_functions.php
+
+		-
+			message: "#^Undefined variable\\: \\$share_type$#"
+			count: 2
+			path: include/collections_functions.php
+
+		-
+			message: "#^Undefined variable\\: \\$share_user$#"
+			count: 4
+			path: include/collections_functions.php
+
+		-
+			message: "#^Undefined variable\\: \\$upload$#"
+			count: 2
+			path: include/collections_functions.php
+
+		-
+			message: "#^Undefined variable\\: \\$user$#"
+			count: 1
+			path: include/collections_functions.php
+
+		-
+			message: "#^Function generateResourcesMetadataCSV\\(\\) should return string but return statement is missing\\.$#"
+			count: 1
+			path: include/csv_export_functions.php
+
+		-
+			message: "#^Undefined variable\\: \\$error$#"
+			count: 1
+			path: include/database_functions.php
+
+		-
+			message: "#^Undefined variable\\: \\$attachments$#"
+			count: 1
+			path: include/general_functions.php
+
+		-
+			message: "#^Undefined variable\\: \\$confirm_page_change$#"
+			count: 2
+			path: include/general_functions.php
+
+		-
+			message: "#^Undefined variable\\: \\$images$#"
+			count: 1
+			path: include/general_functions.php
+
+		-
+			message: "#^Undefined variable\\: \\$lang$#"
+			count: 1
+			path: include/general_functions.php
+
+		-
+			message: "#^Undefined variable\\: \\$result$#"
+			count: 1
+			path: include/general_functions.php
+
+		-
+			message: "#^Undefined variable\\: \\$original_extension$#"
+			count: 1
+			path: include/image_processing.php
+
+		-
+			message: "#^Undefined variable\\: \\$processfile$#"
+			count: 1
+			path: include/image_processing.php
+
+		-
+			message: "#^Undefined variable\\: \\$where_activity_log_statement$#"
+			count: 1
+			path: include/log_functions.php
+
+		-
+			message: "#^Undefined variable\\: \\$where_collection_log_statement$#"
+			count: 1
+			path: include/log_functions.php
+
+		-
+			message: "#^Undefined variable\\: \\$where_resource_log_statement$#"
+			count: 1
+			path: include/log_functions.php
+
+		-
+			message: "#^Undefined variable\\: \\$limit$#"
+			count: 2
+			path: include/message_functions.php
+
+		-
+			message: "#^Undefined variable\\: \\$msgfind$#"
+			count: 2
+			path: include/message_functions.php
+
+		-
+			message: "#^Undefined variable\\: \\$sort_desc$#"
+			count: 1
+			path: include/message_functions.php
+
+		-
+			message: "#^Undefined variable\\: \\$default_perpage_list$#"
+			count: 1
+			path: include/render_functions.php
+
+		-
+			message: "#^Undefined variable\\: \\$editexpiration$#"
+			count: 1
+			path: include/render_functions.php
+
+		-
+			message: "#^Undefined variable\\: \\$password$#"
+			count: 1
+			path: include/render_functions.php
+
+		-
+			message: "#^Function save_request\\(\\) should return bool but return statement is missing\\.$#"
+			count: 1
+			path: include/request_functions.php
+
+		-
+			message: "#^Call to static method compare\\(\\) on an unknown class Diff\\.$#"
+			count: 1
+			path: include/resource_functions.php
+
+		-
+			message: "#^Call to static method toString\\(\\) on an unknown class Diff\\.$#"
+			count: 1
+			path: include/resource_functions.php
+
+		-
+			message: "#^Function resource_download_allowed\\(\\) should return bool but return statement is missing\\.$#"
+			count: 1
+			path: include/resource_functions.php
+
+		-
+			message: "#^Undefined variable\\: \\$access_key$#"
+			count: 1
+			path: include/resource_functions.php
+
+		-
+			message: "#^Undefined variable\\: \\$anonymous_login$#"
+			count: 1
+			path: include/resource_functions.php
+
+		-
+			message: "#^Undefined variable\\: \\$ignore_permissions$#"
+			count: 1
+			path: include/resource_functions.php
+
+		-
+			message: "#^Undefined variable\\: \\$lastmodified$#"
+			count: 1
+			path: include/resource_functions.php
+
+		-
+			message: "#^Undefined variable\\: \\$share_collection$#"
+			count: 3
+			path: include/resource_functions.php
+
+		-
+			message: "#^Undefined variable\\: \\$share_group$#"
+			count: 1
+			path: include/resource_functions.php
+
+		-
+			message: "#^Undefined variable\\: \\$share_order_by$#"
+			count: 1
+			path: include/resource_functions.php
+
+		-
+			message: "#^Undefined variable\\: \\$share_resource$#"
+			count: 2
+			path: include/resource_functions.php
+
+		-
+			message: "#^Undefined variable\\: \\$share_sort$#"
+			count: 1
+			path: include/resource_functions.php
+
+		-
+			message: "#^Undefined variable\\: \\$share_type$#"
+			count: 2
+			path: include/resource_functions.php
+
+		-
+			message: "#^Undefined variable\\: \\$share_user$#"
+			count: 4
+			path: include/resource_functions.php
+
+		-
+			message: "#^Function GetStem not found\\.$#"
+			count: 1
+			path: include/search_do.php
+
+		-
+			message: "#^Undefined variable\\: \\$lang$#"
+			count: 2
+			path: include/user_functions.php
+
+		-
+			message: "#^Array has 2 duplicate keys with value 'sortable' \\(\"sortable\", \"sortable\"\\)\\.$#"
+			count: 1
+			path: pages/manage_jobs.php
+
+		-
+			message: "#^Undefined variable\\: \\$lang$#"
+			count: 1
+			path: pages/setup.php
+
+		-
+			message: "#^Undefined variable\\: \\$altfile$#"
+			count: 1
+			path: pages/tools/staticsync.php
+
+		-
+			message: "#^Undefined variable\\: \\$altpath$#"
+			count: 1
+			path: pages/tools/staticsync.php
+
+		-
+			message: "#^Call to static method set\\(\\) on an unknown class TusPhp\\\\Config\\.$#"
+			count: 1
+			path: pages/upload_batch.php
+
+		-
+			message: "#^Instantiated class TusPhp\\\\Tus\\\\Server not found\\.$#"
+			count: 1
+			path: pages/upload_batch.php
+
+		-
+			message: "#^Undefined variable\\: \\$original_download_name$#"
+			count: 1
+			path: plugins/adobe_link/hooks/view.php
+
+		-
+			message: "#^Call to function unset\\(\\) contains undefined variable \\$notes\\.$#"
+			count: 1
+			path: plugins/annotate/include/annotate_functions.php
+
+		-
+			message: "#^Call to method GetX\\(\\) on an unknown class MYPDF\\.$#"
+			count: 2
+			path: plugins/annotate/include/annotate_functions.php
+
+		-
+			message: "#^Call to method GetY\\(\\) on an unknown class MYPDF\\.$#"
+			count: 3
+			path: plugins/annotate/include/annotate_functions.php
+
+		-
+			message: "#^Call to method MultiCell\\(\\) on an unknown class MYPDF\\.$#"
+			count: 2
+			path: plugins/annotate/include/annotate_functions.php
+
+		-
+			message: "#^Call to method SetXY\\(\\) on an unknown class MYPDF\\.$#"
+			count: 1
+			path: plugins/annotate/include/annotate_functions.php
+
+		-
+			message: "#^Call to method getPage\\(\\) on an unknown class MYPDF\\.$#"
+			count: 3
+			path: plugins/annotate/include/annotate_functions.php
+
+		-
+			message: "#^Call to method setPage\\(\\) on an unknown class MYPDF\\.$#"
+			count: 2
+			path: plugins/annotate/include/annotate_functions.php
+
+		-
+			message: "#^Instantiated class MYPDF not found\\.$#"
+			count: 1
+			path: plugins/annotate/include/annotate_functions.php
+
+		-
+			message: "#^Undefined variable\\: \\$flagpath$#"
+			count: 2
+			path: plugins/csv_upload/include/csv_functions.php
+
+		-
+			message: "#^Undefined variable\\: \\$_MIME_TYPES$#"
+			count: 1
+			path: plugins/emu/include/emu_api.php
+
+		-
+			message: "#^Undefined variable\\: \\$date$#"
+			count: 1
+			path: plugins/feedback/include/feedback_functions.php
+
+		-
+			message: "#^Undefined variable\\: \\$user$#"
+			count: 1
+			path: plugins/feedback/include/feedback_functions.php
+
+		-
+			message: "#^Undefined variable\\: \\$resource$#"
+			count: 1
+			path: plugins/flickr_theme_publish/inc/flickr_functions.php
+
+		-
+			message: "#^Undefined variable\\: \\$imagemagick_path$#"
+			count: 2
+			path: plugins/image_text/hooks/collection_download.php
+
+		-
+			message: "#^Undefined variable\\: \\$imagemagick_path$#"
+			count: 2
+			path: plugins/image_text/hooks/download.php
+
+		-
+			message: "#^Call to static method set\\(\\) on an unknown class TusPhp\\\\Config\\.$#"
+			count: 1
+			path: plugins/vimeo_publish/include/vimeo_publish_functions.php
+
+		-
+			message: "#^Caught class Google_ServiceException not found\\.$#"
+			count: 6
+			path: plugins/youtube_publish/include/youtube_functions.php
+
+		-
+			message: "#^Function reorder_collections not found\\.$#"
+			count: 1
+			path: upgrade/scripts/018_fc_star_name_to_orderby.php

@@ -1,0 +1,23 @@
+#remote_assist #SearchBoxPanel {
+    margin-top: 0 !important;
+}
+
+#remote_assist #HomeSiteText {
+    max-width: unset;
+    padding: 0 15px 5px 15px;
+}
+
+#remote_assist {
+    color: white;
+}
+
+/* Styling for $small_slideshow */
+
+#SlideshowContainer #remote_assist,
+#SlideshowContainer #remote_assist a {
+    color: #373737;
+}
+
+#SlideshowContainer #remote_assist #HomeSiteText {
+    padding: 0;
+}

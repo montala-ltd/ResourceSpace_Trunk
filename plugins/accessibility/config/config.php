@@ -1,0 +1,3 @@
+<?php
+
+$iconthumbs=false;

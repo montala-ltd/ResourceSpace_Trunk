@@ -1,0 +1,510 @@
+<?php
+/*
+ * API v2 functions
+ *
+ * Montala Limited, July 2016
+ *
+ * For documentation please see: http://www.resourcespace.com/knowledge-base/api/
+ *
+ */
+
+
+/**
+ * Return a private scramble key for this user.
+ *
+ * @param  integer $user The user ID
+ * @return string|false
+ */
+function get_api_key($user)
+    {
+    global $api_scramble_key;
+    return hash("sha256", $user . $api_scramble_key);
+    }    
+
+/**
+ * Check a query is signed correctly.
+ *
+ * @param  string $username The username of the calling user
+ * @param  string $querystring The query being passed to the API
+ * @param  string $sign The signature to check
+ * @param  string $authmode The type of key being provided (user key or session key)
+ */
+function check_api_key($username,$querystring,$sign,$authmode="userkey"): bool
+    {
+    // Fetch user ID and API key
+    $user=get_user_by_username($username); if ($user===false) {return false;}
+    $aj = strpos($querystring,"&ajax=");
+    if($aj != false)
+        {
+        $querystring = substr($querystring,0,$aj);
+        }
+
+    if($authmode == "sessionkey")
+        {
+        $userkey=get_session_api_key($user);
+        }
+    else
+        {        
+        $userkey=get_api_key($user);
+        }
+
+    # Calculate the expected signature and check it matches
+    $expected=hash("sha256",$userkey . $querystring);
+    if ($expected === $sign)
+	{
+	return true;
+	}
+    # Also try matching against the username - allows remote API use without knowing the user ID, e.g. in the event of managing multiple systems each with a common username but different ID.
+    if (hash("sha256",get_api_key($username) . $querystring) === $sign)
+	{
+	return true;
+	} 
+    return false;
+    }
+    
+/**
+ * Execute the specified API function.
+ *
+ * @param  string $query The query string passed to the API
+ * @param  boolean $pretty Should the JSON encoded result be 'pretty' i.e. formatted for reading?
+ * @return bool|string
+ */
+function execute_api_call($query,$pretty=false)
+    {
+    $params=array();parse_str($query,$params);
+    if (!array_key_exists("function",$params)) {return false;}
+    $function=$params["function"];
+    if (!function_exists("api_" . $function)) {return false;}
+
+    global $lang;
+
+    // Construct an array of the real params, setting default values as necessary
+    $setparams = array();
+    $n = 0;    
+    $fct = new ReflectionFunction("api_" . $function);
+    foreach ($fct->getParameters() as $fparam)
+        {
+        $paramkey = $n + 1;
+        $param_name = $fparam->getName();
+        debug("API: Checking for parameter " . $param_name . " (param" . $paramkey . ")");
+        if (array_key_exists("param" . $paramkey,$params))
+            {
+            debug ("API: " . $param_name . " -   value has been passed : '" . $params["param" . $paramkey] . "'");
+            $setparams[$n] = $params["param" . $paramkey];
+            }
+        else if(array_key_exists($param_name, $params))
+            {
+            debug("API: {$param_name} - value has been passed (by name): '" . json_encode($params[$param_name]) . "'");
+
+            // Check if array;
+            $type = $fparam->getType();
+            if(gettype($type) == "object")
+                {
+                // type is an object 
+                $type = $type->getName();
+                }
+            if($fparam->hasType() && gettype($type) == "string" && $type == "array")
+                {
+                // Decode as must be json encoded if array
+                $GLOBALS["use_error_exception"] = true;
+                try
+                    {
+                    $decoded = json_decode($params[$param_name],JSON_OBJECT_AS_ARRAY);
+                    }
+                catch (Exception $e)
+                    {
+                    $error = str_replace(
+                        array("%arg", "%expected-type", "%type"),
+                        array($param_name, "array (json encoded)",$lang['unknown']),
+                        $lang["error-type-mismatch"]);
+                    return json_encode($error);
+                    }
+                unset($GLOBALS["use_error_exception"]);
+                // Check passed data type after decode
+                if(gettype($decoded) != "array")
+                    {
+                    $error = str_replace(
+                        array("%arg", "%expected-type", "%type"),
+                        array($param_name, "array (json encoded)", $lang['unknown']),
+                        $lang["error-type-mismatch"]);
+                    return json_encode($error);
+                    }
+                $params[$param_name] = $decoded;
+                }
+
+            $setparams[$n] = $params[$param_name];
+            }
+        elseif ($fparam->isOptional())
+            {
+            // Set default value if nothing passed e.g. from API test tool
+            debug ("API: " . $param_name . " -  setting default value = '" . $fparam->getDefaultValue() . "'");
+            $setparams[$n] = $fparam->getDefaultValue();
+            }
+        else
+            {
+             // Set as empty
+            debug ("API: {$param_name} -  setting empty value");
+            $setparams[$n] = "";    
+            }
+        $n++;
+        }
+    
+    debug("API: calling api_" . $function);
+    $result = call_user_func_array("api_" . $function, $setparams);
+
+    if($pretty)
+        {
+            debug("API: json_encode() using JSON_PRETTY_PRINT");
+            $json_encoded_result = json_encode($result,(defined('JSON_PRETTY_PRINT')?JSON_PRETTY_PRINT:0));
+        }
+    else
+        {
+            debug("API: json_encode()");
+            $json_encoded_result = json_encode($result);
+        }
+    if(json_last_error() !== JSON_ERROR_NONE)
+        {
+        debug("API: JSON error: " . json_last_error_msg());
+        debug("API: JSON error when \$result = " . print_r($result, true));
+
+        $json_encoded_result = json_encode($result,JSON_UNESCAPED_UNICODE);
+        }
+
+    return $json_encoded_result;
+
+    }
+    
+/**
+* Get an array of all the canvases for the identifier ready for JSON encoding
+* 
+* @uses get_data_by_field()
+* @uses get_original_imagesize()
+* @uses get_resource_type_field()
+* @uses get_resource_path()
+* @uses iiif_get_thumbnail()
+* @uses iiif_get_image()
+* 
+* @param integer $identifier		IIIF identifier (this associates resources via the metadata field set as $iiif_identifier_field
+* @param array $iiif_results		Array of ResourceSpace search results that match the $identifier, sorted 
+* @param boolean $sequencekeys		Get the array with each key matching the value set in the metadata field $iiif_sequence_field. By default the array will be sorted but have a 0 based index
+* 
+* @return array
+*/
+function iiif_get_canvases($identifier, $iiif_results,$sequencekeys=false)
+    {
+    global $rooturl,$rootimageurl;	
+			
+    $canvases = array();
+    foreach ($iiif_results as $iiif_result)
+        {
+		$size = (strtolower($iiif_result["file_extension"]) != "jpg") ? "hpr" : "";
+        $img_path = get_resource_path($iiif_result["ref"],true,$size,false);
+
+        if(!file_exists($img_path))
+            {
+            continue;
+            }
+			
+		$position = $iiif_result["iiif_position"];
+        $canvases[$position]["@id"] = $rooturl . $identifier . "/canvas/" . $position;
+        $canvases[$position]["@type"] = "sc:Canvas";
+        $canvases[$position]["label"] = (isset($position_prefix)?$position_prefix:'') . $position;
+        
+        // Get the size of the images
+        $image_size = get_original_imagesize($iiif_result["ref"],$img_path);
+        $canvases[$position]["height"] = intval($image_size[2]);
+        $canvases[$position]["width"] = intval($image_size[1]);
+				
+		// "If the largest image�s dimensions are less than 1200 pixels on either edge, then the canvas�s dimensions should be double those of the image." - From http://iiif.io/api/presentation/2.1/#canvas
+		if($image_size[1] < 1200 || $image_size[2] < 1200)
+			{
+			$image_size[1] = $image_size[1] * 2;
+			$image_size[2] = $image_size[2] * 2;
+			}
+        
+        $canvases[$position]["thumbnail"] = iiif_get_thumbnail($iiif_result["ref"]);
+        
+        // Add image (only 1 per canvas currently supported)
+		$canvases[$position]["images"] = array();
+        $size_info = array(
+            'identifier' => $size,
+            'return_height_width' => false,
+        );
+        $canvases[$position]["images"][] = iiif_get_image($identifier, $iiif_result["ref"], $position, $size_info);
+        }
+    
+	if($sequencekeys)
+		{
+		// keep the sequence identifiers as keys so a required canvas can be accessed by sequence id
+		return $canvases;
+		}
+	
+    ksort($canvases);	
+    $return=array();
+    foreach($canvases as $canvas)
+        {
+        $return[] = $canvas;
+        }
+    return $return;
+    }
+
+/**
+* Get  thumbnail information for the specified resource id ready for IIIF JSON encoding
+* 
+* @uses get_resource_path()
+* @uses getimagesize()
+* 
+* @param integer $resourceid		Resource ID
+*
+* @return array
+*/
+function iiif_get_thumbnail($resourceid)
+    {
+	global $rootimageurl;
+	
+	$img_path = get_resource_path($resourceid,true,'thm',false);
+	if(!file_exists($img_path))
+            {
+		    return false;
+            }
+			
+	$thumbnail = array();
+	$thumbnail["@id"] = $rootimageurl . $resourceid . "/full/thm/0/default.jpg";
+	$thumbnail["@type"] = "dctypes:Image";
+	
+	 // Get the size of the images
+    if ((list($tw,$th) = @getimagesize($img_path))!==false)
+        {
+        $thumbnail["height"] = (int) $th;
+        $thumbnail["width"] = (int) $tw;   
+        }
+    else
+        {
+        // Use defaults
+        $thumbnail["height"] = 150;
+        $thumbnail["width"] = 150;    
+        }
+            
+	$thumbnail["format"] = "image/jpeg";
+	
+	$thumbnail["service"] =array();
+	$thumbnail["service"]["@context"] = "http://iiif.io/api/image/2/context.json";
+	$thumbnail["service"]["@id"] = $rootimageurl . $resourceid;
+	$thumbnail["service"]["profile"] = "http://iiif.io/api/image/2/level1.json";
+	return $thumbnail;
+	}
+	
+/**
+* Get the image for the specified identifier canvas and resource id
+* 
+* @uses get_original_imagesize()
+* @uses get_resource_path()
+* 
+* @param integer $identifier  IIIF identifier (this associates resources via the metadata field set as $iiif_identifier_field
+* @param integer $resourceid  Resource ID
+* @param string $position     The canvas identifier, i.e position in the sequence. If $iiif_sequence_field is defined
+* @param array $size          ResourceSpace size information. Required information: identifier and whether it 
+*                             requires to return height & width back (e.g annotations don't require it). 
+*                             Please note for the identifier - we use 'hpr' if the original file is not a JPG file it 
+*                             will be the value of this metadata field for the given resource
+*                             Example:
+*                             $size_info = array(
+*                               'identifier'          => 'hpr',
+*                               'return_height_width' => true
+*                             );
+* 
+* @return array
+*/	
+function iiif_get_image($identifier,$resourceid,$position, array $size_info)
+    {
+    global $rooturl,$rootimageurl;
+
+    // Quick validation of the size_info param
+    if(empty($size_info) || (!isset($size_info['identifier']) && !isset($size_info['return_height_width'])))
+        {
+        return false;
+        }
+
+    $size = $size_info['identifier'];
+    $return_height_width = $size_info['return_height_width'];
+
+	$img_path = get_resource_path($resourceid,true,$size,false);
+	if(!file_exists($img_path))
+            {
+		    return false;
+            }
+
+    $image_size = get_original_imagesize($resourceid, $img_path);
+			
+	$images = array();
+	$images["@context"] = "http://iiif.io/api/presentation/2/context.json";
+	$images["@id"] = $rooturl . $identifier . "/annotation/" . $position;
+	$images["@type"] = "oa:Annotation";
+	$images["motivation"] = "sc:painting";
+	
+	$images["resource"] = array();
+	$images["resource"]["@id"] = $rootimageurl . $resourceid . "/full/max/0/default.jpg";
+	$images["resource"]["@type"] = "dctypes:Image";
+	$images["resource"]["format"] = "image/jpeg";
+
+    $images["resource"]["height"] = intval($image_size[2]);
+    $images["resource"]["width"] = intval($image_size[1]);
+
+	$images["resource"]["service"] =array();
+	$images["resource"]["service"]["@context"] = "http://iiif.io/api/image/2/context.json";
+	$images["resource"]["service"]["@id"] = $rootimageurl . $resourceid;
+	$images["resource"]["service"]["profile"] = "http://iiif.io/api/image/2/level1.json";
+	$images["on"] = $rooturl . $identifier . "/canvas/" . $position;
+
+    if($return_height_width)
+        {
+        $images["height"] = intval($image_size[2]);
+        $images["width"] = intval($image_size[1]);
+        }
+
+    return $images;  
+	}
+
+/**
+ * Handle a IIIF error.
+ *
+ * @param  integer $errorcode The error code
+ * @param  array $errors An array of errors
+ * @return void
+ */
+function iiif_error($errorcode = 404, $errors = array())
+    {
+    global $iiif_debug;
+    if(function_exists("http_response_code"))
+        {
+        http_response_code($errorcode); # Send error status
+        }
+    echo json_encode($errors);	 
+    exit();
+    }
+
+/**
+ * Return the session specific key for the given user.
+ *
+ * @param  integer $user The user ID
+ * @return string
+ */
+function get_session_api_key($user)
+    {
+    global $scramble_key;
+    $private_key = get_api_key($user);
+    $usersession = ps_value("SELECT session value FROM user where ref = ?", array("i",$user), "");
+    return hash_hmac("sha256", "{$usersession}{$private_key}", $scramble_key);
+    }
+
+/**
+* API login function
+
+* 
+ * @param  string $username         Username
+ * @param  string $password         Password to validate
+ * @return string|false             FALSE if invalid, session API key if valid
+*/
+function api_login($username,$password)
+    {
+    global $session_hash, $scramble_key;
+    $user=get_user_by_username($username); if ($user===false) {return false;}
+    $result = perform_login($username,$password);
+    $private_key = get_api_key($user);
+    if ((bool)$result['valid'])
+        {
+        return hash_hmac("sha256", "{$session_hash}{$private_key}", $scramble_key);
+        }
+
+    return false;
+    }
+
+/**
+ * Validate URL supplied in APIs create resource or upload by URL. Requires the URL hostname to be added in config $api_upload_urls
+ *
+ * @param   string   $url   The full URL.
+ * 
+ * @return  bool   Returns true if a valid URL is found.
+ */
+function api_validate_upload_url($url)
+    {
+    $url = filter_var($url, FILTER_VALIDATE_URL, FILTER_FLAG_PATH_REQUIRED);
+    if ($url === false)
+        {
+        return false;
+        }
+    
+    $url_parts = parse_url($url);
+
+    if (in_array($url_parts['scheme'], BLOCKED_STREAM_WRAPPERS))
+        {
+        return false;
+        }
+
+    global $api_upload_urls;
+    if (!isset($api_upload_urls))
+        {
+        return true; // For systems prior to this config.
+        }
+
+    if (in_array($url_parts['host'], $api_upload_urls))
+        {
+        return true;
+        }
+
+    return false;
+    }
+
+/**
+ * Assert API request is using POST method.
+ *
+ * @param bool $force Force the assertion
+ *
+ * @return array Returns JSend data back {@see ajax_functions.php} if not POST method
+ */
+function assert_post_request(bool $force): array
+    {
+    // Legacy use cases we don't want to break backwards compatibility for (e.g JS api() makes only POST requests but
+    // other clients might only use GET because it was allowed if not authenticating with native mode)
+    if (!$force)
+        {
+        return [];
+        }
+    else if ($_SERVER['REQUEST_METHOD'] === 'POST')
+        {
+        return [];
+        }
+    else
+        {
+        http_response_code(405);
+        return ajax_response_fail(ajax_build_message($GLOBALS['lang']['error-method-not_allowed']));
+        }
+    }
+
+/**
+ * Assert API sent the expected content type.
+ *
+ * @param string $expected MIME type
+ * @param string $received_raw MIME type
+ *
+ * @return array Returns JSend data back {@see ajax_functions.php} if received Content-Type is unexpected
+ */
+function assert_content_type(string $expected, string $received_raw): array
+    {
+    $expected = trim($expected);
+    if ($expected === '')
+        {
+        trigger_error('Expected MIME type MUST not be a blank string', E_USER_ERROR);
+        }
+
+    $encoding = 'UTF-8';
+    $received = mb_strcut($received_raw, 0, mb_strlen($expected, $encoding), $encoding);
+    if ($expected === $received)
+        {
+        return [];
+        }
+
+    http_response_code(415);
+    header("Accept: {$expected}");
+    return ajax_response_fail([]);
+    }
