@@ -1313,6 +1313,9 @@ $imperial_measurements=false;
 # Use day-month-year format? If set to false format will be month-day-year.
 $date_d_m_y=true;
 
+# Attempt to validate dates on the edit page
+$date_validation_js = true;
+
 # What is the default resource type to use for batch upload templates?
 $default_resource_type=1;
 
@@ -3402,3 +3405,6 @@ IMPORTANT: enabling this will mean partial dates (e.g May 2023) are no longer su
 cleared after the next resource edit (as & when users do it).
 */
 $use_native_input_for_date_field = false;
+
+// Option to disable all system generated emails from being sent - no notice will be given to users
+// $emails_suppress = false;
