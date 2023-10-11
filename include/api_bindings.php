@@ -100,6 +100,21 @@ function api_search_get_previews($search,$restypes="",$order_by="relevance",$arc
         if(is_array($results[$n]))
             {
             $results[$n] = process_resource_data_joins_values($results[$n], $get_resource_table_joins);
+            if($GLOBALS["hide_real_filepath"])
+                {
+                // Add a temporary key so the file can be accessed unauthenticated
+                $accesskey = generate_temp_download_key($GLOBALS["userref"], $results[$n]["ref"]);
+                if($accesskey !== "")
+                    {
+                    foreach($getsizes as $getsize)
+                        {
+                        if(isset($results[$n]["url_" . $getsize]))
+                            {
+                            $results[$n]["url_" . $getsize] .= "&access_key={$accesskey}";
+                            }
+                        }
+                    }
+                }            
             }
         }
     return $structured ? ["total"=> $totalcount, "data" => $results] : $results;
@@ -285,7 +300,7 @@ function api_update_resource_type($resource,$type)
     }
 
 function api_get_resource_path($ref, $getfilepath, $size="", $generate=true, $extension="jpg", $page=1, $watermarked=false, $alternative=-1)
-    {   
+    {
     # Set defaults
     if ($alternative=="") {$alternative=-1;}
     if ($page=="") {$page=1;}
@@ -303,6 +318,15 @@ function api_get_resource_path($ref, $getfilepath, $size="", $generate=true, $ex
                 continue;
                 }
             $return[$ref] = get_resource_path($ref, filter_var($getfilepath, FILTER_VALIDATE_BOOLEAN), $size, $generate, $extension, -1, $page, $watermarked, '', $alternative, false);
+            if($GLOBALS["hide_real_filepath"])
+                {
+                // Add a temporary key so the file can be accessed unauthenticated
+                $accesskey = generate_temp_download_key($GLOBALS["userref"], $ref);
+                if($accesskey !== "")
+                    {
+                    $return[$ref] .= "&access_key={$accesskey}";
+                    }
+                }
             }
         return $return;
         }
