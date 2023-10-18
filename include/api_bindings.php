@@ -42,7 +42,7 @@ function api_do_search($search,$restypes="",$order_by="relevance",$archive=0,$fe
         return $no_results;
         }
     
-    $resultcount = count($results);
+    $resultcount = count($structured_fetchrows ? $results['data'] : $results);
     if($resultcount < $offset)
         {
         return $no_results;
@@ -59,6 +59,12 @@ function api_do_search($search,$restypes="",$order_by="relevance",$archive=0,$fe
             $resultset[$i] = process_resource_data_joins_values($row, $get_resource_table_joins);
             $i++;
             }
+        }
+
+    if ($structured_fetchrows)
+        {
+        $results['data'] = $resultset;
+        return $results;
         }
     return $resultset;
     }
@@ -304,7 +310,7 @@ function api_update_resource_type($resource,$type)
     return update_resource_type($resource,$type);
     }
 
-function api_get_resource_path($ref, $getfilepath, $size="", $generate=true, $extension="jpg", $page=1, $watermarked=false, $alternative=-1)
+function api_get_resource_path($ref, $not_used=null, $size="", $generate=true, $extension="jpg", $page=1, $watermarked=false, $alternative=-1)
     {
     # Set defaults
     if ($alternative=="") {$alternative=-1;}
@@ -325,8 +331,8 @@ function api_get_resource_path($ref, $getfilepath, $size="", $generate=true, $ex
             $return[$ref] = "";
             continue;
             }
-        $return[$ref] = get_resource_path($ref, filter_var($getfilepath, FILTER_VALIDATE_BOOLEAN), $size, $generate, $extension, -1, $page, $watermarked, '', $alternative, false);
-        if($GLOBALS["hide_real_filepath"] && !$getfilepath)
+        $return[$ref] = get_resource_path($ref, false, $size, $generate, $extension, -1, $page, $watermarked, '', $alternative, false);
+        if($GLOBALS["hide_real_filepath"])
             {
             // Add a temporary key so the file can be accessed unauthenticated
             $accesskey = generate_temp_download_key($GLOBALS["userref"], $ref);
@@ -864,7 +870,9 @@ function api_get_resource_all_image_sizes($resource)
             {
             array_walk($sizes, function(&$size, $key) use ($accesskey) { $size["url"] .= "&access_key={$accesskey}";});
             }
-        } 
+        }
+    // Remove the path elements
+    array_walk($sizes, function(&$size) {unset($size["path"]);});
     return $sizes;
     }
 
