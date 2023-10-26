@@ -3408,3 +3408,10 @@ IMPORTANT: enabling this will mean partial dates (e.g May 2023) are no longer su
 cleared after the next resource edit (as & when users do it).
 */
 $use_native_input_for_date_field = false;
+
+# High contrast display mode to make text and UI elements easier to read. 
+$high_contrast_mode = false;
+
+# Number of hours before the access key for a URL obtained by the API call get_resource_path() expires.
+# WARNING: This should ideally not be set to an excessively high value in order to improve system security.
+$api_resource_path_expiry_hours = 24;
