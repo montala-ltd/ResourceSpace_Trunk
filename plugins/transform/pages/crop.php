@@ -154,6 +154,17 @@ if(!file_exists($org))
         }
     }
 
+// Check if preview is same aspect ratio as original
+$predims = getimagesize($previewsourcepath);
+$preratio = round($predims[0]/$predims[1],1);
+$origratio = round($origwidth/$origheight,1);
+if($preratio !== $origratio)
+    {
+    // The preview source file has been altered relative to the original. Use the original
+    // instead because the final transform will use the original and any transformations will otherwise be incorrect
+    $org = $previewsourcepath = $originalpath;
+    }
+
 // Get the actions that have been requested
 $imgactions = array();
 // Transformations must be carried out in the order the user performed them
@@ -806,12 +817,6 @@ renderBreadcrumbs($links_trail);
                     flippedy = true;
                     }
                 }
-            else if(action === 'correct-image-orientation')
-                {
-                tfactions.push('cio'); 
-                imgheight = jQuery('#cropimage').height();
-                imgwidth = jQuery('#cropimage').width();
-                }
 
             // Update form input
             jQuery("#tfactions").val(tfactions.join());
@@ -1094,11 +1099,6 @@ renderBreadcrumbs($links_trail);
         "action"    => "jQuery('.imagetools_actions').hide();jQuery('#croptools').show();jQuery('#imagetools_corrections_actions').show();return false;",
         "icon"      => "fa fa-fw fa-sliders-h",
         );
-    $imagetools[] = [
-        'name'      => $lang['transform_correct_image_orientation'],
-        'action'    => "cropReload('correct-image-orientation'); return false;",
-        'icon'      => 'fa-solid fa-camera-rotate',
-    ];
 
     hook("imagetools_extra");
     

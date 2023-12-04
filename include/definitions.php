@@ -857,3 +857,8 @@ const API_NATIVE_WHITELIST = [
 ];
 
 const DEFAULT_DOWNLOAD_FILENAME_FORMAT = 'RS%resource_%filename%size.%extension';
+
+// get_system_status() severity types
+define ('CRITICAL', 0);
+define ('WARNING', 1);
+define ('NOTICE', 2);

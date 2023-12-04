@@ -491,6 +491,12 @@ function upload_file($ref,$no_exif=false,$revert=false,$autorotate=false,$file_p
                 # Also try the watermarked version.
                 $path=get_resource_path($ref,true,"scr",false,"jpg",-1,$n,true);
                 if (file_exists($path)) {unlink($path);}
+                # Remove preview page.
+                $path=get_resource_path($ref,true,"pre",false,"jpg",-1,$n,false);
+                if (file_exists($path)) {unlink($path);}
+                # Also try the watermarked version.
+                $path=get_resource_path($ref,true,"pre",false,"jpg",-1,$n,true);
+                if (file_exists($path)) {unlink($path);}
                 }
         
             # Remove any video preview (except if the actual resource is in the preview format).
@@ -1860,7 +1866,7 @@ function create_previews_using_im($ref,$thumbonly=false,$extension="jpg",$previe
     
                 # EXPERIMENTAL CODE TO USE EXISTING ICC PROFILE IF PRESENT
                 global $icc_extraction, $icc_preview_profile, $icc_preview_options,$ffmpeg_supported_extensions;
-                if ($icc_extraction){
+                if ($icc_extraction && !$previewbased){
                     $iccpath = get_resource_path($ref,true,'',false,'icc',-1,1,false,"",$alternative);
                     if (!file_exists($iccpath) && !isset($iccfound) && $extension!="pdf" && !in_array($extension,$ffmpeg_supported_extensions)) {
                         // extracted profile doesn't exist. Try extracting.
@@ -1875,7 +1881,7 @@ function create_previews_using_im($ref,$thumbonly=false,$extension="jpg",$previe
                     }
                 }
                 $profile='';
-                if($icc_extraction && file_exists($iccpath) && !$icc_transform_complete && (!$imagemagick_mpr || ($imagemagick_mpr_preserve_profiles && ($id=="thm" || $id=="col" || $id=="pre" || $id=="scr"))))
+                if($icc_extraction && file_exists($iccpath) && !$icc_transform_complete && !$previewbased && (!$imagemagick_mpr || ($imagemagick_mpr_preserve_profiles && ($id=="thm" || $id=="col" || $id=="pre" || $id=="scr"))))
                     {
                     global $icc_preview_profile_embed;
                     // we have an extracted ICC profile, so use it as source
@@ -3938,21 +3944,6 @@ function transform_file(string $sourcepath, string $outputpath, array $actions)
 
             case "y":
                 $tfparams .= " -flip ";
-                break;
-
-            case 'cio':
-                // Correcting an image orientation will always be carried out before applying any other transforms so a copy
-                // shouldn't discard previous changes. End users should always start with this if the orientation is wrong anyway.
-                $tmp_path = sprintf(
-                    '%s/transform_cio_sourcepath-%s.tmp.jpg',
-                    get_temp_dir(),
-                    get_checksum($sourcepath) ?: generateSecureKey(32)
-                );
-
-                if (copy($sourcepath, $tmp_path) && AutoRotateImage($tmp_path))
-                    {
-                    $sourcepath = $tmp_path;
-                    }
                 break;
 
             default:
