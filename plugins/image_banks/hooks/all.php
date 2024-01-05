@@ -21,8 +21,8 @@ function HookImage_banksAllExtra_checks()
         {
         $message['image_banks'] = [
             'status' => 'FAIL',
-            'severity' => WARNING,
-            'severity_text' => $GLOBALS["lang"]["severity-level_" . WARNING],
+            'severity' => SEVERITY_WARNING,
+            'severity_text' => $GLOBALS["lang"]["severity-level_" . SEVERITY_WARNING],
             'info' => $GLOBALS['lang']['image_banks_system_unmet_dependencies'],
             'details' => $errors,
         ];
@@ -114,11 +114,8 @@ function HookImage_banksAllSearchfiltertop()
 
 function HookImage_banksAllAdd_folders_to_delete_from_temp(array $folders_scan_list)
     {
-    global $image_banks_loaded_providers;
-
-    $providers = getProviders($image_banks_loaded_providers);
-
-    if(count($providers) == 0)
+    [$providers] = getProviders($GLOBALS['image_banks_loaded_providers']);
+    if(count($providers) === 0)
         {
         return false;
         }

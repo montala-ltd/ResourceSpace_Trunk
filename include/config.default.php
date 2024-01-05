@@ -99,7 +99,7 @@ $query_cache_enabled = true;
 $query_cache_expires_minutes=30;
 
 # The level of PHP error reporting to use. By default, hide warnings.
-$config_error_reporting=E_ALL & ~E_WARNING & ~E_NOTICE;
+$config_error_reporting=E_ALL & ~E_WARNING & ~E_NOTICE & ~E_DEPRECATED;
 
 # Enable work-arounds required when installed on Microsoft Windows systems
 $config_windows=false;
@@ -1619,6 +1619,9 @@ $upload_chunk_size='5mb';
 # This is the maximum number of concurrent file uploads allowed. Set to 1 to force single thread.
 $upload_concurrent_limit=5;
 
+# This is the maximum number of files that can be added to the uploader. Unset or set to 'null' to remove limit.
+# $upload_max_number_files='null';
+
 # Resource deletion state
 # When resources are deleted, the variable below can be set to move the resources into an alternative state instead of removing the resource and its files from the system entirely.
 # 
@@ -3085,6 +3088,8 @@ $upload_alternatives_suffix = '';
 
 // Set this to true if changing the scramble key. If switching from a non-null key set the $scramble_key_old variable
 // Run pages/tools/xfer_scrambled.php to move the files, but any omitted should be detected by get_resource_path() if this is set.
+// Note that users should be instructed to change their passwords while this is enabled as the old password hashes will not work once 
+// this has been disabled.
 $migrating_scrambled = false;
 // $scramble_key_old = "";
 
@@ -3378,6 +3383,9 @@ $uploader_plugins = [];
 
 // The valid Companion server URL
 $uppy_companion_url = "";
+// Optional additional text to display on Uppy panel e.g. a link to the terms page for the companion server
+// $uppy_additional_text = "Click <a href='https://companion.yourdomain.com/' target='_blank'>here</a> for Companion server usage terms";
+
 
 # Array of URLs from which files can be uploaded using the create resource and upload file by URL APIs.
 # URL should be given as the hostname only e.g. $api_upload_urls = array('resourcespace.com', 'localhost');
@@ -3411,7 +3419,7 @@ $high_contrast_mode = false;
 $api_resource_path_expiry_hours = 24;
 
 /* 
-Format the download file name.
+Format the download file name. This should be configured from the System Configuration page as any changes made in config.php will be overriden by that.
 
 Available placeholders:
 - %resource -> resource ref (ID)

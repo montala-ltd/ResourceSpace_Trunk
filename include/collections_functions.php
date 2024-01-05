@@ -171,7 +171,7 @@ function get_user_collections($user,$find="",$order_by="name",$sort="ASC",$fetch
         $keyparams
     );
 
-    $return = ps_query($query,$queryparams,'collection_access');
+    $return = ps_query($query,$queryparams,'collection_access' . $user);
 
     if ($order_by=="name")
         {
@@ -878,6 +878,8 @@ function create_collection($userid,$name,$allowchanges=0,$cant_delete=0,$ref=0,$
     $ref = sql_insert_id();
     index_collection($ref);
 
+    clear_query_cache('collection_access' . $userid);
+
     return $ref;
     }
     
@@ -926,9 +928,14 @@ function delete_collection($collection)
 
     collection_log($ref,LOG_CODE_COLLECTION_DELETED_COLLECTION,0, $collection["name"] . " (" . $lang["owner"] . ":" . $collection["username"] . ")");
 
-    if($type == COLLECTION_TYPE_FEATURED)
+    if($type === COLLECTION_TYPE_FEATURED)
         {
         clear_query_cache("featured_collections");
+        }
+    else
+        {
+        /** {@see create_collection()} */
+        clear_query_cache("collection_access{$collection['user']}");
         }
 	}
 	
@@ -1277,7 +1284,7 @@ function add_collection($user,$collection)
 	remove_collection($user,$collection);
 	ps_query("insert into user_collection(user,collection) values (?,?)",array("i",$user,"i",$collection));
     clear_query_cache('col_total_ref_count_w_perm');
-    clear_query_cache('collection_access');
+    clear_query_cache('collection_access' . $user);
 	collection_log($collection,LOG_CODE_COLLECTION_SHARED_COLLECTION,0, ps_value ("select username as value from user where ref = ?",array("i",$user),""));
 
     return true;
@@ -1617,7 +1624,10 @@ function save_collection($ref, $coldata=array())
     if (isset($coldata["users"]))
         {
         $old_attached_users=ps_array("SELECT user value FROM user_collection WHERE collection=?",array("i",$ref));
-        $new_attached_users=array();
+
+        $new_attached_users = array();
+        $removed_users = array();
+
         $collection_owner_ref=ps_value(
             "SELECT u.ref value FROM collection c LEFT JOIN user u ON c.user=u.ref WHERE c.ref=?",
             array("i",$ref),
@@ -1630,18 +1640,10 @@ function save_collection($ref, $coldata=array())
             $old_attached_users[]=$collection_owner["ref"]; # Collection Owner is implied as attached already
             }
 
-        # The cache will only be cleared if necessary
-        $cache_needs_clearing = false;
-
         ps_query("delete from user_collection where collection=?",array("i",$ref));
         
         $old_attached_groups=ps_array("SELECT usergroup value FROM usergroup_collection WHERE collection=?",array("i",$ref));
         ps_query("delete from usergroup_collection where collection=?",array("i",$ref));
-        
-        if(count($old_attached_users) > 0 || count($old_attached_groups) > 0) 
-            {
-            $cache_needs_clearing = true;    
-            }
 
         # Build a new list and insert
         $users=resolve_userlist_groups($coldata["users"]);
@@ -1655,19 +1657,14 @@ function save_collection($ref, $coldata=array())
                 $params[] = $ref; $params[] = $uref; 
                 }
             ps_query("insert into user_collection(collection,user) values " . trim(str_repeat('(?, ?),', count($urefs)), ','), ps_param_fill($params, 'i'));
-            $cache_needs_clearing=true;
             $new_attached_users=array_diff($urefs, $old_attached_users);
+            $removed_users = array_diff($old_attached_users, $urefs, $collection_owner_ref != "" ? array($collection_owner["ref"]) : array());
             }
 
         # log this only if a user is being added
         if($coldata["users"]!="")
             {
             collection_log($ref,LOG_CODE_COLLECTION_SHARED_COLLECTION,0, join(", ",$ulist));
-            }
-
-        if($cache_needs_clearing) 
-            {
-            clear_query_cache('collection_access');
             }
 
         # log the removal of users / smart groups
@@ -1715,10 +1712,20 @@ function save_collection($ref, $coldata=array())
                     }
                 }
             #log this
-            clear_query_cache('collection_access');
             collection_log($ref,LOG_CODE_COLLECTION_SHARED_COLLECTION,0, $groupnames);
             }
+
+        # Clear user specific collection cache if user was added or removed.
+        if (count($new_attached_users) >  0 || count($removed_users) > 0)
+            {
+            $user_caches = array_unique(array_merge($new_attached_users, $removed_users));
+            foreach ($user_caches as $user_cache)
+                {
+                clear_query_cache('collection_access' . $user_cache);
+                }
+            }
         }
+
     # Send a message to any new attached user
     if(!empty($new_attached_users))
         {
@@ -2055,7 +2062,7 @@ function email_collection($colrefs,$collectionname,$fromusername,$userlist,$mess
                     }
                 
                 #log this
-                clear_query_cache('collection_access');
+                clear_query_cache('collection_access' . $internal_user_ids[$nx2]);
                 collection_log($reflist[$nx1], LOG_CODE_COLLECTION_SHARED_COLLECTION, 0, ps_value ("select username as value from user where ref = ?", array("i", $internal_user_ids[$nx2]), ""));
                 }
             }
@@ -2099,13 +2106,13 @@ function email_collection($colrefs,$collectionname,$fromusername,$userlist,$mess
 
     if ($fromusername==""){$fromusername=$applicationname;}
 
-    $externalmessage = $lang["emailcollectionmessageexternal"];
+    $externalmessage = str_replace('%applicationname%', $applicationname, $lang["emailcollectionmessageexternal"]);
     $internalmessage = "lang_emailcollectionmessage";
 
     $viewlinktext="lang_clicklinkviewcollection";
     if ($themeshare) // Change the text if sharing a theme category
         {
-        $externalmessage    = $lang["emailthemecollectionmessageexternal"];
+        $externalmessage    = str_replace('%applicationname%', $applicationname, $lang["emailthemecollectionmessageexternal"]);
         $internalmessage    = "lang_emailthememessage";
         $viewlinktext       = "lang_clicklinkviewcollections";
         }
@@ -3472,9 +3479,9 @@ function collection_is_research_request($collection)
 function add_to_collection_link($resource, $extracode="", $size="", $class="", $view_title=""): string
     {
     $resource = (int) $resource;
-    $size = escape_quoted_data($size);
-    $class = escape_quoted_data($class);
-    $title = escape_quoted_data($GLOBALS['lang']["addtocurrentcollection"] . " - " . $view_title);
+    $size = escape($size);
+    $class = escape($class);
+    $title = escape($GLOBALS['lang']["addtocurrentcollection"] . " - " . $view_title);
 
     return "<a class=\"addToCollection {$class}\" href=\"#\" title=\"{$title}\""
         . " onClick=\"AddResourceToCollection(event, {draggable: jQuery('div#ResourceShell{$resource}')},'{$resource}','{$size}'); {$extracode} return false;\""
@@ -3501,9 +3508,9 @@ function remove_from_collection_link($resource, $class="", string $onclick = '',
     global $lang, $pagename;
 
     $resource = (int) $resource;
-    $class = escape_quoted_data($class);
-    $title = escape_quoted_data($basketmode ? $lang["removefrombasket"]: $lang["removefromcurrentcollection"] . " - " . $view_title);
-    $pagename = escape_quoted_data($pagename);
+    $class = escape($class);
+    $title = escape($basketmode ? $lang["removefrombasket"]: $lang["removefromcurrentcollection"] . " - " . $view_title);
+    $pagename = escape($pagename);
 
     return "<a class=\"removeFromCollection {$class}\" href=\"#\" title=\"{$title}\" "
         . "onClick=\"RemoveResourceFromCollection(event,'{$resource}','{$pagename}'); {$onclick} return false;\""
@@ -5437,10 +5444,12 @@ function get_user_selection_collection($user)
 		{		
 		// We need to set a collection session_id for the anonymous user. Get session ID to create collection with this set
 		$rs_session=get_rs_session_id(true);
+        $cache = '';
 		}
 	else
 		{	
 		$rs_session="";
+        $cache = 'user_selection_collection' . $user;
         }
 
     $params = [
@@ -5456,7 +5465,7 @@ function get_user_selection_collection($user)
         $params[] = $rs_session;
         }
 
-    return ps_value("SELECT ref AS `value` FROM collection WHERE `user` = ? AND `type` = ? {$session_id_sql} ORDER BY ref ASC", $params, null);
+    return ps_value("SELECT ref AS `value` FROM collection WHERE `user` = ? AND `type` = ? {$session_id_sql} ORDER BY ref ASC", $params, null, $cache);
     }
 
 

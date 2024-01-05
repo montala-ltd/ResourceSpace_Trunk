@@ -9,7 +9,6 @@ parameters:
 			message: "#^Undefined variable\\: \\$search_title$#"
 			count: 1
 			path: include/collections_functions.php
-
 		-
 			message: "#^Undefined variable\\: \\$share_collection$#"
 			count: 2
@@ -59,7 +58,6 @@ parameters:
 			message: "#^Undefined variable\\: \\$images$#"
 			count: 1
 			path: include/general_functions.php
-
 		-
 			message: "#^Undefined variable\\: \\$lang$#"
 			count: 1
@@ -217,41 +215,6 @@ parameters:
 
 		-
 			message: "#^Call to function unset\\(\\) contains undefined variable \\$notes\\.$#"
-			count: 1
-			path: plugins/annotate/include/annotate_functions.php
-
-		-
-			message: "#^Call to method GetX\\(\\) on an unknown class MYPDF\\.$#"
-			count: 2
-			path: plugins/annotate/include/annotate_functions.php
-
-		-
-			message: "#^Call to method GetY\\(\\) on an unknown class MYPDF\\.$#"
-			count: 3
-			path: plugins/annotate/include/annotate_functions.php
-
-		-
-			message: "#^Call to method MultiCell\\(\\) on an unknown class MYPDF\\.$#"
-			count: 2
-			path: plugins/annotate/include/annotate_functions.php
-
-		-
-			message: "#^Call to method SetXY\\(\\) on an unknown class MYPDF\\.$#"
-			count: 1
-			path: plugins/annotate/include/annotate_functions.php
-
-		-
-			message: "#^Call to method getPage\\(\\) on an unknown class MYPDF\\.$#"
-			count: 3
-			path: plugins/annotate/include/annotate_functions.php
-
-		-
-			message: "#^Call to method setPage\\(\\) on an unknown class MYPDF\\.$#"
-			count: 2
-			path: plugins/annotate/include/annotate_functions.php
-
-		-
-			message: "#^Instantiated class MYPDF not found\\.$#"
 			count: 1
 			path: plugins/annotate/include/annotate_functions.php
 

@@ -205,6 +205,7 @@ function setup_user(array $userdata)
         // Don't create a new collection on every anonymous page load, it will be created when an action is performed
         $USER_SELECTION_COLLECTION = create_collection($userref, "Selection Collection (for batch edit)", 0, 1);
         update_collection_type($USER_SELECTION_COLLECTION, COLLECTION_TYPE_SELECTION, false);
+        clear_query_cache('user_selection_collection' . $userref);
         }
 
     $newfilter = false;
@@ -267,11 +268,7 @@ function setup_user(array $userdata)
 
     # Apply config override options
     $config_options=trim((string) $userdata["config_options"]);
-    if ($config_options!="")
-        {
-        // We need to get all globals as we don't know what may be referenced here
-        override_rs_variables_by_eval($GLOBALS, $config_options);
-        }
+    override_rs_variables_by_eval($GLOBALS, $config_options);
 
     // Set default workflow states to show actions for, if not manually set by user
     get_config_option($userref,'actions_notify_states', $user_actions_notify_states, '');
@@ -3436,24 +3433,24 @@ function get_default_notify_states(): array
 /**
  * Generate a temporary download key for user. Used to enable temporary resource access to a file via download.php so that API can access resources after calling get_resource_path()
  *
- * @param int $user         User ID
- * @param int $resource     Resource ID
+ * @param int     $user         User ID
+ * @param int     $resource     Resource ID
+ * @param string  $size         Download size to access.
  * 
  * @return string           Access key - empty if not permitted
  */
-function generate_temp_download_key(int $user, int $resource): string
+function generate_temp_download_key(int $user, int $resource, string $size): string
     {
-    if ((($GLOBALS["userref"] != $user && !checkperm_user_edit($user))
-            || get_resource_access($resource) != 0)
-        )
+    if (!in_array($size, array('col', 'thm', 'pre')) && (($GLOBALS["userref"] != $user && !checkperm_user_edit($user)) || get_resource_access($resource) != 0))
         {
         return "";
         }
-    
+
     $user_data = get_user($user);
     $data =  generateSecureKey(128)
         . ":" . $user
         . ":" . $resource
+        . ":" . $size
         . ":" .  time()
         . ":" . hash_hmac("sha256", "user_pass_mac", $user_data['password']);
 
@@ -3464,32 +3461,44 @@ function generate_temp_download_key(int $user, int $resource): string
     }
 
 /**
- * Validate the provided download key
+ * Validate the provided download key to authenticate a download or override an access check.
  *
- * @param int           Resource ID
- * @param $keystring    Key string - incudes a nonce prefix
+ * @param int     $ref              Resource ID
+ * @param string  $keystring        Key string - includes a nonce prefix
+ * @param string  $size             Download size to access.
+ * @param int     $expire_seconds   Optional parameter to set specified expiry time in seconds. Use 0 to set system default.
+ * @param bool    $setup_user       Set to false where there is no need to initialise the user.
  * 
  * @return bool
  * 
  */
-function validate_temp_download_key(int $ref, string $keystring) : bool
+function validate_temp_download_key(int $ref, string $keystring, string $size, int $expire_seconds = 0, bool $setup_user = true) : bool
     {
-    global $api_resource_path_expiry_hours;
+    if ($expire_seconds < 1)
+        {
+        global $api_resource_path_expiry_hours;
+        $expiry_time_limit = 60 * 60 * $api_resource_path_expiry_hours;
+        }
+    else
+        {
+        $expiry_time_limit = $expire_seconds;
+        }
+
     $keydata = rsDecrypt($keystring, hash_hmac('sha512', 'dld_key', $GLOBALS['api_scramble_key'] . $GLOBALS['scramble_key']));
     if($keydata != false)
         {
         $download_key_parts = explode(":", $keydata);
         // First element is the nonce
-        if($download_key_parts[2] == $ref)
+        if($download_key_parts[2] == $ref && $download_key_parts[3] == $size)
             {
             $ak_user = $download_key_parts[1];
             $ak_userdata = get_user($ak_user);
-            $key_time = $download_key_parts[3];
+            $key_time = $download_key_parts[4];
             if($ak_userdata !== false 
-                && ((time()- $key_time) < (60 * 60 * $api_resource_path_expiry_hours))
-                && hash_hmac("sha256", "user_pass_mac", $ak_userdata['password']) === $download_key_parts[4])
+                && ((time()- $key_time) < $expiry_time_limit)
+                && hash_hmac("sha256", "user_pass_mac", $ak_userdata['password']) === $download_key_parts[5])
                 {
-                setup_user($ak_userdata);
+                if ($setup_user) { setup_user($ak_userdata); }
                 return true;
                 }
             }

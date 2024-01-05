@@ -101,7 +101,7 @@ $SystemConfigDebugForUser_class = $system_config_debug_log_interim === $lang['sy
     ? ''
     : 'DisplayNone';
 ?>
-<div id="SystemConfigDebugForUser" class="Question <?php echo escape_quoted_data($SystemConfigDebugForUser_class); ?>">
+<div id="SystemConfigDebugForUser" class="Question <?php echo escape($SystemConfigDebugForUser_class); ?>">
     <label></label>
     <?php include dirname(__DIR__, 2) . "/include/user_select.php"; ?> 
     <div class="clearerleft"></div>
@@ -148,7 +148,7 @@ $page_def[] = config_add_file_input(
     'custom_font',
     $lang['systemconfig_customfont_label'],
     $baseurl . '/pages/admin/admin_system_config.php',
-    420,
+    316,
     array('woff2', 'woff', 'ttf', 'otf')
 );
 
@@ -156,13 +156,13 @@ $page_def[] = config_add_file_input(
     'linkedheaderimgsrc',
     $lang['systemconfig_linkedheaderimgsrc_label'],
     $baseurl . '/pages/admin/admin_system_config.php',
-    420
+    316
 );
 $page_def[] = config_add_file_input(
     'header_favicon',
     $lang['systemconfig_header_favicon_label'],
     $baseurl . '/pages/admin/admin_system_config.php',
-    420
+    316
 );
 
 $page_def[] = config_add_single_select(
@@ -253,7 +253,7 @@ $page_def[] = config_add_file_input(
     'watermark',
     $lang['watermark_label'],
     $baseurl . '/pages/admin/admin_system_config.php',
-    420,
+    316,
     array('png'),
     true
 );
@@ -381,8 +381,8 @@ $page_def[] = config_add_html('</div>');
 // Actions section
 $page_def[] = config_add_html('<h3 class="CollapsibleSectionHead collapsed">' . $lang['actions'] . '</h3><div id="SystemConfigActionsSection" class="CollapsibleSection">');
 $page_def[] = config_add_boolean_select('actions_enable', $lang['actions-enable'], $enable_disable_options, 420, '', true);
-$page_def[] = config_add_boolean_select('actions_resource_requests', $lang['actions_resource_requests_default'], $enable_disable_options, 300, '', true);
-$page_def[] = config_add_boolean_select('actions_account_requests', $lang['actions_account_requests_default'], $enable_disable_options, 300, '', true);
+$page_def[] = config_add_boolean_select('actions_resource_requests', $lang['actions_resource_requests_default'], $enable_disable_options, 420, '', true);
+$page_def[] = config_add_boolean_select('actions_account_requests', $lang['actions_account_requests_default'], $enable_disable_options, 420, '', true);
 	
 $page_def[] = config_add_html('</div>');
 
@@ -637,13 +637,13 @@ include '../../include/header.php';
     <form id="SearchSystemPages" class="inline_config_search" method="post" onSubmit="return CentralSpacePost(this);">
         <?php generateFormToken("system_config_search"); ?>
         <div>
-        <input type="text" name="find" id="configsearch" value="<?php echo escape_quoted_data($find); ?>">
-        <input type="submit" name="searching" value="<?php echo escape_quoted_data($lang["searchbutton"]); ?>">
+        <input type="text" name="find" id="configsearch" value="<?php echo escape($find); ?>">
+        <input type="submit" name="searching" value="<?php echo escape($lang["searchbutton"]); ?>">
         <?php
         if($searching)
             {
             ?>
-            <input type="button" name="clear_search" value="<?php echo escape_quoted_data($lang["clearbutton"]); ?>" onClick="jQuery('#configsearch').val(''); jQuery('#only_modified').prop('checked', false); CentralSpacePost(document.getElementById('SearchSystemPages'));">
+            <input type="button" name="clear_search" value="<?php echo escape($lang["clearbutton"]); ?>" onClick="jQuery('#configsearch').val(''); jQuery('#only_modified').prop('checked', false); CentralSpacePost(document.getElementById('SearchSystemPages'));">
             <?php
             }
         ?>
@@ -689,12 +689,12 @@ include '../../include/header.php';
         {
         let value = jQuery(el).val();
         let options_to_show_duration = <?php echo json_encode([
-            escape_quoted_data($lang['systemconsoleonallusers']),
-            escape_quoted_data($lang['systemconfig_debug_log_on_specific_user']),
+            escape($lang['systemconsoleonallusers']),
+            escape($lang['systemconfig_debug_log_on_specific_user']),
         ]);?>;
 
         // Display the user selection (if applicable)
-        if (value === '<?php echo escape_quoted_data($lang['systemconfig_debug_log_on_specific_user']); ?>') {
+        if (value === '<?php echo escape($lang['systemconfig_debug_log_on_specific_user']); ?>') {
             jQuery('#SystemConfigDebugForUser').removeClass('DisplayNone');
         } else {
             jQuery('#SystemConfigDebugForUser').addClass('DisplayNone');
@@ -708,7 +708,7 @@ include '../../include/header.php';
             jQuery('#question_system_config_debug_log_duration').addClass('DisplayNone');
         }
 
-        if (value === '<?php echo escape_quoted_data($lang['off']); ?>') {
+        if (value === '<?php echo escape($lang['off']); ?>') {
             create_debug_log_override(-1, -1);
         }
         return;
@@ -790,7 +790,7 @@ include '../../include/header.php';
     function debug_log_override_timer_done()
         {
         console.debug('debug_log_override_timer_done');
-        let option_off = '<?php echo escape_quoted_data($lang['off']); ?>';
+        let option_off = '<?php echo escape($lang['off']); ?>';
         let system_config_debug_log_interim = jQuery('#system_config_debug_log_interim');
 
         system_config_debug_log_interim.removeData('timer_started');

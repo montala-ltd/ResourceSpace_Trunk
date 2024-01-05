@@ -897,7 +897,8 @@ function send_mail($email,$subject,$message,$from="",$reply_to="",$html_template
                 {
                 // Rate limit not previously active, activate and warn them.
                 ps_query("update user set email_rate_limit_active=1 where ref=?",["i",$userref]);
-                message_add([$userref],$lang["email_rate_limit_active"]);
+                // MESSAGE_ENUM_NOTIFICATION_TYPE_EMAIL to prevent sending email via message_add() as this will cause loop.
+                message_add([$userref],$lang["email_rate_limit_active"], '', null, MESSAGE_ENUM_NOTIFICATION_TYPE_EMAIL);
                 }
             debug("E-mail not sent due to email_rate_limit being exceeded");
             return $lang["email_rate_limit_active"]; // Don't send the e-mail and return the error.
@@ -908,8 +909,9 @@ function send_mail($email,$subject,$message,$from="",$reply_to="",$html_template
             if ($useremail_rate_limit_active ?? false)
                 {
                 ps_query("update user set email_rate_limit_active=0 where ref=?",["i",$userref]);
-                // Send them a message 
-                message_add([$userref],$lang["email_rate_limit_inactive"]);
+                // Send them a message
+                // MESSAGE_ENUM_NOTIFICATION_TYPE_EMAIL to prevent sending email via message_add() as this will cause loop.
+                message_add([$userref],$lang["email_rate_limit_inactive"], '', null, MESSAGE_ENUM_NOTIFICATION_TYPE_EMAIL);
                 }
             }
         }
@@ -1198,8 +1200,19 @@ function send_mail_phpmailer($email,$subject,$message="",$from="",$reply_to="",$
                     {
                     // Get lang variables (ex. [lang_mycollections])
                     global $lang;
-                    $setvalues[$placeholder] = $lang[substr($placeholder,5)];
-                    }           
+                    switch(substr($placeholder,5))
+                        {
+                        case "emailcollectionmessageexternal":
+                            $setvalues[$placeholder] = str_replace('%applicationname%', $applicationname, $lang["emailcollectionmessageexternal"]);
+                            break;
+                        case "emailcollectionmessage":
+                            $setvalues[$placeholder] = str_replace('%applicationname%', $applicationname, $lang["emailcollectionmessage"]);
+                            break;
+                        default:
+                            $setvalues[$placeholder] = $lang[substr($placeholder,5)];
+                            break;
+                        }
+                    }
                 else if (substr($placeholder,0,5)=="text_")
                     {
                     // Get text string (legacy)
@@ -1610,15 +1623,15 @@ function pager($break=true,$scrolltotop=true,$options=array())
     if(!hook("replace_pager")){
         unset($url_params["offset"]);
         if ($totalpages!=0 && $totalpages!=1){?>     
-            <span class="TopInpageNavRight"><?php if ($break) { ?>&nbsp;<br /><?php } hook("custompagerstyle"); if ($curpage>1) { ?><a class="prevPageLink" title="<?php echo escape_quoted_data($lang["previous"]) ?>" href="<?php echo generateURL($url, (isset($url_params) ? $url_params : array()), array("go"=>"prev","offset"=> ($offset-$per_page)));?>" <?php if(!hook("replacepageronclick_prev")){?>onClick="<?php echo $confirm_page_change;?> return <?php echo $modal ? 'Modal' : 'CentralSpace'; ?>Load(this, <?php echo $scroll; ?>);" <?php } ?>><?php } ?><i aria-hidden="true" class="fa fa-arrow-left"></i><?php if ($curpage>1) { ?></a><?php } ?>&nbsp;&nbsp;
+            <span class="TopInpageNavRight"><?php if ($break) { ?>&nbsp;<br /><?php } hook("custompagerstyle"); if ($curpage>1) { ?><a class="prevPageLink" title="<?php echo escape($lang["previous"]) ?>" href="<?php echo generateURL($url, (isset($url_params) ? $url_params : array()), array("go"=>"prev","offset"=> ($offset-$per_page)));?>" <?php if(!hook("replacepageronclick_prev")){?>onClick="<?php echo $confirm_page_change;?> return <?php echo $modal ? 'Modal' : 'CentralSpace'; ?>Load(this, <?php echo $scroll; ?>);" <?php } ?>><?php } ?><i aria-hidden="true" class="fa fa-arrow-left"></i><?php if ($curpage>1) { ?></a><?php } ?>&nbsp;&nbsp;
 
             <div class="JumpPanel" id="jumppanel<?php echo $jumpcount?>" style="display:none;"><?php echo htmlspecialchars($lang["jumptopage"]) ?>: <input type="text" size="1" id="jumpto<?php echo $jumpcount?>" onkeydown="var evt = event || window.event;if (evt.keyCode == 13) {var jumpto=document.getElementById('jumpto<?php echo $jumpcount?>').value;if (jumpto<1){jumpto=1;};if (jumpto><?php echo $totalpages?>){jumpto=<?php echo $totalpages?>;};<?php echo $modal ? 'Modal' : 'CentralSpace'; ?>Load('<?php echo generateURL($url, (isset($url_params) ? $url_params : array()), array("go"=>"page")); ?>&amp;offset=' + ((jumpto-1) * <?php echo urlencode($per_page) ?>), <?php echo $scroll; ?>);}">
             &nbsp;<a aria-hidden="true" class="fa fa-times-circle" href="#" onClick="document.getElementById('jumppanel<?php echo $jumpcount?>').style.display='none';document.getElementById('jumplink<?php echo $jumpcount?>').style.display='inline';"></a></div>
-            <a href="#" id="jumplink<?php echo $jumpcount?>" title="<?php echo escape_quoted_data($lang["jumptopage"]) ?>" onClick="document.getElementById('jumppanel<?php echo $jumpcount?>').style.display='inline';document.getElementById('jumplink<?php echo $jumpcount?>').style.display='none';document.getElementById('jumpto<?php echo $jumpcount?>').focus(); return false;"><?php echo htmlspecialchars($lang["page"]) ?>&nbsp;<?php echo htmlspecialchars($curpage) ?>&nbsp;<?php echo htmlspecialchars($lang["of"]) ?>&nbsp;<?php echo $totalpages?></a>
+            <a href="#" id="jumplink<?php echo $jumpcount?>" title="<?php echo escape($lang["jumptopage"]) ?>" onClick="document.getElementById('jumppanel<?php echo $jumpcount?>').style.display='inline';document.getElementById('jumplink<?php echo $jumpcount?>').style.display='none';document.getElementById('jumpto<?php echo $jumpcount?>').focus(); return false;"><?php echo htmlspecialchars($lang["page"]) ?>&nbsp;<?php echo htmlspecialchars($curpage) ?>&nbsp;<?php echo htmlspecialchars($lang["of"]) ?>&nbsp;<?php echo $totalpages?></a>
             &nbsp;&nbsp;<?php
             if ($curpage<$totalpages)
                 {
-                ?><a class="nextPageLink" title="<?php echo escape_quoted_data($lang["next"]) ?>" href="<?php echo generateURL($url, (isset($url_params) ? $url_params : array()), array("go"=>"next","offset"=> ($offset+$per_page)));?>" <?php if(!hook("replacepageronclick_next")){?>onClick="<?php echo $confirm_page_change;?> return <?php echo $modal ? 'Modal' : 'CentralSpace'; ?>Load(this, <?php echo $scroll; ?>);" <?php } ?>><?php
+                ?><a class="nextPageLink" title="<?php echo escape($lang["next"]) ?>" href="<?php echo generateURL($url, (isset($url_params) ? $url_params : array()), array("go"=>"next","offset"=> ($offset+$per_page)));?>" <?php if(!hook("replacepageronclick_next")){?>onClick="<?php echo $confirm_page_change;?> return <?php echo $modal ? 'Modal' : 'CentralSpace'; ?>Load(this, <?php echo $scroll; ?>);" <?php } ?>><?php
                 }?><i aria-hidden="true" class="fa fa-arrow-right"></i>
             <?php if ($curpage<$totalpages) { ?></a><?php } hook("custompagerstyleend"); ?>
             </span>
@@ -2238,7 +2251,7 @@ function error_alert($error, $back = true, $code = 403)
         jQuery(document).ready(function()
             {
             ModalClose();
-            styledalert('" . $lang["error"] . "', '" . escape_quoted_data($error) . "');
+            styledalert('" . $lang["error"] . "', '" . escape($error) . "');
             " . ($back ? "window.setTimeout(function(){history.go(-1);},2000);" : "") ."
             });
         </script>";
@@ -3197,7 +3210,7 @@ function generate_csrf_js_object(string $name): string
 function generate_csrf_data_for_api_native_authmode(string $fct_name): string
     {
     return $GLOBALS['CSRF_enabled']
-        ? sprintf(' data-api-native-csrf="%s"', escape_quoted_data(generate_csrf_js_object($fct_name)))
+        ? sprintf(' data-api-native-csrf="%s"', escape(generate_csrf_js_object($fct_name)))
         : '';
     }
 
@@ -4515,8 +4528,8 @@ function get_system_status()
             // 'name' => [
             //     'status' => 'OK/FAIL',
             //     'info' => 'Any relevant information',
-            //     'severity' => 'CRITICAL/WARNING/NOTICE'
-            //     'severity_text' => Text for severity using language strings e.g. $GLOBALS["lang"]["severity-level_" . CRITICAL]
+            //     'severity' => 'SEVERITY_CRITICAL/SEVERITY_WARNING/SEVERITY_NOTICE'
+            //     'severity_text' => Text for severity using language strings e.g. $GLOBALS["lang"]["severity-level_" . SEVERITY_CRITICAL]
             // ]
         ],
         'status' => 'FAIL',
@@ -4547,8 +4560,8 @@ function get_system_status()
         $return['results']['required_php_modules'] = [
             'status' => 'FAIL',
             'info' => 'Missing PHP modules: ' . implode(', ', $missing_modules),
-            'severity' => CRITICAL,
-            'severity_text' => $GLOBALS["lang"]["severity-level_" . CRITICAL],
+            'severity' => SEVERITY_CRITICAL,
+            'severity_text' => $GLOBALS["lang"]["severity-level_" . SEVERITY_CRITICAL],
         ];
 
         // Return now as this is considered fatal to the system. If not, later checks might crash process because of missing one of these modules.
@@ -4565,8 +4578,8 @@ function get_system_status()
         $return['results']['php_version'] = [
             'status' => 'FAIL',
             'info' => 'PHP version not supported',
-            'severity' => WARNING,
-            'severity_text' => $GLOBALS["lang"]["severity-level_" . WARNING],
+            'severity' => SEVERITY_WARNING,
+            'severity_text' => $GLOBALS["lang"]["severity-level_" . SEVERITY_WARNING],
         ];
         ++$fail_tests;
         }
@@ -4588,8 +4601,8 @@ function get_system_status()
             'info' => 'Unable to get utility path',
             'affected_utilities' => array_unique(array_keys($missing_utility_paths)),
             'affected_utility_paths' => array_unique(array_values($missing_utility_paths)),
-            'severity' => WARNING,
-            'severity_text' => $GLOBALS["lang"]["severity-level_" . WARNING],
+            'severity' => SEVERITY_WARNING,
+            'severity_text' => $GLOBALS["lang"]["severity-level_" . SEVERITY_WARNING],
         ];
 
         return $return;
@@ -4603,8 +4616,8 @@ function get_system_status()
         $return['results']['database_connection'] = [
             'status' => 'FAIL',
             'info' => 'SQL query produced unexpected result',
-            'severity' => CRITICAL,
-            'severity_text' => $GLOBALS["lang"]["severity-level_" . CRITICAL],
+            'severity' => SEVERITY_CRITICAL,
+            'severity_text' => $GLOBALS["lang"]["severity-level_" . SEVERITY_CRITICAL],
         ];
 
         return $return;
@@ -4618,8 +4631,8 @@ function get_system_status()
         $return['results']['database_encoding'] = [
             'status' => 'FAIL',
             'info' => 'Database encoding is not utf8',
-            'severity' => WARNING,
-            'severity_text' => $GLOBALS["lang"]["severity-level_" . WARNING],
+            'severity' => SEVERITY_WARNING,
+            'severity_text' => $GLOBALS["lang"]["severity-level_" . SEVERITY_WARNING],
         ];
         ++$fail_tests;
         }
@@ -4630,8 +4643,8 @@ function get_system_status()
         $return['results']['filestore_writable'] = [
             'status' => 'FAIL',
             'info' => '$storagedir is not writeable',
-            'severity' => CRITICAL,
-            'severity_text' => $GLOBALS["lang"]["severity-level_" . CRITICAL],
+            'severity' => SEVERITY_CRITICAL,
+            'severity_text' => $GLOBALS["lang"]["severity-level_" . SEVERITY_CRITICAL],
         ];
 
         return $return;
@@ -4645,8 +4658,8 @@ function get_system_status()
         $return['results']['create_file_in_filestore'] = [
             'status' => 'FAIL',
             'info' => 'Unable to write to configured $storagedir. Folder permissions are: ' . fileperms($GLOBALS['storagedir']),
-            'severity' => WARNING,
-            'severity_text' => $GLOBALS["lang"]["severity-level_" . WARNING],
+            'severity' => SEVERITY_WARNING,
+            'severity_text' => $GLOBALS["lang"]["severity-level_" . SEVERITY_WARNING],
         ];
 
         return $return;
@@ -4657,8 +4670,8 @@ function get_system_status()
         $return['results']['filestore_file_exists_and_is_readable'] = [
             'status' => 'FAIL',
             'info' => 'Hash not saved or unreadable in file ' . $file,
-            'severity' => WARNING,
-            'severity_text' => $GLOBALS["lang"]["severity-level_" . WARNING],
+            'severity' => SEVERITY_WARNING,
+            'severity_text' => $GLOBALS["lang"]["severity-level_" . SEVERITY_WARNING],
         ];
 
         return $return;
@@ -4677,8 +4690,8 @@ function get_system_status()
             $return['results']['filestore_file_delete'] = [
                 'status' => 'FAIL',
                 'info' => sprintf('Unable to delete file "%s". Reason: %s', $file, $t->getMessage()),
-                'severity' => WARNING,
-                'severity_text' => $GLOBALS["lang"]["severity-level_" . WARNING],
+                'severity' => SEVERITY_WARNING,
+                'severity_text' => $GLOBALS["lang"]["severity-level_" . SEVERITY_WARNING],
             ];
 
             ++$fail_tests;
@@ -4690,8 +4703,8 @@ function get_system_status()
         $return['results']['filestore_file_check_hash'] = [
             'status' => 'FAIL',
             'info' => sprintf('Test write to disk returned a different string ("%s" vs "%s")', $hash, $check),
-            'severity' => WARNING,
-            'severity_text' => $GLOBALS["lang"]["severity-level_" . WARNING],
+            'severity' => SEVERITY_WARNING,
+            'severity_text' => $GLOBALS["lang"]["severity-level_" . SEVERITY_WARNING],
         ];
 
         return $return;
@@ -4705,8 +4718,8 @@ function get_system_status()
         $return['results']['filestore_indexed'] = [
             'status' => 'FAIL',
             'info' => $cfb['info'],
-            'severity' => CRITICAL,
-            'severity_text' => $GLOBALS["lang"]["severity-level_" . CRITICAL],
+            'severity' => SEVERITY_CRITICAL,
+            'severity_text' => $GLOBALS["lang"]["severity-level_" . SEVERITY_CRITICAL],
         ];
         return $return;
         }
@@ -4722,8 +4735,8 @@ function get_system_status()
             $return['results']['mysql_log_location'] = [
                 'status' => 'FAIL',
                 'info' => 'Invalid $mysql_log_location specified in config file',
-                'severity' => CRITICAL,
-                'severity_text' => $GLOBALS["lang"]["severity-level_" . CRITICAL],
+                'severity' => SEVERITY_CRITICAL,
+                'severity_text' => $GLOBALS["lang"]["severity-level_" . SEVERITY_CRITICAL],
             ];
             return $return;
             }
@@ -4743,8 +4756,8 @@ function get_system_status()
 
         if($debug_log)
             {
-            $return['results']['debug_log_location']['severity'] = CRITICAL;
-            $return['results']['debug_log_location']['severity_text'] = $GLOBALS["lang"]["severity-level_" . CRITICAL];
+            $return['results']['debug_log_location']['severity'] = SEVERITY_CRITICAL;
+            $return['results']['debug_log_location']['severity_text'] = $GLOBALS["lang"]["severity-level_" . SEVERITY_CRITICAL];
             return $return;
             }
         else
@@ -4762,8 +4775,8 @@ function get_system_status()
         $return['results']['cron_process'] = [
             'status' => 'FAIL',
             'info' => 'Cron was executed ' . round($diff_days, 1) . ' days ago.',
-            'severity' => WARNING,
-            'severity_text' => $GLOBALS["lang"]["severity-level_" . WARNING],
+            'severity' => SEVERITY_WARNING,
+            'severity_text' => $GLOBALS["lang"]["severity-level_" . SEVERITY_WARNING],
         ];
         ++$fail_tests;
         }
@@ -4779,8 +4792,8 @@ function get_system_status()
         $return['results']['free_disk_space'] = [
             'status' => 'FAIL',
             'info' => 'Less than 1% disk space free.',
-            'severity' => CRITICAL,
-            'severity_text' => $GLOBALS["lang"]["severity-level_" . CRITICAL],
+            'severity' => SEVERITY_CRITICAL,
+            'severity_text' => $GLOBALS["lang"]["severity-level_" . SEVERITY_CRITICAL],
         ];
         return $return;
         }
@@ -4789,8 +4802,8 @@ function get_system_status()
         $return['results']['free_disk_space'] = [
             'status' => 'FAIL',
             'info' => 'Less than 5% disk space free.',
-            'severity' => WARNING,
-            'severity_text' => $GLOBALS["lang"]["severity-level_" . WARNING],
+            'severity' => SEVERITY_WARNING,
+            'severity_text' => $GLOBALS["lang"]["severity-level_" . SEVERITY_WARNING],
         ];
         ++$fail_tests;
         }
@@ -4809,8 +4822,8 @@ function get_system_status()
                 'status' => 'FAIL',
                 'info' => $percent . '% used - nearly full.',
                 'avail' => $avail, 'used' => $used, 'percent' => $percent,
-                'severity' => WARNING,
-                'severity_text' => $GLOBALS["lang"]["severity-level_" . WARNING],
+                'severity' => SEVERITY_WARNING,
+                'severity_text' => $GLOBALS["lang"]["severity-level_" . SEVERITY_WARNING],
             ];
             ++$fail_tests;
             }
@@ -4820,8 +4833,8 @@ function get_system_status()
                 'status' => 'FAIL',
                 'info' => $percent . '% used - nearly full.',
                 'avail' => $avail, 'used' => $used, 'percent' => $percent,
-                'severity' => CRITICAL,
-                'severity_text' => $GLOBALS["lang"]["severity-level_" . CRITICAL],
+                'severity' => SEVERITY_CRITICAL,
+                'severity_text' => $GLOBALS["lang"]["severity-level_" . SEVERITY_CRITICAL],
             ];
             return $return;
             }
@@ -4831,8 +4844,8 @@ function get_system_status()
                 'status' => 'FAIL',
                 'info' => $percent . '% used - over quota.',
                 'avail' => $avail, 'used' => $used, 'percent' => $percent,
-                'severity' => CRITICAL,
-                'severity_text' => $GLOBALS["lang"]["severity-level_" . CRITICAL],
+                'severity' => SEVERITY_CRITICAL,
+                'severity_text' => $GLOBALS["lang"]["severity-level_" . SEVERITY_CRITICAL],
             ];
             return $return;
             }
@@ -5323,14 +5336,22 @@ function get_size_info(array $size, ?array $originalSize = null): string
             }
         }
 
-    $output = "<p>$newWidth &times; $newHeight {$lang["pixels"]}";
+    $output = sprintf('
+        <p>%s &times; %s %s',
+        htmlspecialchars($newWidth),
+        htmlspecialchars($newHeight),
+        htmlspecialchars($lang['pixels']),
+    );
 
     if (!hook('replacemp'))
         {
         $mp = compute_megapixel($newWidth, $newHeight);
         if ($mp >= 0)
             {
-            $output .= " ($mp {$lang["megapixel-short"]})";
+            $output .= sprintf(' (%s %s)',
+                htmlspecialchars($mp),
+                htmlspecialchars($lang['megapixel-short']),
+            );
             }
         }
 
@@ -5342,7 +5363,15 @@ function get_size_info(array $size, ?array $originalSize = null): string
             {   
             # Do DPI calculation only for non-videos
             compute_dpi($newWidth, $newHeight, $dpi, $dpi_unit, $dpi_w, $dpi_h);
-            $output .= "<p>$dpi_w $dpi_unit &times; $dpi_h $dpi_unit {$lang["at-resolution"]} $dpi {$lang["ppi"]}</p>";
+            $output .= sprintf(
+                '<p>%1$s %2$s &times; %3$s %2$s %4$s %5$s %6$s</p>',
+                htmlspecialchars($dpi_w),
+                htmlspecialchars($dpi_unit),
+                htmlspecialchars($dpi_h),
+                htmlspecialchars($lang['at-resolution']),
+                htmlspecialchars($dpi),
+                htmlspecialchars($lang['ppi']),
+            );
             }
         }
 

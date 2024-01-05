@@ -175,7 +175,7 @@ if(isset($start_time) && isset($end_time) && isset($upload_type))
         create_previews($newref,false,$ffmpeg_preview_extension);
         
         # Restore default value of $ffmpeg_preview_seconds
-        $ffmpeg_preview_seconds = $ffmpeg_local_preview_seconds;
+        $ffmpeg_preview_seconds = $ffmpeg_local_preview_seconds??$ffmpeg_preview_seconds;
 
         if ($collection_add == "yes")
             {
@@ -281,7 +281,7 @@ if(isset($start_time) && isset($end_time) && isset($upload_type))
         $trimmed_resources_alt[] = $alt_ref;
         }
         # Restore default value of $ffmpeg_preview_seconds
-        $ffmpeg_preview_seconds = $ffmpeg_local_preview_seconds;
+        $ffmpeg_preview_seconds = $ffmpeg_local_preview_seconds??$ffmpeg_preview_seconds;
     }
 ?>
 
@@ -314,8 +314,8 @@ elseif($previous_page_modal)
             if($modal)
                 {
                 ?>
-                <a class="maxLink fa fa-expand" href="<?php echo generateURL($baseurl . "/plugins/video_splice/pages/trim.php", $urlparams, array("modal" => "")); ?>" onclick="return CentralSpaceLoad(this);" title="<?php echo escape_quoted_data($lang["maximise"]); ?>"></a>
-                &nbsp;<a href="#" class="closeLink fa fa-times" onclick="ModalClose();" title="<?php echo escape_quoted_data($lang["close"]); ?>"></a>
+                <a class="maxLink fa fa-expand" href="<?php echo generateURL($baseurl . "/plugins/video_splice/pages/trim.php", $urlparams, array("modal" => "")); ?>" onclick="return CentralSpaceLoad(this);" title="<?php echo escape($lang["maximise"]); ?>"></a>
+                &nbsp;<a href="#" class="closeLink fa fa-times" onclick="ModalClose();" title="<?php echo escape($lang["close"]); ?>"></a>
                 <?php
                 }
                 ?>

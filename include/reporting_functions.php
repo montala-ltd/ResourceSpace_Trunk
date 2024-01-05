@@ -463,7 +463,7 @@ function send_periodic_report_emails($echo_out = true, $toemail=true)
             // Translates the report name.
             $report["name"] = lang_or_i18n_get_translated($report["name"], "report-");
 
-            $search_params = (trim($report['search_params']) !== '' ? json_decode($report['search_params'], true) : []);
+            $search_params = (trim($report['search_params']??"") !== '' ? json_decode($report['search_params'], true) : []);
 
             $static_report = true; // If no dynamic search results are included then the same report results can be used for all  recipients
 
@@ -526,7 +526,11 @@ function send_periodic_report_emails($echo_out = true, $toemail=true)
                 $output = str_replace("%%REPORTTITLE%%", $title, $lang["report_periodic_email_report_attached"]);
                 }
 
-            $unsubscribe_link = "<br />" . $lang["unsubscribereport"] . "<br /><a href=\"" . $baseurl . "/?ur=" . $report["ref"] . "\" target=\"_blank\">" . $baseurl . "/?ur=" . $report["ref"] . "</a>";
+            $unsubscribe_url = generateURL($baseurl,["ur"=>$report["ref"],"u"=>$user["ref"]]);
+            $unsubscribe_link = sprintf(
+                "<br />%s<br /><a href=\"%s\" target=\"_blank\">%s</a>",
+                $lang["unsubscribereport"],$unsubscribe_url,$unsubscribe_url
+            );
 
             if ($echo_out)
                 {

@@ -117,7 +117,7 @@ function get_resource_path(
                 'noattach'    => 'true',
                 'v'           => $refresh_key,
             ),
-            $get_resource_path_extra_download_query_string_params) . $refresh_key;
+            $get_resource_path_extra_download_query_string_params);
         }
 
     if ($size=="")
@@ -3265,7 +3265,7 @@ function get_resource_field_data($ref, $multi = false, $use_permissions = true, 
     $field_restypes = get_resource_type_field_resource_types();
     $restypesql = "";
     $restype_params = [];
-    if(!$multi && $pagename !== 'edit')
+    if(!$multi)
         {
         $restypesql = "AND (f.global=1 OR f.ref=? OR f.ref IN (SELECT resource_type_field FROM resource_type_field_resource_type rtjoin WHERE rtjoin.resource_type=?))";
         $restype_params[] = "i";$restype_params[] = $view_title_field;
@@ -8472,12 +8472,16 @@ function get_download_filename(int $ref, string $size, int $alternative, string 
                 {
                 $bind[$placeholder] = $field_data;
                 }
+            else
+                {
+                // No data, just remove placeholder
+                $bind[$placeholder] = "";
+                }
             }
         }
 
     // Build the filename
     $filename = str_replace(array_keys($bind), array_values($bind), $formatted_str);
-
     // Allow plugins to completely overwrite it
     $hook_downloadfilenamealt = hook('downloadfilenamealt', '', [$ref, $size, $alternative, $ext]);
     if (is_string($hook_downloadfilenamealt) && $hook_downloadfilenamealt !== '')
@@ -8501,6 +8505,13 @@ function get_download_filename(int $ref, string $size, int $alternative, string 
         $filename = mb_strcut($filename, 0, 255, 'UTF-8');
         }
 
+    // Extra check that the generated filename extension matches the requested extension e.g. if using $filename_field value previews it may have the extension of the original resource file, rather than jpg or the field data was too long and the extension has been removed by truncation.
+    $filename_parts = pathinfo($filename);
+    if(!isset($filename_parts["extension"]) || strtolower($filename_parts["extension"]) != strtolower($ext))
+        {
+        $filename = mb_strcut($filename_parts["basename"], 0, (254-strlen($ext)), 'UTF-8') . "." . $ext;
+        }
+         
     if ($filename !== '')
         {
         return $filename;
@@ -8861,7 +8872,7 @@ function update_resource_lock($ref,$lockaction,$newlockuser=null,$accesschecked 
         {
         $resource_data  = get_resource_data($ref);
         $lockeduser     =  $resource_data["lock_user"];
-        $edit_access    = get_edit_access($ref,false,$resource_data);
+        $edit_access    = get_edit_access($ref,$resource_data["archive"],false,$resource_data);
         if(!checkperm("a")
             &&
             $lockeduser != $userref
