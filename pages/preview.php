@@ -185,7 +185,7 @@ include "../include/header.php";
 <?php } /*end hook replacepreviewbacktoview*/ ?>
 <?php if ($k=="") { ?>
 
-<?php if (!checkperm("b") && !(($userrequestmode==2 || $userrequestmode==3)) && !in_array($resource["resource_type"],$collection_block_restypes)) { ?>
+<?php if (!checkperm("b") && !($userrequestmode==2 || $userrequestmode==3) && !in_array($resource["resource_type"],$collection_block_restypes)) { ?>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <?php echo add_to_collection_link(htmlspecialchars($ref))?><i aria-hidden="true" class="fa fa-plus-circle"></i>&nbsp;<?php echo htmlspecialchars($lang["action-addtocollection"]) ?></a><?php } ?>
 <?php if ($search=="!collection" . $usercollection) { ?>&nbsp;&nbsp;<?php echo remove_from_collection_link(htmlspecialchars($ref))?><i aria-hidden="true" class="fa fa-minus-circle"></i>&nbsp;<?php echo htmlspecialchars($lang["action-removefromcollection"]) ?></a><?php }
@@ -221,7 +221,7 @@ if ($alternative != "-1")
         "sort"        =>  $sort,
         "archive"     =>  $archive,
         "thumbs"      =>  $thumbs_show);
-        
+
          ?>
          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
          <a class="prevLink fa fa-arrow-left" onClick="return CentralSpaceLoad(this,true);" href="<?php echo generateURL($baseurl_short . "pages/preview.php", $defaultparams, isset($alt_previous)?array("alternative"=>$alt_previous):"");?>" title="<?php echo $lang["previousresult"]?>"></a>

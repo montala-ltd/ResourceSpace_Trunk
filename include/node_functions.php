@@ -1327,7 +1327,7 @@ function add_resource_nodes(int $resourceid,$nodes=array(), $checkperms = true, 
             return false;
             }
         
-        $access = get_edit_access($resourceid,$resourcedata["archive"],false,$resourcedata);
+        $access = get_edit_access($resourceid,$resourcedata["archive"],$resourcedata);
         if(!$access)
             {return false;}
 
@@ -1389,7 +1389,7 @@ function add_resource_nodes_multi($resources=array(),$nodes=array(), $checkperms
         foreach($resources as $resourceid)
             {
             $resourcedata = get_resource_data($resourceid);
-            $access = get_edit_access($resourceid,$resourcedata["archive"],false,$resourcedata);
+            $access = get_edit_access($resourceid,$resourcedata["archive"],$resourcedata);
             if(!$access)
                 {return false;}
             
@@ -2075,7 +2075,7 @@ function get_cattree_nodes_ordered($treefield, $resource=null, $allnodes=false) 
     # For example, when viewing options set when $category_tree_add_parents=false
     # Needed for sorting below to ensure the container "ROOT" has child items to return.
     $selected_nodes = array_column($nodeentries, 'ref');
-    for ($n=0; $n < count($nodeentries); $n++)
+    for ($n=0; $n < count($nodeentries); ++$n)
         {
         if ($nodeentries[$n]['parent'] !== 0 && !in_array($nodeentries[$n]['parent'], $selected_nodes))
             {
@@ -2845,7 +2845,7 @@ function cleanup_invalid_nodes(array $fields = [],array $restypes=[], bool $dryr
                 {
                 continue;
                 }
-            if(((int)$fieldglobals[$field] == 0 && !in_array($restype,$restype_mappings[$field])))
+            if ((int)$fieldglobals[$field] == 0 && !in_array($restype,$restype_mappings[$field]))
                 {
                 $remove_fields[] = $field;
                 }
