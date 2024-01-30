@@ -1425,7 +1425,7 @@ function create_previews($ref,$thumbonly=false,$extension="jpg",$previewonly=fal
         global $no_preview_extensions;
         if (isset($imagemagick_path) && !in_array(strtolower($extension),$no_preview_extensions))
             {
-            include(dirname(__FILE__)."/preview_preprocessing.php");
+            include dirname(__FILE__)."/preview_preprocessing.php";
             }
         }
         
@@ -2502,7 +2502,7 @@ function get_colour_key($image)
     asort($table);reset($table);$colkey="";
     foreach ($table as $key=>$value) {$colkey.=$key;}
     $colkey=substr(strrev($colkey),0,5);
-    return($colkey);
+    return $colkey;
     }
 
 function tweak_preview_images($ref, $rotateangle, $gamma, $extension="jpg", $alternative=-1, $resource_ext = "")
@@ -3544,7 +3544,7 @@ function getFileDimensions($identify_fullpath, $prefix, $file, $extension)
     
     $dimensions = array($w, $h);
 
-    return($dimensions);
+    return $dimensions;
     }
 
 /**

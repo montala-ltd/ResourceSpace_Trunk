@@ -15,13 +15,19 @@
  * @return string
  */
 function getval($val,$default,$force_numeric=false)
-    {
+{
     # return a value from POST, GET or COOKIE (in that order), or $default if none set
-    if (array_key_exists($val,$_POST)) {return ($force_numeric && !is_numeric($_POST[$val])?$default:$_POST[$val]);}
-    if (array_key_exists($val,$_GET)) {return ($force_numeric && !is_numeric($_GET[$val])?$default:$_GET[$val]);}
-    if (array_key_exists($val,$_COOKIE)) {return ($force_numeric && !is_numeric($_COOKIE[$val])?$default:$_COOKIE[$val]);}
-    return $default;
+    if (array_key_exists($val,$_POST)) {
+        return $force_numeric && !is_numeric($_POST[$val]) ? $default : $_POST[$val];
     }
+    if (array_key_exists($val,$_GET)) {
+        return $force_numeric && !is_numeric($_GET[$val]) ? $default : $_GET[$val];
+    }
+    if (array_key_exists($val,$_COOKIE)) {
+        return $force_numeric && !is_numeric($_COOKIE[$val])?$default:$_COOKIE[$val];
+    }
+    return $default;
+}
 
 /**
  * Escape a value prior to using it in SQL.
@@ -317,7 +323,7 @@ function average_length($array)
         {
         $total+=strlen(i18n_get_translated($array[$n]));
         }
-    return ($total/count($array));
+    return $total/count($array);
     }
 
 
@@ -1118,9 +1124,9 @@ function send_mail_phpmailer($email,$subject,$message="",$from="",$reply_to="",$
     {
     # Include footer
     global $header_colour_style_override, $mime_type_by_extension, $email_from;
-    include_once(__DIR__ . '/../lib/PHPMailer/PHPMailer.php');
-    include_once(__DIR__ . '/../lib/PHPMailer/Exception.php');
-    include_once(__DIR__ . '/../lib/PHPMailer/SMTP.php');
+    include_once __DIR__ . '/../lib/PHPMailer/PHPMailer.php';
+    include_once __DIR__ . '/../lib/PHPMailer/Exception.php';
+    include_once __DIR__ . '/../lib/PHPMailer/SMTP.php';
 
     if (check_email_invalid($email)){return false;}
     
@@ -2213,7 +2219,7 @@ function error_alert($error, $back = true, $code = 403)
 
     if($back)
         {
-        include(dirname(__FILE__)."/header.php");
+        include dirname(__FILE__)."/header.php";
         }
 
     ?>
@@ -2241,7 +2247,7 @@ function error_alert($error, $back = true, $code = 403)
     <?php
     if($back)
         {
-        include(dirname(__FILE__)."/footer.php");
+        include dirname(__FILE__)."/footer.php";
         }
     }
 
@@ -2943,7 +2949,7 @@ function move_array_element(array &$array, $from_index, $to_index)
  */
 function emptyiszero($value)
     {
-    return ($value !== null && $value !== false && trim($value) !== '');
+    return $value !== null && $value !== false && trim($value) !== '';
     }
 
 
@@ -3179,7 +3185,7 @@ function generateAjaxToken($form_id)
 function generate_csrf_js_object(string $name): string
     {
     return $GLOBALS['CSRF_enabled']
-        ? json_encode([$GLOBALS['CSRF_token_identifier'] => generateCSRFToken($GLOBALS['usersession'], $name)])
+        ? json_encode([$GLOBALS['CSRF_token_identifier'] => generateCSRFToken($GLOBALS['usersession'] ?? null, $name)])
         : '{}';
     }
 
@@ -3342,7 +3348,7 @@ function is_resourcespace_upgrade_available()
  */
 function get_recent_users($days)
     {
-    return (ps_value("select count(*) value from user where datediff(now(), last_active) <= ?", array("i", $days), 0));
+    return ps_value("SELECT count(*) value FROM user WHERE datediff(now(), last_active) <= ?", array("i", $days), 0);
     }
 
 
@@ -3609,7 +3615,7 @@ function hook($name,$pagename="",$params=array(),$last_hook_value_wins=false)
 				}
 			}
 
-		return (isset($GLOBALS['hook_return_value']) ? $GLOBALS['hook_return_value'] : false);
+		return isset($GLOBALS['hook_return_value']) ? $GLOBALS['hook_return_value'] : false;
 		}
 
 	# we have not encountered this hook and page combination before so go add it

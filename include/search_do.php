@@ -1511,7 +1511,7 @@ function do_search(
             {
             return $results_sql;
             }
-        $count_sql = clone($results_sql);
+        $count_sql = clone $results_sql;
         $count_sql->sql = str_replace("ORDER BY " . $order_by,"",$count_sql->sql);
         $result = sql_limit_with_total_count($results_sql, $search_chunk_size, $chunk_offset, true, $count_sql);
         
@@ -1525,7 +1525,7 @@ function do_search(
         $resultcount = $result["total"]  ?? 0;
         if ($resultcount>0 & count($result["data"]) > 0)
             {
-            $result = array_map(function($val){return(["ref"=>$val["ref"]]);}, $result["data"]);
+            $result = array_map(function($val){return ["ref"=>$val["ref"]];}, $result["data"]);
             }
         $mysql_verbatim_queries=$mysql_vq;
         log_keyword_usage($keywords_used, $result);
@@ -1538,7 +1538,7 @@ function do_search(
             {
             return $results_sql;
             }
-        $count_sql = clone($results_sql);
+        $count_sql = clone $results_sql;
         $count_sql->sql = str_replace("ORDER BY " . $order_by,"",$count_sql->sql);
         $result = sql_limit_with_total_count($results_sql, $search_chunk_size, $chunk_offset, true, $count_sql);
         }
