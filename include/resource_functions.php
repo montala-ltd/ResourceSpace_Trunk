@@ -179,7 +179,6 @@ function get_resource_path(
     if ($extension=="") {$extension="jpg";}
 
     $folder="";
-    #if (!file_exists(dirname(__FILE__) . $folder)) {mkdir(dirname(__FILE__) . $folder,0777);}
 
     # Original separation support
     if($originals_separate_storage)
@@ -8228,6 +8227,7 @@ function get_indexed_resource_type_fields()
 */
 function get_resource_type_fields($restypes="", $field_order_by="ref", $field_sort="asc", $find="", $fieldtypes = array(), $include_inactive=false)
     {
+    debug_function_call(__FUNCTION__, func_get_args());
     if ($field_order_by != "ref")
         {
         // Default order by is not being used so check order by columns supplied are valid for the table
