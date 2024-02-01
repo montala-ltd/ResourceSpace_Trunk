@@ -646,7 +646,7 @@ if ($processupload)
             // For upload_then_edit mode ONLY, set the resource type based on the extension. User
             // can later change this at the edit stage
             // IMPORTANT: Change resource type only if user has access to it
-            if($upload_then_edit && !$resource_type_force_selection && (!$upload_here || !is_numeric($resource_type)))
+            if($upload_then_edit && !$resource_type_force_selection && (!$upload_here || !is_int_loose($resource_type)))
                 {
                 $resource_type_from_extension = get_resource_type_from_extension(
                     pathinfo($upfilepath, PATHINFO_EXTENSION),
@@ -1839,7 +1839,8 @@ if ($alternative!="")
         $imgpath=get_resource_path($resource['ref'],true,"col",false);
         if (file_exists($imgpath))
             {?>
-            <img src="<?php echo get_resource_path($resource['ref'],false,"col",false);?>"/>
+            <img alt="<?php echo escape(i18n_get_translated($resource['field'.$view_title_field] ?? ""));?>"
+            src="<?php echo get_resource_path($resource['ref'],false,"col",false);?>"/>
             <?php
             }
         }
