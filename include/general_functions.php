@@ -1597,25 +1597,16 @@ function rs_quoted_printable_encode_subject($string, $encoding='UTF-8')
  */
 function pager($break=true,$scrolltotop=true,$options=array())
     {
-    global $curpage,$url,$totalpages,$offset,$per_page,$lang,$jumpcount,$pagename;
-    $validoptions = array(
-        "curpage",
-        "url",
-        "url_params",
-        "totalpages",
-        "offset",
-        "per_page",
-        "jumpcount",
-        "confirm_page_change"
-    );
-    foreach($validoptions as $validoption)
-        {
-        global $$validoption;
-        if(isset($options[$validoption]))
-            {
-            $$validoption = $options[$validoption];
-            }        
-        }
+    global $curpage, $url, $url_params, $totalpages, $offset, $per_page, $jumpcount, $pagename, $confirm_page_change, $lang;
+
+    $curpage = $options['curpage'] ?? $curpage;
+    $url = $options['url'] ?? $url;
+    $url_params = $options['url_params'] ?? $url_params;
+    $totalpages = $options['totalpages'] ?? $totalpages;
+    $offset = $options['offset'] ?? $offset;
+    $per_page = $options['per_page'] ?? $per_page;
+    $jumpcount = $options['jumpcount'] ?? $jumpcount;
+    $confirm_page_change = $options['confirm_page_change'] ?? $confirm_page_change;
 
     $modal  = ('true' == getval('modal', ''));
     $scroll =  $scrolltotop ? "true" : "false"; 
@@ -2209,13 +2200,9 @@ function run_external($command)
  */
 function error_alert($error, $back = true, $code = 403)
     {
-    foreach($GLOBALS as $key => $value)
-        {
-        $$key=$value;
-        }
-
     http_response_code($code);
 
+    extract($GLOBALS, EXTR_SKIP);
     if($back)
         {
         include dirname(__FILE__)."/header.php";

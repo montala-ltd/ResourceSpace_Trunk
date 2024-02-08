@@ -1248,11 +1248,11 @@ $login_autocomplete=true;
 $case_insensitive_username=false;
 
 # Password standards - these must be met when a user or admin creates a new password.
-$password_min_length=7; # Minimum length of password
-$password_min_alpha=1; # Minimum number of alphabetical characters (a-z, A-Z) in any case
-$password_min_numeric=1; # Minimum number of numeric characters (0-9)
-$password_min_uppercase=0; # Minimum number of upper case alphabetical characters (A-Z)
-$password_min_special=0; # Minimum number of 'special' i.e. non alphanumeric characters (!@$%& etc.)
+$password_min_length = 8; # Minimum length of password
+$password_min_alpha = 1; # Minimum number of alphabetical characters (a-z, A-Z) in any case
+$password_min_numeric = 1; # Minimum number of numeric characters (0-9)
+$password_min_uppercase = 1; # Minimum number of upper case alphabetical characters (A-Z)
+$password_min_special = 1; # Minimum number of 'special' i.e. non alphanumeric characters (!@$%& etc.)
 
 # How often do passwords expire, in days? (set to zero for no expiry).
 $password_expiry=0;
@@ -2963,7 +2963,8 @@ $iiif_version = "2";
 // Field that defines the position of a particular resource in the default sequence (only one sequence currently supported)
 // $iiif_sequence_field = 1;
 
-// Deprecated option. The prefix that indictaes the position will now use the name of the resource type field 
+// Optional prefix that will be added to sequence identifier - useful if just numeric identifers are used e.g. for different views or pages. 
+// If this is enabled but set to an empty string the prefix will be the title of the resource type field 
 // $iiif_sequence_prefix = "View ";
 
 // Optional rights text: This value must be a valid value - see https://iiif.io/api/presentation/3.0/#rights for more information
