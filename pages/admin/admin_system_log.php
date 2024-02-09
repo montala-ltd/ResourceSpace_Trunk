@@ -4,10 +4,10 @@ include "../../include/db.php";
 include "../../include/authenticate.php";
 
 if (!checkperm_user_edit($userref))
-	{
-	redirect($baseurl_short ."login.php?error=error-permissions-login&url={$baseurl_short}pages/admin/admin_system_log.php");
-	exit;
-	}
+    {
+    redirect($baseurl_short ."login.php?error=error-permissions-login&url={$baseurl_short}pages/admin/admin_system_log.php");
+    exit;
+    }
 
 $log_search = getval("log_search", "");
 $backurl = getval("backurl", "");
@@ -99,7 +99,7 @@ $url = generateURL("{$baseurl_short}pages/admin/admin_system_log.php",
 );
 $offset = (int) getval('offset', 0, true);
 $per_page = (int) getval('per_page_list', $default_perpage_list, true);
-$all_records = get_activity_log($log_search, NULL, NULL, $log_tables_where_statements, $table, $table_reference, true);
+$all_records = get_activity_log($log_search, null, null, $log_tables_where_statements, $table, $table_reference, true);
 $totalpages = ceil($all_records / $per_page);
 $curpage = floor($offset / $per_page) + 1;
 $jumpcount = 0;

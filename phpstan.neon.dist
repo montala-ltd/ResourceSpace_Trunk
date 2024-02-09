@@ -13,6 +13,7 @@ parameters:
         - plugins
         - tests
         - upgrade
+        - lib/stemming
 
     scanDirectories:
       - lib/html2pdf/
@@ -23,3 +24,6 @@ parameters:
     excludePaths:
         analyse:
             - plugins/*/lib/*
+
+    earlyTerminatingFunctionCalls:
+        - errorhandler

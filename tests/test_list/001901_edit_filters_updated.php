@@ -50,10 +50,10 @@ $editdepartmentfield = create_resource_type_field("Edit Department",0,FIELD_TYPE
 $colourfield = create_resource_type_field("Colour",0,FIELD_TYPE_DROP_DOWN_LIST,"colour");
 
 // Add new nodes to fields
-$salesnode  = set_node(NULL, $editdepartmentfield, "Sales",'',1000);
-$itnode     = set_node(NULL, $editdepartmentfield, "IT",'',1000);
-$rednode    = set_node(NULL, $colourfield, "Red",'',1000);
-$bluenode   = set_node(NULL, $colourfield, "Blue",'',1000);
+$salesnode  = set_node(null, $editdepartmentfield, "Sales",'',1000);
+$itnode     = set_node(null, $editdepartmentfield, "IT",'',1000);
+$rednode    = set_node(null, $colourfield, "Red",'',1000);
+$bluenode   = set_node(null, $colourfield, "Blue",'',1000);
 
 add_resource_nodes($resourcea,array($salesnode, $rednode));
 add_resource_nodes($resourceb,array($salesnode, $itnode, $rednode));
@@ -83,7 +83,7 @@ $accessc = get_edit_access($resourcec);
 $accessd = get_edit_access($resourced);
 $accesse = get_edit_access($resourcee);
 if(!$accessa || !$accessb || $accessc || $accessd || $accesse)
-	{
+    {
     echo "SUBTEST B";
     return false;
     }    
@@ -97,10 +97,10 @@ test_edit_filter_id_update($editor,$testeditgroup,$migrateresult);
 
 $results = do_search('','','',0,-1,'desc',false,0,false,false,'',false,false,false,true);
 if(count($results) != 1 || !isset($results[0]['ref'])
-	||
+    ||
     !match_values(array_column($results,'ref'),array($resourceb))
-	)
-	{
+    )
+    {
     echo "SUBTEST C";
     return false;
     }
@@ -112,7 +112,7 @@ $accessc = get_edit_access($resourcec);
 $accessd = get_edit_access($resourced);
 $accesse = get_edit_access($resourcee);
 if($accessa || !$accessb || $accessc || $accessd || $accesse)
-	{
+    {
     echo "SUBTEST D";
     return false;
     }

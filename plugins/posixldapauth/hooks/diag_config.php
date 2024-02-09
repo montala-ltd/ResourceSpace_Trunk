@@ -1,6 +1,6 @@
 <?php
 $ldapauth['ldapserver'] = '10.177.177.20';
-$ldapauth['port'] = NULL;
+$ldapauth['port'] = null;
 // ldap auth type, 0 = Open Directory or open ldap, 1 = Active Directory
 $ldapauth['type'] = 1;
 
@@ -8,8 +8,8 @@ $ldapauth['type'] = 1;
 $ldapauth['rootdn']= 'uid=administrator,cn=users,dc=example,dc=com';
 
 /* name of the directory administrator
-	ad = username@domain
-	ldap = username
+    ad = username@domain
+    ldap = username
 */
 $ldapauth['rootname'] = "administrator@example.com";
 // password
@@ -19,31 +19,31 @@ $ldapauth['rootpass']= 'pass';
 $ldapauth['basedn']= 'dc=example,dc=com';
 
 /* user container
-	This should be something like 
-		cn=users
+    This should be something like 
+        cn=users
 */
 $ldapauth['usercontainer'] = "cn=users";
 
 // container for groups, leave as null to use default cn=groups, basedn
-$ldapauth['groupcontainer'] = NULL;
+$ldapauth['groupcontainer'] = null;
 
 /* login field overide, leave aas null for default
-	Defaults are:
-	ldap = uid
-	ad = samaccountname
+    Defaults are:
+    ldap = uid
+    ad = samaccountname
 */
-$ldapauth['loginfield'] = NULL;
+$ldapauth['loginfield'] = null;
 
 /* group field override to search within ldap groups for members, defaults are:
-	ldap = memberuid
-	ad = member
+    ldap = memberuid
+    ad = member
 */
-$ldapauth['ldapgroupfield'] = NULL;
+$ldapauth['ldapgroupfield'] = null;
 
 /* field type overide to search within groups:
-	0 = Default for directory type.
-	1 = User Name
-	2 = RDN
+    0 = Default for directory type.
+    1 = User Name
+    2 = RDN
 */
 $ldapauth['memFieldType'] = 0;
 

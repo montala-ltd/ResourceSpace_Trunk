@@ -33,12 +33,12 @@ $sensitivefield = create_resource_type_field("Sensitive",0,FIELD_TYPE_RADIO_BUTT
 $emotionfield = create_resource_type_field("Emotion",0,FIELD_TYPE_DROP_DOWN_LIST,"emotion");
 
 // Add new nodes to fields
-$eldoradonode = set_node(NULL, $resource_type_field, "Eldorado",'',1000);
-$atlantisnode = set_node(NULL, $resource_type_field, "Atlantis",'',1000);
-$marketingnode = set_node(NULL, $departmentfield, "Marketing",'',1000);
-$publicnode = set_node(NULL, $publicfield, "Yes",'',1000);
-$sensitivenode = set_node(NULL, $sensitivefield, "Yes",'',1000);
-$happynode = set_node(NULL, $emotionfield, "Happy",'',1000);
+$eldoradonode = set_node(null, $resource_type_field, "Eldorado",'',1000);
+$atlantisnode = set_node(null, $resource_type_field, "Atlantis",'',1000);
+$marketingnode = set_node(null, $departmentfield, "Marketing",'',1000);
+$publicnode = set_node(null, $publicfield, "Yes",'',1000);
+$sensitivenode = set_node(null, $sensitivefield, "Yes",'',1000);
+$happynode = set_node(null, $emotionfield, "Happy",'',1000);
 
 debug("eldoradonode: " . $eldoradonode . "\n");
 debug("atlantisnode: " . $atlantisnode . "\n");
@@ -80,10 +80,10 @@ save_filter_rule(0, $newfilter, $rules);
 $usersearchfilter = $newfilter;
 $results=do_search('');  // this should return 1 asset:  b
 if(count($results) != 1 || !isset($results[0]['ref'])
-	||
+    ||
     !match_values(array_column($results,'ref'),array($resourceb))
-	)
-	{
+    )
+    {
     echo "SUBTEST A";
     return false;
     }
@@ -109,10 +109,10 @@ save_filter_rule(0, $newfilter, $rules);
 $usersearchfilter = $newfilter;
 $results=do_search('');  // this should return 3 assets:  b, c and d
 if(count($results)!=3 || !isset($results[0]['ref']) || !isset($results[1]['ref']) || !isset($results[2]['ref'])
-	||
+    ||
     !match_values(array_column($results,'ref'),array($resourceb, $resourcec, $resourced))
-	)
-	{
+    )
+    {
     echo "SUBTEST B";
     return false;
     }

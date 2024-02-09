@@ -53,7 +53,7 @@ if($uploadkey != "")
     $editing        = $uploadkey != "" && $editable;
     $exsharepwd       = isset($shareinfo["password_hash"]) && $shareinfo["password_hash"] != "" ? "password_placeholder" : "";
     $exshareusergroup = isset($shareinfo["usergroup"]) ? $shareinfo["usergroup"] : $usergroup;
-    $exshareexpires   = isset($shareinfo["expires"]) ? $shareinfo["expires"] : NULL; 
+    $exshareexpires   = isset($shareinfo["expires"]) ? $shareinfo["expires"] : null; 
     if(!isset($validsharegroups[$exshareusergroup]))
         {
         $cursharegroup = get_usergroup($exshareusergroup);
@@ -73,7 +73,7 @@ else
     $editing = false; 
     }
 
-$collectiondata	= get_collection($share_collection);
+$collectiondata = get_collection($share_collection);
 
 // Get existing shares for this collection
 $cursharefltr = array(
@@ -161,8 +161,8 @@ $page_header = $editing ? $lang["title-upload-link-edit"] . ":  " . $uploadkey :
 include "../include/header.php";
 
 ?>
-<div class="BasicsBox"> 	
-	<?php
+<div class="BasicsBox">     
+    <?php
 
         ?>
         <h1><?php echo $page_header; render_help_link("user/sharing-upload");?></h1>
@@ -213,7 +213,7 @@ include "../include/header.php";
 
             if($editing)
                 {?>
-                <div class="QuestionSubmit">		
+                <div class="QuestionSubmit">        
                     <input name="submit" type="submit" value="&nbsp;&nbsp;<?php {echo $lang["save"] ;}?>&nbsp;&nbsp;" onclick="return CentralSpacePost(this.form,true);" />
                 </div><?php
                 }
@@ -233,7 +233,7 @@ include "../include/header.php";
                         <div class="clearerleft"> </div>
                     </div>
                 </div>
-                <div class="QuestionSubmit">		
+                <div class="QuestionSubmit">        
                     <input name="submit" type="submit" value="&nbsp;&nbsp;<?php {echo $lang["button-upload-link-create"] ;}?>&nbsp;&nbsp;" onclick="return CentralSpacePost(this.form,true);" />
                 </div><?php
                 }

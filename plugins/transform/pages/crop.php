@@ -172,9 +172,9 @@ $tfactions = getval("tfactions","");
 debug(sprintf('[transform][pages/crop] $tfactions = %s ', $tfactions));
 $imgactions["tfactions"] = explode(",",$tfactions);
 
-$imgactions["quality"] = getval("quality",100,TRUE);
-$imgactions["resolution"] = getval("resolution",0,TRUE);
-$imgactions["gamma"] = getval("gamma",50,TRUE);
+$imgactions["quality"] = getval("quality",100,true);
+$imgactions["resolution"] = getval("resolution",0,true);
+$imgactions["gamma"] = getval("gamma",50,true);
 $imgactions["srgb"] = ($cropper_jpeg_rgb || ($cropper_srgb_option && getval("use_srgb","") != ""));
 
 // Generate a preview image for the operation if it doesn't already exist
@@ -265,7 +265,7 @@ if ($saveaction != '' && enforcePostRequest(false))
         }
     else if (!$cropperestricted)
         {
-        $verb = $lang['cropped'];	
+        $verb = $lang['cropped'];   
 
         $imgactions["crop"]        = true;
         // Get jCrop selection info
@@ -423,7 +423,7 @@ if ($saveaction != '' && enforcePostRequest(false))
                 exit();
                 }
             rename($newpath,dirname(__FILE__) . "/../../../".$homeanim_folder."/" . $sequence . ".jpg");
-            set_slideshow($sequence, (getval('linkslideshow', '') == 1 ? $ref : NULL));
+            set_slideshow($sequence, (getval('linkslideshow', '') == 1 ? $ref : null));
             unlink($crop_pre_file);
             redirect($baseurl_short . "pages/home.php");
             exit();
@@ -495,8 +495,8 @@ if ($resource["has_image"]==1)
     }
 else
     {
-	echo $lang['noimagefound'];
-	exit;
+    echo $lang['noimagefound'];
+    exit;
     }
 
 include "../../../include/header.php";
@@ -561,7 +561,7 @@ renderBreadcrumbs($links_trail);
         </div>
     </div>
     <?php
-		
+        
     if(!$cropperestricted)
         {
         ?>
@@ -1040,7 +1040,7 @@ renderBreadcrumbs($links_trail);
         </script>
         <?php
         }
-        ?>	
+        ?>  
 
     <?php
     // Set up available actions 

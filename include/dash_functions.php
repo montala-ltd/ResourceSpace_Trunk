@@ -38,7 +38,7 @@ function existing_dash_tile(string $url="", string $link="", string $title="", s
 function create_dash_tile($url,$link,$title,$reload_interval,$all_users,$default_order_by,$resource_count,$text="",$delete=1, array $specific_user_groups = array())
     {
     
-    $rebuild_order=TRUE;
+    $rebuild_order=true;
 
     # Validate Parameters
     if(empty($reload_interval) || !is_numeric($reload_interval))
@@ -50,7 +50,7 @@ function create_dash_tile($url,$link,$title,$reload_interval,$all_users,$default
     if(!is_numeric($default_order_by))
         {
         $default_order_by=append_default_position();
-        $rebuild_order=FALSE;
+        $rebuild_order=false;
         }
     $resource_count = $resource_count?1:0;
 
@@ -59,7 +59,7 @@ function create_dash_tile($url,$link,$title,$reload_interval,$all_users,$default
     if($existing_tile_ref > 0)
         {
         $tile=$existing_tile_ref;
-        $rebuild_order=FALSE;
+        $rebuild_order=false;
         }
     else
         {
@@ -160,7 +160,7 @@ function update_dash_tile($tile,$url,$link,$title,$reload_interval,$all_users,$t
         
         // Remove tile from old user groups                    
         foreach(array_diff($current_specific_user_groups,$specific_user_groups) as $remove_group)
-            {					
+            {                   
             delete_usergroup_dash_tile($tile['ref'],$remove_group);
             }                
         
@@ -187,7 +187,7 @@ function update_dash_tile($tile,$url,$link,$title,$reload_interval,$all_users,$t
  * @$tile, the dash_tile.ref number of the tile to be deleted
  * @$cascade, whether this delete should remove the tile from all users.
  */
-function delete_dash_tile($tile,$cascade=TRUE,$force=FALSE)
+function delete_dash_tile($tile,$cascade=true,$force=false)
     {
     #Force Delete ignores the allow_delete flag (This allows removal of config tiles)
     $allow_delete = $force? "":"AND allow_delete=1";
@@ -258,7 +258,7 @@ function get_tile($tile)
  */
 function all_user_dash_tile_active($tile)
     {
-    return	ps_query("
+    return  ps_query("
             SELECT 
                 dash_tile.ref AS 'tile',
                 dash_tile.title,
@@ -340,7 +340,7 @@ function cleanup_dash_tiles()
 
     foreach ($tiles as $tile)
         {
-        log_activity($lang['manage_all_dash'],LOG_CODE_DELETED,$tile["title"],'dash_tile',NULL,$tile["ref"]);
+        log_activity($lang['manage_all_dash'],LOG_CODE_DELETED,$tile["title"],'dash_tile',null,$tile["ref"]);
         }
     }
 
@@ -355,8 +355,8 @@ function checkTileConfig($tile,$tile_style)
     #Returns whether the config is still on for these tiles
     switch($tile_style)
         {
-        case "thmsl": 	global $home_themeheaders; return $home_themeheaders;
-        case "custm":	global $custom_home_panels; return isset($custom_home_panels)? checkConfigCustomHomePanels($tile,$tile_style) : FALSE;
+        case "thmsl":   global $home_themeheaders; return $home_themeheaders;
+        case "custm":   global $custom_home_panels; return isset($custom_home_panels)? checkConfigCustomHomePanels($tile,$tile_style) : false;
         }
     }
 
@@ -367,12 +367,12 @@ function checkTileConfig($tile,$tile_style)
 function checkConfigCustomHomePanels($tile,$tile_style)
     {
     global $custom_home_panels;
-    $tile_config_set = FALSE;
+    $tile_config_set = false;
     for ($n=0;$n<count($custom_home_panels);$n++)
             {
             if(existing_tile($tile["title"],$tile["all_users"],$tile["url"],$tile["link"],$tile["reload_interval_secs"],$tile["resource_count"],$tile["txt"]))
                 {
-                $tile_config_set = TRUE;
+                $tile_config_set = true;
                 }
             }
     return $tile_config_set;
@@ -796,9 +796,9 @@ function update_usergroup_dash_tile_order($usergroup, $tile, $default_order_by)
 * build_usergroup_dash - rebuild the usergroup tiles for either a specific user or all users.
 * If a specific tile is passed e.g. if called from create_dash_tile then we just add it to the end
 *
-* @param	integer	$user_group		ID of group to add tile(s) to
-* @param 	integer	$user_id		ID of individual user to add tile(s) to
-* @param 	integer	$newtileid		ID of a single tile to add on the end 
+* @param    integer $user_group     ID of group to add tile(s) to
+* @param    integer $user_id        ID of individual user to add tile(s) to
+* @param    integer $newtileid      ID of a single tile to add on the end 
 * 
 * @return void
 */
@@ -908,13 +908,13 @@ function get_usergroup_available_tiles($user_group_id, $tile = '')
  * Affects the user_dash_tile table, tile must be the ref of a record from dash_tile
  *
  */
-function add_user_dash_tile($user,$tile,$order_by,$reorder=TRUE)
+function add_user_dash_tile($user,$tile,$order_by,$reorder=true)
     {
     if(!is_numeric($user)||!is_numeric($tile)){return false;}
     if(!is_numeric($order_by))
         {
         $order_by=append_user_position($user);
-        $reorder=FALSE;
+        $reorder=false;
         }
         
     ps_query("INSERT INTO user_dash_tile (user,dash_tile,order_by) VALUES (?, ?, ?)  ON DUPLICATE KEY UPDATE order_by= ?", ['i', $user, 'i', $tile, 'i', $order_by, 'i', $order_by]);
@@ -979,7 +979,7 @@ function delete_user_dash_tile($usertile,$user)
         {
         $tile = get_tile($row["dash_tile"]);
         delete_dash_tile($row["dash_tile"]);
-        log_activity($lang['manage_all_dash'],LOG_CODE_DELETED,($tile["title"]??""),'dash_tile',NULL,$row["dash_tile"]);
+        log_activity($lang['manage_all_dash'],LOG_CODE_DELETED,($tile["title"]??""),'dash_tile',null,$row["dash_tile"]);
         }
     }
 
@@ -1001,10 +1001,10 @@ function empty_user_dash($user,$purge=true)
             if($existing[0]["count"]<1)
                 {
                 delete_dash_tile($tile["dash_tile"]);
-                log_activity($lang['manage_all_dash'],LOG_CODE_DELETED,$tile["title"],'dash_tile',NULL,$tile["dash_tile"]);
+                log_activity($lang['manage_all_dash'],LOG_CODE_DELETED,$tile["title"],'dash_tile',null,$tile["dash_tile"]);
                 }
             }
-        }	
+        }   
     }
 
 
@@ -1018,7 +1018,7 @@ function reorder_user_dash($user)
     $user_tiles = ps_query("SELECT user_dash_tile.ref FROM user_dash_tile LEFT JOIN dash_tile ON user_dash_tile.dash_tile = dash_tile.ref WHERE user_dash_tile.user= ? ORDER BY user_dash_tile.order_by", ['i', $user]);
     if (count($user_tiles) < 2)
         {
-        return;	
+        return; 
         }
     $order_by = (10 * count($user_tiles)) + 10; # Begin ordering at 10 for first position, not 0.
     
@@ -1261,7 +1261,7 @@ function get_user_dash($user)
                 if(is_touch_device())
                     {
                     return false;
-                    }				
+                    }               
                  jQuery("#HomePanelContainer").sortable({
                     items: ".DashTileDraggable",
                     start: function(event,ui) {
@@ -1282,7 +1282,7 @@ function get_user_dash($user)
             # Check Permissions to Display Deleting Dash Tiles
             if((checkperm("h") && !checkperm("hdta")) || (checkperm("dta") && !checkperm("h")) || !checkperm("dtu"))
                 {
-                ?> 	
+                ?>  
                 jQuery("#dash_tile_bin").droppable({
                   accept: ".DashTileDraggable",
                   activeClass: "ui-state-hover",
@@ -1461,7 +1461,7 @@ function build_dash_tile_list($dtiles_available)
               <td><?php echo $tile["resource_count"]? $lang["yes"]: $lang["no"];?></td>
               <td class="ListTools">
                   <?php
-                  if  (	
+                  if  ( 
                           $tile["allow_delete"]
                           &&
                           (
@@ -1645,8 +1645,8 @@ function get_tile_custom_style($buildstring)
 */
 function delete_usergroup_dash_tile($tile,$group)
     {
-    if(!is_numeric($tile) || !is_numeric($group)){return false;}	
-    ps_query("DELETE FROM usergroup_dash_tile WHERE usergroup = ? AND dash_tile = ?", ['i', $group, 'i', $tile]);					
+    if(!is_numeric($tile) || !is_numeric($group)){return false;}    
+    ps_query("DELETE FROM usergroup_dash_tile WHERE usergroup = ? AND dash_tile = ?", ['i', $group, 'i', $tile]);                   
     ps_query("DELETE ud.* FROM user_dash_tile ud LEFT JOIN user u ON ud.user=u.ref LEFT JOIN usergroup ug ON ug.ref=u.usergroup WHERE ud.dash_tile= ? and ug.ref= ?", ['i', $tile, 'i', $group]);
     }
 
