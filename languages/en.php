@@ -242,8 +242,6 @@ $lang['xlthumbs'] = 'X-large';
 $lang["xlthumbstitle"]="Extra large thumbnails";
 $lang['largethumbs'] = 'Large';
 $lang["largethumbstitle"]="Large thumbnails";
-$lang["smallthumbs"]="Small";
-$lang["smallthumbstitle"]="Small thumbnails";
 $lang["strip"]="Strip";
 $lang["striptitle"]="Strip view";
 $lang['list'] = 'List';
@@ -1185,7 +1183,7 @@ $lang["description"]="Description";
 $lang["notuploaded"]="Not uploaded";
 $lang["uploadreplacementfile"]="Upload replacement file";
 $lang["backtomanagealternativefiles"]="Back to manage alternative files";
-
+$lang["alternatetype"]="Alternative type";
 
 $lang["resourceistranscoding"]="Resource is currently being transcoded";
 $lang["cantdeletewhiletranscoding"]="You can't delete resources while they are transcoding";
