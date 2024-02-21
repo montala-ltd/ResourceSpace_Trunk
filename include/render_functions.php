@@ -147,7 +147,7 @@ function render_search_field($field,$fields,$value="",$autoupdate=false,$class="
                             </script>
                             <?php
                             }
-                        else if(FIELD_TYPE_DYNAMIC_KEYWORDS_LIST == $fields[$cf]['type'])
+                        elseif(FIELD_TYPE_DYNAMIC_KEYWORDS_LIST == $fields[$cf]['type'])
                             {
                             if ($forsearchbar) {
                                 if ($simple_search_show_dynamic_as_dropdown) {
@@ -497,7 +497,7 @@ function render_search_field($field,$fields,$value="",$autoupdate=false,$class="
             $clear_function.="document.getElementById('field_" . ($forsearchbar? $field["ref"] : escape((string)$field["name"])) . "').value='';";
             }
         // number view - manipulate the form value (don't send these but send a compiled numrange value instead
-        else if ((int)$field['field_constraint']==1)
+        elseif ((int)$field['field_constraint']==1)
             {
              // parse value for to/from simple search
             $minmax=explode('|',str_replace("numrange","",$value));
@@ -1917,7 +1917,7 @@ function display_field($n, $field, $newtab=false,$modal=false)
         $user_set_values = array();
         }
     // Copy from resource should only show values from the resource we are copying from
-    else if($ref != $use && $copyfrom != '')
+    elseif($ref != $use && $copyfrom != '')
         {
         $user_set_values = array();
         }
@@ -2164,7 +2164,7 @@ function display_field($n, $field, $newtab=false,$modal=false)
                 {
                 $name = "nodes[{$field['ref']}][]";
                 }
-            else if(FIELD_TYPE_DYNAMIC_KEYWORDS_LIST == $field['type'])
+            elseif(FIELD_TYPE_DYNAMIC_KEYWORDS_LIST == $field['type'])
                 {
                 $name = "field_{$field['ref']}";
                 }
@@ -2368,7 +2368,7 @@ function render_date_range_field($name,$value,$forsearch=true,$autoupdate=false,
         {
         // Use EDTF format for date input
         ?>      
-        <input class="<?php echo $forsearch?"SearchWidth":"stdwidth"; ?>"  name="<?php echo $name?>_edtf" id="<?php echo $name?>_edtf" type="text" value="<?php echo ($startvalue!=""|$endvalue!="")?$startvalue . "/" . $endvalue:""; ?>" style="display:none;" disabled <?php if ($forsearch && $autoupdate) { ?>onChange="UpdateResultCount();"<?php } if($forsearch && !$forsearchbar){ ?> onKeyPress="if (!(updating)) {setTimeout('UpdateResultCount()',2000);updating=true;}"<?php } else if (!$forsearch  && $edit_autosave){?>onChange="AutoSave('<?php echo $field["ref"]?>');"<?php } ?>>
+        <input class="<?php echo $forsearch?"SearchWidth":"stdwidth"; ?>"  name="<?php echo $name?>_edtf" id="<?php echo $name?>_edtf" type="text" value="<?php echo ($startvalue!=""|$endvalue!="")?$startvalue . "/" . $endvalue:""; ?>" style="display:none;" disabled <?php if ($forsearch && $autoupdate) { ?>onChange="UpdateResultCount();"<?php } if($forsearch && !$forsearchbar){ ?> onKeyPress="if (!(updating)) {setTimeout('UpdateResultCount()',2000);updating=true;}"<?php } elseif (!$forsearch  && $edit_autosave){?>onChange="AutoSave('<?php echo $field["ref"]?>');"<?php } ?>>
 <?php
         }?>
     <!--  date range search start -->           
@@ -2385,7 +2385,7 @@ function render_date_range_field($name,$value,$forsearch=true,$autoupdate=false,
              <?php
             if ($forsearch && $autoupdate) 
                     { ?>onChange="UpdateResultCount();"<?php }
-            else if (!$forsearch  && $edit_autosave)
+            elseif (!$forsearch  && $edit_autosave)
             {?>onChange="AutoSave('<?php echo $field["ref"]?>');"<?php } ?>
               >
               <option value=""><?php echo $forsearch?$lang["anyday"]:$lang["day"]; ?></option>
@@ -2402,7 +2402,7 @@ function render_date_range_field($name,$value,$forsearch=true,$autoupdate=false,
                 <?php 
                 if ($forsearch && $autoupdate) 
                     { ?>onChange="UpdateResultCount();"<?php }
-                else if (!$forsearch  && $edit_autosave)
+                elseif (!$forsearch  && $edit_autosave)
                     {?>onChange="AutoSave('<?php echo $field["ref"]?>');"<?php } ?>
                     >
                 <option value=""><?php echo $forsearch?$lang["anymonth"]:$lang["month"]; ?></option>
@@ -2423,7 +2423,7 @@ function render_date_range_field($name,$value,$forsearch=true,$autoupdate=false,
                 <?php 
                 if ($forsearch && $autoupdate) 
                     { ?>onChange="UpdateResultCount();"<?php }
-                else if (!$forsearch  && $edit_autosave)
+                elseif (!$forsearch  && $edit_autosave)
                     {?>onChange="AutoSave('<?php echo $field["ref"]?>');"<?php } ?>
                     >                   
                 <option value=""><?php echo $forsearch?$lang["anymonth"]:$lang["month"]; ?></option>
@@ -2439,7 +2439,7 @@ function render_date_range_field($name,$value,$forsearch=true,$autoupdate=false,
               <?php 
                 if ($forsearch && $autoupdate) 
                     { ?>onChange="UpdateResultCount();"<?php }
-                else if (!$forsearch  && $edit_autosave)
+                elseif (!$forsearch  && $edit_autosave)
                     {?>onChange="AutoSave('<?php echo $field["ref"]?>');"<?php } ?>
                     >
               <option value=""><?php echo $forsearch?$lang["anyday"]:$lang["day"]; ?></option>
@@ -2460,7 +2460,7 @@ function render_date_range_field($name,$value,$forsearch=true,$autoupdate=false,
                 <?php 
                 if ($forsearch && $autoupdate) 
                         { ?>onChange="UpdateResultCount();"<?php }
-                else if (!$forsearch  && $edit_autosave)
+                elseif (!$forsearch  && $edit_autosave)
                 {?>onChange="AutoSave('<?php echo $field["ref"]?>');"<?php } ?>
                 >
                 <option value=""><?php echo $forsearch?$lang["anyyear"]:$lang["year"]; ?></option>
@@ -2483,7 +2483,7 @@ function render_date_range_field($name,$value,$forsearch=true,$autoupdate=false,
                     { ?>onChange="UpdateResultCount();"<?php }
                 if($forsearch && !$forsearchbar)
                     { ?> onKeyPress="if (!(updating)) {setTimeout('UpdateResultCount()',2000);updating=true;}"<?php }
-                else if (!$forsearch  && $edit_autosave)
+                elseif (!$forsearch  && $edit_autosave)
                     {?>onChange="AutoSave('<?php echo $field["ref"]?>');"<?php } ?>>
             <?php
             }?>
@@ -2507,7 +2507,7 @@ function render_date_range_field($name,$value,$forsearch=true,$autoupdate=false,
               <?php 
                 if ($forsearch && $autoupdate) 
                     { ?>onChange="UpdateResultCount();"<?php }
-                else if (!$forsearch  && $edit_autosave)
+                elseif (!$forsearch  && $edit_autosave)
                     {?>onChange="AutoSave('<?php echo $field["ref"]?>');"<?php } ?>
                     >
                 <option value=""><?php echo $forsearch?$lang["anyday"]:$lang["day"]; ?></option>
@@ -2523,7 +2523,7 @@ function render_date_range_field($name,$value,$forsearch=true,$autoupdate=false,
                 <?php 
                 if ($forsearch && $autoupdate) 
                     { ?>onChange="UpdateResultCount();"<?php }
-                else if (!$forsearch  && $edit_autosave)
+                elseif (!$forsearch  && $edit_autosave)
                     {?>onChange="AutoSave('<?php echo $field["ref"]?>');"<?php } ?>
                     >
                 <option value=""><?php echo $forsearch?$lang["anymonth"]:$lang["month"]; ?></option>
@@ -2559,7 +2559,7 @@ function render_date_range_field($name,$value,$forsearch=true,$autoupdate=false,
               <?php 
                 if ($forsearch && $autoupdate) 
                     { ?>onChange="UpdateResultCount();"<?php }
-                else if (!$forsearch  && $edit_autosave)
+                elseif (!$forsearch  && $edit_autosave)
                     {?>onChange="AutoSave('<?php echo $field["ref"]?>');"<?php } ?>
                     >
               <option value=""><?php echo $forsearch?$lang["anyday"]:$lang["day"]; ?></option>
@@ -2579,7 +2579,7 @@ function render_date_range_field($name,$value,$forsearch=true,$autoupdate=false,
             <select name="<?php echo $name?>_end_year" 
             <?php 
             if ($forsearch && $autoupdate) { ?>onChange="UpdateResultCount();"<?php } 
-                else if (!$forsearch  && $edit_autosave)
+                elseif (!$forsearch  && $edit_autosave)
                     {?>onChange="AutoSave('<?php echo $field["ref"]?>');"<?php } ?>
                     >
               <option value=""><?php echo $forsearch?$lang["anyyear"]:$lang["year"]?></option>
@@ -2604,7 +2604,7 @@ function render_date_range_field($name,$value,$forsearch=true,$autoupdate=false,
                         { ?>onChange="UpdateResultCount();"<?php }
                     if($forsearch && !$forsearchbar)
                         { ?> onKeyPress="if (!(updating)) {setTimeout('UpdateResultCount()',2000);updating=true;}"<?php }
-                    else if (!$forsearch  && $edit_autosave)
+                    elseif (!$forsearch  && $edit_autosave)
                         {?>onChange="AutoSave('<?php echo $field["ref"]?>');"<?php } ?>>
                 <?php
                 }
@@ -2798,35 +2798,27 @@ function render_new_featured_collection_cta(string $url, array $ctx)
 * @return void
 */
 function renderSocialMediaShareLinksForUrl($url)
-    {
+{
     global $social_media_links;
 
-    $url_encoded = urlencode($url);
-
-    if(in_array("facebook", $social_media_links))
-        {
-        ?>
+    if (in_array("facebook", $social_media_links)) { ?>
         <!-- Facebook -->
-        <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $url_encoded; ?>"><i class="fa fa-lg fa-facebook-official" aria-hidden="true"></i></a>
+        <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode($url); ?>"><i class="fa-brands fa-xl fa-square-facebook" aria-hidden="true"></i></a>
         <?php
-        }
-
-    if (in_array("twitter", $social_media_links))
-        {
-        ?>
-        <!-- Twitter -->
-        <a target="_blank" href="https://twitter.com/intent/tweet?url=<?php echo $url_encoded; ?>"><i class="fa fa-lg fa-twitter-square" aria-hidden="true"></i></a>
-        <?php
-        }
-
-    if (in_array("linkedin", $social_media_links))
-        {
-        ?>
-        <!-- LinkedIn -->
-        <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=<?php echo $url_encoded; ?>"><i class="fa fa-lg fa-linkedin-square" aria-hidden="true"></i></a>
-        <?php
-        }
     }
+
+    if (in_array("twitter", $social_media_links)) { ?>
+        <!-- Twitter -->
+        <a target="_blank" href="https://twitter.com/intent/tweet?url=<?php echo urlencode($url); ?>"><i class="fa-brands fa-xl fa-square-x-twitter" aria-hidden="true"></i></a>
+        <?php
+    }
+
+    if (in_array("linkedin", $social_media_links)) { ?>
+        <!-- LinkedIn -->
+        <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=<?php echo urlencode($url); ?>"><i class="fa-brands fa-xl fa-linkedin" aria-hidden="true"></i></a>
+        <?php
+    }
+}
     
 /**
 * Renders a lock button for a field - used to 'lock' metadata in upload_review_mode
@@ -3062,7 +3054,7 @@ function render_share_options($shareopts=array())
         </div>
 <?php 
         }
-    else if(!checkperm("x") && !empty($allowed_external_share_groups) && in_array($usergroup, $allowed_external_share_groups))
+    elseif(!checkperm("x") && !empty($allowed_external_share_groups) && in_array($usergroup, $allowed_external_share_groups))
         {
         ?>
         <input type="hidden" name="usergroup" value="<?php echo $usergroup; ?>">
@@ -3813,7 +3805,7 @@ function check_display_condition($n, array $field, array $fields, $render_js)
                 {
                 $ui_selected_node_values[] = $user_set_values[$display_check_data[$cf]['ref']];
                 }
-            else if(isset($user_set_values[$display_check_data[$cf]['ref']]) && is_array($user_set_values[$display_check_data[$cf]['ref']]))
+            elseif(isset($user_set_values[$display_check_data[$cf]['ref']]) && is_array($user_set_values[$display_check_data[$cf]['ref']]))
                 {
                 $ui_selected_node_values = $user_set_values[$display_check_data[$cf]['ref']];
                 }
@@ -3910,7 +3902,7 @@ function check_display_condition($n, array $field, array $fields, $render_js)
                         // Move on to the next field now
                         continue;
                         }
-                    else if(FIELD_TYPE_DYNAMIC_KEYWORDS_LIST == $display_check_data[$cf]['type'])
+                    elseif(FIELD_TYPE_DYNAMIC_KEYWORDS_LIST == $display_check_data[$cf]['type'])
                         {
                         ?>
                         <script>
@@ -4201,16 +4193,16 @@ function display_field_data(array $field,$valueonly=false,$fixedwidth=452)
         debug('Calling value_filter...');
         eval(eval_check_signed($field['value_filter']));
         }
-    else if ($field["type"]==FIELD_TYPE_DATE_AND_OPTIONAL_TIME && strpos((string)$value,":")!=false)
+    elseif ($field["type"]==FIELD_TYPE_DATE_AND_OPTIONAL_TIME && strpos((string)$value,":")!=false)
         {
         // Show the time as well as date if entered
         $value=nicedate($value,true,true);
         }
-    else if ($field["type"]==FIELD_TYPE_DATE_AND_OPTIONAL_TIME || $field["type"]==FIELD_TYPE_EXPIRY_DATE || $field["type"]==FIELD_TYPE_DATE)
+    elseif ($field["type"]==FIELD_TYPE_DATE_AND_OPTIONAL_TIME || $field["type"]==FIELD_TYPE_EXPIRY_DATE || $field["type"]==FIELD_TYPE_DATE)
         {
         $value=nicedate($value,false,true);
         }
-    else if ($field["type"]==FIELD_TYPE_DATE_RANGE) 
+    elseif ($field["type"]==FIELD_TYPE_DATE_RANGE) 
         {
         $rangedates = explode(",",(string)$value);      
         natsort($rangedates);
@@ -4262,7 +4254,7 @@ function display_field_data(array $field,$valueonly=false,$fixedwidth=452)
             # Translate the single value
             $value=i18n_get_translated($value);
             }
-        else if(count($field_nodes_in_value) > 1)
+        elseif(count($field_nodes_in_value) > 1)
             {
             # Multiple nodes in value; Get all nodes for the field and translate each one which is in the metadata
             $field_nodes_all = get_nodes($field['ref']);
@@ -5012,7 +5004,7 @@ function render_featured_collection(array $ctx, array $fc)
         </div><!-- End of FeaturedSimpleTileActions_<?php echo md5($fc['ref']); ?> -->
         <?php
         }
-    else if($full_width && !$is_smart_featured_collection)
+    elseif($full_width && !$is_smart_featured_collection)
         {
         ?>
         <div class="ListTools">
@@ -6449,7 +6441,7 @@ function admin_resource_type_field_option(string $propertyname,string $propertyt
 <?php
                 }
             }
-        else if($propertyname === 'tab')
+        elseif($propertyname === 'tab')
             {
             ?>
             <select class="stdwidth" name="<?php echo escape($propertyname); ?>">
@@ -6692,7 +6684,7 @@ function add_download_column($ref, $size_info, $downloadthissize, $view_in_brows
         </td>
         <?php
         }
-    else if (checkperm("q"))
+    elseif (checkperm("q"))
         {
         if (!hook("resourcerequest"))
             {

@@ -566,7 +566,7 @@ if($k !='' && !$internal_share_access && $custom_stylesheet_external_share) {
                     <?php
                     }
 
-                else if($modal)
+                elseif($modal)
                     { ?>
                     <div class="backtoresults">
                         <?php
@@ -874,7 +874,7 @@ if($k !='' && !$internal_share_access && $custom_stylesheet_external_share) {
                                                     $headline=$newHeadline;
                                                     }
 
-                                                if ($hide_restricted_download_sizes && !$downloadthissize && !checkperm("q") || $resource)
+                                                if ($hide_restricted_download_sizes && !$downloadthissize && !checkperm("q"))
                                                     {
                                                     continue;
                                                     }
@@ -1082,15 +1082,25 @@ if($k !='' && !$internal_share_access && $custom_stylesheet_external_share) {
                                                     </td>
                                                     <?php
                                                     }
-                                                elseif(!checkperm('q'))
+                                                // No file. Link to request form.
+                                                elseif(checkperm('q'))
+                                                    {
+                                                    if(!hook('resourcerequest'))
+                                                        {
+                                                        ?>
+                                                        <td <?php hook("modifydownloadbutton") ?> class="DownloadButton">
+                                                            <a disabled>
+                                                                <?php echo htmlspecialchars($lang["notavailableshort"]??"")?>
+                                                            </a>
+                                                        </td>
+                                                        <?php
+                                                        }
+                                                    }
+                                                else
                                                     {
                                                     ?>
                                                     <td <?php hook("modifydownloadbutton") ?> class="DownloadButton DownloadDisabled"><?php echo htmlspecialchars($lang["access1"])?></td>
                                                     <?php
-                                                    }
-                                                else
-                                                    {
-                                                    // No file. Do not display download or request button.
                                                     }
                                                 ?>
                                             </tr>
@@ -1227,7 +1237,7 @@ if($k !='' && !$internal_share_access && $custom_stylesheet_external_share) {
                                                         {
                                                         echo "<div class='DisabledLink LockedResourceAction'><i class='fa fa-fw fa-trash'></i>&nbsp;" . $deletetext . "</div>";
                                                         }
-                                                    else if ($delete_requires_password)
+                                                    elseif ($delete_requires_password)
                                                         {
                                                         $delete_url = generateURL($baseurl . "/pages/delete.php", $urlparams);
                                                         echo "<a id='delete_link_" . $ref . "' href='" . $delete_url . "' class='LockedResourceAction' onclick='return ModalLoad(this, true);' ><i class='fa fa-fw fa-trash'></i>&nbsp;" . $deletetext . "</a>";
