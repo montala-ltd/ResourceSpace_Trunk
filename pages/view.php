@@ -85,9 +85,6 @@ if ($go!="")
             <?php
             }
         }
-    # Option to replace the key via a plugin (used by resourceconnect plugin).
-    $newkey = hook("nextpreviewregeneratekey");
-    if (is_string($newkey)) {$k = $newkey;}
 
     # Check access permissions for this new resource, if an external user.
     if ($k!="" && !$internal_share_access && !check_access_key($ref, $k)) {$ref = $origref;} # Cancel the move.
@@ -1088,11 +1085,7 @@ if($k !='' && !$internal_share_access && $custom_stylesheet_external_share) {
                                                     if(!hook('resourcerequest'))
                                                         {
                                                         ?>
-                                                        <td <?php hook("modifydownloadbutton") ?> class="DownloadButton">
-                                                            <a disabled>
-                                                                <?php echo htmlspecialchars($lang["notavailableshort"]??"")?>
-                                                            </a>
-                                                        </td>
+                                                        <td <?php hook("modifydownloadbutton") ?> class="DownloadButton"></td>
                                                         <?php
                                                         }
                                                     }
