@@ -709,7 +709,7 @@ $lang["loginincorrect"]="Sorry, your login details were incorrect.<br /><br />If
 $lang["accountexpired"]="Your account has expired. Please contact the resources team.";
 $lang["accountnoemail-reset-not-emailed"]="Password reset link was not sent because the account has no email address";
 $lang["accountexpired-reset-not-emailed"]="Password reset link was not sent because the account has expired";
-$lang["useralreadyexists"]="An account with that e-mail or username already exists, changes not saved";
+$lang["useralreadyexists"]="An account with that e-mail or username already exists, or you have reached your user allocation.";
 $lang["useremailalreadyexists"]="An account with that e-mail already exists.";
 $lang["ticktoemail"]="E-mail this user their username and new password";
 $lang["ticktodelete"]="Tick to delete this user";
@@ -3123,3 +3123,5 @@ $lang["severity-level_2"]                   = "Notice";
 $lang["pull_images"]                        = "Pull images";
 $lang["pull_images_text"]                   = "Use images from related resources if none available";
 $lang["system_user_default"]                = "SYSTEM";
+
+$lang["userlimitreached"] = "You have reached your user limit. An existing user must be disabled or deleted before you can create new accounts or enable existing accounts.";
