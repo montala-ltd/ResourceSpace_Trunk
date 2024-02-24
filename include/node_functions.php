@@ -1477,8 +1477,8 @@ function get_resource_nodes($resource, $resource_type_field = null, $detailed = 
         {
         $query .= " ORDER BY n.resource_type_field, n.order_by ASC";
         }
-    $return = $detailed ? ps_query($query, $params) : ps_array($query, $params);
-    return $return;
+
+    return $detailed ? ps_query($query, $params) : ps_array($query, $params);
     }
 
 
@@ -2733,13 +2733,6 @@ function order_tree_nodes($nodes)
 function add_sql_node_language(&$sql_select,&$sql_params,string $alias = "node")
     {
     global $language,$defaultlanguage;
-
-    $asdefaultlanguage=$defaultlanguage;
-
-    if (!isset($asdefaultlanguage))
-        {
-        $asdefaultlanguage='en';
-        }
 
     // Use language specified, if not use default
     isset($language) ? $language_in_use = $language : $language_in_use = $defaultlanguage;

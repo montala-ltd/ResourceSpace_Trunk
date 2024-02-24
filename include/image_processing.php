@@ -1322,8 +1322,7 @@ function create_previews($ref,$thumbonly=false,$extension="jpg",$previewonly=fal
         {
         if (isset($imagemagick_path))
             {
-            $return_val=create_previews_using_im($ref,$thumbonly,$extension,$previewonly,$previewbased,$alternative,$ingested, $onlysizes);
-            return $return_val;
+            return create_previews_using_im($ref, $thumbonly, $extension, $previewonly, $previewbased, $alternative, $ingested, $onlysizes);
             }
         else
             {
@@ -1637,6 +1636,8 @@ function create_previews_using_im($ref,$thumbonly=false,$extension="jpg",$previe
             $ps[$o]['id'] = $onlysizes[0]; 
             $ps[$o]['width'] = $customx;
             $ps[$o]["height"] = $customy;
+            $ps[$o]['internal'] = 1;
+            $ps[$o]['allow_preview'] = 0;
             }
             
         # Locate imagemagick.
@@ -1881,7 +1882,7 @@ function create_previews_using_im($ref,$thumbonly=false,$extension="jpg",$previe
                     }
                 }
                 $profile='';
-                if($icc_extraction && file_exists($iccpath) && !$icc_transform_complete && !$previewbased && (!$imagemagick_mpr || ($imagemagick_mpr_preserve_profiles && ($id=="thm" || $id=="col" || $id=="pre" || $id=="scr"))))
+                if($icc_extraction && !$icc_transform_complete && !$previewbased && file_exists($iccpath) && (!$imagemagick_mpr || ($imagemagick_mpr_preserve_profiles && ($id=="thm" || $id=="col" || $id=="pre" || $id=="scr"))))
                     {
                     global $icc_preview_profile_embed;
                     // we have an extracted ICC profile, so use it as source
@@ -2178,11 +2179,17 @@ function create_previews_using_im($ref,$thumbonly=false,$extension="jpg",$previe
                     }
                 }
             // time to build the command
-            $command=$convert_fullpath . ' ' . escapeshellarg((!$config_windows && strpos($file, ':')!==false ? $extension .':' : '') . $file) . (!in_array(strtolower($extension), $preview_no_flatten_extensions) ? '[0] -quiet -alpha off' : '[0] -quiet') . ' -depth ' . $imagemagick_mpr_depth;
+            $command=$convert_fullpath . ' ' . escapeshellarg((!$config_windows && strpos($file, ':')!==false ? $extension .':' : '') . $file) . '[0] -quiet -depth ' . $imagemagick_mpr_depth;
             if(!$unique_flatten)
                 {
-                $command.=($command_parts[0]['flatten'] ? " -flatten " : "");
+                $command.=($command_parts[0]['flatten'] ? " $flatten " : "");
                 }
+
+             if (!in_array(strtolower($extension), $preview_keep_alpha_extensions))
+                {
+                $command .= " $alphaoff ";
+                }
+
              if(!$unique_strip_source)
                 {
                 $command.=($command_parts[0]['strip_source'] ? " -strip " : "");
@@ -3116,7 +3123,6 @@ function AutoRotateImage($src_image, $ref = false)
             $command = $convert_fullpath . ' ' . escapeshellarg($src_image) . ' -rotate +' . $orientation . ' ' . escapeshellarg($new_image);
             $output=run_command($command);
             }
-        $command = $exiftool_fullpath . ' Orientation=1 ' . escapeshellarg($new_image);
         } 
     else
         {
@@ -3131,9 +3137,6 @@ function AutoRotateImage($src_image, $ref = false)
                 {
                 $command = $convert_fullpath . ' -rotate +' . $orientation . ' ' . escapeshellarg($src_image) . ' ' . escapeshellarg($new_image);
                 $output=run_command($command);
-
-                # change the orientation metadata
-                $command = $exiftool_fullpath . ' -Orientation=1 ' . escapeshellarg($new_image);
                 }
             } 
         else
@@ -3538,10 +3541,8 @@ function getFileDimensions($identify_fullpath, $prefix, $file, $extension)
             debug("getFileDimensions: Unable to get image size for file: $file");
             }
         }
-    
-    $dimensions = array($w, $h);
 
-    return $dimensions;
+    return array($w, $h);
     }
 
 /**

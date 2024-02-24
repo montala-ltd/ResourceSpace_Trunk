@@ -331,7 +331,7 @@ hook("headblock");
 endif; # !hook("customhtmlheader") 
 ?>
 </head>
-<body lang="<?php echo $language ?>" class="<?php echo implode(' ', $body_classes); ?>" <?php if (isset($bodyattribs)) { ?><?php echo $bodyattribs?><?php } ?>>
+<body lang="<?php echo escape($language) ?>">
 
 <a href="#UICenter" class="skip-to-main-content"><?php echo htmlspecialchars($lang["skip-to-main-content"]); ?></a>
 
@@ -352,7 +352,7 @@ hook("bodystart"); ?>
 <!--Global Header-->
 <?php
 if (($pagename=="terms") && (getval("url","")=="index.php")) {$loginterms=true;} else {$loginterms=false;}
-if ($pagename!="preview" && $pagename!="preview_all")
+if ($pagename != "preview")
     {
     // Standard header
     $homepage_url=$baseurl."/pages/".$default_home_page;
@@ -577,12 +577,14 @@ if ($pagename!="preview" && $pagename!="preview_all")
         }
     }
 hook("headerbottom"); ?>
-<div class="clearer"></div><?php if ($pagename!="preview" && $pagename!="preview_all") { ?></div><?php } #end of header ?>
+<div class="clearer"></div>
 
-<?php
+<?php if ($pagename != "preview") { ?>
+    </div>
+<?php } # End of header 
+
  $omit_searchbar_pages = array(
         'index',
-        'preview_all',
         'search_advanced',
         'preview',
         'admin_header',

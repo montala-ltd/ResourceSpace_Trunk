@@ -300,8 +300,7 @@ function get_config_option($user_id, $name, &$returned_value, $default = null)
 */
 function get_config_option_users($option,$value)
     {
-    $users = ps_array("SELECT user value FROM user_preferences WHERE parameter = ? AND value=?",array("s",$option,"s",$value), "preferences");
-    return $users;   
+    return ps_array("SELECT user value FROM user_preferences WHERE parameter = ? AND value = ?", array("s", $option, "s", $value), "preferences");
     }
 
 /**
@@ -1653,7 +1652,7 @@ function save_resource_type_field(int $ref, array $columns, $postdata): bool
     global $regexp_slash_replace, $migrate_data, $onload_message, $lang, $baseurl;
 
     $existingfield = get_resource_type_field($ref);
-    $params= $syncparams = [];
+    $params = [];
 
     $resource_types=get_resource_types("",true,false,true);
 
