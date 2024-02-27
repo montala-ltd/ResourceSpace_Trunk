@@ -3065,7 +3065,7 @@ function IsModal()
         {
         return true;
         }
-    return (getval("modal", "") == "true");
+    return getval("modal", "") == "true";
     }
 
 /**
@@ -3993,7 +3993,7 @@ function rcRmdir ($path,$ignore=array())
     if (is_dir($path))
         {
         $foldercontents = new DirectoryIterator($path);
-        foreach($foldercontents as $objectindex => $object)
+        foreach($foldercontents as $object)
             {
             if($object->isDot() || in_array($path,$ignore))
                 {
@@ -4902,7 +4902,7 @@ function get_system_status()
                 $return['results'][$check_name]['severity_text'] = $GLOBALS["lang"]["severity-level_" .  $extra_check['severity']];
                 }
 
-            $warn_details = $extra_warn['details'] ?? [];
+            $warn_details = $extra_check['details'] ?? [];
             if ($warn_details !== [])
                 {
                 $return['results'][$check_name]['details'] = $warn_details;
@@ -4996,7 +4996,7 @@ function check_filestore_browseability()
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
         curl_setopt($ch, CURLOPT_MAXREDIRS, 2);
-        $output = curl_exec($ch);
+        curl_exec($ch);
         $response_status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);        
         }
