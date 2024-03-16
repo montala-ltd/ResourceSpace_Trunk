@@ -27,7 +27,7 @@ $add_searched_nodes_function_call = '';
 <div class="dynamickeywords ui-front">
     <input id="<?php echo $name; ?>_selector" type="text" <?php if ($pagename=="search_advanced") { ?> class="SearchWidth" <?php } else {?>  class="stdwidth" <?php } ?>
            name="<?php echo $name; ?>_selector"
-           placeholder="<?php echo $lang['starttypingkeyword']; ?>"
+           placeholder="<?php echo escape($lang['starttypingkeyword']); ?>"
            onFocus="
                 <?php
                 if($pagename=="edit")
@@ -122,7 +122,7 @@ function updateSelectedKeywords_<?php echo $js_keywords_suffix; ?>(user_action)
     document.getElementById('<?php echo $name; ?>_selected').insertAdjacentHTML('beforeBegin', hidden_input_elements);
     document.getElementById('<?php echo $name; ?>_selected').innerHTML = html;
     
-    if("<?php echo $field['field_constraint']?>"==1 && keyword_count>=1 && (pagename!='search_advanced' || '<?php echo var_export($dynamic_keyword_and, true) ?>'==='true'))
+    if("<?php echo $field['field_constraint']; ?>"==1 && keyword_count>=1 && (pagename!='search_advanced' || '<?php echo var_export($dynamic_keyword_and, true) ?>'==='true'))
         {
         document.getElementById('<?php echo $name; ?>_selector').disabled = true;
         }
@@ -208,7 +208,7 @@ function selectKeyword_<?php echo $js_keywords_suffix; ?>(event, ui)
     var keyword         = ui.item.label;
     var node_id         = ui.item.value;
 
-    if(keyword.substring(0, <?php echo mb_strlen($lang['createnewentryfor'], 'UTF-8'); ?>) == '<?php echo $lang["createnewentryfor"]; ?>')
+    if(keyword.substring(0, <?php echo mb_strlen($lang['createnewentryfor'], 'UTF-8'); ?>) == '<?php echo escape($lang["createnewentryfor"]); ?>')
         {
         keyword = keyword.substring(<?php echo mb_strlen($lang['createnewentryfor'], 'UTF-8') + 1; ?>);
 
