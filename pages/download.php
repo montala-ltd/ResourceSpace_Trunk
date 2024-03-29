@@ -3,7 +3,7 @@
 from outputting stray characters that will mess up the binary download
 we will clear the buffer and start over right before we download the file*/
 ob_start(); $nocache=true;
-include_once dirname(__FILE__) . '/../include/db.php';
+include_once dirname(__FILE__) . '/../include/boot.php';
 include_once dirname(__FILE__) . '/../include/resource_functions.php';
 include_once dirname(__FILE__) . '/../include/image_processing.php';
 ob_end_clean(); 
@@ -218,9 +218,12 @@ else
         $ext = 'jpg';
         }
 
-    // Where we are getting mp3 preview for videojs, clear size as we want to get the auto generated mp3 file rather than a custom size.
-    if ($size == 'videojs' && $ext == 'mp3')
-        {
+    // Where we are getting mp3 preview for videojs, clear size as we want to get the auto generated mp3 file rather than a custom size. 
+    // Also allow mp4 files for videojs if $video_preview_original is enabled
+    if (
+        $size == 'videojs' 
+        && ($ext == 'mp3' || ($ext == 'mp4' && $video_preview_original))
+        ) {
         $size="";
         $log_download = false;
         }

@@ -1,5 +1,5 @@
 <?php
-include_once "../include/db.php";
+include_once "../include/boot.php";
 
 if($annotate_enabled)
     {
@@ -1047,21 +1047,20 @@ if (!hook("replacesearchheader")) # Always show search header now.
                 <?php
                 }
                 
-            if ($searchlist == true) 
+
+            if($display == 'list')
                 {
-                if($display == 'list')
-                    {
-                    ?><span class="smalllisticonactive"></span><?php
-                    }
-                else
-                    {
-                    ?>
-                    <a id="list_view_link"  href="<?php echo generateURL($baseurl_short."pages/search.php",$searchparams,array("display"=>"list")); ?>" title='<?php echo escape($lang["listtitle"]) ?>' onClick="return <?php echo $modal ? 'Modal' : 'CentralSpace'; ?>Load(this);">
-                        <span class="smalllisticon"></span>
-                    </a>
-                    <?php
-                    }
+                ?><span class="smalllisticonactive"></span><?php
                 }
+            else
+                {
+                ?>
+                <a id="list_view_link"  href="<?php echo generateURL($baseurl_short."pages/search.php",$searchparams,array("display"=>"list")); ?>" title='<?php echo escape($lang["listtitle"]) ?>' onClick="return <?php echo $modal ? 'Modal' : 'CentralSpace'; ?>Load(this);">
+                    <span class="smalllisticon"></span>
+                </a>
+                <?php
+                }
+                
             
             if (!$disable_geocoding)
                 {
@@ -1144,8 +1143,6 @@ if (!hook("replacesearchheader")) # Always show search header now.
             }
         // Build the available sort sequence entries, starting with the default derived above
         $orderFields = array($default_sort_order => $rel);
-        if ($random_sort)
-            $orderFields['random'] = $lang['random'];
         if ($popularity_sort)
             $orderFields['popularity'] = $lang['popularity'];
         if ($orderbyrating)
@@ -1156,8 +1153,7 @@ if (!hook("replacesearchheader")) # Always show search header now.
             $orderFields['colour'] = $lang['colour'];
         if ($order_by_resource_id)
             $orderFields['resourceid'] = $lang['resourceid'];
-        if ($order_by_resource_type)
-            $orderFields['resourcetype'] = $lang['type'];
+        $orderFields['resourcetype'] = $lang['type'];
         
         $orderFields['modified'] = $lang['modified'];
 

@@ -1,5 +1,5 @@
 <?php
-include_once dirname(__FILE__)."/../include/db.php";
+include_once dirname(__FILE__)."/../include/boot.php";
 
 # External access support (authenticate only if no key provided, or if invalid access key provided)
 $k=getval("k","");if (($k=="") || (!check_access_key_collection(getval("collection","",true),$k))) {include_once dirname(__FILE__)."/../include/authenticate.php";}
@@ -434,7 +434,7 @@ else { ?>
     <style>
     #CollectionMenuExp
         {
-        height:<?php echo $collection_frame_height-15?>px;
+        height:<?php echo COLLECTION_FRAME_HEIGHT-15?>px;
         }
     </style>
 
