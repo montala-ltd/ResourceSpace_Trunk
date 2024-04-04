@@ -308,8 +308,11 @@ function propose_changes_display_field($n, $field)
 
     $edit_autosave=false;
     $name="field_" . $field["ref"];
-    $value=$field["value"];
-    $value=trim($value??"");
+    $value=trim($field['value'] ?? '');
+    
+    // Force display field because we rely on display_field_data() which is meant to honour this property (but meant 
+    // only for the view page). In this context, "hiding" fields is done using permissions.
+    $field['display_field'] = 1;
 
     # is there a proposed value set for this field?
     /**
@@ -374,8 +377,8 @@ function propose_changes_display_field($n, $field)
             <?php
             }?>
 
-    <div class="proposed_change proposed_change_value proposed ProposeChangesProposed" <?php if(!$has_proposed_changes){echo "style=\"display:none;\""; } ?> id="proposed_change_<?php echo $field["ref"]; ?>">
-    <input type="hidden" id="propose_change_<?php echo $field["ref"]; ?>" name="propose_change_<?php echo $field["ref"]; ?>" value="true" <?php if(!$has_proposed_changes){echo "disabled=\"disabled\""; } ?> />
+    <div class="proposed_change proposed_change_value proposed ProposeChangesProposed" <?php if(!$has_proposed_changes){echo "style=\"display:none;\""; } ?> id="proposed_change_<?php echo escape($field["ref"]); ?>">
+    <input type="hidden" id="propose_change_<?php echo escape($field["ref"]); ?>" name="propose_change_<?php echo escape($field["ref"]); ?>" value="true" <?php if(!$has_proposed_changes){echo "disabled=\"disabled\""; } ?> />
     <?php
     # ----------------------------  Show field -----------------------------------
     $value = $has_proposed_changes ? $proposed_value : $realvalue;
