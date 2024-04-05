@@ -442,29 +442,21 @@ function render_search_field($field,$fields,$value="",$autoupdate=false,$class="
     if (!$forsearchbar)
         {
         ?>
-        <div class="Question <?php 
+        <div class="Question ConditionalVisibility" data-for_resource_types="<?php 
         // Add class for each supported resource type to allow showing/hiding on advanced search
-        // Skip any fields that are hidden because of a display condition i.e. $displaycondition is false, as the display condition controls visibility.
-        if ($displaycondition)
+        if($field["resource_types"] == "Collections")
             {
-            if($field["resource_types"] == "Collections")
-                {
-                echo "QuestionSearchRestypeCollections";
-                }
-            elseif($field["global"] == 1)
-                {
-                echo "QuestionSearchRestypeGlobal";
-                }
-            else
-                {
-                echo "QuestionSearchRestypeSpec ";
-                foreach(explode(",",(string)$field["resource_types"]) as $fieldrestype)
-                    {
-                    echo "QuestionSearchRestype" . (int)$fieldrestype . " ";
-                    }
-                }
+            echo "Collections";
             }
-        ?>" id="question_<?php echo $n ?>" <?php if (!$displaycondition) {?>style="display:none;border-top:none;"<?php } ?><?php
+        elseif($field["global"] == 1)
+            {
+            echo "Global";
+            }
+        else
+            {
+            echo (string)$field["resource_types"];
+            }
+        ?>" id="question_<?php echo $n ?>" data-has_display_condition="<?php echo !$displaycondition ? '1' : '0'; ?>" data-question_field_ref="<?php echo (int) $field['ref']; ?>"<?php
         if (strlen((string) $field["tooltip_text"])>=1)
             {
             echo "title=\"" . escape(lang_or_i18n_get_translated($field["tooltip_text"], "fieldtooltip-")) . "\"";
@@ -1878,6 +1870,11 @@ function display_field($n, $field, $newtab=false,$modal=false)
     elseif($ref != $use && $copyfrom != '')
         {
         $user_set_values = array();
+
+        if(in_array($field['type'], $FIXED_LIST_FIELD_TYPES))
+            {
+            $field['nodes'] = array_filter($field['nodes'], 'node_is_active');
+            }
         }
     else
         {
@@ -6763,8 +6760,10 @@ function render_resource_view_image(array $resource, array $context)
             {
             $GLOBALS["image_preview_zoom"] = false;
             $tile_region_support = false;
-            $fulljpgsize = strtolower($resource['file_extension']) != "jpg" ? "hpr" : "";
-            $zoom_image_path = get_resource_path($resource["ref"], true, $fulljpgsize, false, $resource['file_extension'], true, 1, $use_watermark);
+            $not_jpg = strtolower($resource['file_extension']) != "jpg";
+            $fulljpgsize = $not_jpg ? "hpr" : "";
+            $fulljpgext = $not_jpg ? 'jpg' : $resource['file_extension'];
+            $zoom_image_path = get_resource_path($resource["ref"], true, $fulljpgsize, false, $fulljpgext, true, 1, $use_watermark);
 
             if($GLOBALS["preview_tiles"] && file_exists($zoom_image_path) && resource_download_allowed($resource["ref"], '', $resource['resource_type']))
                 {

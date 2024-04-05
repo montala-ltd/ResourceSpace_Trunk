@@ -1969,6 +1969,7 @@ $lang["starttypingkeyword"]="Start typing keyword...";
 $lang["createnewentryfor"]="Create new entry for";
 $lang["confirmcreatenewentryfor"]="Are you sure you wish to create a new keyword list entry for '%%'?";
 $lang["noentryexists"]="No entry exists for";
+$lang['inactive_entry_matched'] = 'Inactive entry matched for';
 
 $lang["editresourcepreviews"]="Edit Resource Previews";
 $lang["can_assign_resource_requests"]="Can assign resource requests to others";
@@ -2869,7 +2870,9 @@ $lang["api-function"]="API function";
 $lang["api-help"]='Please refer to the <a target="_blank" href="https://www.resourcespace.com/knowledge-base/api">API documentation</a> for function specifics. <strong>Be careful - any commands you enter will be executed using your live data.</strong>';
 $lang["api-view-documentation"]="View documentation";
 $lang["api-php-code"]="PHP code";
-$lang["api-php-help"]="Paste the below into the remote system to call the entered API function with the provided parameters.";
+$lang["api-php-help"]="Use the below PHP code on a remote system to call the entered API function with the provided parameters.";
+$lang["api-curl-example"] = "cURL example";
+$lang["api-curl-help"] = "The below one line bash script can be executed on any UNIX system with OpenSSL and cURL installed.";
 
 $lang["font"]="Font";
 
