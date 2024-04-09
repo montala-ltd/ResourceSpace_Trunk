@@ -3144,6 +3144,11 @@ function render_upload_here_button(array $search_params, $return_params_only = f
         $upload_here_params['collection_add'] = $collection;
         }
 
+    if (isset($search_params['advsearch']) && $search_params['advsearch'] == 'true')
+        {
+        $upload_here_params['advsearch'] = 'true';
+        }
+
     // If resource types is a list then always select the first resource type the user has access to
     $resource_types = explode(',', $search_params['restypes']);
     foreach($resource_types as $resource_type)
@@ -5217,7 +5222,7 @@ function render_audio_download_link($resource, $ref, $k, $ffmpeg_audio_extension
  *   array(
  *       "icon"=>"fa fa-info",
  *       "text"=>$lang["job_details"],
- *       "url"=>generateurl($baseurl . "/pages/job_details.php",array("job" => $jobs[$n]["ref"])),
+ *       "url"=>generateURL($baseurl . "/pages/job_details.php",array("job" => $jobs[$n]["ref"])),
  *       "modal"=>true,
  *       );
  * 
@@ -5282,7 +5287,7 @@ function render_table($tabledata)
         if($headerdetails["sortable"])
             {
             $revsort = ($tabledata["sort"]=="ASC") ? "DESC" : "ASC";
-            echo "<a href='" . generateurl($tabledata["defaulturl"],$tabledata["params"],array($tabledata["orderbyname"]=>$header,$tabledata["sortname"]=>($tabledata["orderby"] == $header ? $revsort : $tabledata["sort"]))) . "' onclick='return " . ($modal ? "Modal" : "CentralSpace") . "Load(this, true);'>" . escape($headerdetails["name"]);
+            echo "<a href='" . generateURL($tabledata["defaulturl"],$tabledata["params"],array($tabledata["orderbyname"]=>$header,$tabledata["sortname"]=>($tabledata["orderby"] == $header ? $revsort : $tabledata["sort"]))) . "' onclick='return " . ($modal ? "Modal" : "CentralSpace") . "Load(this, true);'>" . escape($headerdetails["name"]);
             if($tabledata["orderby"] == $header)
                 {
                 // Currently sorted by this column
