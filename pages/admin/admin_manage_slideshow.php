@@ -139,7 +139,6 @@ if($ajax === 'true' && $action == 'set_flag' && enforcePostRequest($ajax))
 
         $update_status = set_slideshow(
             $slideshow_id,
-            $slideshow['resource_ref'],
             $slideshow['homepage_show'],
             $slideshow['featured_collections_show'],
             $slideshow['login_show']);
@@ -203,7 +202,6 @@ button[disabled]{
             <tbody>
                 <tr class="ListviewTitleStyle">
                     <td><?php echo escape($lang["preview"]); ?></td>
-                    <td><?php echo escape($lang["resourceid"]); ?></td>
                     <td><?php echo escape($lang["home_page"]); ?></td>
                     <td><?php echo escape($lang["theme"]); ?></td>
                     <td><?php echo escape($lang["login_word"]); ?></td>
@@ -263,9 +261,6 @@ button[disabled]{
                     ?>
                     </td>
                     <td>
-                        <?php echo $slideshow_file_info['resource_ref']; ?>
-                    </td>
-                    <td>
                         <input type="checkbox"
                                name="homepage_show"
                                value="1"
@@ -309,9 +304,6 @@ button[disabled]{
             </tbody>
         </table>
     </div>
-<?php
-if($slideshow_big)
-    {?>
     <div id="slideshow_static_image" class="Question">
         <label>
         <?php echo escape($lang["slideshow_use_static_image"]); ?>    
@@ -320,7 +312,6 @@ if($slideshow_big)
     <div class="clearerleft"></div>
     </div>
     <?php
-    }
     hook('render_new_element_for_manage_slideshow', '', array($slideshow_files));
 ?>
 </div>

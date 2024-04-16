@@ -790,12 +790,12 @@ function filesize2bytes($str)
  */
 function get_mime_type($path, $ext = null)
     {
-    global $mime_type_by_extension;
+    global $mime_types_by_extension;
     if (empty($ext))
         $ext = pathinfo($path, PATHINFO_EXTENSION);
-    if (isset($mime_type_by_extension[$ext]))
+    if (isset($mime_types_by_extension[$ext]))
         {
-        return $mime_type_by_extension[$ext];
+        return $mime_types_by_extension[$ext];
         }
 
     # Get mime type via exiftool if possible
@@ -822,7 +822,6 @@ function allowed_type_mime($allowedtype)
         {        
         // Get extended list of mime types to convert legacy extensions 
         // to Uppy mime type syntax
-        include_once 'mime_types.php';
         return $mime_types_by_extension[$allowedtype] ?? $allowedtype;        
         }
     else
@@ -1000,6 +999,7 @@ function send_mail($email,$subject,$message,$from="",$reply_to="",$html_template
 
     $message.=$eol.$eol.$eol . $email_footer;
 
+    $subject_for_mail_log = $subject;
     if ($quoted_printable_encoding) {
         $message=rs_quoted_printable_encode($message);
         $subject=rs_quoted_printable_encode_subject($subject);
@@ -1083,7 +1083,7 @@ function send_mail($email,$subject,$message,$from="",$reply_to="",$html_template
         $message = $messageprefix . $message;
         }
     $headers .= "Content-Transfer-Encoding: quoted-printable" . $eol;
-    log_mail($email,$subject,$reply_to);
+    log_mail($email, $subject_for_mail_log, $reply_to);
     mail ($email,$subject,$message,$headers);
     cleanup_files($deletefiles);
     return true;
@@ -1118,7 +1118,7 @@ function send_mail($email,$subject,$message,$from="",$reply_to="",$html_template
 function send_mail_phpmailer($email,$subject,$message="",$from="",$reply_to="",$html_template="",$templatevars=null,$from_name="",$cc="",$bcc="", $files=array())
     {
     # Include footer
-    global $header_colour_style_override, $mime_type_by_extension, $email_from;
+    global $header_colour_style_override, $mime_types_by_extension, $email_from;
     include_once __DIR__ . '/../lib/PHPMailer/PHPMailer.php';
     include_once __DIR__ . '/../lib/PHPMailer/Exception.php';
     include_once __DIR__ . '/../lib/PHPMailer/SMTP.php';
@@ -1401,9 +1401,9 @@ function send_mail_phpmailer($email,$subject,$message="",$from="",$reply_to="",$
             $image_extension = pathinfo($image, PATHINFO_EXTENSION);
 
             // Set mime type based on the image extension
-            if(array_key_exists($image_extension, $mime_type_by_extension))
+            if(array_key_exists($image_extension, $mime_types_by_extension))
                 {
-                $mime_type = $mime_type_by_extension[$image_extension];
+                $mime_type = $mime_types_by_extension[$image_extension];
                 }
 
             $mail->AddEmbeddedImage($image, basename($image), basename($image), 'base64', $mime_type);
@@ -2986,7 +2986,7 @@ function get_slideshow_files_data()
 
     $homeanim_folder_path = dirname(__DIR__) . "/{$homeanim_folder}";
 
-    $slideshow_records = ps_query("SELECT ref, resource_ref, homepage_show, featured_collections_show, login_show FROM slideshow", array(), "slideshow");
+    $slideshow_records = ps_query("SELECT ref,  homepage_show, featured_collections_show, login_show FROM slideshow", array(), "slideshow");
 
     $slideshow_files = array();
 
@@ -3008,11 +3008,6 @@ function get_slideshow_files_data()
                 'slideshow' => $slideshow['ref'],
                 'nc' => $slideshow_file['checksum'],
             ));
-
-        if ((int) $slideshow['resource_ref'] > 0)
-            {
-            $slideshow_file['link'] = generateURL($baseurl, array('r' => $slideshow['resource_ref']));
-            }
 
         $slideshow_files[] = $slideshow_file;
         }

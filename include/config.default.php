@@ -77,10 +77,6 @@ $email_from=""; # Where system e-mails appear to come from. Written to config.ph
 $email_notify=""; # Where resource/research/user requests are sent. Written to config.php by setup.php
 $email_notify_usergroups=array(); # Use of email_notify is deprecated as system notifications are now sent to the appropriate users based on permissions and user preferences. This variable can be set to an array of usergroup references and will take precedence.
 
-# Enable user-to-user emails to come from user's address by default (for better reply-to), with the user-level option of reverting to the system address
-# NOTE: It is strongly recommended to use a custom SMTP server if this is enabled, emails may be seen as spoofing attempts. 
-$email_from_user = false;
-
 # Scramble resource paths? If this is a public installation then this is a very wise idea.
 # Set the scramble key to be a hard-to-guess string (similar to a password).
 # To disable, set to the empty string ("").
@@ -180,9 +176,6 @@ $header_favicon="gfx/interface/favicon.png";
 # Is the logo a link to the home page?
 $header_link=true;
 
-# Header size class. Options are HeaderSmall, HeaderMid, HeaderLarge.
-$header_size="HeaderMid";
-
 # Header includes username to right of user menu icon
 $header_include_username=false;
 
@@ -275,20 +268,6 @@ $minyear=1980; # The year of the earliest resource record, used for the date sel
 # Set folder for home images. Ex: "gfx/homeanim/mine/" 
 # Files should be numbered sequentially, and will be auto-counted.
 $homeanim_folder="gfx/homeanim/gfx";
-
-# Set different size for slideshow images (value  in pixels). This is honoured by transform plugin so still allows easy replacement of images.  
-# Can be used as config override in conjunction with $homeanim_folder as above (for large images you may also want to set $home_themeheaders to false).
-# $home_slideshow_width=517;
-# $home_slideshow_height=350;
-
-# Small slideshow mode (old slideshow)
-$small_slideshow = true; # This is DEPRECATED and is switched off for new installations (by config_new_installs.php)
-
-# Big slideshow mode (Fullscreen slideshow)
-# ----------------------------------
-# You will need to configure much bigger slideshow images with $home_slideshow_width and $home_slideshow_height, and regenerate
-# your slideshow images using the transform plugin. This is recommended to be used along with the slim header.
-$slideshow_big=false;
 
 # Number of seconds for slideshow to wait before changing image (must be greater than 1)
 $slideshow_photo_delay = 5;
@@ -1369,28 +1348,6 @@ $show_access_on_upload = &$show_status_and_access_on_upload;
 # Example below ensures they have permissions to edit active resources.
 # $show_access_on_upload_perm = "return checkperm('e0')"; #Stack permissions= "return checkperm('e0') && checkperm('c');";
 $show_access_on_upload_perm = "return true;";
-
-# Mime types by extensions.
-# used by pages/download.php to detect the mime type of the file proposed to download.
-$mime_type_by_extension = array(
-    'mov'  => 'video/quicktime',
-    '3gp'  => 'video/3gpp',
-    'mpg'  => 'video/mpeg',
-    'mp4'  => 'video/mp4',
-    'avi'  => 'video/msvideo',
-    'mp3'  => 'audio/mpeg',
-    'wav'  => 'audio/x-wav',
-    'weba' => 'audio/webm',    
-    'jpg'  => 'image/jpeg',
-    'jpeg' => 'image/jpeg',
-    'gif'  => 'image/gif',
-    'png'  => 'image/png',
-    'odt'  => 'application/vnd.oasis.opendocument.text',
-    'ods'  => 'application/vnd.oasis.opendocument.spreadsheet',
-    'odp'  => 'application/vnd.oasis.opendocument.presentation',
-    'svg'  => 'image/svg+xml',
-    'pdf'  => 'application/pdf',
-  );
 
 # PHP execution time limit
 # Default is 5 minutes.
@@ -2566,9 +2523,6 @@ $resource_view_use_pre = false;
 # NOTE: Enabling $resource_view_large_ext will override this.
 $resource_view_large_orientation = true;
 
-# Option to show a popup to users that upload resources to pending submission status. Prompts user to either submit for review or continue editing.
-$pending_submission_prompt_review=true;
-
 # Frequency at which the page header will poll for new messages for the user.  Set to 0 (zero) to disable.
 $message_polling_interval_seconds = 10;
 
@@ -2587,7 +2541,7 @@ $resource_request_reason_required=true;
 # Create all preview sizes at the full target size if image is smaller (except for HPR as this would result in massive images)
 $previews_allow_enlarge=false;
 
-# Option to use a random static image from the available slideshow images. Requires slideshow_big=true;
+# Option to use a random static image from the available slideshow images. 
 $static_slideshow_image=false;
 
 #Add usergroup column in my messages/actions area
@@ -2734,9 +2688,6 @@ $fstemplate_alt_storagedir="";
 $fstemplate_alt_storageurl="";
 # The scramble key used by the template installation, so paths must be scrambled using this instead for the sample images.
 $fstemplate_alt_scramblekey="";
-
-# Ability to switch off responsive on UI
-$responsive_ui = true;
 
 # Default action settings
 $actions_enable = true;
@@ -3260,3 +3211,16 @@ Optionally use this array to prevent the immediate creation at upload of core pr
 for the specified file extensions when one of the offline preview options above are configured.
 */
 $minimal_preview_creation_exclude_extensions = [];
+
+
+// Option to automatically send a digest of all messages if a user has not logged on for the specified number of days
+$inactive_message_auto_digest_period=7;
+
+# Select the field to display in searchcrumbs for a related search (defaults to filename)
+# If this is set to a different field and the value is empty fallback to filename
+$related_search_searchcrumb_field=51;
+
+# Specifies that searching will search all workflow states
+# NOTE - does not work with $advanced_search_archive_select=true (advanced search status searching) as the below option removes the workflow selection altogether.
+# IMPORTANT - this feature gets disabled when requests ask for a specific archive state (e.g. View deleted resources or View resources in pending review)
+$search_all_workflow_states=false;

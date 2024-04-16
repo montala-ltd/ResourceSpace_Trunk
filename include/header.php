@@ -103,16 +103,10 @@ if(strpos($header_favicon, '[storage_url]') !== false)
 <script type="text/javascript" src="<?php echo $baseurl?>/lib/js/jquery.tshift.min.js"></script>
 <script type="text/javascript" src="<?php echo $baseurl?>/lib/js/jquery-periodical-updater.js"></script>
 
-<?php 
-if ($slideshow_big) 
-    { ?>
-    <script type="text/javascript">StaticSlideshowImage=<?php echo $static_slideshow_image?"true":"false";?>;</script>
-    <script type="text/javascript" src="<?php echo $baseurl?>/lib/js/slideshow_big.js?css_reload_key=<?php echo $css_reload_key?>"></script>
-    <link type="text/css" href="<?php echo $baseurl?>/css/slideshow_big.css?css_reload_key=<?php echo $css_reload_key?>" rel="stylesheet" />
-    <?php 
-    }
+<script type="text/javascript">StaticSlideshowImage=<?php echo $static_slideshow_image?"true":"false";?>;</script>
+<script type="text/javascript" src="<?php echo $baseurl?>/lib/js/slideshow_big.js?css_reload_key=<?php echo $css_reload_key?>"></script>
 
-
+<?php
 if ($contact_sheet)
     {?>
     <script type="text/javascript" src="<?php echo $baseurl?>/lib/js/contactsheet.js"></script>
@@ -380,16 +374,10 @@ if ($pagename != "preview")
     <div id="Header" class="<?php
             echo in_array($pagename, $not_authenticated_pages) ? ' LoginHeader ' : ' ui-layout-north ';
             echo isset($slimheader_darken) && $slimheader_darken ? 'slimheader_darken' : '';
-            echo " " . $header_size;
     ?>">
 
+    <div id="HeaderResponsive">
     <?php
-    if($responsive_ui)
-        {
-        ?>
-        <div id="HeaderResponsive">
-        <?php
-        }
 
     hook('responsiveheader');
 
@@ -411,43 +399,40 @@ if ($pagename != "preview")
     $user_profile_image = get_profile_image($userref,false);
 
     // Responsive
-    if($responsive_ui)
-        {
-        if (isset($username) && ($pagename!="login") && ($loginterms==false) && getval("k","")=="") 
-            { 
-            ?>   
-            <div id="HeaderButtons" style="display:none;">
-                <a href="#" id="HeaderNav1Click" class="ResponsiveHeaderButton ResourcePanel ResponsiveButton">
-                    <span class="rbText">
-                        <?php if ($allow_password_change == false)
-                            {
-                            echo escape((!isset($userfullname)||$userfullname==""?$username:$userfullname));
-                            }
-                        else 
-                            {
-                            echo escape($lang["responsive_settings_menu"]);
-                            }?>
-                        </span>
-                    <?php if ($user_profile_image != "")
+    if (isset($username) && ($pagename!="login") && ($loginterms==false) && getval("k","")=="") 
+        { 
+        ?>   
+        <div id="HeaderButtons" style="display:none;">
+            <a href="#" id="HeaderNav1Click" class="ResponsiveHeaderButton ResourcePanel ResponsiveButton">
+                <span class="rbText">
+                    <?php if ($allow_password_change == false)
                         {
-                        ?><img src='<?php echo $user_profile_image; ?>' alt='Profile icon' class="ProfileImage" id='UserProfileImage'> <?php
+                        echo escape((!isset($userfullname)||$userfullname==""?$username:$userfullname));
                         }
-                    else
+                    else 
                         {
-                        ?><span class="fa fa-fw fa-lg fa-user"></span> <?php
-                        }
-                    ?></a>
-                <a href="#" id="HeaderNav2Click" class="ResponsiveHeaderButton ResourcePanel ResponsiveButton">
-                    <span class="rbText"><?php echo escape($lang["responsive_main_menu"]); ?></span>
-                    <span class="fa fa-fw fa-lg fa-bars"></span>
-                </a>
-            </div>
-            <?php
-            }
-            ?>
+                        echo escape($lang["responsive_settings_menu"]);
+                        }?>
+                    </span>
+                <?php if ($user_profile_image != "")
+                    {
+                    ?><img src='<?php echo $user_profile_image; ?>' alt='Profile icon' class="ProfileImage" id='UserProfileImage'> <?php
+                    }
+                else
+                    {
+                    ?><span class="fa fa-fw fa-lg fa-user"></span> <?php
+                    }
+                ?></a>
+            <a href="#" id="HeaderNav2Click" class="ResponsiveHeaderButton ResourcePanel ResponsiveButton">
+                <span class="rbText"><?php echo escape($lang["responsive_main_menu"]); ?></span>
+                <span class="fa fa-fw fa-lg fa-bars"></span>
+            </a>
         </div>
         <?php
-        } // end of Responsive
+        }
+        ?>
+    </div>
+    <?php
 
     hook("headertop");
 

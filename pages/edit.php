@@ -143,7 +143,7 @@ if ($upload_review_mode)
     $search_all_workflow_states = true;
     $check_edit_checksums = false;
     $usersearchfilter = "";
-    $upload_review_collection_order_by = ($upload_review_mode_review_by_resourceid ? 'resourceid' : $default_collection_sort);
+    $upload_review_collection_order_by = 'resourceid';
     $review_collection_contents = do_search("!collection{$collection}", '', $upload_review_collection_order_by);
     # Revert save settings
     $search_all_workflow_states = $search_all_workflow_states_cache;
@@ -179,7 +179,7 @@ if ($upload_review_mode)
                 "collection_add"=>$collection_add
                 );
                 
-            if ($defaultarchivestate == -2 && $pending_submission_prompt_review && checkperm("e-1"))
+            if ($defaultarchivestate == -2 && checkperm("e-1"))
                 {
                 $redirectparams["promptsubmit"] = 'true';
                 }
@@ -788,7 +788,7 @@ if ((getval("autosave","")!="") || (getval("tweak","")=="" && getval("submitted"
                                     "resetlockedfields"=>"true",
                                     "collection_add"=>$collection_add
                                     );
-                                if ($setarchivestate == -2 && $pending_submission_prompt_review && checkperm("e-1"))
+                                if ($setarchivestate == -2 && checkperm("e-1"))
                                     {
                                     $redirectparams["promptsubmit"] = 'true';
                                     }
