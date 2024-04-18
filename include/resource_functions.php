@@ -690,7 +690,7 @@ function save_resource_data($ref,$multi,$autosave_field="")
 
     // All the nodes passed for editing. Some of them were already a value
     // of the fields while others have been added/removed
-    $user_set_values = getval('nodes', array());
+    $user_set_values = getval('nodes', [], false, 'is_array');
 
     // Initialise array to store new checksums that client needs after autosave, without which subsequent edits will fail
     $new_checksums = array();
@@ -2916,12 +2916,28 @@ function update_field($resource, $field, $value, array &$errors = array(), $log=
             $GLOBALS['use_native_input_for_date_field']
             && $fieldinfo['type'] === FIELD_TYPE_DATE
             && $value !== ''
-            && !validateDatetime($value, 'Y-m-d')
-        )
-            {
-            $errors[] = sprintf('%s: %s', i18n_get_translated($fieldinfo['title']), $lang['invalid_date_generic']);
-            return false;
+        ) {
+            // Establish whether date is a valid date or a valid date time
+            $value_valid_date_part=false;  
+            $value_valid_time_part=false;
+            if(validateDatetime($value, 'Y-m-d')) {
+                $value_valid_date_part=true;  
             }
+            elseif(validateDatetime($value, 'Y-m-d H:i:s')) {
+                $value_valid_date_part=true;  
+                $value_valid_time_part=true;  
+            }
+            // Return if there is no valid date part
+            if(!$value_valid_date_part) {
+                $errors[] = sprintf('%s: %s', i18n_get_translated($fieldinfo['title']), $lang['invalid_date_generic']);
+                return false;
+            }
+            // We only use the valid date part, so discard the time part if any
+            if($value_valid_date_part) {
+                $value_parts=explode(" ",$value);
+                $value=$value_parts[0];
+            }
+        }
 
         $curnode = $existing_resource_node["ref"] ?? 0 ;
         if ($curnode > 0 && get_nodes_use_count([$curnode]) == 1)
