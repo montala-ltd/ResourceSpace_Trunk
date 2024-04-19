@@ -721,7 +721,16 @@ if (($ffmpeg_fullpath!=false) && !isset($newfile) && in_array($extension, $ffmpe
 
     if(!hook('previewpskipthumb', '', array($file)))
         {
-        $cmd = $ffmpeg_fullpath . ' ' . $ffmpeg_global_options . ' -y -ss ' . $snapshottime . ' -i ' . escapeshellarg($file) . ' -f image2 -vframes 1 ' . escapeshellarg($target);
+        $scale = '';
+        if ($exiftool_fullpath != false) {
+            $cmd = $exiftool_fullpath . ' -s3 -ImageWidth -ImageHeight ' . escapeshellarg($file);
+            $output = run_command($cmd);
+            $dimensions = explode("\n",$output);
+            if (count(array_filter($dimensions, 'is_int_loose')) == 2) {
+                $scale = '-vf scale=' . escapeshellarg(implode(':', $dimensions));
+            }
+        }
+        $cmd = $ffmpeg_fullpath . ' ' . $ffmpeg_global_options . ' -y -ss ' . $snapshottime . ' -i ' . escapeshellarg($file) . ' ' . $scale . ' -f image2 -vframes 1 ' . escapeshellarg($target);
         $output = run_command($cmd);
 
         debug("FFMPEG-VIDEO: Get snapshot: {$cmd}");
@@ -1027,6 +1036,7 @@ if ((!isset($newfile)) && (!in_array($extension, $ffmpeg_audio_extensions))&& (!
 
 $non_image_types = config_merge_non_image_types();
 
+$preview_preprocessing_success = false;
 # If a file has been created, generate previews just as if a JPG was uploaded.
 if (isset($newfile) && file_exists($newfile)) {
     if($GLOBALS['non_image_types_generate_preview_only'] && in_array($extension,config_merge_non_image_types())) {
@@ -1040,7 +1050,7 @@ if (isset($newfile) && file_exists($newfile)) {
             }
         }
     
-    create_previews($ref,false,"jpg",false,false,$alternative,$ignoremaxsize,true,$checksum_required,$onlysizes);
+    $preview_preprocessing_success = create_previews($ref,false,"jpg",false,false,$alternative,$ignoremaxsize,true,$checksum_required,$onlysizes);
     if(            
         $GLOBALS['non_image_types_generate_preview_only']
         && in_array($extension, $GLOBALS['non_image_types'])

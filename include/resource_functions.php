@@ -23,7 +23,7 @@ $GLOBALS['get_resource_path_fpcache'] = array();
 * @param boolean $scramble         Set to TRUE to get the scrambled folder (requires scramble key for it to work)
 * @param integer $page             For documents, use the page number we are trying to get the preview of.
 * @param boolean $watermarked      Get the watermark version?
-* @param string  $file_modified    Specify when the file was last modified
+* @param int     $file_modified    Specify when the file was last modified as a Unix timestamp
 * @param integer $alternative      ID of the alternative file
 * @param boolean $includemodified  Show when the file was last modified
 *
@@ -52,6 +52,13 @@ function get_resource_path(
         {
         $ref = $resource_path_pull_cache[$ref]["ref"];
         }
+
+    $size = safe_file_name($size);
+    $extension = safe_file_name($extension);
+
+    if (!is_int_loose($file_modified)) {
+        $file_modified = '';
+    }
 
     # Returns the correct path to resource $ref of size $size ($size==empty string is original resource)
     # If one or more of the folders do not exist, and $generate=true, then they are generated
@@ -7076,7 +7083,7 @@ function copyRelatedResources($from, $to)
 function process_edit_form($ref, $resource)
     {
     global $multiple, $lang, $embedded_data_user_select, $embedded_data_user_select_fields, $data_only_resource_types,
-    $check_edit_checksums, $uploadparams, $resource_type_force_selection, $relate_on_upload, $enable_related_resources,
+    $check_edit_checksums, $uploadparams, $relate_on_upload, $enable_related_resources,
     $is_template, $upload_collection_name_required, $upload_review_mode, $userref, $userref, $collection_add, $baseurl_short,
     $no_exif, $autorotate;
 
@@ -7123,7 +7130,7 @@ function process_edit_form($ref, $resource)
         $uploadparams['relateonupload'] = 'yes';
         }
 
-    if($ref < 0 && $resource_type_force_selection && $resource_type=="")
+    if($ref < 0 && $resource_type=="")
         {
         if (!is_array($save_errors)){$save_errors=array();}
         $save_errors['resource_type'] = $lang["resourcetype"] . ": " . $lang["requiredfield"];
