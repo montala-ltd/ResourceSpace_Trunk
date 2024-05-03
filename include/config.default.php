@@ -99,7 +99,7 @@ $query_cache_enabled = true;
 $query_cache_expires_minutes=30;
 
 # The level of PHP error reporting to use. By default, hide warnings.
-$config_error_reporting=E_ALL & ~E_WARNING & ~E_NOTICE & ~E_DEPRECATED;
+$config_error_reporting=E_ALL & ~E_DEPRECATED;
 
 # Enable work-arounds required when installed on Microsoft Windows systems
 $config_windows=false;
@@ -2791,7 +2791,7 @@ $iiif_version = "2";
 // $iiif_license_field = 0;
 
 // Field that defines the position of a particular resource in the default sequence (only one sequence currently supported)
-// $iiif_sequence_field = 1;
+$iiif_sequence_field = 1;
 
 // Optional prefix that will be added to sequence identifier - useful if just numeric identifers are used e.g. for different views or pages. 
 // If this is enabled but set to an empty string the prefix will be the title of the resource type field 
