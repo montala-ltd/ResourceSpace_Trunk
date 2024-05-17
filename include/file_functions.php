@@ -363,3 +363,47 @@ function validate_resource_files(array $resources,array $criteria = []): array
     }
     return $results;
 }
+
+
+/**
+ * Block path traversal by ensuring download is only possible from the temp folder.
+ * Generates path to temp folder and checks it matches the supplied path.
+ *
+ * @param  string  $test_path     Potentially unsafe path to check.
+ * @param  string  $temp_folder   Optional name of temp folder to validate.
+ */
+function validate_temp_path(string $test_path, string $temp_folder = '') : bool
+    {
+    $temp_dir = realpath(get_temp_dir(false, $temp_folder));
+    $test_path = realpath(pathinfo($test_path, PATHINFO_DIRNAME));
+    if ($temp_dir === $test_path)
+        {
+        return true;
+        }
+    return false;
+    }
+
+
+/**
+ * Check if a given file path is from a valid RS accessible location
+ *
+ * @param   string   $path
+ * @param   array    $extra_paths   Array of additional valid source paths to check
+ * 
+ */
+function is_valid_rs_path(string $path, array $extra_paths = []): bool
+{
+    $sourcerealpath = realpath($path);
+    $basepaths = [
+        $GLOBALS["storagedir"],
+        // $GLOBALS["syncdir"],
+    ];
+    foreach(array_merge($basepaths,$extra_paths) as $validpath) {
+        $validpath = realpath($validpath);
+        if (strpos($sourcerealpath,$validpath) === 0) {
+            return true;
+        }
+    }
+    // Not a valid file source
+    return false;
+}

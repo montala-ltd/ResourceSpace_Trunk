@@ -4040,6 +4040,10 @@ function debug($text,$resource_log_resource_ref=null,$resource_log_code=LOG_CODE
  */
 function rcRmdir ($path,$ignore=array())
     {
+    if (!is_valid_rs_path($path)) {
+        // Not a valid path to a ResourceSpace file source
+        return false;
+    }
     debug("rcRmdir: " . $path);
     if (is_dir($path))
         {
@@ -4055,7 +4059,7 @@ function rcRmdir ($path,$ignore=array())
             if ($object->isDir() && $object->isWritable())
                 {
                 $success = rcRmdir($path . DIRECTORY_SEPARATOR . $objectname,$ignore);
-                }               
+                }
             else
                 {
                 $success = try_unlink($path . DIRECTORY_SEPARATOR . $objectname);
@@ -5466,11 +5470,17 @@ function get_size_info(array $size, ?array $originalSize = null): string
  * Simple function to check if a given extension is associated with a JPG file
  *
  * @param string $extension     File extension
- * 
- * @return bool 
- * 
  */
-function is_jpeg_extension(string $extension)
+function is_jpeg_extension(string $extension): bool
     {
-    return in_array(strtolower((string) $extension),["jpg","jpeg"]);
+    return in_array(mb_strtolower($extension), ["jpg","jpeg"]);
     }
+
+/**
+ * Input validation helper function for sorting (ASC/DESC).
+ * @param string $val User input value to be validated
+ */
+function validate_sort_value(string $val): bool
+{
+    return in_array(mb_strtolower($val), ['asc', 'desc']);
+}
