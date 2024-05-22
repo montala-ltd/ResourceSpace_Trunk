@@ -1453,6 +1453,10 @@ function create_previews_using_im($ref,$thumbonly=false,$extension="jpg",$previe
 
         $generateall = !($thumbonly || $previewonly || (count($onlysizes) > 0));
         $ps = get_sizes_to_generate($extension,[$sw,$sh],$thumbonly,$previewonly,$onlysizes);
+        if (!$ps)
+            {
+            return false;
+            }
 
         # Locate imagemagick.
         $convert_fullpath = get_utility_path("im-convert");
@@ -2124,7 +2128,17 @@ function create_previews_using_im($ref,$thumbonly=false,$extension="jpg",$previe
         $thumbpath = get_resource_path($ref,true,"thm",false,"jpg",-1,1,false,"",$alternative);
         if(file_exists($thumbpath))
             {
-            $target = imagecreatefromjpeg($thumbpath);
+            $GLOBALS["use_error_exception"] = true;
+            try
+                {
+                $target = imagecreatefromjpeg($thumbpath);
+                }
+            catch (Throwable $e)
+                {
+                $target = false;
+                debug('Error when opening thm size for calling extract_mean_colour(): ' . $e->getMessage());
+                }
+            unset($GLOBALS["use_error_exception"]);
             }
         else
             {
@@ -3987,7 +4001,7 @@ function start_previews(int $ref, string $extension = ""): int
  * @param bool $previewonly         Generate 'scr', 'pre', 'thm' and 'col' only
  * @param array $onlysizes          Array of requested size IDs to generate
  *
- * @return array
+ * @return array|bool   Array of size IDs or false on failure.
  *
  */
 function get_sizes_to_generate(
