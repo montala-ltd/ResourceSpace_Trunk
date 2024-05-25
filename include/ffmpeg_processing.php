@@ -24,7 +24,7 @@ if ($generateall) {
         $shell_exec_cmd = $ffmpeg_fullpath . " -i %%FILE%% 2>&1";
         $shell_exec_params = ["%%FILE%%" => new CommandPlaceholderArg($file, 'is_safe_basename')];
 
-        if (isset($ffmpeg_command_prefix)) {$
+        if (isset($ffmpeg_command_prefix)) {
             $shell_exec_cmd = $ffmpeg_command_prefix . " " . $shell_exec_cmd;
         }
 
@@ -177,7 +177,7 @@ if ($generateall) {
         if ($tmp) {
             $shell_exec_cmd = $tmp;
         }
-        $output=run_command($shell_exec_cmd);
+        $output = run_command($shell_exec_cmd, false, $shell_exec_params);
     }
 
 
@@ -209,7 +209,7 @@ if ($generateall) {
             "%%TARGETFILE%%" => new CommandPlaceholderArg($targetfile, 'is_safe_basename'),
         ];
 
-        $output = run_command($shell_exec_cmd);
+        $output = run_command($shell_exec_cmd, false, $shell_exec_params);
     }
 
     if (!file_exists($targetfile)) {
@@ -263,7 +263,7 @@ if ($generateall) {
                 if ($tmp) {
                     $shell_exec_cmd = $tmp;
                 }
-                $output = run_command($shell_exec_cmd);
+                $output = run_command($shell_exec_cmd, false, $shell_exec_params);
 
                 if (file_exists($apath)) {
                     # Update the database with the new file details.
