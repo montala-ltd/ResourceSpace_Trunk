@@ -2835,33 +2835,28 @@ function extract_text($ref,$extension,$path="")
     }
 
     # OpenOffice Text (ODT)
-    if ($extension=="odt"||$extension=="ods"||$extension=="odp")
-        {
-        $path=escapeshellarg($path);
-
+    if ($extension=="odt"||$extension=="ods"||$extension=="odp") {
         # ODT files are zip files and the content is in content.xml.
         # We extract this then remove tags.
-        $cmd="unzip -p $path \"content.xml\"";
-        $text=run_command($cmd);
+        $cmd = "unzip -p %%PATH%% \"content.xml\"";
+        $text = run_command($cmd, false, ['%%PATH%%' => new CommandPlaceholderArg($path, 'is_valid_rs_path')]);
 
         # Remove tags, but add newlines as appropriate (without this, separate text blocks are joined together with no spaces).
         $text=str_replace("<","\n<",$text);
         $text=trim(strip_tags($text));
-        while (strpos($text,"\n\n")!==false) {$text=str_replace("\n\n","\n",$text);} # condense multiple line breaks
-        }
+        while (strpos($text,"\n\n") !== false) {$text=str_replace("\n\n","\n",$text);} # condense multiple line breaks
+    }
 
     # PDF extraction using pdftotext (part of the XPDF project)
-    if (($extension=="pdf" || $extension=="ai") && isset($pdftotext_path))
-        {
+    if (($extension=="pdf" || $extension=="ai") && isset($pdftotext_path)) {
         $command = get_utility_path('pdftotext');
-        if (!$command)
-            {
+        if (!$command) {
             debug("ERROR: pdftotext executable not found at '$pdftotext_path'");
             return false;
-            }
-
-        $text = run_command("{$command} -enc UTF-8 %path -", false, ['%path' => $path]);
         }
+        $cmd = "{$command} -enc UTF-8 %%PATH%% -";
+        $text = run_command($cmd, false, ['%%PATH%%' => new CommandPlaceholderArg($path, 'is_valid_rs_path')]);
+    }
 
     # HTML extraction
     if ($extension=="html" || $extension=="htm")
@@ -2875,14 +2870,11 @@ function extract_text($ref,$extension,$path="")
         $text=file_get_contents($path);
         }
 
-    if ($extension=="zip")
-        {
+    if ($extension == "zip") {
         # Zip files - map the field
-        $path=escapeshellarg($path);
-
-        $cmd="unzip -l $path";
-        $text=run_command($cmd);
-        }
+        $cmd="unzip -l %%PATH%%";
+        $text = run_command($cmd, false, ['%%PATH%%' => new CommandPlaceholderArg($path, 'is_valid_rs_path')]);
+    }
 
     hook("textextraction", "all", array($extension,$path));
 
@@ -2916,29 +2908,24 @@ function extract_text($ref,$extension,$path="")
 function get_image_orientation($file)
     {
     $exiftool_fullpath = get_utility_path('exiftool');
-    if ($exiftool_fullpath == false)
-        {
+    if ($exiftool_fullpath == false) {
         return 0;
-        }
+    }
 
-    $cmd=$exiftool_fullpath . ' -s -s -s -orientation ' . escapeshellarg($file);
-    $orientation = run_command($cmd);
+    $cmd = $exiftool_fullpath . ' -s -s -s -orientation %%FILE%%';
+    $orientation = run_command($cmd, false, ['%%FILE%%' => new CommandPlaceholderArg($file, 'is_valid_rs_path')]);
     $orientation = str_replace('Rotate', '', $orientation);
 
-    if (strpos($orientation, 'CCW'))
-        {
+    if (strpos($orientation, 'CCW')) {
         $orientation = trim(str_replace('CCW', '', 360-$orientation));
-        }
-    else
-        {
+    } else {
         $orientation = trim(str_replace('CW', '', $orientation));
-        }
+    }
 
     // Failed or no orientation available
-    if (!is_numeric($orientation))
-        {
+    if (!is_numeric($orientation)) {
         return 0;
-        }
+    }
 
     return $orientation;
     }
@@ -2951,8 +2938,7 @@ function AutoRotateImage($src_image, $ref = false)
 
     debug("AutoRotateImage(src_image = $src_image, ref = $ref)");
 
-    if (!isset($imagemagick_path))
-        {
+    if (!isset($imagemagick_path)){
         return false;
         # for the moment, this only works for imagemagick
         # note that it would be theoretically possible to implement this
@@ -2961,10 +2947,9 @@ function AutoRotateImage($src_image, $ref = false)
 
     # Locate imagemagick.
     $convert_fullpath = get_utility_path("im-convert");
-    if ($convert_fullpath == false)
-        {
+    if ($convert_fullpath == false) {
         return false;
-        }
+    }
 
     $exploded_src = explode('.', $src_image);
     $ext = $exploded_src[count($exploded_src) - 1];
@@ -2980,71 +2965,65 @@ function AutoRotateImage($src_image, $ref = false)
     $exiftool_fullpath = get_utility_path("exiftool");
     $new_image = $noext . '-autorotated.' . $ext;
 
-    if ($camera_autorotation_gm)
-        {
+    if ($ref != false) {
+        # use the original file to get the orientation info
+        $extension = ps_value("SELECT file_extension value FROM resource WHERE ref=?", array("i",$ref), '');
+        $file = get_resource_path($ref, true, "", false, $extension, -1, 1, false, "", -1);
+        # get the orientation
+        $orientation = get_image_orientation($file);
+        if ($orientation != 0) {
+            $cmd = $convert_fullpath . ' -rotate %%ORIENTATION%% %%SOURCE%% %%DESTINATION%%';
+            $params = [
+                '%%ORIENTATION%%' => new CommandPlaceholderArg('+' . (int) $orientation, [CommandPlaceholderArg::class, 'alwaysValid']),
+                '%%SOURCE%%' => new CommandPlaceholderArg($src_image, 'is_valid_rs_path'),
+                '%%DESTINATION%%' => new CommandPlaceholderArg($new_image, 'is_valid_rs_path'),
+            ];
+            run_command($cmd,false,$params);
+        }
+    } else {
         $orientation = get_image_orientation($src_image);
-        if ($orientation != 0)
-            {
-            $command = $convert_fullpath . ' ' . escapeshellarg($src_image) . ' -rotate +' . $orientation . ' ' . escapeshellarg($new_image);
-            run_command($command);
-            }
+        if ($orientation != 0) {
+            $cmd = $convert_fullpath . ' %%SOURCE%% -auto-orient %%DESTINATION%%';
+            $params = [
+                '%%SOURCE%%' => new CommandPlaceholderArg($src_image, 'is_valid_rs_path'),
+                '%%DESTINATION%%' => new CommandPlaceholderArg($new_image, 'is_valid_rs_path'),
+            ];
+            run_command($cmd,false,$params);
         }
-    else
-        {
-        if ($ref != false)
-            {
-            # use the original file to get the orientation info
-            $extension = ps_value("select file_extension value from resource where ref=?", array("i",$ref), '');
-            $file = get_resource_path($ref, true, "", false, $extension, -1, 1, false, "", -1);
-            # get the orientation
-            $orientation = get_image_orientation($file);
-            if ($orientation != 0)
-                {
-                $command = $convert_fullpath . ' -rotate +' . $orientation . ' ' . escapeshellarg($src_image) . ' ' . escapeshellarg($new_image);
-                run_command($command);
-                }
-            }
-        else
-            {
-            $orientation = get_image_orientation($src_image);
-            if ($orientation != 0)
-                {
-                $command = $convert_fullpath . ' ' . escapeshellarg($src_image) . ' -auto-orient ' . escapeshellarg($new_image);
-                run_command($command);
-                }
-            }
-        }
+    }
 
-    if (!file_exists($new_image))
-        {
+    if (!file_exists($new_image)) {
         return false;
-        }
+    }
 
-    if (!$ref)
-        {
+    if (!$ref) {
         # preserve custom metadata fields with exiftool
         # save the new orientation
-        # $new_orientation=run_command($exiftool_fullpath.' -s -s -s -orientation -n '.$new_image);
-        $cmd=$exiftool_fullpath . ' -s -s -s -orientation -n ' . escapeshellarg($src_image);
-        $old_orientation = run_command($cmd);
-        $exiftool_copy_command = $exiftool_fullpath . " -TagsFromFile " . escapeshellarg($src_image) . " -all:all " . escapeshellarg($new_image);
+        $cmd = $exiftool_fullpath .  ' -s -s -s -orientation -n %%SOURCE%%';
+        $old_orientation = run_command($cmd,false,['%%SOURCE%%' => new CommandPlaceholderArg($src_image, 'is_valid_rs_path')]);
 
-        run_command($exiftool_copy_command);
+        $exiftool_copy_command = $exiftool_fullpath . " -TagsFromFile %%SOURCE%% -all:all %%DESTINATION%%";
+        $params = [
+            '%%SOURCE%%' => new CommandPlaceholderArg($src_image, 'is_valid_rs_path'),
+            '%%DESTINATION%%' => new CommandPlaceholderArg($new_image, 'is_valid_rs_path'),
+        ];
+        run_command($exiftool_copy_command,false,$params);
 
         # If orientation was empty there's no telling if rotation happened, so don't assume.
         # Also, don't go through this step if the old orientation was set to normal
-        if ($old_orientation != '' && $old_orientation != 1)
-            {
-            $fix_orientation = $exiftool_fullpath . ' -Orientation=1 -n ' . escapeshellarg($new_image);
-            run_command($fix_orientation);
-            }
+        if ($old_orientation != '' && $old_orientation != 1) {
+            $fix_orientation = $exiftool_fullpath . " -Orientation=1 -n %%DESTINATION%%";
+            $params = [
+                '%%DESTINATION%%' => new CommandPlaceholderArg($new_image, 'is_valid_rs_path'),
+            ];
+            run_command($fix_orientation,false,$params);
+        }
 
         # we'll remove the exiftool created file copy (as a result of using -TagsFromFile)
-        if (file_exists($new_image . '_original'))
-            {
+        if (file_exists($new_image . '_original')) {
             unlink($new_image . '_original');
-            }
         }
+    }
 
     unlink($src_image);
     rename($new_image, $src_image);
@@ -3367,38 +3346,39 @@ function delete_previews($resource,$alternative=-1)
  * @return array width and height of image, elements are null if not possible e.g. not an image file
  */
 function getFileDimensions($identify_fullpath, $prefix, $file, $extension)
-    {
+{
     # Get image's dimensions.
-    $identcommand = $identify_fullpath . ' -format %wx%h '. escapeshellarg($prefix . $file) .'[0]';
-    $identoutput=run_command($identcommand);
-
-    if (strtolower($extension) == "svg")
-        {
+    $identcommand = $identify_fullpath . ' -format %wx%h %%PREFIX%%%%SOURCE%%[0]';
+    global $debug_log;$debug_log=true;
+    $params = [
+        '%%PREFIX%%' => new CommandPlaceholderArg($prefix,
+            fn($val): bool => preg_match('/^\w\w\w:$|^$/', $val, $matches)
+        ),
+        '%%SOURCE%%' => new CommandPlaceholderArg($file, 'is_valid_rs_path'),
+    ];
+    $identoutput = run_command($identcommand,false,$params);
+    if (strtolower($extension) == "svg") {
         list($w, $h) = getSvgSize($file);
-        }
-    elseif (!empty($identoutput))
-        {
+    } elseif (!empty($identoutput)) {
         $wh=explode("x",$identoutput);
         $w = $wh[0];
         $h = $wh[1];
-        }
-    else
-        {
+    } else {
         // we really need dimensions here, so fallback to php's method
-        if (is_readable($file) && filesize_unlimited($file) > 0 && !in_array($extension,config_merge_non_image_types()))
-            {
-            list($w,$h) = try_getimagesize($file)?:[null,null];
-            }
-        else
-            {
+        if (
+            is_readable($file)
+            && filesize_unlimited($file) > 0
+            && !in_array($extension,config_merge_non_image_types())
+        ) {
+            list($w,$h) = try_getimagesize($file) ?: [null,null];
+        } else {
             $w = null;
             $h = null;
             debug("getFileDimensions: Unable to get image size for file: $file");
-            }
         }
-
-    return array($w, $h);
     }
+    return array($w, $h);
+}
 
 /**
 * Get SVG size by reading the file and looking for dimensions at either width and height OR at Viewbox attribute(s)
