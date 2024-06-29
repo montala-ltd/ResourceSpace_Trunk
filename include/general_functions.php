@@ -2092,7 +2092,7 @@ function escape_command_args($cmd, array $args): string
 *
 * @return string Command output
 */
-function run_command($command, $geterrors = false, array $params = array(), $timeout = 0)
+function run_command($command, $geterrors = false, array $params = array(), int $timeout = 0)
     {
     global $debug_log,$config_windows;
 
@@ -2142,13 +2142,12 @@ function run_command($command, $geterrors = false, array $params = array(), $tim
     // Await output from child, or timeout.
     if ($child_process > 0) {
         $start_time = time();
-        while (time() - $start_time < $timeout) {
+        while ((time() - $start_time) < $timeout) {
             if (file_exists($command_output)) {
                 $output = file_get_contents($command_output);
                 unlink($command_output);
                 return $output;
             }
-            sleep(1);
         }
         // Kill the child process to free up resources
         exec(($config_windows ? 'taskkill /F /PID ' : 'kill ') . escapeshellarg($child_process));
@@ -5520,6 +5519,10 @@ function get_size_info(array $size, ?array $originalSize = null): string
                 escape($lang['ppi']),
             );
         }
+    
+    if (isset($size["filesize"])) {
+        $output .= sprintf('<p>%s</p>', strip_tags_and_attributes($size["filesize"]));
+    }
 
     return $output;
     }
@@ -5541,6 +5544,16 @@ function is_jpeg_extension(string $extension): bool
 function validate_sort_value($val): bool
 {
     return is_string($val) && in_array(mb_strtolower($val), ['asc', 'desc']);
+}
+
+/**
+ * Helper function to get an array of values with a subset of their original keys.
+ *
+ * @param list<string> List of keys to extract from the values
+ */
+function get_sub_array_with(array $keys): callable
+{
+    return fn(array $input): array => array_intersect_key($input, array_flip($keys));
 }
 
 /**
