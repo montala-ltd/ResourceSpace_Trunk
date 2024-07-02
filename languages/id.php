@@ -135,7 +135,7 @@ $lang["editresearchrequests"]="Ubah permintaan penelusuran";
 $lang["savedsearch"]="Simpan hasil penelusuran";
 $lang["mustspecifyoneusername"]="Anda harus menentukan setidaknya satu nama pengguna";
 $lang["couldnotmatchallusernames"]="Tidak bisa mencocokkan semua nama pengguna";
-$lang["emailcollectionmessage"]="telah mengirimkan email ke anda berisikan koleksi aset dari %applicationname% yang telah ditambahkan ke 'Koleksi Saya'."; # disebutkan setelah nama pengguna contoh "Fred telah mengirimkan email koleksi ke anda.."
+$lang["emailcollectionmessage"]="telah mengirimkan email ke anda berisikan koleksi aset dari [applicationname] yang telah ditambahkan ke 'Koleksi Saya'."; # disebutkan setelah nama pengguna contoh "Fred telah mengirimkan email koleksi ke anda.."
 $lang["clicklinkviewcollection"]="Klik link di bawah ini untuk metampilkan koleksi.";
 $lang["zippedcollectiontextfile"]="Masukkan text file dengan data asset/koleksi.";
 $lang["copycollectionremoveall"]="Hapuskan semua aset sebelum membuat duplikasi";
@@ -929,8 +929,8 @@ $lang["userpending"]='Sumber daya yang dikontribusikan oleh pengguna menunggu ti
 $lang["viewuserpendingsubmission"]='Melihat sumber daya yang dikontribusikan oleh pengguna yang menunggu untuk disetujui';
 $lang["userpendingsubmission"]='Sumber daya yang dikontribusikan oleh pengguna menunggu pengajuan';
 $lang["resourcespendingarchive"]='Sumber daya yang menunggu diarsipkan';
-$lang["previewstatus"]='Membuat pratinjau untuk sumber daya %file% dari %filestotal%.';
-$lang["uploadedstatus"]='Sumber daya %file% dari %filestotal% telah diunggah - %path%';
+$lang["previewstatus"]='Membuat pratinjau untuk sumber daya [file] dari %filestotal%.';
+$lang["uploadedstatus"]='Sumber daya [file] dari %filestotal% telah diunggah - %path%';
 $lang["upload_failed_for_path"]='Gagal mengunggah untuk %path%';
 $lang["upload_summary"]='Ringkasan Unggahan';
 $lang["resources_uploaded-0"]='0 sumber daya berhasil diunggah.';
@@ -973,7 +973,7 @@ $lang["research"]='Penelitian';
 $lang["collectionprivate_attachedusermessage"]='%user% telah menambahkan Anda ke dalam koleksi mereka \'%colname%\'.';
 $lang["nomessage"]='Tidak ada pesan';
 $lang["nomessages"]='Tidak ada pesan';
-$lang["emailcollectionmessageexternal"]='Telah mengirimkan koleksi sumber daya dari %applicationname% melalui surel kepada Anda.';
+$lang["emailcollectionmessageexternal"]='Telah mengirimkan koleksi sumber daya dari [applicationname] melalui surel kepada Anda.';
 $lang["archivesettings"]='Pengaturan Arsip';
 $lang["archive-zip"]='ZIP dapat diterjemahkan sebagai "kompresi ZIP" atau "arsip ZIP"';
 $lang["archive-7z"]='7Z (tujuh-zed)';
@@ -996,8 +996,8 @@ $lang["total"]='Total = Jumlah keseluruhan';
 $lang["lastmatching"]='Terakhir cocok';
 $lang["ownedbyyou"]='dimiliki oleh Anda';
 $lang["edit_theme_category"]='Mengedit kategori koleksi unggulan';
-$lang["emailthemecollectionmessageexternal"]='Telah mengirimkan koleksi sumber daya dari %applicationname% melalui surel kepada Anda.';
-$lang["emailthememessage"]='Telah mengirimkan kepada Anda seleksi koleksi unggulan dari %applicationname% yang telah ditambahkan ke halaman \'Koleksi Saya\' Anda.';
+$lang["emailthemecollectionmessageexternal"]='Telah mengirimkan koleksi sumber daya dari [applicationname] melalui surel kepada Anda.';
+$lang["emailthememessage"]='Telah mengirimkan kepada Anda seleksi koleksi unggulan dari [applicationname] yang telah ditambahkan ke halaman \'Koleksi Saya\' Anda.';
 $lang["clicklinkviewthemes"]='Gunakan tautan di bawah ini untuk melihat koleksi unggulan.';
 $lang["clicklinkviewcollections"]='Gunakan tautan di bawah ini untuk melihat koleksi.';
 $lang["background_image"]='Gambar latar belakang';
@@ -1024,7 +1024,7 @@ $lang["recreatepreviews_pending"]='Sumber daya telah ditandai untuk pembuatan pr
 $lang["retrypreviews"]='Coba lagi pembuatan pratinjau';
 $lang["relatedresources-filename_extension"]='Sumber daya terkait - %EXTENSION';
 $lang["relatedresources-id"]='Sumber daya terkait untuk %id%';
-$lang["relatedresources-restype"]='Sumber daya terkait - %restype%';
+$lang["relatedresources-restype"]='Sumber daya terkait - [restype]';
 $lang["relatedresources_onupload"]='Mengaitkan Semua Sumber Daya pada Unggahan';
 $lang["youfoundresource"]='sumber daya';
 $lang["youfoundresults"]='Hasil';
@@ -1567,7 +1567,7 @@ $lang["report_periodic_email_option_all_users"]='semua pengguna';
 $lang["report_periodic_email_option_selected_user_groups"]='kelompok pengguna yang dipilih';
 $lang["report_periodic_email_unsubscribe_title"]='Berhenti berlangganan email berkala';
 $lang["report_periodic_email_unsubscribe_confirmation"]='Silakan konfirmasi bahwa Anda ingin berhenti berlangganan';
-$lang["report_periodic_email_report_attached"]='Laporan \'%%REPORTTITLE%%\' telah dilampirkan.';
+$lang["report_periodic_email_report_attached"]='Laporan \'[report_title]\' telah dilampirkan.';
 $lang["report-select-required"]='Silakan pilih laporan';
 $lang["columnheader-keyword"]='Kata kunci';
 $lang["columnheader-entered_count"]='Jumlah yang dimasukkan';
@@ -1611,7 +1611,7 @@ $lang["writeaccess_sql_log"]='Akses tulis ke log SQL:';
 $lang["nowriteaccesstohomeanim"]='Tidak dapat ditulisi. Buka izin untuk mengaktifkan fitur pemangkasan animasi rumah pada plugin transformasi.';
 $lang["blockedbrowsingoffilestore"]='Dilarang menjelajahi direktori \'filestore\' yang diblokir';
 $lang["noblockedbrowsingoffilestore"]='Folder filestore terlihat dapat dibrowse. Mohon hapus \'Indexes\' dari daftar \'Options\' Apache atau nonaktifkan modul \'autoindex\' dari Apache.';
-$lang["php_extension_not_enabled"]='Ekstensi PHP %%EXTENSION%% tidak diaktifkan';
+$lang["php_extension_not_enabled"]='Ekstensi PHP [extension] tidak diaktifkan';
 $lang["execution_failed"]='Keluaran yang tidak terduga saat menjalankan perintah %command. Keluarannya adalah \'%output\'.';
 $lang["exif_extension"]='Ekstensi EXIF';
 $lang["archiver_utility"]='Utilitas Pencadangan';
@@ -1668,9 +1668,9 @@ $lang["restricted_access_only_to_resource_type"]='Hanya akses terbatas untuk jen
 $lang["restricted_upload_for_resource_of_type"]='Pengunggahan terbatas untuk sumber daya jenis';
 $lang["deny_edit_resource_type"]='Menolak akses pengeditan ke sumber daya jenis';
 $lang["deny_edit_all_resource_types"]='Menolak akses pengeditan untuk semua jenis sumber daya kecuali yang ditentukan oleh izin "IZINKAN akses pengeditan ke sumber daya jenis tertentu"';
-$lang["can_edit_resource_type"]='Dapat mengedit sumber daya tipe %%RESOURCETYPE%%. Diabaikan jika izin "MENOLAK akses pengeditan ke tipe sumber daya tertentu" tidak ada';
+$lang["can_edit_resource_type"]='Dapat mengedit sumber daya tipe [resourcetype]. Diabaikan jika izin "MENOLAK akses pengeditan ke tipe sumber daya tertentu" tidak ada';
 $lang["edit_access_to_workflow_state"]='Akses edit ke status alur kerja';
-$lang["edit_access_to_access"]='Akses edit untuk mengakses status \'%STATE\'';
+$lang["edit_access_to_access"]='Akses edit untuk mengakses status \'[state]\'';
 $lang["can_create_resources_and_upload_files-admins"]='Dapat membuat sumber daya / mengunggah berkas<br>(pengguna admin; sumber daya masuk ke status \'Aktif\')';
 $lang["can_create_resources_and_upload_files-general_users"]='Dapat membuat sumber daya / mengunggah berkas<br>(pengguna normal; sumber daya masuk ke status \'Menunggu Persetujuan\' melalui Kontribusi Saya)';
 $lang["can_delete_resources"]='Dapat menghapus sumber daya<br>(yang dapat ditulis oleh pengguna)';
@@ -1796,7 +1796,6 @@ $lang["zipping"]='Mengompresi (file)';
 $lang["zipcomplete"]='Unduhan berkas Zip Anda seharusnya sudah dimulai. Anda dapat meninggalkan halaman ini.';
 $lang["starttypingkeyword"]='Mulai mengetik kata kunci...';
 $lang["createnewentryfor"]='Membuat entri baru untuk';
-$lang["confirmcreatenewentryfor"]='Apakah Anda yakin ingin membuat entri daftar kata kunci baru untuk \'%%\'?';
 $lang["noentryexists"]='Tidak ada entri yang tersedia';
 $lang["editresourcepreviews"]='Mengedit Pratinjau Sumber Daya';
 $lang["can_assign_resource_requests"]='Dapat menugaskan permintaan sumber daya kepada orang lain';
@@ -1963,8 +1962,8 @@ $lang["group_download_limit_title"]='Batas unduhan sumber daya. Tetapkan ke 0 un
 $lang["group_download_limit_period"]='Batas periode unduhan (batas dalam X hari terakhir). Tetapkan ke 0 untuk batas unduhan mutlak';
 $lang["download_limit_error"]='Batas unduhan Anda telah tercapai.';
 $lang["download_limit_collection_error"]='Unduhan koleksi ini akan melebihi batas unduhan Anda.';
-$lang["download_limit_summary"]='Anda telah mengunduh %%DOWNLOADED%%/%%LIMIT%% sumber daya.';
-$lang["download_limit_request_text"]='Batas unduhan telah tercapai: %%DOWNLOADED%%/%%LIMIT%%';
+$lang["download_limit_summary"]='Anda telah mengunduh [downloaded]/[limit] sumber daya.';
+$lang["download_limit_request_text"]='Batas unduhan telah tercapai: [downloaded]/[limit]';
 $lang["page-title_user_group_management_edit"]='Mengedit grup pengguna';
 $lang["page-subtitle_user_group_management_edit"]='Gunakan bagian ini untuk memodifikasi properti grup pengguna.';
 $lang["action-title_remove_user_group_logo"]='Centang untuk menghapus logo grup pengguna';
@@ -1988,7 +1987,7 @@ $lang["fieldtitle-tick_to_delete_size"]='Centang untuk menghapus ukuran ini';
 $lang["resource_type_new"]='Jenis sumber daya baru';
 $lang["resource_type_field_new"]='Bidang metadata baru';
 $lang["admin_advanced_field_properties"]='Properti bidang lanjutan';
-$lang["admin_delete_field_confirm"]='Ada %%AFFECTEDRESOURCES%% sumber daya dengan data di bidang ini. Beberapa ID sumber daya yang terkena dampak tercantum di bawah ini. Metadata yang terkait dengan bidang ini akan hilang jika Anda melanjutkan. Apakah Anda yakin ingin melanjutkan penghapusan?';
+$lang["admin_delete_field_confirm"]='Ada [affected_resources] sumber daya dengan data di bidang ini. Beberapa ID sumber daya yang terkena dampak tercantum di bawah ini. Metadata yang terkait dengan bidang ini akan hilang jika Anda melanjutkan. Apakah Anda yakin ingin melanjutkan penghapusan?';
 $lang["admin_delete_field_error"]='Tidak dapat menghapus bidang. Silakan hubungi administrator sistem Anda. Bidang ini digunakan untuk opsi konfigurasi berikut: -';
 $lang["admin_delete_field_error_scopes"]='Tidak dapat menghapus bidang. Silakan hubungi administrator sistem Anda. Bidang ini masih digunakan dalam lingkup-linngkup berikut:';
 $lang["admin_resource_type_create"]='Membuat jenis sumber daya yang disebut...';
@@ -2030,7 +2029,7 @@ $lang["property-groups"]='Kelompok';
 $lang["property-user_group"]='Grup pengguna';
 $lang["property-user_group_parent"]='Grup pengguna induk';
 $lang["property-user_group_remove_parent"]='Menghapus induk';
-$lang["resource_type_delete_confirmation"]='Ada %%RESOURCECOUNT%% sumber daya dari jenis ini.';
+$lang["resource_type_delete_confirmation"]='Ada [resource_count] sumber daya dari jenis ini.';
 $lang["resource_type_delete_assoc_rtf_confirm"]='Ada %COUNT bidang metadata yang terkait dengan jenis sumber daya ini.';
 $lang["resource_type_delete_select_new"]='Silakan pilih jenis sumber daya yang akan diubah menjadi ini.';
 $lang["resourcetype-global_field"]='Global';
@@ -2045,7 +2044,7 @@ $lang["admin_field_deleted"]='Bidang yang Dihapus';
 $lang["action-move-up"]='Pindahkan ke atas';
 $lang["action-move-down"]='Pindah ke bawah';
 $lang["action-move-to"]='Pindah ke';
-$lang["delete_user_group_checkbox_alert_message"]='Harap dicatat bahwa tindakan ini juga akan menghapus semua teks konten yang relevan dengan grup pengguna ini. Ada %%RECORDSCOUNT%% catatan yang ditemukan dalam Kelola Konten.';
+$lang["delete_user_group_checkbox_alert_message"]='Harap dicatat bahwa tindakan ini juga akan menghapus semua teks konten yang relevan dengan grup pengguna ini. Ada [recordscount] catatan yang ditemukan dalam Kelola Konten.';
 $lang["about__about"]='Teks tentang Anda ditempatkan di sini.';
 $lang["all__footer"]='Didukung oleh <a target="_blank" href="https://www.resourcespace.com/">ResourceSpace Open Source Digital Asset Management</a>';
 $lang["all__researchrequest"]='Biarkan tim sumber daya kami menemukan sumber daya yang Anda butuhkan.';
@@ -2110,8 +2109,6 @@ $lang["user_preferences__introtext_new"]='Silakan masukkan kata sandi di bawah i
 $lang["user_request__introtext"]='Silakan lengkapi formulir di bawah ini untuk meminta akun pengguna.';
 $lang["view__storyextract"]='Ekstrak cerita:';
 $lang["notify_resource_change_email_subject"]='Sebuah sumber daya telah dimodifikasi';
-$lang["notify_resource_change_email"]='Sebuah sumber daya yang telah Anda unduh dalam [jumlah hari] hari terakhir telah dimodifikasi. Klik tautan di bawah ini untuk melihat sumber daya.<br /><br /><a href=\'[url]\'>[url]</a>';
-$lang["notify_resource_change_notification"]='Sumber daya yang telah Anda unduh dalam [hari] hari terakhir telah dimodifikasi.';
 $lang["passwordresetemail"]='Silakan klik tautan di bawah ini untuk mereset kata sandi Anda.';
 $lang["password_reset_email_html"]='Nama pengguna: [username]<br /><br />Silakan klik tautan di bawah ini untuk mereset kata sandi Anda.<br /><br /><a href="[url]" target="_blank" >[url]</a>';
 $lang["passwordnewemail"]='Silakan klik tautan di bawah ini untuk mengatur kata sandi baru untuk akun Anda.';
@@ -2241,7 +2238,7 @@ $lang["userpreference_tilenav"]='Gunakan tata letak ubin untuk menu navigasi';
 $lang["userpreference_tilenavdefault"]='Gunakan tata letak ubin untuk menu navigasi (pengaturan default; pengguna dapat mengubahnya)';
 $lang["systemconfig"]='Konfigurasi';
 $lang["systemconfig_customfont_label"]='File font kustom';
-$lang["systemconfig_invalid_extension"]='Jenis file tidak valid untuk pilihan ini. Silakan pilih dari: %%EXTENSIONS%%';
+$lang["systemconfig_invalid_extension"]='Jenis file tidak valid untuk pilihan ini. Silakan pilih dari: [extensions]';
 $lang["systemconfig_linkedheaderimgsrc_label"]='Logo aplikasi';
 $lang["systemconfig_header_favicon_label"]='Favicon aplikasi';
 $lang["systemconfig_multilingual"]='Multilingual dapat diterjemahkan sebagai "multibahasa" atau "banyak bahasa"';
@@ -2466,10 +2463,10 @@ $lang["error_save_not_allowed_fc_has_children"]='Tidak dapat menyimpan perubahan
 $lang["error_multiple_preview_tools"]='Harap nonaktifkan alat pratinjau saat ini dan coba lagi.';
 $lang["missing_folder"]='KESALAHAN - Jalur ke folder unggahan belum diatur.';
 $lang["error_upload_replace_file_fail"]='Gagal mengganti file sumber daya';
-$lang["error_upload_replace_no_matching_file"]='Tidak ditemukan sumber daya yang valid untuk diganti dengan nama file %%FILENAME%%';
-$lang["error_upload_replace_multiple_matching_files"]='Ditemukan beberapa sumber daya yang valid dengan nama file %%FILENAME%%';
-$lang["error_upload_invalid_file"]='Jenis file tidak valid: %%FILETYPE%%';
-$lang["error_upload_duplicate_file"]='Unggah berkas duplikat, berkas cocok dengan sumber daya: %%RESOURCES%%';
+$lang["error_upload_replace_no_matching_file"]='Tidak ditemukan sumber daya yang valid untuk diganti dengan nama file [filename]';
+$lang["error_upload_replace_multiple_matching_files"]='Ditemukan beberapa sumber daya yang valid dengan nama file [filename]';
+$lang["error_upload_invalid_file"]='Jenis file tidak valid: [filetype]';
+$lang["error_upload_duplicate_file"]='Unggah berkas duplikat, berkas cocok dengan sumber daya: [resources]';
 $lang["error_upload_file_move_failed"]='Gagal memindahkan file yang diunggah. Harap periksa ukuran file yang ingin Anda unggah.';
 $lang["error_fail_save"]='Tidak dapat menyimpan';
 $lang["image_quality_100"]='Maksimum';
@@ -2498,10 +2495,9 @@ $lang["oj-collection-download-failure-text"]='Tidak dapat menyiapkan arsip kolek
 $lang["oj-batch-replace-local-success-text"]='Penggantian kelompok telah berhasil mengganti %TOTALRESOURCES sumber daya';
 $lang["oj-batch-replace-local-failure-text"]='Penggantian kelompok gagal. Silakan periksa log untuk mengetahui kesalahan';
 $lang["oj-creation-failure-text"]='Terjadi kesalahan. Gagal membuat pekerjaan luring';
-$lang["oj-creation-success"]='Pekerjaan luring %%NOMORPEKERJAAN%% telah dibuat. Anda akan diberitahu saat selesai';
 $lang["email_auto_digest_inactive"]='Ini adalah ringkasan pesan yang belum Anda baca';
 $lang["email_digest_disable"]='Anda dapat menonaktifkan pemberitahuan ini dengan masuk dan menyesuaikan preferensi pengguna Anda pada tautan di bawah ini: -';
-$lang["user_pref_inactive_digest"]='Kirimkan saya email harian dengan semua pemberitahuan yang belum dibaca jika tidak masuk selama lebih dari %%DAYS%% hari?';
+$lang["user_pref_inactive_digest"]='Kirimkan saya email harian dengan semua pemberitahuan yang belum dibaca jika tidak masuk selama lebih dari [days] hari?';
 $lang["edit_copy_from_field"]='Menyalin data dari bidang';
 $lang["home_page"]='Halaman utama';
 $lang["login_word"]='Masuk';
@@ -2568,24 +2564,20 @@ $lang["date_format_error"]='Kesalahan: %row% \'%date%\' pada [%field%] entri tid
 $lang["invalid_date_error"]='Kesalahan: %row% \'%date%\' pada [%field%] bukan tanggal yang valid';
 $lang["invalid_date_error2"]='Kesalahan: nilai tanggal tidak valid: \'%date%\'. Harap gunakan format: \'yyyy-mm-dd hh:mm:ss\' (waktu opsional)';
 $lang["invalid_date_generic"]='Anda telah memasukkan tanggal yang tidak valid';
-$lang["error_server_missing_module"]='Server tidak memiliki perangkat lunak yang diperlukan: %%MODULE%%. Silakan hubungi administrator sistem Anda';
-$lang["error_check_config"]='Silakan periksa opsi konfigurasi %%CONFIG_OPTION%%';
+$lang["error_server_missing_module"]='Server tidak memiliki perangkat lunak yang diperlukan: [module]. Silakan hubungi administrator sistem Anda';
+$lang["error_check_config"]='Silakan periksa opsi konfigurasi [config_option]';
 $lang["useaspreviewimage"]='Gunakan sebagai gambar pratinjau';
 $lang["filechecksum"]='Checksum berkas';
-$lang["system_notification"]='%%APPLICATION_NAME%% - pemberitahuan sistem';
-$lang["system_notification_email"]='[img_headerlogo]<br />
-[pesan]<br /><br />
-<a href="[url]">[url]</a><br /><br />
-[tulisan_footer]';
+$lang["system_notification"]='[application_name] - pemberitahuan sistem';
 $lang["error_edit_filter_invalid"]='Filter edit tidak dikonfigurasi dengan benar untuk grup pengguna ini. Silakan hubungi administrator Anda';
 $lang["error_search_filter_invalid"]='Filter pencarian tidak dikonfigurasi dengan benar untuk grup pengguna ini. Silakan hubungi administrator Anda';
 $lang["action_lock"]='Kunci';
 $lang["action_unlock"]='Membuka kunci';
 $lang["status_locked"]='Terkunci';
 $lang["status_unlocked"]='Terbuka';
-$lang["status_locked_by"]='Terkunci oleh %%USER%%';
+$lang["status_locked_by"]='Terkunci oleh [user]';
 $lang["status_locked_self"]='Anda telah mengunci sumber daya ini';
-$lang["error_locked_by_user"]='Sumber daya terkunci oleh %%USER%%';
+$lang["error_locked_by_user"]='Sumber daya terkunci oleh [user]';
 $lang["error_locked_other_user"]='Sumber daya terkunci oleh pengguna lain';
 $lang["error-edit_noaccess_resources"]='Tidak ada akses untuk mengedit sumber daya:';
 $lang["error-edit_locked_resources"]='Sumber daya berikut terkunci:';
@@ -2619,7 +2611,7 @@ $lang["job_priority"]='Prioritas';
 $lang["csv_export_offline_option"]='Menghasilkan file CSV secara offline? Ini harus digunakan untuk set data hasil besar. Anda akan diberitahu melalui pesan ResourceSpace begitu file CSV tersedia';
 $lang["csv_export_file_ready"]='Ekspor CSV Anda sudah siap';
 $lang["offline_processing_disabled"]='Pemrosesan pekerjaan offline tidak dikonfigurasi pada sistem ini. Untuk mengaktifkannya, silakan hubungi administrator sistem Anda';
-$lang["csv_export_offline_only"]='Pemrosesan offline harus digunakan saat mengekspor data untuk lebih dari %%RESOURCE_COUNT%% sumber daya';
+$lang["csv_export_offline_only"]='Pemrosesan offline harus digunakan saat mengekspor data untuk lebih dari [resource_count] sumber daya';
 $lang["setup_google_vision_settings"]='Pengaturan Google Vision';
 $lang["setup_google_vision_enable"]='Aktifkan plugin Google Vision?';
 $lang["tagged_notification"]='Anda telah ditandai dalam sebuah komentar:';
@@ -2649,7 +2641,7 @@ $lang["notify_upload_share_new_subject"]='Unggahan eksternal baru';
 $lang["my_shares"]='Bagian Saya';
 $lang["manage_shares_title"]='Berbagi Eksternal';
 $lang["share_purge_text"]='Hapus berbagi yang sudah kadaluarsa';
-$lang["shares_purged_message"]='Dihapus %%DELETEDCOUNT%% berbagi';
+$lang["shares_purged_message"]='Dihapus [deleted_count] berbagi';
 $lang["share_confirm_purge"]='Apakah Anda yakin ingin menghapus semua bagian yang sudah kadaluarsa?';
 $lang["external_shares_view_existing"]='Melihat bagikan unggahan yang sudah ada untuk koleksi ini.';
 $lang["share_user"]='Dibagikan oleh';
@@ -2662,7 +2654,7 @@ $lang["log-reference"]='Entri log';
 $lang["log_column"]='Data log';
 $lang["log_value"]='Nilai';
 $lang["error_slideshow_invalid"]='Nomor urutan tidak valid. Silakan masukkan nilai numerik';
-$lang["error-file-permissions"]='Tidak dapat melakukan operasi berkas. Harap periksa izin berkas pada %%PATH%%';
+$lang["error-file-permissions"]='Tidak dapat melakukan operasi berkas. Harap periksa izin berkas pada [path]';
 $lang["new_message"]='Pesan baru';
 $lang["message_recipients"]='Penerima/Penerima-penerima';
 $lang["error_invalid_user"]='Pengguna yang tidak valid ditentukan';
@@ -2677,15 +2669,15 @@ $lang["upload_view_log"]='Melihat log';
 $lang["code_sign_required"]='Tanda tangan kode inline';
 $lang["code_sign_required_warning"]='Peringatan: Kode inline telah diubah dan kode yang diperbarui belum ditandatangani menggunakan utilitas baris perintah. Makro yang dilakukan pada metadata mungkin tidak selesai seperti yang diharapkan.';
 $lang["search_full_text"]='Cari semua teks (pencarian teks lengkap)';
-$lang["error_invalid_revert_option"]='Nilai yang sebelumnya disimpan \'%%VALUE%%\' tidak dapat ditemukan dalam opsi saat ini. Harap periksa apakah nama opsi ini telah berubah dan perbarui sumber daya secara manual jika diperlukan.';
-$lang["error_invalid_revert_date"]='Tanggal yang sebelumnya disimpan \'%%VALUE%%\' tidak valid. Harap perbarui sumber daya secara manual jika diperlukan.';
+$lang["error_invalid_revert_option"]='Nilai yang sebelumnya disimpan \'[value]\' tidak dapat ditemukan dalam opsi saat ini. Harap periksa apakah nama opsi ini telah berubah dan perbarui sumber daya secara manual jika diperlukan.';
+$lang["error_invalid_revert_date"]='Tanggal yang sebelumnya disimpan \'[value]\' tidak valid. Harap perbarui sumber daya secara manual jika diperlukan.';
 $lang["batch_edit_save_warning_message"]='Kesalahan terjadi saat mengedit sumber daya berikut-';
 $lang["batch_edit_save_warning_alert"]='Beberapa kesalahan terjadi saat melakukan operasi ini. Silakan lihat pesan Anda untuk lebih detail';
 $lang["dashtilesmalldevice"]='Fungsionalitas drag yang diperlukan tidak tersedia pada perangkat dengan layar kecil';
 $lang["systemconfig_description"]='Opsi pada halaman ini bersifat sistemik dan dapat mengubah beberapa fungsi yang tersedia untuk pengguna. Harap dicatat bahwa opsi yang juga bersifat khusus pengguna akan memiliki prioritas jika diatur.';
 
 $lang["fieldtitle-album"]='Kumpulan';
-$lang["information_field_restype_deselect_cleanup"]='Untuk menghapus data bidang yang ada dari jenis sumber daya yang tidak dipilih, klik tautan berikut %%CLEANUP_LINK%%';
+$lang["information_field_restype_deselect_cleanup"]='Untuk menghapus data bidang yang ada dari jenis sumber daya yang tidak dipilih, klik tautan berikut [cleanup_link]';
 $lang["property-id"]='Id
 ';
 $lang["mainmenu"]='Menu Utama';
@@ -2754,20 +2746,9 @@ $lang["megabyte-symbol-binary"]='Megabita (MiB)';
 $lang["terabyte-symbol-binary"]='Tebibait (TiB)';
 $lang["ref-title"]='Silakan terjemahkan: %ref - %title';
 $lang["user_group"]='Grup pengguna';
-$lang["all__emailbulk"]='Tolong terjemahkan: <br /><br />
-[teks]<br /><br />
-[kaki_teks]';
 $lang["all__emailcollection"]='[fromusername] [lang_emailcollectionmessage] <br /><br /> 
 [lang_message] : [message]<br /><br /> 
 [lang_clicklinkviewcollection] [list]';
-$lang["all__emailcollectionexternal"]='Mohon terjemahkan: <br />
-[fromusername] [lang_emailcollectionmessageexternal] <br /><br /> 
-[lang_message] : [message]<br /><br /> 
-[lang_clicklinkviewcollection] [list] 
-
-Dari: [fromusername] [lang_emailcollectionmessageexternal] <br /><br /> 
-[Pesan] : [message]<br /><br /> 
-[Klik tautan untuk melihat koleksi] [list]';
 $lang["all__emailcontactadmin"]='[fromusername] ([emailfrom])[lang_contactadminemailtext]<br /><br />[message]<br /><br /><a href="[url]">[embed_thumbnail]</a><br /><br />[text_footer]';
 $lang["all__emaillogindetails"]='Selamat datang <br /><br />
 Detail login baru <br /><br />
@@ -2827,12 +2808,7 @@ Permintaan penelitian telah selesai. Silakan klik tautan di bawah ini untuk meli
 <a href="[url]">[url]</a>
 
 [text_footer]';
-$lang["all__emailresource"]='Mohon diterjemahkan: <br />
-[dariusername] [lang_hasemailedyouaresource]<br /><br />
-[pesan]<br /><br />
-<a href="[url]">[embed_thumbnail]</a><br /><br />
-[lang_clicktoviewresource]<br /><a href="[url]">[nameresource] - [url]</a><br /><br />
-[teks_footer]';
+
 $lang["all__emailresourcerequest"]='[lang_username] : [username] <br />
 [list] <br />
 [details]<br /><br />
@@ -2874,7 +2850,7 @@ $lang["responsive_main_menu"]='Menu
 ';
 $lang["actions_email_new_actions_title"]='Tindakan Baru';
 $lang["actions_email_new_actions_intro"]='Ada tindakan baru yang harus diselesaikan.';
-$lang["email_actions_truncated"]='Hanya 1000 tindakan terbaru yang ditampilkan di sini. Anda memiliki %%TOTAL%% tindakan. Login ke %%APPLICATIONNAME%% untuk melihat semuanya.';
+$lang["email_actions_truncated"]='Hanya 1000 tindakan terbaru yang ditampilkan di sini. Anda memiliki [total] tindakan. Login ke [application_name] untuk melihat semuanya.';
 $lang["annotate_select"]='Pilih bidang...';
 $lang["error_upload_replace_file_fail_invalid_collection"]='Gagal mengganti file sumber daya. Referensi koleksi yang diberikan tidak valid.';
 $lang["image_quality_80"]='Laman Web';
@@ -2896,21 +2872,8 @@ $lang["centimetre-short"]='cm';
 $lang["terabyte-symbol"]='TB';
 $lang["collectiontypes_separator"]=',';
 $lang["iiif"]='IIIF';
-$lang["all__file_integrity_fail_email"]='[img_headerlogo]<br />
-[ringkasan_integritas_berkas_gagal] <br /><br /> 
-[pencarian_gagal_integritas_berkas] <br /><br /> 
-<a href="[url]">[url]</a><br /><br />
-[teks_footer]';
 $lang["error-edit_noaccess_related_resources"]='Tidak dapat menghubungkan sumber daya. Tidak ada akses ke:';
-$lang["csv_export_filename"]='ekspor_metadata_%%SEARCH%%_%%TIME%%';
-$lang["upload_share_email_template"]='[dari_nama] [teks_email_bagikan_upload] [namaplikasi]<br /><br /> 
-[pesan] : [pesan]<br /><br />
-[kliklink_email_bagikan_upload]<br />
-<br />
-[tautan]
-<br />
-<br />
-[tekskata_sandi]';
+$lang["csv_export_filename"]='ekspor_metadata_[search]_[time]';
 $lang["all__emailnotifyuploadsharenew"]='<br />
 [lang_notify_upload_share_new]
 <br />
@@ -2918,7 +2881,7 @@ $lang["all__emailnotifyuploadsharenew"]='<br />
 <a href="[url]">[url]</a><br /><br />
 [text_footer]';
 $lang["share_expired_icon_title"]='Kedaluwarsa';
-$lang["error_invalid_date_format"]='"%%VALUE%%" adalah tanggal yang tidak valid. Semua nilai di bidang ini harus diformat sebagai YYYY-MM-DD';
+$lang["error_invalid_date_format"]='"[value]" adalah tanggal yang tidak valid. Semua nilai di bidang ini harus diformat sebagai YYYY-MM-DD';
 $lang["related_resource_create"]='Buat sumber daya terkait baru';
 $lang["skip-to-main-content"]='Lompat ke konten utama';
 $lang["cleanup_invalid_nodes"]='Bersihkan data bidang dari jenis sumber daya yang tidak valid';
@@ -2936,7 +2899,7 @@ $lang["pull_images_text"]='Gunakan gambar dari sumber terkait jika tidak tersedi
 $lang["system_user_default"]='SISTEM';
 $lang["userlimitreached"]='Anda telah mencapai batas pengguna Anda. Seorang pengguna yang ada harus dinonaktifkan atau dihapus sebelum Anda dapat membuat akun baru atau mengaktifkan akun yang ada.';
 $lang["user_api_session_title"]='Akses API sistem jarak jauh';
-$lang["user_api_session_text"]='Sistem jarak jauh \'%system%\' meminta akses ke %applicationname% menggunakan kredensial Anda. Klik \'Berikan akses\' hanya jika Anda telah memulai permintaan ini';
+$lang["user_api_session_text"]='Sistem jarak jauh \'%system%\' meminta akses ke [applicationname] menggunakan kredensial Anda. Klik \'Berikan akses\' hanya jika Anda telah memulai permintaan ini';
 $lang["user_api_session_invalid_system"]='Sistem yang diminta tidak valid';
 $lang["user_api_session_grant_access"]='Beri akses';
 $lang["user_api_session_grant_success"]='Kunci berhasil diterbitkan.';
@@ -2953,3 +2916,24 @@ $lang["minute-abbreviated"]='MM';
 $lang["field_ref_and_name"]='%ref% - %name%';
 $lang["gigabyte-symbol-binary"]='GiB';
 $lang["email_and_screen"]='Email dan layar';
+$lang["notify_resource_change_email"]='Sebuah sumber daya yang Anda unduh dalam [days] hari terakhir telah dimodifikasi. Klik tautan di bawah ini untuk melihat sumber daya tersebut.<br /><br /><a href=\'[url]\'>[url]</a>';
+$lang["notify_resource_change_notification"]='Sebuah sumber daya yang Anda unduh dalam [days] hari terakhir telah diubah.';
+$lang["system_notification_email"]='[img_headerlogo]<br />
+[message]<br /><br /> 
+<a href="[url]">[url]</a><br /><br />
+[text_footer]';
+$lang["all__emailbulk"]='<br /><br />
+[text]<br /><br />
+[text_footer]';
+
+$lang["all__emailresource"]='[fromusername] [lang_hasemailedyouaresource]<br /><br />
+[message]<br /><br />
+<a href="[url]">[embed_thumbnail]</a><br /><br />
+[lang_clicktoviewresource]<br /><a href="[url]">[resourcename] - [url]</a><br /><br />
+[text_footer]';
+$lang["all__file_integrity_fail_email"]='[img_headerlogo]<br />
+[lang_file_integrity_summary_failed] <br /><br /> 
+[lang_file_integrity_fail_search] <br /><br /> 
+<a href="[url]">[url]</a><br /><br />
+[text_footer]';
+$lang["oj-creation-success"]='Pekerjaan offline [jobnumber] dibuat. Anda akan diberitahu ketika selesai';

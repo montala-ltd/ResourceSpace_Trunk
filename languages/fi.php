@@ -251,8 +251,8 @@ $lang["uploadresourcebatch"]="Resurssien joukkolataus";
 $lang["uploadinprogress"]="Lataus ja esikatselun kehitys työn alla";
 $lang["donotmoveaway"]="TÄRKEÄÄ: Sivulta ei saa poistua ennen latauksen valmistumista!";
 $lang["pleaseselectfiles"]="Valitse yksi tai useampia tiedostoja ladattavaksi.";
-$lang["previewstatus"]="Esikatselu luotu %file% tiedostolle kokonaismäärästä %filestotal%."; # %file%, %filestotal% will be replaced, e.g. Created previews for resource 2 of 2.
-$lang["uploadedstatus"]="Resurssi %file% kokonaismäärästä %filestotal% ladattu - %path%"; # %file%, %filestotal% and %path% will be replaced, e.g. Resource 2 of 2 uploaded - pub/pictures/astro-images/JUPITER9.JPG
+$lang["previewstatus"]="Esikatselu luotu [file] tiedostolle kokonaismäärästä %filestotal%."; # [file], %filestotal% will be replaced, e.g. Created previews for resource 2 of 2.
+$lang["uploadedstatus"]="Resurssi [file] kokonaismäärästä %filestotal% ladattu - %path%"; # [file], %filestotal% and %path% will be replaced, e.g. Resource 2 of 2 uploaded - pub/pictures/astro-images/JUPITER9.JPG
 $lang["upload_failed_for_path"]="Lataus epäonnistui polulle %path%"; # %path% will be replaced, e.g. Upload failed for abc123.jpg
 $lang["uploadcomplete"]="Lataus valmis";
 $lang["upload_summary"]="Tietoa latauksesta";
@@ -319,9 +319,9 @@ $lang["research"]="Tutkimus";
 $lang["savedsearch"]="Tallennettu haku";
 $lang["mustspecifyoneusername"]="Täytyy määritellä ainakin yksi käyttäjänimi";
 $lang["couldnotmatchallusernames"]="Kaikkia käyttäjänimiä ei löytynyt";
-$lang["emailcollectionmessage"]="on lähettänyt sinulle sähköpostilla joukon resursseja sovelluksesta %applicationname% joka on lisätty 'Kokoelmani'-sivullesi."; # suffixed to user name e.g. "Fred has e-mailed you a collection..."
+$lang["emailcollectionmessage"]="on lähettänyt sinulle sähköpostilla joukon resursseja sovelluksesta [applicationname] joka on lisätty 'Kokoelmani'-sivullesi."; # suffixed to user name e.g. "Fred has e-mailed you a collection..."
 $lang["nomessage"]="Ei viestiä";
-$lang["emailcollectionmessageexternal"]="on lähettänyt sinulle kokoelman resursseja sovelluksesta %applicationname%."; # suffixed to user name e.g. "Fred has e-mailed you a collection..."
+$lang["emailcollectionmessageexternal"]="on lähettänyt sinulle kokoelman resursseja sovelluksesta [applicationname]."; # suffixed to user name e.g. "Fred has e-mailed you a collection..."
 $lang["clicklinkviewcollection"]="Napsauta linkkiä alla nähdäksesi kokoelman.";
 $lang["zippedcollectiontextfile"]="Lisää tekstitiedosto resurssin/kokoelman tiedoilla.";
 $lang["archivesettings"]="Pakkausasetukset";
@@ -1434,7 +1434,6 @@ $lang["zipcomplete"]="Zip-tiedostosi latauksen olisi pitänyt alkaa. Voit poistu
 
 $lang["starttypingkeyword"]="Aloita avainsanan kirjoittaminen...";
 $lang["createnewentryfor"]="Luo uusi kohta aiheelle";
-$lang["confirmcreatenewentryfor"]="Oletko varma, että tahdot luoda uuden avainsanalistan kohdan sanalle '%%'?";
 
 $lang["editresourcepreviews"]="Muokkaa resurssien esikatseluita";
 
@@ -1589,8 +1588,8 @@ $lang["collectionprivate_attachedusermessage"]='%user% on lisännyt sinut kokoel
 $lang["nomessages"]='Ei viestejä';
 $lang["lastmatching"]='Viimeinen vastaavuus';
 $lang["edit_theme_category"]='Muokkaa esittelykokoelman kategoriaa';
-$lang["emailthemecollectionmessageexternal"]='On lähettänyt sinulle kokoelmia resursseja %applicationname% sta sähköpostitse.';
-$lang["emailthememessage"]='On lähettänyt sinulle valikoiman %applicationname% n esittelykokoelmia sähköpostitse, jotka on lisätty "Omat kokoelmat" -sivullesi.';
+$lang["emailthemecollectionmessageexternal"]='On lähettänyt sinulle kokoelmia resursseja [applicationname] sta sähköpostitse.';
+$lang["emailthememessage"]='On lähettänyt sinulle valikoiman [applicationname] n esittelykokoelmia sähköpostitse, jotka on lisätty "Omat kokoelmat" -sivullesi.';
 $lang["clicklinkviewthemes"]='Käytä alla olevaa linkkiä nähdäksesi esittelyssä olevat kokoelmat.';
 $lang["clicklinkviewcollections"]='Käytä alla olevia linkkejä tarkastellaksesi kokoelmia.';
 $lang["background_image"]='Taustakuva';
@@ -1609,7 +1608,7 @@ $lang["hidewatermark"]='Piilota vesileima';
 $lang["createpreviews"]='Luo esikatselukuvat';
 $lang["recreatepreviews_pending"]='Resurssien esikatselun uudelleenluonti on merkitty.';
 $lang["relatedresources-id"]='Liittyvät resurssit %id%:lle';
-$lang["relatedresources-restype"]='Liittyvät resurssit - %restype%';
+$lang["relatedresources-restype"]='Liittyvät resurssit - [restype]';
 $lang["relatedresources_onupload"]='Liitä kaikki resurssit latauksen yhteydessä';
 $lang["youfoundresults"]='tulokset';
 $lang["selected"]='Valittu';
@@ -1824,8 +1823,6 @@ $lang["collectionlog-XK"]='Poistettu ulkoinen käyttöavain';
 $lang["expires-date"]='Vanhenee: %date%';
 $lang["disabled"]='Poistettu käytöstä';
 $lang["list_file_extension"]='Laajennus';
-$lang["requestapprovedmail_email"]='[img_headerlogo]<br/><br/>[viesti]<br/>[vanhenee]<br/><br/>Klikkaa alla olevaa linkkiä nähdäksesi ja ladataksesi pyydettyjä resursseja.<br/><br/><a href=\'[url]\'>[url]</a>';
-$lang["requestdeclined_email"]='[img_headerlogo]<br/><br/>[message]<br/><br/>Klikkaa alla olevaa linkkiä nähdäksesi pyydettyjä resursseja.<br/><br/><a href=\'[url]\'>[url]</a>';
 $lang["resource_expiry_x_days"]='Aiemmin ladattu resurssi vanhenee %X päivän kuluttua';
 $lang["diskerror"]='Kiintiö ylitetty';
 $lang["plugins-search-results-header"]='Pluginien hakutulokset';
@@ -1916,12 +1913,12 @@ $lang["report_periodic_email_option_all_users"]='kaikki käyttäjät';
 $lang["report_periodic_email_option_selected_user_groups"]='Valitut käyttäjäryhmät';
 $lang["report_periodic_email_unsubscribe_title"]='Peruuta tilaus säännöllisistä sähköposteista';
 $lang["report_periodic_email_unsubscribe_confirmation"]='Vahvista, että haluat peruuttaa tilauksesi';
-$lang["report_periodic_email_report_attached"]='Raportti \'%%REPORTTITLE%%\' on liitetiedostona.';
+$lang["report_periodic_email_report_attached"]='Raportti \'[report_title]\' on liitetiedostona.';
 $lang["report-select-required"]='Valitse raportti, ole hyvä';
 $lang["writeaccesstoplugins"]='Kirjoitusoikeus /plugins-kansioon';
 $lang["nowriteaccesstoplugins"]='/plugins-kansio ei ole kirjoitettavissa';
 $lang["writeaccess_sql_log"]='Kirjoitusoikeus SQL-lokiin:';
-$lang["php_extension_not_enabled"]='PHP-laajennus %%EXTENSION%% ei ole käytössä';
+$lang["php_extension_not_enabled"]='PHP-laajennus [extension] ei ole käytössä';
 $lang["server_timezone_check"]='PHP:n aikavyöhyke on sama kuin MySQL:n käyttämä';
 $lang["server_timezone_check_fail"]='PHP-aikavyöhyke on "%phptz%" ja MySQL-aikavyöhyke on "%mysqltz%"';
 $lang["server_apcu_check_fail"]='php-apcu-laajennus ei ole asennettu. Ota tämä käyttöön nopeuttaaksesi tiedostojen latausta ja tehdäksesi sen kestävämmäksi';
@@ -1935,8 +1932,8 @@ $lang["restrict_access_to_workflow_state"]='Rajoita pääsy resursseihin työnku
 $lang["restricted_upload_for_resource_of_type"]='Rajoitettu lataus resurssityypille';
 $lang["deny_edit_resource_type"]='Kiellä muokkausoikeus tyyppiin kuuluvaan resurssiin';
 $lang["deny_edit_all_resource_types"]='Kiellä muokkausoikeus kaikilta resurssityypeiltä paitsi niiltä, jotka on määritelty "Salli muokkausoikeus annetun resurssityypin resursseihin" -oikeuksissa';
-$lang["can_edit_resource_type"]='Voi muokata resursseja tyypiltä %%RESOURCETYPE%%. Ohitetaan, jos "Estä muokkausoikeus annetulle resurssityypille" -oikeutta ei ole';
-$lang["edit_access_to_access"]='Muokkausoikeus tilaan \'%STATE\' pääsemiseksi';
+$lang["can_edit_resource_type"]='Voi muokata resursseja tyypiltä [resourcetype]. Ohitetaan, jos "Estä muokkausoikeus annetulle resurssityypille" -oikeutta ei ole';
+$lang["edit_access_to_access"]='Muokkausoikeus tilaan \'[state]\' pääsemiseksi';
 $lang["can_manage_alternative_files"]='Voi hallita vaihtoehtoisia tiedostoja';
 $lang["can_see_theme_sub_category"]='Voi nähdä esittelyssä olevan kokoelman alaluokan';
 $lang["can_see_featured_collection"]='Voi nähdä esittelykokoelman';
@@ -2106,8 +2103,8 @@ $lang["group_download_limit_title"]='Resurssin latausrajoitus. Aseta arvoksi 0, 
 $lang["group_download_limit_period"]='Latausrajoituksen aikajakso (rajoitus viimeisissä X päivissä). Aseta arvoksi 0, jos haluat ehdottoman latausrajoituksen';
 $lang["download_limit_error"]='Latausrajoituksesi on saavutettu.';
 $lang["download_limit_collection_error"]='Tämä kokoelman lataus ylittäisi latausrajasin.';
-$lang["download_limit_summary"]='Olet ladannut %%DOWNLOADED%%/%%LIMIT%% resurssia.';
-$lang["download_limit_request_text"]='Latausrajoitus saavutettu: %%DOWNLOADED%%/%%LIMIT%%';
+$lang["download_limit_summary"]='Olet ladannut [downloaded]/[limit] resurssia.';
+$lang["download_limit_request_text"]='Latausrajoitus saavutettu: [downloaded]/[limit]';
 $lang["page-title_user_group_management_edit"]='Muokkaa käyttäjäryhmää';
 $lang["page-subtitle_user_group_management_edit"]='Käytä tätä osiota käyttäjäryhmän ominaisuuksien muokkaamiseen.';
 $lang["action-title_remove_user_group_logo"]='Ruksaa poistaaksesi käyttäjäryhmän logon';
@@ -2133,7 +2130,7 @@ $lang["resource_types_manage"]='Resurssityypit';
 $lang["resource_type_new"]='Uusi resurssityyppi';
 $lang["resource_type_field_new"]='Uusi metatietokenttä';
 $lang["admin_advanced_field_properties"]='Edistyneet kenttäominaisuudet';
-$lang["admin_delete_field_confirm"]='Tässä kentässä on %%AFFECTEDRESOURCES%% resurssia, joissa on tietoa. Joitakin vaikuttavien resurssien tunnisteita on lueteltu alla. Jos jatkat, tämän kentän metatiedot menetetään. Haluatko varmasti jatkaa poistamista?';
+$lang["admin_delete_field_confirm"]='Tässä kentässä on [affected_resources] resurssia, joissa on tietoa. Joitakin vaikuttavien resurssien tunnisteita on lueteltu alla. Jos jatkat, tämän kentän metatiedot menetetään. Haluatko varmasti jatkaa poistamista?';
 $lang["admin_delete_field_error"]='Kenttää ei voi poistaa. Ota yhteyttä järjestelmänvalvojaasi. Tätä kenttää käytetään seuraavissa kokoonpanovaihtoehdoissa: -';
 $lang["admin_delete_field_error_scopes"]='Kentän poisto ei onnistu. Ota yhteyttä järjestelmänvalvojaan. Tätä kenttää käytetään edelleen seuraavissa kohteissa:';
 $lang["admin_resource_type_create"]='Luo resurssityyppi nimeltään...';
@@ -2175,7 +2172,7 @@ $lang["property-groups"]='Ryhmät';
 $lang["property-user_group"]='Käyttäjäryhmä';
 $lang["property-user_group_parent"]='Vanhempi käyttäjäryhmä';
 $lang["property-user_group_remove_parent"]='(poista vanhempi)';
-$lang["resource_type_delete_confirmation"]='Tästä tyypistä on %%RESOURCECOUNT%% resurssia.';
+$lang["resource_type_delete_confirmation"]='Tästä tyypistä on [resource_count] resurssia.';
 $lang["resource_type_delete_assoc_rtf_confirm"]='Tämän resurssityypin kanssa liittyy %COUNT metatietokenttää.';
 $lang["resource_type_delete_select_new"]='Valitse, mihin resurssityyppiin nämä muunnetaan.';
 $lang["resourcetype-global_field"]='Maailmanlaajuinen';
@@ -2190,7 +2187,7 @@ $lang["admin_field_deleted"]='Poistettu kenttä';
 $lang["action-move-up"]='Siirrä ylös';
 $lang["action-move-down"]='Siirrä alaspäin';
 $lang["action-move-to"]='Siirrä kohteeseen';
-$lang["delete_user_group_checkbox_alert_message"]='Huomioithan, että tämä toiminto poistaa myös kaiken sisältötekstin, joka liittyy tähän käyttäjäryhmään. Hallitse sisältöä -osiossa on löydetty %%RECORDSCOUNT%% tietuetta.';
+$lang["delete_user_group_checkbox_alert_message"]='Huomioithan, että tämä toiminto poistaa myös kaiken sisältötekstin, joka liittyy tähän käyttäjäryhmään. Hallitse sisältöä -osiossa on löydetty [recordscount] tietuetta.';
 $lang["about__about"]='Sinun "Tietoja meistä" -tekstisi tulee tähän.';
 $lang["all__footer"]='Käyttää <a target="_blank" href="https://www.resourcespace.com/">ResourceSpace avoimen lähdekoodin digitaalisen aineistonhallinnan ohjelmistoa</a>';
 $lang["all__researchrequest"]='Anna meidän resurssitiimimme löytää tarvitsemasi resurssit.';
@@ -2386,7 +2383,7 @@ $lang["userpreference_tilenav"]='Käytä laatoitettua asettelua navigointivaliko
 $lang["userpreference_tilenavdefault"]='Käytä laatoitettua asettelua navigointivalikoille (oletusasetus; käyttäjät voivat muuttaa tätä)';
 $lang["systemconfig"]='Asetukset';
 $lang["systemconfig_customfont_label"]='Mukautettu fonttitiedosto';
-$lang["systemconfig_invalid_extension"]='Tiedostotyyppi ei ole kelvollinen tähän valintaan. Valitse seuraavista: %%EXTENSIONS%%';
+$lang["systemconfig_invalid_extension"]='Tiedostotyyppi ei ole kelvollinen tähän valintaan. Valitse seuraavista: [extensions]';
 $lang["systemconfig_linkedheaderimgsrc_label"]='Sovelluksen logo';
 $lang["systemconfig_header_favicon_label"]='Sovelluksen favicon';
 $lang["systemconfig_description"]='Tämän sivun asetukset ovat järjestelmän laajuisia ja voivat muuttaa käyttäjien käytettävissä olevaa toiminnallisuutta. Huomioithan, että käyttäjäkohtaiset asetukset ovat etusijalla, jos ne on määritetty.';
@@ -2615,10 +2612,10 @@ $lang["error_save_not_allowed_fc_has_children"]='Muutoksen tallentaminen ei onni
 $lang["error_multiple_preview_tools"]='Ole hyvä ja poista nykyinen esikatselu työkalu käytöstä ja yritä uudelleen.';
 $lang["missing_folder"]='VIRHE - Latauskansion polkua ei ole määritetty.';
 $lang["error_upload_replace_file_fail"]='Epäonnistui korvata resurssitiedosto';
-$lang["error_upload_replace_no_matching_file"]='Kelvollista korvaavaa resurssia ei löytynyt tiedostonimelle %%FILENAME%%';
-$lang["error_upload_replace_multiple_matching_files"]='Useita kelvollisia resursseja löytyi tiedostonimellä %%FILENAME%%';
-$lang["error_upload_invalid_file"]='Virheellinen tiedostotyyppi: %%FILETYPE%%';
-$lang["error_upload_duplicate_file"]='Tiedoston kaksoiskappaleen lataus, tiedosto vastaa resursseja: %%RESOURCES%%';
+$lang["error_upload_replace_no_matching_file"]='Kelvollista korvaavaa resurssia ei löytynyt tiedostonimelle [filename]';
+$lang["error_upload_replace_multiple_matching_files"]='Useita kelvollisia resursseja löytyi tiedostonimellä [filename]';
+$lang["error_upload_invalid_file"]='Virheellinen tiedostotyyppi: [filetype]';
+$lang["error_upload_duplicate_file"]='Tiedoston kaksoiskappaleen lataus, tiedosto vastaa resursseja: [resources]';
 $lang["error_upload_file_move_failed"]='Tiedoston siirto epäonnistui. Tarkista ladattavan tiedoston koko.';
 $lang["error_fail_save"]='Ei voitu tallentaa';
 $lang["image_quality_100"]='Enimmäisarvo';
@@ -2648,10 +2645,10 @@ $lang["oj-collection-download-failure-text"]='Kokoelman arkiston latausta ei voi
 $lang["oj-batch-replace-local-success-text"]='Erän korvaaminen onnistui. %TOTALRESOURCES resurssia korvattiin';
 $lang["oj-batch-replace-local-failure-text"]='Erän korvaaminen epäonnistui. Tarkista lokitiedostot virheiden varalta';
 $lang["oj-creation-failure-text"]='Tapahtui virhe. Offline-työn luonti epäonnistui';
-$lang["oj-creation-success"]='Offline-tehtävä %%JOBNUMBER%% luotu. Sinulle ilmoitetaan, kun se on valmis';
+$lang["oj-creation-success"]='Offline-tehtävä [jobnumber] luotu. Sinulle ilmoitetaan, kun se on valmis';
 $lang["email_auto_digest_inactive"]='Tämä on yhteenveto lukemattomista viesteistäsi';
 $lang["email_digest_disable"]='Voit poistaa nämä ilmoitukset käytöstä kirjautumalla sisään ja säätämällä käyttäjäasetuksiasi alla olevasta linkistä: -';
-$lang["user_pref_inactive_digest"]='Lähetä minulle päivittäin sähköposti kaikista lukemattomista ilmoituksista, jos en ole kirjautunut sisään yli %%DAYS%% päivää?';
+$lang["user_pref_inactive_digest"]='Lähetä minulle päivittäin sähköposti kaikista lukemattomista ilmoituksista, jos en ole kirjautunut sisään yli [days] päivää?';
 $lang["edit_copy_from_field"]='Kopioi tiedot kentästä';
 $lang["home_page"]='Kotisivu';
 $lang["login_word"]='Kirjaudu sisään';
@@ -2716,24 +2713,20 @@ $lang["date_format_error"]='Virhe: %row% \'%date%\' [%field%] on virheellinen sy
 $lang["invalid_date_error"]='Virhe: %row% \'%date%\' kentässä [%field%] ei ole kelvollinen päivämäärä';
 $lang["invalid_date_error2"]='Virhe: virheellinen päivämääräarvo: \'%date%\'. Käytä muotoa: \'yyyy-mm-dd hh:mm:ss\' (aika on valinnainen)';
 $lang["invalid_date_generic"]='Olet syöttänyt virheellisen päivämäärän';
-$lang["error_server_missing_module"]='Palvelimelta puuttuu tarvittava ohjelmisto: %%MODULE%%. Ota yhteyttä järjestelmänvalvojaasi';
-$lang["error_check_config"]='Tarkista asetuskohdan %%CONFIG_OPTION%% asetukset, ole hyvä';
+$lang["error_server_missing_module"]='Palvelimelta puuttuu tarvittava ohjelmisto: [module]. Ota yhteyttä järjestelmänvalvojaasi';
+$lang["error_check_config"]='Tarkista asetuskohdan [config_option] asetukset, ole hyvä';
 $lang["useaspreviewimage"]='Käytä esikatselukuvana';
 $lang["filechecksum"]='Tiedoston tarkistussumma';
-$lang["system_notification"]='%%APPLICATION_NAME%% - järjestelmän ilmoitus';
-$lang["system_notification_email"]='[img_headerlogo]<br />
-[viesti]<br /><br />
-<a href="[url]">[url]</a><br /><br />
-[teksti_alatunniste]';
+$lang["system_notification"]='[application_name] - järjestelmän ilmoitus';
 $lang["error_edit_filter_invalid"]='Muokkaussuodatin ei ole oikein määritetty tälle käyttäjäryhmälle. Ota yhteyttä järjestelmänvalvojaan';
 $lang["error_search_filter_invalid"]='Hakusuodattimen suodattimet eivät ole oikein määritetty tämän käyttäjäryhmän osalta. Ota yhteyttä järjestelmänvalvojaan';
 $lang["action_lock"]='Lukitus';
 $lang["action_unlock"]='Avaa lukitus';
 $lang["status_locked"]='Lukittu';
 $lang["status_unlocked"]='Avattu';
-$lang["status_locked_by"]='Lukittu käyttäjän %%USER%% toimesta';
+$lang["status_locked_by"]='Lukittu käyttäjän [user] toimesta';
 $lang["status_locked_self"]='Olet lukinnut tämän resurssin';
-$lang["error_locked_by_user"]='Resurssi on lukittu käyttäjän %%USER%% toimesta';
+$lang["error_locked_by_user"]='Resurssi on lukittu käyttäjän [user] toimesta';
 $lang["error_locked_other_user"]='Resurssi on lukittu toisen käyttäjän toimesta';
 $lang["error-edit_noaccess_resources"]='Ei muokkausoikeutta resursseihin:';
 $lang["error-edit_locked_resources"]='Seuraavat resurssit ovat lukittuina:';
@@ -2767,7 +2760,7 @@ $lang["job_priority"]='Tärkeysjärjestys';
 $lang["csv_export_offline_option"]='Tuota CSV-tiedosto offline-tilassa? Tämä tulisi tehdä suurille tulosjoukoille. Sinulle ilmoitetaan ResourceSpace-viestillä, kun CSV-tiedosto on saatavilla';
 $lang["csv_export_file_ready"]='CSV-vientisi on valmis';
 $lang["offline_processing_disabled"]='Offline-työnkäsittelyä ei ole määritetty tälle järjestelmälle. Ota yhteyttä järjestelmänvalvojaan, jotta se voidaan ottaa käyttöön';
-$lang["csv_export_offline_only"]='Offline-käsittelyä on käytettävä, kun vientiä varten käsitellään yli %%RESOURCE_COUNT%% resurssia';
+$lang["csv_export_offline_only"]='Offline-käsittelyä on käytettävä, kun vientiä varten käsitellään yli [resource_count] resurssia';
 $lang["setup_google_vision_settings"]='Google Vision -asetukset';
 $lang["setup_google_vision_enable"]='Ota käyttöön Google Vision -liitännäinen?';
 $lang["tagged_notification"]='Sinut on merkitty tunnisteella kommentissa:';
@@ -2797,7 +2790,7 @@ $lang["notify_upload_share_new_subject"]='Uudet ulkoiset lataukset';
 $lang["my_shares"]='Osakkeeni';
 $lang["manage_shares_title"]='Ulkoiset jakamiset';
 $lang["share_purge_text"]='Poista vanhentuneet jakamiset';
-$lang["shares_purged_message"]='Poistettu %%DELETEDCOUNT%% jakoa';
+$lang["shares_purged_message"]='Poistettu [deleted_count] jakoa';
 $lang["share_confirm_purge"]='Oletko varma, että haluat poistaa kaikki vanhentuneet jaettavat resurssit?';
 $lang["external_shares_view_existing"]='Näytä olemassa olevat latausjaot tälle kokoelmalle.';
 $lang["share_user"]='Jaettu käyttäjän toimesta';
@@ -2810,7 +2803,7 @@ $lang["log-reference"]='Lokimerkintä';
 $lang["log_column"]='Lokidata';
 $lang["log_value"]='Arvo';
 $lang["error_slideshow_invalid"]='Virheellinen järjestysnumero. Syötä numeerinen arvo';
-$lang["error-file-permissions"]='Tiedoston toiminto ei onnistu. Tarkista tiedoston käyttöoikeudet polusta %%PATH%%';
+$lang["error-file-permissions"]='Tiedoston toiminto ei onnistu. Tarkista tiedoston käyttöoikeudet polusta [path]';
 $lang["new_message"]='Uusi viesti';
 $lang["message_recipients"]='Vastaanottaja(t)';
 $lang["error_invalid_user"]='Virheellinen käyttäjä määritelty';
@@ -2825,12 +2818,12 @@ $lang["upload_view_log"]='Näytä loki';
 $lang["code_sign_required"]='Sisäinen koodin allekirjoitus';
 $lang["code_sign_required_warning"]='Varoitus: Sisäinen koodi on muuttunut eikä päivitettyä koodia ole allekirjoitettu komentoriviohjelmalla. Metatietoihin tehtävät makrot eivät välttämättä toimi odotetusti.';
 $lang["search_full_text"]='Etsi kaikki teksti (täydellinen tekstihaku)';
-$lang["error_invalid_revert_option"]='Aiemmin tallennettua arvoa \'%%VALUE%%\' ei löytynyt nykyisistä vaihtoehdoista. Tarkista, onko tämän vaihtoehdon nimi muuttunut ja päivitä resurssi tarvittaessa manuaalisesti.';
-$lang["error_invalid_revert_date"]='Aiemmin tallennettu päivämäärä \'%%VALUE%%\' on virheellinen. Päivitä resurssi manuaalisesti tarvittaessa.';
+$lang["error_invalid_revert_option"]='Aiemmin tallennettua arvoa \'[value]\' ei löytynyt nykyisistä vaihtoehdoista. Tarkista, onko tämän vaihtoehdon nimi muuttunut ja päivitä resurssi tarvittaessa manuaalisesti.';
+$lang["error_invalid_revert_date"]='Aiemmin tallennettu päivämäärä \'[value]\' on virheellinen. Päivitä resurssi manuaalisesti tarvittaessa.';
 $lang["batch_edit_save_warning_message"]='Seuraavia resursseja muokatessa ilmeni virheitä -';
 $lang["batch_edit_save_warning_alert"]='Joitakin virheitä ilmeni tämän toiminnon suorittamisessa. Katso lisätietoja viesteistäsi';
 
-$lang["information_field_restype_deselect_cleanup"]='Poistaaksesi olemassa olevat kenttätiedot valitsemattomista resurssityypeistä, napsauta seuraavaa linkkiä %%CLEANUP_LINK%%';
+$lang["information_field_restype_deselect_cleanup"]='Poistaaksesi olemassa olevat kenttätiedot valitsemattomista resurssityypeistä, napsauta seuraavaa linkkiä [cleanup_link]';
 $lang["mainmenu"]='Päävalikko';
 $lang["perpage_option"]='? per sivu';
 $lang["off"]='Pois päältä';
@@ -2891,24 +2884,10 @@ $lang["gigabyte-symbol-binary"]='GiB';
 $lang["terabyte-symbol-binary"]='TiB';
 $lang["comments_in-response-to-on"]='päällä';
 $lang["user_group"]='käyttäjäryhmä';
-$lang["all__emailbulk"]='<br /><br />
-[teksti]<br /><br />
-[teksti_alaosa]';
 $lang["all__emailcollection"]='<br />
 [fromusername] [lang_emailcollectionmessage] <br /><br /> 
 [lang_message] : [message]<br /><br /> 
 [lang_clicklinkviewcollection] [list]';
-$lang["all__emailcollectionexternal"]='<br />
-[käyttäjänimi] [kokoelman ulkoinen viesti] <br /><br /> 
-[viesti] : [message]<br /><br /> 
-[napsauta linkkiä nähdäksesi kokoelman] [list]';
-$lang["all__emailcontactadmin"]='<br />[fromusername] ([emailfrom])[lang_contactadminemailtext]<br /><br />[message]<br /><br /><a href="[url]">[embed_thumbnail]</a><br /><br />[text_footer]';
-$lang["all__emaillogindetails"]='<br />
-[tervetuloa]<br /><br /> 
-[uudet kirjautumistiedot]<br /><br /> 
-[käyttäjänimi] : [username] <br /><br />
-<a href="[url]">[url]</a><br /><br />
-[teksti_alatunniste]';
 $lang["all__emailnewresearchrequestwaiting"]='[username] ([userfullname] - [useremail])
 [lang_haspostedresearchrequest]<br /><br />
 [lang_nameofproject]:[name]<br /><br />
@@ -2926,18 +2905,6 @@ $lang["all__emailnotifyresourcesapproved"]='[lang_userresourcesapproved]
 [lang_viewcontributedsubittedl] <br /><br /> 
 <a href="[url]">[url]</a><br /><br />
 [text_footer]';
-$lang["all__emailnotifyresourcessubmitted"]='<br />
-[käyttäjän lähettämät resurssit]
-[lista] <br />
-[näytä kaikki käyttäjän odottavat] <br /><br /> 
-<a href="[url]">[url]</a><br /><br />
-[tekstin alatunniste]';
-$lang["all__emailnotifyresourcesunsubmitted"]='<br />
-[käyttäjänresurssitlähettämättömät]
-[lista] <br />
-[näytäkaikkikäyttäjänodottavat] <br /><br /> 
-<a href="[url]">[url]</a><br /><br />
-[teksti_alatunniste]';
 $lang["all__emailresearchrequestassigned"]='<br />
 [tutkimuspyyntöön on osoitettu viesti]<br /><br />
 [tekstin alatunniste]';
@@ -2951,11 +2918,6 @@ $lang["all__emailresource"]='<br />
 <a href="[url]">[embed_thumbnail]</a><br /><br />
 [lang_clicktoviewresource]<br /><a href="[url]">[resourcename] - [url]</a><br /><br />
 [text_footer]';
-$lang["all__emailresourcerequest"]='[käyttäjänimi] : [username] <br />
-[lista] <br />
-[yksityiskohdat]<br /><br />
-[napsauta nähdäksesi resurssin] <br /><br />
-<a href="[url]">[url]</a>';
 $lang["help__introtext"]='<iframe src="https://www.resourcespace.com/knowledge-base/?from_rs=true" style="width:1235px;height:600px;border:none;margin:-20px;" id="knowledge_base" />';
 $lang["team_research__introtext"]='Järjestä ja hallinnoi \'Tutkimuspyyntöjä\'. <br /><br />Valitse \'muokkaa tutkimusta\' tarkistaaksesi pyynnön tiedot ja osoittaaksesi tutkimuksen tiimin jäsenelle. On mahdollista perustaa tutkimuspyyntö aiempaan kokoelmaan syöttämällä kokoelman tunnus \'muokkaa\' -näyttöön. <br /><br />Kun tutkimuspyyntö on osoitettu, valitse \'muokkaa kokoelmaa\' lisätäksesi tutkimuspyynnön \'Oletuskokoelma\' -paneeliin. Käyttämällä vakiotyökaluja on sitten mahdollista lisätä resursseja tutkimukseen. <br /><br />Kun tutkimus on valmis, valitse \'muokkaa tutkimusta\', muuta tila valmiiksi ja sähköposti lähetetään automaattisesti käyttäjälle, joka pyysi tutkimusta. Sähköposti sisältää linkin tutkimukseen ja se lisätään myös automaattisesti heidän \'Oletuskokoelma\' -paneeliinsa.';
 $lang["dash"]='Kojelauta';
@@ -2986,7 +2948,7 @@ $lang["email_shares_options_summary"]='Nämä vaihtoehdot koskevat vain jaettuja
 $lang["report_breakdown_pie"]='Erottelukaavio';
 $lang["actions_email_new_actions_title"]='Uudet toiminnot';
 $lang["actions_email_new_actions_intro"]='On uusia toimintoja, jotka on suoritettava.';
-$lang["email_actions_truncated"]='Vain viimeisimmät 1000 toimintoa näytetään tässä. Sinulla on %%TOTAL%% toimintoa. Kirjaudu sisään %%APPLICATIONNAME%% nähdäksesi ne kaikki.';
+$lang["email_actions_truncated"]='Vain viimeisimmät 1000 toimintoa näytetään tässä. Sinulla on [total] toimintoa. Kirjaudu sisään [application_name] nähdäksesi ne kaikki.';
 $lang["annotate_select"]='Valitse kenttä...';
 $lang["error_upload_replace_file_fail_invalid_collection"]='Epäonnistui resurssitiedoston korvaamisessa. Annettu kokoelman viite on virheellinen.';
 $lang["systemconfig_api"]='API';
@@ -3002,13 +2964,8 @@ $lang["job_status_error"]='Tapahtui virhe';
 $lang["filter_is_in"]='ON';
 $lang["file_integrity_fail_latest"]='Näytä viimeisimmät tiedostojen eheysvirheet';
 $lang["file_integrity_fail_all"]='Näytä kaikki resurssit, joilla on tiedoston eheyden virheitä';
-$lang["all__file_integrity_fail_email"]='[img_headerlogo]<br />
-[tiedoston_eheys_yhteenveto_epäonnistui] <br /><br /> 
-[tiedoston_eheys_epäonnistui_haku] <br /><br /> 
-<a href="[url]">[url]</a><br /><br />
-[teksti_alatunniste]';
 $lang["error-edit_noaccess_related_resources"]='Ei voida yhdistää resursseja. Ei pääsyä:';
-$lang["csv_export_filename"]='metadata_vienti_%%SEARCH%%_%%TIME%%';
+$lang["csv_export_filename"]='metadata_vienti_[search]_[time]';
 $lang["upload_share_email_template"]='<br />
 [from_name] [lang_upload_share_email_text] [applicationname]<br /><br /> 
 [lang_message] : [message]<br /><br />
@@ -3018,14 +2975,8 @@ $lang["upload_share_email_template"]='<br />
 <br />
 <br />
 [passwordtext]';
-$lang["all__emailnotifyuploadsharenew"]='<br />
-[lang_notify_upload_share_new]
-<br />
-[lang_clicklinkviewcollection] <br /><br /> 
-<a href="[url]">[url]</a><br /><br />
-[tekstin_alaosa]';
 $lang["share_expired_icon_title"]='Vanhentunut';
-$lang["error_invalid_date_format"]='"%%VALUE%%" on virheellinen päivämäärä. Kaikkien tämän kentän arvojen on oltava muodossa VVVV-KK-PP';
+$lang["error_invalid_date_format"]='"[value]" on virheellinen päivämäärä. Kaikkien tämän kentän arvojen on oltava muodossa VVVV-KK-PP';
 $lang["related_resource_create"]='Luo uusi liittyvä resurssi';
 $lang["skip-to-main-content"]='Siirry pääsisältöön';
 $lang["cleanup_invalid_nodes"]='Puhdista kenttätiedot virheellisistä resurssityypeistä';
@@ -3043,7 +2994,7 @@ $lang["pull_images_text"]='Käytä kuvia liittyvistä resursseista, jos ei ole s
 $lang["system_user_default"]='JÄRJESTELMÄ';
 $lang["userlimitreached"]='Olet saavuttanut käyttäjärajan. Nykyinen käyttäjä on poistettava käytöstä tai poistettava ennen kuin voit luoda uusia tilejä tai ottaa käyttöön olemassa olevia tilejä.';
 $lang["user_api_session_title"]='Etäjärjestelmän API-pääsy';
-$lang["user_api_session_text"]='Etäjärjestelmä \'%system%\' pyytää pääsyä %applicationname%:iin käyttäen tunnuksiasi. Napsauta \'Myönnä pääsy\' vain, jos olet itse tehnyt tämän pyynnön';
+$lang["user_api_session_text"]='Etäjärjestelmä \'%system%\' pyytää pääsyä [applicationname]:iin käyttäen tunnuksiasi. Napsauta \'Myönnä pääsy\' vain, jos olet itse tehnyt tämän pyynnön';
 $lang["user_api_session_invalid_system"]='Virheellinen järjestelmä pyydetty';
 $lang["user_api_session_grant_access"]='Myönnä pääsy';
 $lang["user_api_session_grant_success"]='Avain myönnetty onnistuneesti.';
@@ -3056,3 +3007,37 @@ $lang["completed_set_no_file"]='Resurssi merkitty tiedostottomaksi';
 $lang["completed_unset_no_file"]='Resurssi merkitty tiedosto puuttuvaksi';
 $lang["map_tf_group"]='Thunderforest';
 $lang["themes__manage"]='Järjestä ja muokkaa verkossa saatavilla olevia esittelykokoelmia. Esittelykokoelmat ovat erityisesti mainostettuja kokoelmia. <br /><br /> <strong>1 Uuden merkinnän luominen esittelykokoelman alle - rakenna kokoelma</strong><br /> Valitse <strong>Omat kokoelmat</strong> päävalikosta ja luo uusi <strong>julkinen</strong> kokoelma. Muista sisällyttää esittelykokoelman nimi asetusten aikana. Käytä olemassa olevaa esittelykokoelman nimeä ryhmitelläksesi kokoelman nykyisen esittelykokoelman alle (varmista, että kirjoitat sen täsmälleen samalla tavalla), tai valitse uusi nimi luodaksesi täysin uuden esittelykokoelman. Älä koskaan salli käyttäjien lisätä/poistaa resursseja esittelykokoelmista. <br /> <br /><strong>2 Olemassa olevan merkinnän sisällön muokkaaminen esittelykokoelman alla</strong><br /> Valitse <strong>muokkaa kokoelmaa</strong>. Tämän kokoelman kohteet näkyvät <strong>Omat kokoelmat</strong> -paneelissa näytön alareunassa. Käytä vakiotyökaluja resurssien muokkaamiseen, poistamiseen tai lisäämiseen. <br /> <br /><strong>3 Esittelykokoelman nimen muuttaminen tai kokoelman siirtäminen toisen esittelykokoelman alle</strong><br /> Valitse <strong>muokkaa ominaisuuksia</strong> ja muokkaa esittelykokoelman kategoriaa tai kokoelman nimeä. Käytä olemassa olevaa esittelykokoelman nimeä ryhmitelläksesi kokoelman nykyisen esittelykokoelman alle (varmista, että kirjoitat sen täsmälleen samalla tavalla), tai valitse uusi nimi luodaksesi täysin uuden esittelykokoelman. <br /> <br /><strong>4 Kokoelman poistaminen esittelykokoelmasta</strong><br /> Valitse <strong>muokkaa ominaisuuksia</strong> ja poista sanat esittelykokoelman kategoria -laatikosta.';
+$lang["system_notification_email"]='[img_headerlogo]<br />
+[message]<br /><br /> 
+<a href="[url]">[url]</a><br /><br />
+[text_footer]';
+$lang["requestapprovedmail_email"]='[img_headerlogo]<br/><br/>[message]<br/>[expires]<br/><br/>Napsauta alla olevaa linkkiä nähdäksesi ja ladataksesi pyydetyt resurssit.<br/><br/><a href=\'[url]\'>[url]</a>';
+$lang["requestdeclined_email"]='[img_headerlogo]<br/><br/>[message]<br/><br/>Napsauta alla olevaa linkkiä nähdäksesi pyydetyt resurssit.<br/><br/><a href=\'[url]\'>[url]</a>';
+$lang["all__emailcollectionexternal"]='<br />
+[fromusername] on lähettänyt sinulle viestin kokoelmasta <br /><br /> 
+Viesti: [message]<br /><br /> 
+Napsauta linkkiä nähdäksesi kokoelman: [list]';
+$lang["all__emailcontactadmin"]='<br />[fromusername] ([emailfrom])[lang_contactadminemailtext]<br /><br />[message]<br /><br /><a href="[url]">[embed_thumbnail]</a><br /><br />[text_footer]';
+$lang["all__emailnotifyresourcesunsubmitted"]='<br />
+[lang_userresourcesunsubmitted]
+[list] <br />
+[lang_viewalluserpending] <br /><br /> 
+<a href="[url]">[url]</a><br /><br />
+[text_footer]';
+$lang["all__emailnotifyresourcessubmitted"]='<br />
+[lang_userresourcessubmitted]
+[list] <br />
+[lang_viewalluserpending] <br /><br /> 
+<a href="[url]">[url]</a><br /><br />
+[text_footer]';
+$lang["all__file_integrity_fail_email"]='[img_headerlogo]<br />
+[lang_file_integrity_summary_failed] <br /><br /> 
+[lang_file_integrity_fail_search] <br /><br /> 
+<a href="[url]">[url]</a><br /><br />
+[text_footer]';
+$lang["all__emailnotifyuploadsharenew"]='<br />
+[lang_notify_upload_share_new]
+<br />
+[lang_clicklinkviewcollection] <br /><br /> 
+<a href="[url]">[url]</a><br /><br />
+[text_footer]';

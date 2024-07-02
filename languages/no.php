@@ -205,8 +205,8 @@ $lang["research"]="Research";
 $lang["savedsearch"]="Lagret søk";
 $lang["mustspecifyoneusername"]="Du må oppgi minst ett brukernavn";
 $lang["couldnotmatchallusernames"]="Kunne ikke finne alle brukernavnene";
-$lang["emailcollectionmessage"]="har sendt deg en e-post fra %applicationname%."; # suffixed to user name e.g. "Fred has e-mailed you a collection.."
-$lang["emailcollectionmessageexternal"]="har sendt deg et lysbord med filer fra %applicationname%."; # suffixed to user name e.g. "Fred has e-mailed you a collection.."
+$lang["emailcollectionmessage"]="har sendt deg en e-post fra [applicationname]."; # suffixed to user name e.g. "Fred has e-mailed you a collection.."
+$lang["emailcollectionmessageexternal"]="har sendt deg et lysbord med filer fra [applicationname]."; # suffixed to user name e.g. "Fred has e-mailed you a collection.."
 $lang["clicklinkviewcollection"]="Klikk på lenken nedenfor for å se lysbordet.";
 $lang["zippedcollectiontextfile"]="Inkluder tekstfil med fil-/lysbord-data.";
 $lang["copycollectionremoveall"]="Fjern alle filer før kopiering";
@@ -1302,8 +1302,8 @@ $lang["emailmarkedinvalid"]='E-posten er markert som ugyldig';
 $lang["userpending"]='Brukerbidragsressurser venter på gjennomgang';
 $lang["userpendingsubmission"]='Brukerbidragsressurser venter på å bli sendt inn';
 $lang["resourcespendingarchive"]='Ressurser som venter på arkivering';
-$lang["previewstatus"]='Opprettet forhåndsvisninger for ressurs %file% av %filestotal%.';
-$lang["uploadedstatus"]='Ressurs %file% av %filestotal% lastet opp - %path%';
+$lang["previewstatus"]='Opprettet forhåndsvisninger for ressurs [file] av %filestotal%.';
+$lang["uploadedstatus"]='Ressurs [file] av %filestotal% lastet opp - %path%';
 $lang["upload_summary"]='Opplastingsoppsummering';
 $lang["resources_uploaded-0"]='0 ressurser lastet opp OK.';
 $lang["resources_uploaded-1"]='1 ressurs lastet opp OK.';
@@ -1358,8 +1358,8 @@ $lang["total"]='Total = Totalt';
 $lang["lastmatching"]='Siste treff';
 $lang["ownedbyyou"]='eiet av deg';
 $lang["edit_theme_category"]='Rediger utvalgt samling kategori';
-$lang["emailthemecollectionmessageexternal"]='Har sendt deg samlinger av ressurser fra %applicationname% på e-post.';
-$lang["emailthememessage"]='Har sendt deg en e-post med utvalgte samlinger fra %applicationname% som er lagt til på din "Mine samlinger"-side.';
+$lang["emailthemecollectionmessageexternal"]='Har sendt deg samlinger av ressurser fra [applicationname] på e-post.';
+$lang["emailthememessage"]='Har sendt deg en e-post med utvalgte samlinger fra [applicationname] som er lagt til på din "Mine samlinger"-side.';
 $lang["clicklinkviewthemes"]='Bruk lenken nedenfor for å se utvalgte samlinger.';
 $lang["clicklinkviewcollections"]='Bruk lenkene nedenfor for å se samlingene.';
 $lang["background_image"]='Bakgrunnsbilde';
@@ -1382,7 +1382,7 @@ $lang["hidewatermark"]='Skjul vannmerke';
 $lang["createpreviews"]='Opprett forhåndsvisninger';
 $lang["recreatepreviews_pending"]='Ressurs(er) har blitt merket for forhåndsvisningsgjenskapelse.';
 $lang["relatedresources-id"]='Relaterte ressurser for %id%';
-$lang["relatedresources-restype"]='Relaterte ressurser - %restype%';
+$lang["relatedresources-restype"]='Relaterte ressurser - [restype]';
 $lang["relatedresources_onupload"]='Relatere alle ressurser ved opplasting';
 $lang["youfoundresults"]='resultater';
 $lang["selected"]='valgt';
@@ -1749,13 +1749,13 @@ $lang["report_periodic_email_option_all_users"]='alle brukere';
 $lang["report_periodic_email_option_selected_user_groups"]='valgte brukergruppe(r)';
 $lang["report_periodic_email_unsubscribe_title"]='Avmeld deg fra periodiske e-poster';
 $lang["report_periodic_email_unsubscribe_confirmation"]='Vennligst bekreft at du ønsker å melde deg av';
-$lang["report_periodic_email_report_attached"]='Rapporten \'%%REPORTTITLE%%\' er vedlagt.';
+$lang["report_periodic_email_report_attached"]='Rapporten \'[report_title]\' er vedlagt.';
 $lang["report-select-required"]='Vennligst velg en rapport';
 $lang["writeaccesstoplugins"]='Skrives tilgang til /plugins';
 $lang["nowriteaccesstoplugins"]='/plugins-mappen kan ikke skrives til';
 $lang["writeaccess_sql_log"]='Skrives tilgang til SQL-logg:';
 $lang["nowriteaccesstohomeanim"]='Ikke skrivbar. Åpne tillatelser for å aktivere funksjonen for beskjæring av hjemmeanimasjon i transformtillegget.';
-$lang["php_extension_not_enabled"]='PHP-utvidelsen %%EXTENSION%% er ikke aktivert';
+$lang["php_extension_not_enabled"]='PHP-utvidelsen [extension] er ikke aktivert';
 $lang["execution_failed"]='Uventet utdata ved utførelse av kommandoen %command. Utdataen var \'%output\'.';
 $lang["exif_extension"]='Vennligst oversett: EXIF-utvidelse 
 
@@ -1781,8 +1781,8 @@ $lang["restrict_access_to_workflow_state"]='Begrens tilgangen til ressurser i ar
 $lang["restricted_upload_for_resource_of_type"]='Begrenset opplasting for ressurs av type';
 $lang["deny_edit_resource_type"]='Nekt redigeringsadgang til ressurs av type';
 $lang["deny_edit_all_resource_types"]='Nekt redigeringsadgang til alle ressurstyper unntatt de som er spesifisert av tillatelsene "GI redigeringsadgang til ressurser av den angitte ressurstypen"';
-$lang["can_edit_resource_type"]='Kan redigere ressurser av typen %%RESOURCETYPE%%. Ignoreres hvis tillatelsen "NEKTE redigeringstilgang til angitt ressurstype" ikke er tilstede';
-$lang["edit_access_to_access"]='Rediger tilgang for å få tilgang til tilstanden \'%STATE\'';
+$lang["can_edit_resource_type"]='Kan redigere ressurser av typen [resourcetype]. Ignoreres hvis tillatelsen "NEKTE redigeringstilgang til angitt ressurstype" ikke er tilstede';
+$lang["edit_access_to_access"]='Rediger tilgang for å få tilgang til tilstanden \'[state]\'';
 $lang["can_manage_alternative_files"]='Kan administrere alternative filer';
 $lang["can_see_theme_sub_category"]='Kan se underkategori for utvalgt samling';
 $lang["can_see_featured_collection"]='Kan se utvalgt samling';
@@ -1890,7 +1890,6 @@ $lang["zipping"]='Pakking (komprimering)';
 $lang["zipcomplete"]='Din nedlasting av Zip-filen burde ha startet. Du kan forlate denne siden.';
 $lang["starttypingkeyword"]='Begynn å skrive nøkkelord...';
 $lang["createnewentryfor"]='Opprett nytt element for';
-$lang["confirmcreatenewentryfor"]='Er du sikker på at du ønsker å opprette en ny nøkkelordlisteoppføring for \'%%\'?';
 $lang["noentryexists"]='Ingen oppføring eksisterer for';
 $lang["editresourcepreviews"]='Rediger forhåndsvisninger av ressurser';
 $lang["can_assign_resource_requests"]='Kan tildele ressursforespørsler til andre';
@@ -2065,8 +2064,8 @@ $lang["group_download_limit_title"]='Nedlastingsgrense for ressurser. Sett til 0
 $lang["group_download_limit_period"]='Nedlastingsgrenseperiode (grense for de siste X dagene). Sett til 0 for absolutt nedlastingsgrense';
 $lang["download_limit_error"]='Ditt nedlastingsgrense er nådd.';
 $lang["download_limit_collection_error"]='Denne nedlastingen av samlingen vil overstige nedlastingsgrensen din.';
-$lang["download_limit_summary"]='Du har lastet ned %%DOWNLOADED%%/%%LIMIT%% ressurser.';
-$lang["download_limit_request_text"]='Nedlastingsgrensen er nådd: %%DOWNLOADED%%/%%LIMIT%%';
+$lang["download_limit_summary"]='Du har lastet ned [downloaded]/[limit] ressurser.';
+$lang["download_limit_request_text"]='Nedlastingsgrensen er nådd: [downloaded]/[limit]';
 $lang["page-title_user_group_management_edit"]='Rediger brukergruppe';
 $lang["page-subtitle_user_group_management_edit"]='Bruk denne delen til å endre egenskapene til brukergruppen.';
 $lang["action-title_remove_user_group_logo"]='Huk av for å fjerne logo for brukergruppe';
@@ -2092,7 +2091,7 @@ $lang["resource_types_manage"]='Ressurstyper';
 $lang["resource_type_new"]='Ny ressurstype';
 $lang["resource_type_field_new"]='Ny metadatafelt';
 $lang["admin_advanced_field_properties"]='Avanserte feltinnstillinger';
-$lang["admin_delete_field_confirm"]='Det er %%AFFECTEDRESOURCES%% ressurs(er) med data i dette feltet. Noen av de berørte ressurs-IDene er oppført nedenfor. Metadataene knyttet til dette feltet vil gå tapt hvis du fortsetter. Er du sikker på at du vil fortsette med slettingen?';
+$lang["admin_delete_field_confirm"]='Det er [affected_resources] ressurs(er) med data i dette feltet. Noen av de berørte ressurs-IDene er oppført nedenfor. Metadataene knyttet til dette feltet vil gå tapt hvis du fortsetter. Er du sikker på at du vil fortsette med slettingen?';
 $lang["admin_delete_field_error"]='Kan ikke slette feltet. Vennligst kontakt systemadministratoren din. Dette feltet brukes for følgende konfigurasjonsalternativer: -';
 $lang["admin_delete_field_error_scopes"]='Kan ikke slette feltet. Vennligst kontakt systemadministratoren din. Dette feltet brukes fortsatt i disse områdene:';
 $lang["admin_resource_type_create"]='Opprett ressurstype kalt...';
@@ -2133,7 +2132,7 @@ $lang["property-groups"]='Grupper';
 $lang["property-user_group"]='Brukergruppe';
 $lang["property-user_group_parent"]='Foreldrebrukergruppe';
 $lang["property-user_group_remove_parent"]='(fjern overordnet)';
-$lang["resource_type_delete_confirmation"]='Det er %%RESOURCECOUNT%% ressurs(er) av denne typen.';
+$lang["resource_type_delete_confirmation"]='Det er [resource_count] ressurs(er) av denne typen.';
 $lang["resource_type_delete_assoc_rtf_confirm"]='Det er %COUNT metadatafelt knyttet til denne ressurstype.';
 $lang["resource_type_delete_select_new"]='Vennligst velg ressurstype som disse vil bli konvertert til.';
 $lang["resourcetype-global_field"]='Global';
@@ -2148,7 +2147,7 @@ $lang["admin_field_deleted"]='Slettet felt';
 $lang["action-move-up"]='Flytt opp';
 $lang["action-move-down"]='Flytt ned';
 $lang["action-move-to"]='Flytt til';
-$lang["delete_user_group_checkbox_alert_message"]='Vennligst merk at denne handlingen også vil slette all innholdstekst som var relevant for denne brukergruppen. Det er funnet %%RECORDSCOUNT%% poster i Administrer innhold.';
+$lang["delete_user_group_checkbox_alert_message"]='Vennligst merk at denne handlingen også vil slette all innholdstekst som var relevant for denne brukergruppen. Det er funnet [recordscount] poster i Administrer innhold.';
 $lang["about__about"]='Din "om oss"-tekst går her.';
 $lang["all__footer"]='Drevet av <a target="_blank" href="https://www.resourcespace.com/">ResourceSpace Open Source Digital Asset Management</a>';
 $lang["all__researchrequest"]='La vårt ressursteam finne ressursene du trenger.';
@@ -2213,8 +2212,6 @@ $lang["user_preferences__introtext_new"]='Vennligst skriv inn et passord nedenfo
 $lang["user_request__introtext"]='Vennligst fyll ut skjemaet nedenfor for å be om en brukerkonto.';
 $lang["view__storyextract"]='Historieutdrag:';
 $lang["notify_resource_change_email_subject"]='En ressurs har blitt endret';
-$lang["notify_resource_change_email"]='En ressurs som du lastet ned for [dager] dager siden har blitt endret. Klikk på lenken nedenfor for å se ressursen.<br /><br /><a href=\'[url]\'>[url]</a>';
-$lang["notify_resource_change_notification"]='En ressurs som du lastet ned for [dager] dager siden har blitt endret.';
 $lang["passwordresetemail"]='Vennligst klikk på lenken nedenfor for å tilbakestille passordet ditt.';
 $lang["password_reset_email_html"]='Brukernavn: [username]<br /><br />Klikk på lenken nedenfor for å tilbakestille passordet ditt.<br /><br /><a href="[url]" target="_blank" >[url]</a>';
 $lang["passwordnewemail"]='Vennligst klikk på lenken nedenfor for å sette en ny passord for din konto.';
@@ -2345,7 +2342,7 @@ $lang["userpreference_tilenav"]='Bruk et flisoppsett for navigasjonsmenyene';
 $lang["userpreference_tilenavdefault"]='Bruk flisoppsett for navigasjonsmenyer (standardinnstilling; brukere kan endre dette)';
 $lang["systemconfig"]='Konfigurasjon';
 $lang["systemconfig_customfont_label"]='Tilpasset skriftfil';
-$lang["systemconfig_invalid_extension"]='Filtypen er ikke gyldig for dette valget. Vennligst velg fra: %%EXTENSIONS%%';
+$lang["systemconfig_invalid_extension"]='Filtypen er ikke gyldig for dette valget. Vennligst velg fra: [extensions]';
 $lang["systemconfig_linkedheaderimgsrc_label"]='Søknadslogo';
 $lang["systemconfig_header_favicon_label"]='Søknad favicon';
 $lang["systemconfig_description"]='Valgmulighetene på denne siden gjelder for hele systemet og kan endre noen av funksjonene som er tilgjengelige for brukerne. Vær oppmerksom på at eventuelle valg som også er spesifikke for brukeren, vil ha forrang hvis de er satt.';
@@ -2574,9 +2571,9 @@ $lang["error_save_not_allowed_fc_has_children"]='Kan ikke lagre endringen. Vennl
 $lang["error_multiple_preview_tools"]='Vennligst deaktiver gjeldende forhåndsvisningsverktøy og prøv igjen.';
 $lang["missing_folder"]='FEIL - Stien til opplastingsmappen er ikke satt.';
 $lang["error_upload_replace_file_fail"]='Kunne ikke erstatte ressursfilen';
-$lang["error_upload_replace_no_matching_file"]='Ingen gyldig ressurs å erstatte funnet med filnavn %%FILENAME%%';
-$lang["error_upload_invalid_file"]='Ugyldig filtype: %%FILETYPE%%';
-$lang["error_upload_duplicate_file"]='Duplisert filopplasting, filen samsvarer med ressurser: %%RESOURCES%%';
+$lang["error_upload_replace_no_matching_file"]='Ingen gyldig ressurs å erstatte funnet med filnavn [filename]';
+$lang["error_upload_invalid_file"]='Ugyldig filtype: [filetype]';
+$lang["error_upload_duplicate_file"]='Duplisert filopplasting, filen samsvarer med ressurser: [resources]';
 $lang["error_upload_file_move_failed"]='Klarte ikke å flytte opplastet fil. Vennligst sjekk størrelsen på filen du prøver å laste opp.';
 $lang["error_fail_save"]='Kan ikke lagre';
 $lang["image_quality_100"]='Maksimum';
@@ -2606,10 +2603,10 @@ $lang["oj-collection-download-failure-text"]='Kan ikke forberede samlingens arki
 $lang["oj-batch-replace-local-success-text"]='Batch-erstatter har erstattet %TOTALRESOURCES ressurser vellykket';
 $lang["oj-batch-replace-local-failure-text"]='Batch-erstattelse mislyktes. Vennligst sjekk loggene for feil';
 $lang["oj-creation-failure-text"]='En feil oppstod. Kunne ikke opprette frakoblet jobb';
-$lang["oj-creation-success"]='Frakoblet jobb %%JOBNUMBER%% opprettet. Du vil bli varslet når den er fullført';
+$lang["oj-creation-success"]='Frakoblet jobb [jobnumber] opprettet. Du vil bli varslet når den er fullført';
 $lang["email_auto_digest_inactive"]='Dette er en oppsummering av dine uleste meldinger';
 $lang["email_digest_disable"]='Du kan deaktivere disse varslingene ved å logge inn og justere dine brukerpreferanser på lenken nedenfor:';
-$lang["user_pref_inactive_digest"]='Send meg en daglig e-post med alle uleste varsler hvis jeg ikke har logget på i mer enn %%DAYS%% dager?';
+$lang["user_pref_inactive_digest"]='Send meg en daglig e-post med alle uleste varsler hvis jeg ikke har logget på i mer enn [days] dager?';
 $lang["edit_copy_from_field"]='Kopier data fra feltet';
 $lang["home_page"]='Hjemmeside';
 $lang["login_word"]='Innlogging';
@@ -2675,24 +2672,20 @@ $lang["date_format_error"]='Feil: %row% \'%date%\' i [%field%] er en ugyldig opp
 $lang["invalid_date_error"]='Feil: %row% \'%date%\' i [%field%] er ikke en gyldig dato';
 $lang["invalid_date_error2"]='Feil: ugyldig dato verdi: \'%date%\'. Vennligst bruk formatet: \'yyyy-mm-dd tt:mm:ss\' (tid er valgfritt)';
 $lang["invalid_date_generic"]='Du har skrevet inn en ugyldig dato';
-$lang["error_server_missing_module"]='Serveren mangler nødvendig programvare: %%MODULE%%. Vennligst kontakt systemadministratoren din';
-$lang["error_check_config"]='Vennligst sjekk konfigurasjonsalternativet %%CONFIG_OPTION%%';
+$lang["error_server_missing_module"]='Serveren mangler nødvendig programvare: [module]. Vennligst kontakt systemadministratoren din';
+$lang["error_check_config"]='Vennligst sjekk konfigurasjonsalternativet [config_option]';
 $lang["useaspreviewimage"]='Bruk som forhåndsvisningsbilde';
 $lang["filechecksum"]='Fil sjekksum';
-$lang["system_notification"]='%%APPLICATION_NAME%% - systemvarsling';
-$lang["system_notification_email"]='[img_headerlogo]<br />
-[melding]<br /><br />
-<a href="[url]">[url]</a><br /><br />
-[tekst_footer]';
+$lang["system_notification"]='[application_name] - systemvarsling';
 $lang["error_edit_filter_invalid"]='Redigeringsfilteret er ikke riktig konfigurert for denne brukergruppen. Vennligst kontakt administratoren din';
 $lang["error_search_filter_invalid"]='Søkefilteret er ikke riktig konfigurert for denne brukergruppen. Vennligst kontakt administratoren din';
 $lang["action_lock"]='Lås';
 $lang["action_unlock"]='Lås opp';
 $lang["status_locked"]='Låst';
 $lang["status_unlocked"]='Ulåst';
-$lang["status_locked_by"]='Låst av %%USER%%';
+$lang["status_locked_by"]='Låst av [user]';
 $lang["status_locked_self"]='Du har låst denne ressursen';
-$lang["error_locked_by_user"]='Ressursen er låst av %%USER%%';
+$lang["error_locked_by_user"]='Ressursen er låst av [user]';
 $lang["error_locked_other_user"]='Ressursen er låst av en annen bruker';
 $lang["error-edit_noaccess_resources"]='Ingen redigeringsadgang til ressurser:';
 $lang["error-edit_locked_resources"]='Følgende ressurser er låst:';
@@ -2726,7 +2719,7 @@ $lang["job_priority"]='Prioritet';
 $lang["csv_export_offline_option"]='Generer CSV-fil offline? Dette bør brukes for store resultater. Du vil bli varslet via en ResourceSpace-melding når CSV-filen er tilgjengelig';
 $lang["csv_export_file_ready"]='Din CSV-eksport er klar';
 $lang["offline_processing_disabled"]='Offline jobbprosessering er ikke konfigurert på dette systemet. For å aktivere dette, vennligst kontakt systemadministratoren din';
-$lang["csv_export_offline_only"]='Offline-behandling må brukes når du eksporterer data for mer enn %%RESOURCE_COUNT%% ressurser';
+$lang["csv_export_offline_only"]='Offline-behandling må brukes når du eksporterer data for mer enn [resource_count] ressurser';
 $lang["setup_google_vision_settings"]='Google Vision-innstillinger';
 $lang["setup_google_vision_enable"]='Aktiver Google Vision-tillegg?';
 $lang["tagged_notification"]='Du har blitt tagget i en kommentar:';
@@ -2756,7 +2749,7 @@ $lang["notify_upload_share_new_subject"]='Nye eksterne opplastinger';
 $lang["my_shares"]='Mine delinger';
 $lang["manage_shares_title"]='Eksterne delinger';
 $lang["share_purge_text"]='Slett utløpte delinger';
-$lang["shares_purged_message"]='Slettet %%DELETEDCOUNT%% delinger';
+$lang["shares_purged_message"]='Slettet [deleted_count] delinger';
 $lang["share_confirm_purge"]='Er du sikker på at du vil slette alle utløpte delinger?';
 $lang["external_shares_view_existing"]='Se eksisterende delinger av opplastinger for denne samlingen.';
 $lang["share_user"]='Delt av';
@@ -2769,7 +2762,7 @@ $lang["log-reference"]='Loggoppføring';
 $lang["log_column"]='Registreringsdata';
 $lang["log_value"]='Verdi';
 $lang["error_slideshow_invalid"]='Ugyldig sekvensnummer. Vennligst skriv inn en numerisk verdi';
-$lang["error-file-permissions"]='Kan ikke utføre filoperasjonen. Vennligst sjekk filrettighetene på %%PATH%%';
+$lang["error-file-permissions"]='Kan ikke utføre filoperasjonen. Vennligst sjekk filrettighetene på [path]';
 $lang["new_message"]='Ny melding';
 $lang["message_recipients"]='Mottaker(e)';
 $lang["error_invalid_user"]='Ugyldig bruker spesifisert';
@@ -2784,13 +2777,13 @@ $lang["upload_view_log"]='Vis logg';
 $lang["code_sign_required"]='Innebygd kode-signering';
 $lang["code_sign_required_warning"]='Advarsel: Inline-kode er endret og den oppdaterte koden er ikke signert ved hjelp av kommandolinjeverktøyet. Makroer utført på metadata kan ikke fullføres som forventet.';
 $lang["search_full_text"]='Søk i all tekst (fulltekstsøk)';
-$lang["error_invalid_revert_option"]='Den tidligere lagrede verdien \'%%VALUE%%\' kunne ikke bli funnet i gjeldende alternativer. Vennligst sjekk om navnet på dette alternativet har endret seg og oppdater ressursen manuelt hvis det er nødvendig.';
-$lang["error_invalid_revert_date"]='Den tidligere lagrede datoen \'%%VALUE%%\' er ugyldig. Vennligst oppdater ressursen manuelt hvis nødvendig.';
+$lang["error_invalid_revert_option"]='Den tidligere lagrede verdien \'[value]\' kunne ikke bli funnet i gjeldende alternativer. Vennligst sjekk om navnet på dette alternativet har endret seg og oppdater ressursen manuelt hvis det er nødvendig.';
+$lang["error_invalid_revert_date"]='Den tidligere lagrede datoen \'[value]\' er ugyldig. Vennligst oppdater ressursen manuelt hvis nødvendig.';
 $lang["batch_edit_save_warning_message"]='Feil oppsto under redigering av følgende ressurser -';
 $lang["batch_edit_save_warning_alert"]='Noen feil oppsto under utførelsen av denne operasjonen. Se meldingene dine for mer detaljer';
 
 $lang["property-regexp_filter"]='Regulært uttrykk filter';
-$lang["information_field_restype_deselect_cleanup"]='For å fjerne eksisterende feltdata fra de fravalgte ressurs typene, klikk på følgende lenke %%CLEANUP_LINK%%';
+$lang["information_field_restype_deselect_cleanup"]='For å fjerne eksisterende feltdata fra de fravalgte ressurs typene, klikk på følgende lenke [cleanup_link]';
 $lang["property-id"]='Id';
 $lang["mainmenu"]='Hovedmeny';
 $lang["perpage_option"]='? per side';
@@ -2863,9 +2856,6 @@ $lang["resourcetypes_separator"]=', ';
 $lang["collectiontypes_separator"]=',';
 $lang["user_group"]='brukergruppe';
 $lang["admin_resource_type_field_migrate_data"]='Migrer fritekstdata til faste listealternativer';
-$lang["all__emailbulk"]='<br /><br />
-[tekst]<br /><br />
-[tekst_bunntekst]';
 $lang["all__emailcollection"]='<br />
 [fromusername] [lang_emailcollectionmessage] <br /><br /> 
 [lang_message] : [message]<br /><br /> 
@@ -2875,25 +2865,6 @@ $lang["all__emailcollectionexternal"]='<br />
 Melding: [message]<br /><br /> 
 Klikk på lenken for å se samlingen: [list]';
 $lang["all__emailcontactadmin"]='<br />[fromusername] ([emailfrom])[lang_contactadminemailtext]<br /><br />[message]<br /><br /><a href="[url]">[embed_thumbnail]</a><br /><br />[text_footer]';
-$lang["all__emaillogindetails"]='<br />
-[velkommen]<br /><br /> 
-[nye_påloggingsdetaljer]<br /><br /> 
-[brukernavn] : [username] <br /><br />
-<a href="[url]">[url]</a><br /><br />
-[tekst_bunntekst]';
-$lang["all__emailnewresearchrequestwaiting"]='<br />
-[brukernavn] ([brukerfulltnavn] - [brukeremail])
-[lang_harpostetforskningsforespørsel]<br /><br />
-[lang_prosjektnavn]:[navn]<br /><br />
-[lang_prosjektbeskrivelse]:[beskrivelse]<br /><br />
-[lang_frist]:[frist]<br /><br />
-[lang_kontakttelefon]:[kontakt]<br /><br />
-[lang_endeligbruk]: [endeligbruk]<br /><br />
-[lang_formkreves]: [form]<br /><br />
-[lang_antallressurserkreves]: [antallressurser]<br /><br />
-<a href="[url]">[url]</a><br /><br />
-<a href="[teamresearchurl]">[teamresearchurl]</a><br /><br />
-[tekst_bunntekst]';
 $lang["all__emailnotifyresourcesapproved"]='<br />
 [lang_userresourcesapproved]
 [list] <br />
@@ -2912,26 +2883,6 @@ $lang["all__emailnotifyresourcesunsubmitted"]='<br />
 [lang_viewalluserpending] <br /><br /> 
 <a href="[url]">[url]</a><br /><br />
 [text_footer]';
-$lang["all__emailresearchrequestassigned"]='[lang_researchrequestassignedmessage]
-
-[tekst_bunntekst]';
-$lang["all__emailresearchrequestcomplete"]='<br />
-[lang_researchrequestcompletemessage] <br /><br /> 
-[lang_clicklinkviewcollection] <br /><br /> 
-<a href="[url]">[url]</a><br /><br />
-[text_footer]';
-$lang["all__emailresource"]='<br />
-[fromusername] har sendt deg en ressurs<br /><br />
-[message]<br /><br />
-<a href="[url]">[embed_thumbnail]</a><br /><br />
-Klikk for å se ressursen<br /><a href="[url]">[resourcename] - [url]</a><br /><br />
-[text_footer]';
-$lang["all__emailresourcerequest"]='<br />
-[lang_username] : [username] <br />
-[liste] <br />
-[deltaljer]<br /><br />
-[lang_klikkforåseressurs] <br /><br />
-<a href="[url]">[url]</a>';
 $lang["help__introtext"]='<iframe src="https://www.resourcespace.com/knowledge-base/?from_rs=true" style="width:1235px;height:600px;border:none;margin:-20px;" id="knowledge_base" />';
 $lang["team_research__introtext"]='Organiser og administrer \'Forskningsforespørsler\'. <br /><br />Velg \'rediger forskning\' for å gjennomgå forespørselsdetaljene og tildele forskningen til et teammedlem. Det er mulig å basere en forskningsforespørsel på en tidligere samling ved å skrive inn samlings-ID-en i \'rediger\'-skjermen. <br /><br />Når forskningsforespørselen er tildelt, velg \'rediger samling\' for å legge forskningsforespørselen til \'Standard samling\'-panelet. Ved å bruke standardverktøyene er det da mulig å legge til ressurser til forskningen. <br /><br />Når forskningen er fullført, velg \'rediger forskning\', endre status til fullført og en e-post sendes automatisk til brukeren som ba om forskningen. E-posten inneholder en lenke til forskningen og den legges også automatisk til deres \'Standard samling\'-panel.';
 $lang["dash"]='Dashbord';
@@ -2963,10 +2914,10 @@ $lang["email_shares_options_summary"]='Disse alternativene vil bare gjelde for d
 $lang["report_breakdown_pie"]='Nedbrytningsdiagram';
 $lang["actions_email_new_actions_title"]='Nye handlinger';
 $lang["actions_email_new_actions_intro"]='Det er nye handlinger som må fullføres.';
-$lang["email_actions_truncated"]='Bare de siste 1000 handlingene vises her. Du har %%TOTAL%% handlinger. Logg inn på %%APPLICATIONNAME%% for å se alle.';
+$lang["email_actions_truncated"]='Bare de siste 1000 handlingene vises her. Du har [total] handlinger. Logg inn på [application_name] for å se alle.';
 $lang["annotate_select"]='Velg felt...';
 $lang["error_upload_replace_file_fail_invalid_collection"]='Kunne ikke erstatte ressursfil. Samlingsreferansen som er oppgitt, er ugyldig.';
-$lang["error_upload_replace_multiple_matching_files"]='Flere gyldige ressurser funnet med filnavn %%FILENAME%%';
+$lang["error_upload_replace_multiple_matching_files"]='Flere gyldige ressurser funnet med filnavn [filename]';
 $lang["systemconfig_api"]='API';
 $lang["iiif"]='IIIF';
 $lang["api-curl-example"]='cURL-eksempel';
@@ -2986,7 +2937,6 @@ $lang["all__file_integrity_fail_email"]='[img_headerlogo]<br />
 <a href="[url]">[url]</a><br /><br />
 [text_footer]';
 $lang["error-edit_noaccess_related_resources"]='Kan ikke relatere ressurser. Ingen tilgang til:';
-$lang["csv_export_filename"]='metadata_export_%%SØK%%_%%TID%%';
 $lang["upload_share_email_template"]='<br />
 [from_name] [lang_upload_share_email_text] [applicationname]<br /><br /> 
 [lang_message] : [message]<br /><br />
@@ -3003,7 +2953,7 @@ $lang["all__emailnotifyuploadsharenew"]='<br />
 <a href="[url]">[url]</a><br /><br />
 [text_footer]';
 $lang["share_expired_icon_title"]='Utløpt';
-$lang["error_invalid_date_format"]='"%%VALUE%%" er en ugyldig dato. Alle verdier i dette feltet må være formatert som ÅÅÅÅ-MM-DD';
+$lang["error_invalid_date_format"]='"[value]" er en ugyldig dato. Alle verdier i dette feltet må være formatert som ÅÅÅÅ-MM-DD';
 $lang["related_resource_create"]='Opprett ny relatert ressurs';
 $lang["skip-to-main-content"]='Hopp til hovedinnholdet';
 $lang["cleanup_invalid_nodes"]='Rens feltdata fra ugyldige ressurstyper';
@@ -3021,7 +2971,7 @@ $lang["pull_images_text"]='Bruk bilder fra relaterte ressurser hvis ingen er til
 $lang["system_user_default"]='SYSTEM';
 $lang["userlimitreached"]='Du har nådd brukergrensen din. En eksisterende bruker må deaktiveres eller slettes før du kan opprette nye kontoer eller aktivere eksisterende kontoer.';
 $lang["user_api_session_title"]='Fjernsystem API-tilgang';
-$lang["user_api_session_text"]='Det eksterne systemet \'%system%\' ber om tilgang til %applicationname% ved å bruke dine legitimasjoner. Klikk \'Gi tilgang\' bare hvis du har initiert denne forespørselen';
+$lang["user_api_session_text"]='Det eksterne systemet \'%system%\' ber om tilgang til [applicationname] ved å bruke dine legitimasjoner. Klikk \'Gi tilgang\' bare hvis du har initiert denne forespørselen';
 $lang["user_api_session_invalid_system"]='Ugyldig system forespurt';
 $lang["user_api_session_grant_access"]='Gi tilgang';
 $lang["user_api_session_grant_success"]='Nøkkel utstedt vellykket.';
@@ -3034,3 +2984,52 @@ $lang["completed_set_no_file"]='Ressurs merket som uten fil';
 $lang["completed_unset_no_file"]='Ressurs merket som fil mangler';
 $lang["php"]='PHP';
 $lang["themes__manage"]='Organiser og rediger de utvalgte samlingene som er tilgjengelige online. Utvalgte samlinger er spesielt promoterte samlinger. <br /><br /> <strong>1 For å opprette en ny oppføring under en utvalgt samling - bygg en samling</strong><br /> Velg <strong>Mine Samlinger</strong> fra hovedmenyen øverst og opprett en helt ny <strong>offentlig</strong> samling. Husk å inkludere et navn på den utvalgte samlingen under oppsettet. Bruk et eksisterende navn på en utvalgt samling for å gruppere samlingen under en nåværende utvalgt samling (sørg for at du skriver det nøyaktig det samme), eller velg en ny tittel for å opprette en helt ny utvalgt samling. Tillat aldri brukere å legge til/fjerne ressurser fra utvalgte samlinger. <br /> <br /><strong>2 For å redigere innholdet i en eksisterende oppføring under en utvalgt samling</strong><br /> Velg <strong>rediger samling</strong>. Elementene i den samlingen vil vises i <strong>Mine Samlinger</strong> panelet nederst på skjermen. Bruk de vanlige verktøyene for å redigere, fjerne eller legge til ressurser. <br /> <br /><strong>3 For å endre navnet på en utvalgt samling eller flytte en samling til å vises under en annen utvalgt samling</strong><br /> Velg <strong>rediger egenskaper</strong> og rediger kategorien for utvalgt samling eller samlingsnavnet. Bruk et eksisterende navn på en utvalgt samling for å gruppere samlingen under en nåværende utvalgt samling (sørg for at du skriver det nøyaktig det samme), eller velg en ny tittel for å opprette en helt ny utvalgt samling. <br /> <br /><strong>4 For å fjerne en samling fra en utvalgt samling</strong><br /> Velg <strong>rediger egenskaper</strong> og slett ordene i kategoriboksen for utvalgt samling.';
+$lang["all__emailresearchrequestcomplete"]='<br />
+[lang_researchrequestcompletemessage] <br /><br /> 
+[lang_clicklinkviewcollection] <br /><br /> 
+<a href="[url]">[url]</a><br /><br />
+[text_footer]';
+$lang["notify_resource_change_email"]='En ressurs som du lastet ned for [days] dager siden har blitt endret. Klikk på lenken nedenfor for å se ressursen.<br /><br /><a href=\'[url]\'>[url]</a>';
+$lang["notify_resource_change_notification"]='En ressurs som du lastet ned for [days] dager siden har blitt endret.';
+$lang["all__emailresource"]='<br />
+[fromusername] [lang_hasemailedyouaresource]<br /><br />
+[message]<br /><br />
+<a href="[url]">[embed_thumbnail]</a><br /><br />
+[lang_clicktoviewresource]<br /><a href="[url]">[resourcename] - [url]</a><br /><br />
+[text_footer]';
+$lang["all__emailresearchrequestassigned"]='[lang_researchrequestassignedmessage]
+
+[text_footer]';
+$lang["system_notification_email"]='[img_headerlogo]<br />
+[message]<br /><br /> 
+<a href="[url]">[url]</a><br /><br />
+[text_footer]';
+$lang["all__emailresourcerequest"]='<br />
+[lang_username] : [username] <br />
+[list] <br />
+[details]<br /><br />
+[lang_clicktoviewresource] <br /><br />
+<a href="[url]">[url]</a>';
+$lang["all__emailnewresearchrequestwaiting"]='[username] ([userfullname] - [useremail])
+[lang_haspostedresearchrequest]
+
+[lang_nameofproject]:[name]
+
+[lang_descriptionofproject]:[description]
+
+[lang_deadline]:[deadline]
+
+[lang_contacttelephone]:[contact]
+
+[lang_finaluse]: [finaluse]
+
+[lang_shaperequired]: [shape]
+
+[lang_noresourcesrequired]: [noresources]
+
+<a href="[url]">[url]</a>
+
+<a href="[teamresearchurl]">[teamresearchurl]</a>
+
+[text_footer]';
+$lang["csv_export_filename"]='metadata_export_[search]_[time]';

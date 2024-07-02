@@ -134,7 +134,7 @@ $lang["editresearchrequests"]="Bewerk onderzoekaanvraag";
 $lang["savedsearch"]="Bewaarde zoekopdrachten";
 $lang["mustspecifyoneusername"]="Ten minste een gebruikersnaam opgaven";
 $lang["couldnotmatchallusernames"]="Kon niet alle gebruikersnamen vinden";
-$lang["emailcollectionmessage"]="heeft u een collectie materialen gezonden vanuit %applicationname%, deze collectie is toegevoegd aan uw collecties pagina"; # suffixed to user name e.g. "Fred has e-mailed you a collection.."
+$lang["emailcollectionmessage"]="heeft u een collectie materialen gezonden vanuit [applicationname], deze collectie is toegevoegd aan uw collecties pagina"; # suffixed to user name e.g. "Fred has e-mailed you a collection.."
 $lang["clicklinkviewcollection"]="Klik op de link hieronder om de collectie weer te geven.";
  
 # Resource create / edit / view
@@ -689,8 +689,8 @@ $lang["userpending"]='Gebruikersbijdragen in afwachting van beoordeling';
 $lang["viewuserpendingsubmission"]='Bekijk door gebruikers bijgedragen resources die in afwachting zijn van indiening';
 $lang["userpendingsubmission"]='Gebruikersbijdragen in afwachting van indiening';
 $lang["resourcespendingarchive"]='Te archiveren resources in afwachting';
-$lang["previewstatus"]='Voorbeeldweergaven gemaakt voor bronbestand %file% van %filestotal%.';
-$lang["uploadedstatus"]='Bronbestand %file% van %filestotal% geüpload - %path%';
+$lang["previewstatus"]='Voorbeeldweergaven gemaakt voor bronbestand [file] van %filestotal%.';
+$lang["uploadedstatus"]='Bronbestand [file] van %filestotal% geüpload - %path%';
 $lang["upload_summary"]='Upload samenvatting';
 $lang["resources_uploaded-0"]='0 bronnen succesvol geüpload.';
 $lang["resources_uploaded-1"]='1 bronbestand succesvol geüpload.';
@@ -736,7 +736,7 @@ $lang["research"]='Onderzoek';
 $lang["collectionprivate_attachedusermessage"]='%user% heeft je toegevoegd aan hun collectie \'%colname%\'.';
 $lang["nomessage"]='Geen bericht';
 $lang["nomessages"]='Geen berichten';
-$lang["emailcollectionmessageexternal"]='Heeft u een verzameling van bronnen van %applicationname% per e-mail gestuurd.';
+$lang["emailcollectionmessageexternal"]='Heeft u een verzameling van bronnen van [applicationname] per e-mail gestuurd.';
 $lang["zippedcollectiontextfile"]='Inclusief tekstbestand met gegevens van bron/collectie.';
 $lang["archivesettings"]='Archiefinstellingen';
 $lang["archive-zip"]='ZIP';
@@ -761,8 +761,8 @@ $lang["total"]='Totaal';
 $lang["lastmatching"]='Laatste overeenkomst';
 $lang["ownedbyyou"]='In jouw bezit';
 $lang["edit_theme_category"]='Bewerk categorie van uitgelichte collectie';
-$lang["emailthemecollectionmessageexternal"]='Heeft u collecties van resources vanuit %applicationname% per e-mail verzonden.';
-$lang["emailthememessage"]='Heeft u een selectie van uitgelichte collecties van %applicationname% per e-mail gestuurd die zijn toegevoegd aan uw pagina \'Mijn collecties\'.';
+$lang["emailthemecollectionmessageexternal"]='Heeft u collecties van resources vanuit [applicationname] per e-mail verzonden.';
+$lang["emailthememessage"]='Heeft u een selectie van uitgelichte collecties van [applicationname] per e-mail gestuurd die zijn toegevoegd aan uw pagina \'Mijn collecties\'.';
 $lang["clicklinkviewthemes"]='Gebruik onderstaande link om de uitgelichte collecties te bekijken.';
 $lang["clicklinkviewcollections"]='Gebruik de onderstaande links om de collecties te bekijken.';
 $lang["background_image"]='Achtergrondafbeelding';
@@ -791,7 +791,7 @@ $lang["recreatepreviews_pending"]='Bron(nen) zijn gemarkeerd voor het opnieuw ge
 $lang["retrypreviews"]='Opnieuw voorbeeldweergave maken';
 $lang["relatedresources-filename_extension"]='Gerelateerde bronnen - %EXTENSION';
 $lang["relatedresources-id"]='Gerelateerde bronnen voor %id%';
-$lang["relatedresources-restype"]='Gerelateerde bronnen - %restype%';
+$lang["relatedresources-restype"]='Gerelateerde bronnen - [restype]';
 $lang["relatedresources_onupload"]='Koppel alle bronnen bij uploaden';
 $lang["youfoundresource"]='bron';
 $lang["youfoundresults"]='resultaten';
@@ -1520,7 +1520,7 @@ $lang["report_periodic_email_option_all_users"]='alle gebruikers';
 $lang["report_periodic_email_option_selected_user_groups"]='geselecteerde gebruikersgroep(en)';
 $lang["report_periodic_email_unsubscribe_title"]='Afmelden voor periodieke e-mails';
 $lang["report_periodic_email_unsubscribe_confirmation"]='Bevestig alstublieft dat u zich wilt uitschrijven';
-$lang["report_periodic_email_report_attached"]='Het rapport \'%%REPORTTITLE%%\' is bijgevoegd.';
+$lang["report_periodic_email_report_attached"]='Het rapport \'[report_title]\' is bijgevoegd.';
 $lang["report-select-required"]='Selecteer alstublieft een rapport';
 $lang["columnheader-keyword"]='Trefwoord';
 $lang["columnheader-entered_count"]='Ingevoerd aantal';
@@ -1562,7 +1562,7 @@ $lang["writeaccess_sql_log"]='Schrijftoegang tot SQL-logboek:';
 $lang["nowriteaccesstohomeanim"]='Niet beschrijfbaar Open de machtigingen om de functie voor het bijsnijden van de home-animatie mogelijk te maken in de Transform-plug-in.';
 $lang["blockedbrowsingoffilestore"]='Geblokkeerd browsen van de \'filestore\'-map';
 $lang["noblockedbrowsingoffilestore"]='De map van de bestandsopslag lijkt doorbladerbaar te zijn. Verwijder \'Indexes\' uit de \'Options\'-lijst van Apache of schakel de \'autoindex\'-module van Apache uit.';
-$lang["php_extension_not_enabled"]='PHP-extensie %%EXTENSION%% is niet ingeschakeld';
+$lang["php_extension_not_enabled"]='PHP-extensie [extension] is niet ingeschakeld';
 $lang["execution_failed"]='Onverwachte uitvoer bij het uitvoeren van het %command-commando. De uitvoer was \'%output\'.';
 $lang["exif_extension"]='EXIF-extensie';
 $lang["archiver_utility"]='Archiver hulpprogramma';
@@ -1622,9 +1622,9 @@ $lang["restricted_access_only_to_resource_type"]='Beperkte toegang alleen tot he
 $lang["restricted_upload_for_resource_of_type"]='Beperkte upload voor bron van type';
 $lang["deny_edit_resource_type"]='Toegang tot bewerken van bron van het type weigeren';
 $lang["deny_edit_all_resource_types"]='Ontzeg bewerkingsrechten voor alle soorten bronnen, behalve die welke zijn gespecificeerd door de "STA bewerkingsrechten toe voor bronnen van het gegeven bron type" machtigingen';
-$lang["can_edit_resource_type"]='Kan bronnen van het type %%RESOURCETYPE%% bewerken. Wordt genegeerd als de toestemming "Bewerktoegang tot het opgegeven bron type WEIGEREN" niet aanwezig is';
+$lang["can_edit_resource_type"]='Kan bronnen van het type [resourcetype] bewerken. Wordt genegeerd als de toestemming "Bewerktoegang tot het opgegeven bron type WEIGEREN" niet aanwezig is';
 $lang["edit_access_to_workflow_state"]='Bewerk toegang tot workflow status';
-$lang["edit_access_to_access"]='Bewerk toegang tot toegangsstatus \'%STATE\'';
+$lang["edit_access_to_access"]='Bewerk toegang tot toegangsstatus \'[state]\'';
 $lang["can_create_resources_and_upload_files-admins"]='Kan bronnen maken / bestanden uploaden<br>(beheerdersgebruikers; bronnen worden in de \'Actief\' status geplaatst)';
 $lang["can_create_resources_and_upload_files-general_users"]='Kan bronnen maken / bestanden uploaden<br>(normale gebruikers; bronnen gaan naar de \'In afwachting van indiening\' status via Mijn bijdragen)';
 $lang["can_delete_resources"]='Kan bronnen verwijderen (waarvoor de gebruiker schrijftoegang heeft)';
@@ -1754,7 +1754,6 @@ $lang["zipping"]='Comprimeren (Zipping)';
 $lang["zipcomplete"]='Uw download van het Zip-bestand zou moeten zijn gestart. U kunt deze pagina verlaten.';
 $lang["starttypingkeyword"]='Begin met het typen van een trefwoord...';
 $lang["createnewentryfor"]='Nieuwe invoer aanmaken voor';
-$lang["confirmcreatenewentryfor"]='Weet u zeker dat u een nieuwe trefwoordlijst invoer wilt maken voor \'%%\'?';
 $lang["noentryexists"]='Er bestaat geen invoer voor';
 $lang["editresourcepreviews"]='Bewerk voorvertoningen van bronnen';
 $lang["can_assign_resource_requests"]='Kan verzoek om toewijzing van bronnen toewijzen aan anderen';
@@ -1930,8 +1929,8 @@ $lang["group_download_limit_title"]='Limiet voor het downloaden van resources. S
 $lang["group_download_limit_period"]='Downloadlimietperiode (limiet in laatste X dagen). Stel in op 0 voor een absolute downloadlimiet';
 $lang["download_limit_error"]='Je downloadlimiet is bereikt.';
 $lang["download_limit_collection_error"]='Deze download van de collectie zou uw downloadlimiet overschrijden.';
-$lang["download_limit_summary"]='Je hebt %%DOWNLOADED%%/%%LIMIT%% bronnen gedownload.';
-$lang["download_limit_request_text"]='Downloadlimiet bereikt: %%DOWNLOADED%%/%%LIMIT%%';
+$lang["download_limit_summary"]='Je hebt [downloaded]/[limit] bronnen gedownload.';
+$lang["download_limit_request_text"]='Downloadlimiet bereikt: [downloaded]/[limit]';
 $lang["page-title_user_group_management_edit"]='Bewerk gebruikersgroep';
 $lang["page-subtitle_user_group_management_edit"]='Gebruik deze sectie om de eigenschappen van de gebruikersgroep te wijzigen.';
 $lang["action-title_remove_user_group_logo"]='Vinkje om het logo van de gebruikersgroep te verwijderen';
@@ -1957,7 +1956,7 @@ $lang["resource_types_manage"]='Bron types';
 $lang["resource_type_new"]='Nieuw bron type';
 $lang["resource_type_field_new"]='Nieuw metadata veld';
 $lang["admin_advanced_field_properties"]='Geavanceerde veld eigenschappen';
-$lang["admin_delete_field_confirm"]='Er zijn %%AFFECTEDRESOURCES%% resource(s) met gegevens in dit veld. Enkele van de betrokken resource-ID\'s worden hieronder vermeld. De metadata die aan dit veld is gekoppeld, gaat verloren als u doorgaat. Weet u zeker dat u wilt doorgaan met verwijdering?';
+$lang["admin_delete_field_confirm"]='Er zijn [affected_resources] resource(s) met gegevens in dit veld. Enkele van de betrokken resource-ID\'s worden hieronder vermeld. De metadata die aan dit veld is gekoppeld, gaat verloren als u doorgaat. Weet u zeker dat u wilt doorgaan met verwijdering?';
 $lang["admin_delete_field_error"]='Niet mogelijk om veld te verwijderen. Neem contact op met uw systeembeheerder. Dit veld wordt gebruikt voor de volgende configuratie-opties: -';
 $lang["admin_delete_field_error_scopes"]='Niet in staat om veld te verwijderen. Neem contact op met uw systeembeheerder. Dit veld wordt nog steeds gebruikt in deze scopes:';
 $lang["admin_resource_type_create"]='Maak een bron type genaamd...';
@@ -1999,7 +1998,7 @@ $lang["property-groups"]='Groepen';
 $lang["property-user_group"]='Gebruikersgroep';
 $lang["property-user_group_parent"]='Ouder gebruikersgroep';
 $lang["property-user_group_remove_parent"]='(verwijder ouder)';
-$lang["resource_type_delete_confirmation"]='Er zijn %%RESOURCECOUNT%% bron(nen) van dit type.';
+$lang["resource_type_delete_confirmation"]='Er zijn [resource_count] bron(nen) van dit type.';
 $lang["resource_type_delete_assoc_rtf_confirm"]='Er zijn %COUNT metagegevensveld(en) gekoppeld aan dit resourcetype.';
 $lang["resource_type_delete_select_new"]='Selecteer het type bron waar deze naar geconverteerd moeten worden.';
 $lang["resourcetype-global_field"]='Wereldwijd';
@@ -2014,7 +2013,7 @@ $lang["admin_field_deleted"]='Verwijderd veld';
 $lang["action-move-up"]='Omhoog verplaatsen';
 $lang["action-move-down"]='Verplaats naar beneden';
 $lang["action-move-to"]='Verplaats naar';
-$lang["delete_user_group_checkbox_alert_message"]='Let op: deze actie zal ook alle inhoudstekst verwijderen die relevant was voor deze gebruikersgroep. Er zijn %%RECORDSCOUNT%% records gevonden in Beheer inhoud.';
+$lang["delete_user_group_checkbox_alert_message"]='Let op: deze actie zal ook alle inhoudstekst verwijderen die relevant was voor deze gebruikersgroep. Er zijn [recordscount] records gevonden in Beheer inhoud.';
 $lang["about__about"]='Uw "over ons" tekst komt hier.';
 $lang["all__footer"]='Aangedreven door <a target="_blank" href="https://www.resourcespace.com/">ResourceSpace Open Source Digital Asset Management</a>';
 $lang["all__researchrequest"]='Laat ons resources team de resources vinden die je nodig hebt.';
@@ -2077,8 +2076,6 @@ $lang["user_preferences__introtext_new"]='Voer hieronder een wachtwoord in.';
 $lang["user_request__introtext"]='Vul het onderstaande formulier in om een gebruikersaccount aan te vragen.';
 $lang["view__storyextract"]='Verhaalfragment:';
 $lang["notify_resource_change_email_subject"]='Een resource is gewijzigd';
-$lang["notify_resource_change_email"]='Een bronbestand dat je [dagen] dagen geleden hebt gedownload is gewijzigd. Klik op onderstaande link om de bron te bekijken.<br /><br /><a href=\'[url]\'>[url]</a>';
-$lang["notify_resource_change_notification"]='Een bronbestand dat je [dagen] dagen geleden hebt gedownload is gewijzigd.';
 $lang["passwordresetemail"]='Klik op onderstaande link om uw wachtwoord opnieuw in te stellen.';
 $lang["password_reset_email_html"]='Gebruikersnaam: [username]<br /><br />Klik op onderstaande link om uw wachtwoord opnieuw in te stellen.<br /><br /><a href="[url]" target="_blank" >[url]</a>';
 $lang["passwordnewemail"]='Klik op de onderstaande link om een nieuw wachtwoord in te stellen voor jouw account.';
@@ -2211,7 +2208,7 @@ $lang["userpreference_tilenav"]='Gebruik een tegelindeling voor de navigatiemenu
 $lang["userpreference_tilenavdefault"]='Gebruik een tegelindeling voor de navigatiemenu\'s (standaardinstelling; gebruikers kunnen dit wijzigen)';
 $lang["systemconfig"]='Configuratie';
 $lang["systemconfig_customfont_label"]='Aangepast lettertypebestand';
-$lang["systemconfig_invalid_extension"]='Bestandstype niet geldig voor deze selectie. Kies alstublieft uit: %%EXTENSIONS%%';
+$lang["systemconfig_invalid_extension"]='Bestandstype niet geldig voor deze selectie. Kies alstublieft uit: [extensions]';
 $lang["systemconfig_linkedheaderimgsrc_label"]='Toepassingslogo';
 $lang["systemconfig_header_favicon_label"]='Toepassingspictogram (favicon)';
 $lang["systemconfig_description"]='De opties op deze pagina zijn systeembreed en kunnen enkele van de functionaliteiten die beschikbaar zijn voor gebruikers wijzigen. Houd er rekening mee dat elke optie die ook specifiek is voor een gebruiker, voorrang zal hebben als deze is ingesteld.';
@@ -2441,10 +2438,10 @@ $lang["error_save_not_allowed_fc_has_children"]='Niet in staat om de wijziging o
 $lang["error_multiple_preview_tools"]='Schakel de huidige voorbeeldweergave tool uit en probeer het opnieuw.';
 $lang["missing_folder"]='FOUT - Het pad naar de uploadmap is niet ingesteld.';
 $lang["error_upload_replace_file_fail"]='Mislukt om het bronbestand te vervangen';
-$lang["error_upload_replace_no_matching_file"]='Geen geldige bron gevonden om te vervangen met bestandsnaam %%FILENAME%%';
-$lang["error_upload_replace_multiple_matching_files"]='Meerdere geldige bronnen gevonden met bestandsnaam %%FILENAME%%';
-$lang["error_upload_invalid_file"]='Ongeldig bestandstype: %%FILETYPE%%';
-$lang["error_upload_duplicate_file"]='Dubbele bestandsupload, bestand komt overeen met bronnen: %%RESOURCES%%';
+$lang["error_upload_replace_no_matching_file"]='Geen geldige bron gevonden om te vervangen met bestandsnaam [filename]';
+$lang["error_upload_replace_multiple_matching_files"]='Meerdere geldige bronnen gevonden met bestandsnaam [filename]';
+$lang["error_upload_invalid_file"]='Ongeldig bestandstype: [filetype]';
+$lang["error_upload_duplicate_file"]='Dubbele bestandsupload, bestand komt overeen met bronnen: [resources]';
 $lang["error_upload_file_move_failed"]='Het verplaatsen van het geüploade bestand is mislukt. Controleer de grootte van het bestand dat u probeert te uploaden.';
 $lang["error_fail_save"]='Niet in staat om op te slaan';
 $lang["image_quality_100"]='Maximum';
@@ -2474,10 +2471,10 @@ $lang["oj-collection-download-failure-text"]='Kan de archiefcollectie niet voorb
 $lang["oj-batch-replace-local-success-text"]='Batch vervangen heeft succesvol %TOTALRESOURCES resources vervangen';
 $lang["oj-batch-replace-local-failure-text"]='Batch vervangen mislukt. Controleer de logs op fouten';
 $lang["oj-creation-failure-text"]='Er is een fout opgetreden. Het is niet gelukt om een offline taak aan te maken';
-$lang["oj-creation-success"]='Offline taak %%JOBNUMBER%% aangemaakt. Je ontvangt een melding wanneer deze is voltooid';
+$lang["oj-creation-success"]='Offline taak [jobnumber] aangemaakt. Je ontvangt een melding wanneer deze is voltooid';
 $lang["email_auto_digest_inactive"]='Dit is een samenvatting van je ongelezen berichten';
 $lang["email_digest_disable"]='Je kunt deze meldingen uitschakelen door in te loggen en je gebruikersvoorkeuren aan te passen via de onderstaande link:';
-$lang["user_pref_inactive_digest"]='Stuur mij dagelijks een e-mail met alle ongelezen meldingen als ik langer dan %%DAYS%% dagen niet ben ingelogd';
+$lang["user_pref_inactive_digest"]='Stuur mij dagelijks een e-mail met alle ongelezen meldingen als ik langer dan [days] dagen niet ben ingelogd';
 $lang["edit_copy_from_field"]='Kopieer gegevens uit veld';
 $lang["home_page"]='Startpagina';
 $lang["login_word"]='Inloggen';
@@ -2542,24 +2539,20 @@ $lang["date_format_error"]='Fout: %row% \'%date%\' is een ongeldige invoer in [%
 $lang["invalid_date_error"]='Fout: %row% \'%date%\' in [%field%] is geen geldige datum';
 $lang["invalid_date_error2"]='Fout: ongeldige datumwaarde: \'%date%\'. Gebruik alstublieft het formaat: \'jjjj-mm-dd uu:mm:ss\' (tijd is optioneel)';
 $lang["invalid_date_generic"]='U heeft een ongeldige datum ingevoerd';
-$lang["error_server_missing_module"]='De server mist de vereiste software: %%MODULE%%. Neem contact op met uw systeembeheerder';
-$lang["error_check_config"]='Controleer alstublieft de configuratieoptie %%CONFIG_OPTION%%';
+$lang["error_server_missing_module"]='De server mist de vereiste software: [module]. Neem contact op met uw systeembeheerder';
+$lang["error_check_config"]='Controleer alstublieft de configuratieoptie [config_option]';
 $lang["useaspreviewimage"]='Gebruik als voorbeeldweergave afbeelding';
 $lang["filechecksum"]='Bestandscontrolegetal';
-$lang["system_notification"]='%%APPLICATION_NAME%% - systeemmelding';
-$lang["system_notification_email"]='[img_headerlogo]<br />
-[bericht]<br /><br />
-<a href="[url]">[url]</a><br /><br />
-[tekst_footer]';
+$lang["system_notification"]='[application_name] - systeemmelding';
 $lang["error_edit_filter_invalid"]='De bewerkingsfilter is niet correct geconfigureerd voor deze gebruikersgroep. Neem contact op met uw beheerder';
 $lang["error_search_filter_invalid"]='Het zoekfilter is niet correct geconfigureerd voor deze gebruikersgroep. Neem contact op met uw beheerder';
 $lang["action_lock"]='Vergrendelen';
 $lang["action_unlock"]='Ontgrendelen';
 $lang["status_locked"]='Vergrendeld';
 $lang["status_unlocked"]='Ontgrendeld';
-$lang["status_locked_by"]='Vergrendeld door %%USER%%';
+$lang["status_locked_by"]='Vergrendeld door [user]';
 $lang["status_locked_self"]='Je hebt deze bron vergrendeld';
-$lang["error_locked_by_user"]='Bron is vergrendeld door %%USER%%';
+$lang["error_locked_by_user"]='Bron is vergrendeld door [user]';
 $lang["error_locked_other_user"]='Bron is vergrendeld door een andere gebruiker';
 $lang["error-edit_noaccess_resources"]='Geen bewerkingsrechten voor resources:';
 $lang["error-edit_locked_resources"]='De volgende bronnen zijn vergrendeld:';
@@ -2593,7 +2586,7 @@ $lang["job_priority"]='Prioriteit';
 $lang["csv_export_offline_option"]='CSV-bestand offline genereren? Dit moet worden gebruikt voor grote resultaatsverzamelingen. U ontvangt een melding via een ResourceSpace-bericht zodra het CSV-bestand beschikbaar is';
 $lang["csv_export_file_ready"]='Je CSV-export is gereed';
 $lang["offline_processing_disabled"]='Offline taakverwerking is niet geconfigureerd op dit systeem. Neem contact op met uw systeembeheerder om dit in te schakelen';
-$lang["csv_export_offline_only"]='Offline verwerking moet worden gebruikt bij het exporteren van gegevens voor meer dan %%RESOURCE_COUNT%% bronnen';
+$lang["csv_export_offline_only"]='Offline verwerking moet worden gebruikt bij het exporteren van gegevens voor meer dan [resource_count] bronnen';
 $lang["setup_google_vision_settings"]='Google Vision-instellingen';
 $lang["setup_google_vision_enable"]='Google Vision plugin inschakelen?';
 $lang["tagged_notification"]='Je bent getagd in een opmerking:';
@@ -2623,7 +2616,7 @@ $lang["notify_upload_share_new_subject"]='Nieuwe externe uploads';
 $lang["my_shares"]='Mijn aandelen';
 $lang["manage_shares_title"]='Externe delingen';
 $lang["share_purge_text"]='Verwijder verlopen shares';
-$lang["shares_purged_message"]='Verwijderde %%DELETEDCOUNT%% shares';
+$lang["shares_purged_message"]='Verwijderde [deleted_count] shares';
 $lang["share_confirm_purge"]='Weet u zeker dat u alle verlopen shares wilt verwijderen?';
 $lang["external_shares_view_existing"]='Bekijk bestaande uploadshares voor deze collectie.';
 $lang["share_user"]='Gedeeld door';
@@ -2636,7 +2629,7 @@ $lang["log-reference"]='Logboekitem';
 $lang["log_column"]='Loggegevens';
 $lang["log_value"]='Waarde';
 $lang["error_slideshow_invalid"]='Ongeldige volgnummer. Voer alstublieft een numerieke waarde in';
-$lang["error-file-permissions"]='Kan bestandshandeling niet uitvoeren. Controleer de bestandsrechten op %%PATH%%';
+$lang["error-file-permissions"]='Kan bestandshandeling niet uitvoeren. Controleer de bestandsrechten op [path]';
 $lang["new_message"]='Nieuw bericht';
 $lang["message_recipients"]='Ontvanger(s)';
 $lang["error_invalid_user"]='Ongeldige gebruiker opgegeven';
@@ -2651,12 +2644,12 @@ $lang["upload_view_log"]='Bekijk logboek';
 $lang["code_sign_required"]='Inline code ondertekening';
 $lang["code_sign_required_warning"]='Waarschuwing: Inline code is gewijzigd en de bijgewerkte code is niet ondertekend met behulp van het opdrachtregelhulpprogramma. Macro\'s uitgevoerd op metadata kunnen mogelijk niet volledig worden uitgevoerd zoals verwacht.';
 $lang["search_full_text"]='Zoek in alle tekst (volledige tekst zoekopdracht)';
-$lang["error_invalid_revert_option"]='De eerder opgeslagen waarde \'%%VALUE%%\' kon niet worden gevonden in de huidige opties. Controleer of de naam van deze optie is gewijzigd en werk de resource indien nodig handmatig bij.';
-$lang["error_invalid_revert_date"]='De eerder opgeslagen datum \'%%VALUE%%\' is ongeldig. Werk de bron handmatig bij indien nodig.';
+$lang["error_invalid_revert_option"]='De eerder opgeslagen waarde \'[value]\' kon niet worden gevonden in de huidige opties. Controleer of de naam van deze optie is gewijzigd en werk de resource indien nodig handmatig bij.';
+$lang["error_invalid_revert_date"]='De eerder opgeslagen datum \'[value]\' is ongeldig. Werk de bron handmatig bij indien nodig.';
 $lang["batch_edit_save_warning_message"]='Er zijn fouten opgetreden tijdens het bewerken van de volgende bronnen -';
 $lang["batch_edit_save_warning_alert"]='Er zijn enkele fouten opgetreden bij het uitvoeren van deze operatie. Raadpleeg uw berichten voor meer details';
 
-$lang["information_field_restype_deselect_cleanup"]='Om bestaande veldgegevens van de gedeselecteerde brontypen te verwijderen, klik op de volgende link %%CLEANUP_LINK%%';
+$lang["information_field_restype_deselect_cleanup"]='Om bestaande veldgegevens van de gedeselecteerde brontypen te verwijderen, klik op de volgende link [cleanup_link]';
 $lang["property-id"]='Id';
 $lang["mainmenu"]='Hoofdmenu';
 $lang["xlthumbs"]='X-large';
@@ -2733,73 +2726,17 @@ $lang["ref-title"]='%ref - %titel';
 $lang["resourcetypes_separator"]=',';
 $lang["collectiontypes_separator"]=', ';
 $lang["user_group"]='gebruikersgroep';
-$lang["all__emailbulk"]='<br /><br />
-[tekst]<br /><br />
-[tekst_voettekst]';
-$lang["all__emailcollection"]='<br />
-[vangebruikersnaam] [lang_emailcollectiebericht] <br /><br /> 
-[lang_bericht] : [bericht]<br /><br /> 
-[lang_kliklinkbekijkcollectie] [lijst]';
-$lang["all__emailcollectionexternal"]='<br />
-[vangebruikersnaam] [lang_emailcollectionmessageexternal] <br /><br /> 
-[lang_bericht] : [bericht]<br /><br /> 
-[lang_kliklinkbekijkcollectie] [lijst]';
 $lang["all__emailcontactadmin"]='<br />[fromusername] ([emailfrom])[lang_contactadminemailtext]<br /><br />[message]<br /><br /><a href="[url]">[embed_thumbnail]</a><br /><br />[text_footer]';
-$lang["all__emaillogindetails"]='<br />
-[welkom]<br /><br /> 
-[lang_nieuweinloggegevens]<br /><br /> 
-[lang_gebruikersnaam] : [gebruikersnaam] <br /><br />
-<a href="[url]">[url]</a><br /><br />
-[tekst_voettekst]';
-$lang["all__emailnewresearchrequestwaiting"]='[gebruikersnaam] ([gebruikersvolledige naam] - [gebruikersemail])
-[lang_heeftonderzoeksverzoekgeplaatst]<br /><br />
-[lang_naamvanhetproject]:[naam]<br /><br />
-[lang_beschrijvingvanhetproject]:[beschrijving]<br /><br />
-[lang_deadline]:[deadline]<br /><br />
-[lang_contacttelefoon]:[contact]<br /><br />
-[lang_eindgebruik]: [eindgebruik]<br /><br />
-[lang_vormvereist]: [vorm]<br /><br />
-[lang_aantalvereistebronnen]: [aantalbronnen]<br /><br />
-<a href="[url]">[url]</a><br /><br />
-<a href="[teamresearchurl]">[teamresearchurl]</a><br /><br />
-[text_footer]';
 $lang["all__emailnotifyresourcesapproved"]='<br />
 [lang_userresourcesapproved]
 [list] <br />
 [lang_viewcontributedsubittedl] <br /><br /> 
 <a href="[url]">[url]</a><br /><br />
 [text_footer]';
-$lang["all__emailnotifyresourcessubmitted"]='[lang_userresourcessubmitted]
-[lijst]
-[lang_viewalluserpending]
-
-<a href="[url]">[url]</a>
-
-[tekst_voettekst]';
-$lang["all__emailnotifyresourcesunsubmitted"]='<br />
-[lang_userresourcesunsubmitted]
-[lijst] <br />
-[lang_viewalluserpending] <br /><br /> 
-<a href="[url]">[url]</a><br /><br />
-[text_footer]';
-$lang["all__emailresearchrequestassigned"]='[lang_researchrequestassignedmessage]
-
-[tekst_voettekst]';
 $lang["all__emailresearchrequestcomplete"]='[lang_researchrequestcompletemessage] <br /><br /> 
 [lang_clicklinkviewcollection] <br /><br /> 
 <a href="[url]">[url]</a><br /><br />
 [text_footer]';
-$lang["all__emailresource"]='<br />
-[vangebruikersnaam] heeft u een bron gemaild<br /><br />
-[bericht]<br /><br />
-<a href="[url]">[ingesloten_thumbnail]</a><br /><br />
-klik om de bron te bekijken<br /><a href="[url]">[bronnaam] - [url]</a><br /><br />
-[tekst_voettekst]';
-$lang["all__emailresourcerequest"]='[lang_gebruikersnaam] : [username] <br />
-[lijst] <br />
-[details]<br /><br />
-[lang_klikomresourcewebbekijken] <br /><br />
-<a href="[url]">[url]</a>';
 $lang["help__introtext"]='<iframe src="https://www.resourcespace.com/knowledge-base/?from_rs=true" style="width:1235px;height:600px;border:none;margin:-20px;" id="knowledge_base" />';
 $lang["team_research__introtext"]='Organiseer en beheer \'Onderzoeksverzoeken\'. <br /><br />Kies \'onderzoek bewerken\' om de details van het verzoek te bekijken en het onderzoek aan een teamlid toe te wijzen. Het is mogelijk om een onderzoeksverzoek te baseren op een eerdere collectie door de collectie-ID in te voeren op het \'bewerken\' scherm. <br /><br />Zodra het onderzoeksverzoek is toegewezen, kies \'collectie bewerken\' om het onderzoeksverzoek toe te voegen aan het \'Standaard collectie\' paneel. Met behulp van de standaardtools is het dan mogelijk om bronnen aan het onderzoek toe te voegen. <br /><br />Zodra het onderzoek is voltooid, kies \'onderzoek bewerken\', verander de status naar voltooid en er wordt automatisch een e-mail gestuurd naar de gebruiker die het onderzoek heeft aangevraagd. De e-mail bevat een link naar het onderzoek en het wordt ook automatisch toegevoegd aan hun \'Standaard Collectie\' paneel.';
 $lang["themes__manage"]='Organiseer en bewerk de uitgelichte collecties die online beschikbaar zijn. Uitgelichte collecties zijn speciaal gepromote collecties. <br /><br /> <strong>1 Om een nieuwe vermelding onder een uitgelichte collectie te maken - maak een collectie</strong><br /> Kies <strong>Mijn Collecties</strong> uit het hoofdmenu bovenaan en stel een gloednieuwe <strong>publieke</strong> collectie in. Vergeet niet een naam voor de uitgelichte collectie op te geven tijdens het instellen. Gebruik een bestaande naam van een uitgelichte collectie om de collectie onder een huidige uitgelichte collectie te groeperen (zorg ervoor dat je deze exact hetzelfde typt), of kies een nieuwe titel om een gloednieuwe uitgelichte collectie te maken. Sta gebruikers nooit toe om bronnen toe te voegen of te verwijderen uit uitgelichte collecties. <br /> <br /><strong>2 Om de inhoud van een bestaande vermelding onder een uitgelichte collectie te bewerken</strong><br /> Kies <strong>collectie bewerken</strong>. De items in die collectie verschijnen in het <strong>Mijn Collecties</strong> paneel onderaan het scherm. Gebruik de standaardtools om bronnen te bewerken, te verwijderen of toe te voegen. <br /> <br /><strong>3 Om een naam van een uitgelichte collectie te wijzigen of een collectie te verplaatsen om onder een andere uitgelichte collectie te verschijnen</strong><br /> Kies <strong>eigenschappen bewerken</strong> en bewerk de categorie van de uitgelichte collectie of de naam van de collectie. Gebruik een bestaande naam van een uitgelichte collectie om de collectie onder een huidige uitgelichte collectie te groeperen (zorg ervoor dat je deze exact hetzelfde typt), of kies een nieuwe titel om een gloednieuwe uitgelichte collectie te maken. <br /> <br /><strong>4 Om een collectie uit een uitgelichte collectie te verwijderen</strong><br /> Kies <strong>eigenschappen bewerken</strong> en verwijder de woorden in het vak van de categorie van de uitgelichte collectie.';
@@ -2831,7 +2768,7 @@ $lang["report_breakdown_pie"]='Taartdiagram uitsplitsing';
 $lang["responsive_settings_menu"]='Account';
 $lang["actions_email_new_actions_title"]='Nieuwe acties';
 $lang["actions_email_new_actions_intro"]='Er zijn nieuwe acties die moeten worden voltooid.';
-$lang["email_actions_truncated"]='Alleen de meest recente 1000 acties worden hier getoond. Je hebt %%TOTAL%% acties. Log in op %%APPLICATIONNAME%% om ze allemaal te bekijken.';
+$lang["email_actions_truncated"]='Alleen de meest recente 1000 acties worden hier getoond. Je hebt [total] acties. Log in op [application_name] om ze allemaal te bekijken.';
 $lang["annotate_select"]='Selecteer veld...';
 $lang["error_upload_replace_file_fail_invalid_collection"]='Kan het bronbestand niet vervangen. De opgegeven collectie referentie is ongeldig.';
 $lang["systemconfig_api"]='API';
@@ -2853,7 +2790,6 @@ $lang["all__file_integrity_fail_email"]='[img_headerlogo]<br />
 <a href="[url]">[url]</a><br /><br />
 [text_footer]';
 $lang["error-edit_noaccess_related_resources"]='Kan bronnen niet relateren. Geen toegang tot:';
-$lang["csv_export_filename"]='metadata_export_%%ZOEKEN%%_%%TIJD%%';
 $lang["upload_share_email_template"]='<br />
 [from_name] [lang_upload_share_email_text] [applicationname]<br /><br /> 
 [lang_message] : [message]<br /><br />
@@ -2870,7 +2806,7 @@ $lang["all__emailnotifyuploadsharenew"]='<br />
 <a href="[url]">[url]</a><br /><br />
 [text_footer]';
 $lang["share_expired_icon_title"]='Verlopen';
-$lang["error_invalid_date_format"]='"%%VALUE%%" is een ongeldige datum. Alle waarden in dit veld moeten worden geformatteerd als JJJJ-MM-DD';
+$lang["error_invalid_date_format"]='"[value]" is een ongeldige datum. Alle waarden in dit veld moeten worden geformatteerd als JJJJ-MM-DD';
 $lang["related_resource_create"]='Maak nieuwe gerelateerde bron';
 $lang["skip-to-main-content"]='Ga naar hoofdinhoud';
 $lang["cleanup_invalid_nodes"]='Maak veldgegevens schoon van ongeldige brontypen';
@@ -2888,7 +2824,7 @@ $lang["pull_images_text"]='Gebruik afbeeldingen van gerelateerde bronnen als er 
 $lang["system_user_default"]='SYSTEEM';
 $lang["userlimitreached"]='Je hebt je gebruikerslimiet bereikt. Een bestaande gebruiker moet worden uitgeschakeld of verwijderd voordat je nieuwe accounts kunt aanmaken of bestaande accounts kunt inschakelen.';
 $lang["user_api_session_title"]='Toegang tot API van extern systeem';
-$lang["user_api_session_text"]='Het externe systeem \'%system%\' vraagt toegang tot %applicationname% met behulp van uw inloggegevens. Klik op \'Toegang verlenen\' alleen als u dit verzoek heeft geïnitieerd';
+$lang["user_api_session_text"]='Het externe systeem \'%system%\' vraagt toegang tot [applicationname] met behulp van uw inloggegevens. Klik op \'Toegang verlenen\' alleen als u dit verzoek heeft geïnitieerd';
 $lang["user_api_session_invalid_system"]='Ongeldig systeem aangevraagd';
 $lang["user_api_session_grant_access"]='Toegang verlenen';
 $lang["user_api_session_grant_success"]='Sleutel succesvol uitgegeven.';
@@ -2900,3 +2836,50 @@ $lang["action_unset_no_file"]='Markeren als bestand ontbreekt';
 $lang["completed_set_no_file"]='Resource gemarkeerd als geen bestand hebbend';
 $lang["completed_unset_no_file"]='Resource gemarkeerd als bestand ontbreekt';
 $lang["map_tf_group"]='Thunderforest';
+$lang["all__emailcollection"]='[fromusername] [lang_emailcollectionmessage] <br /><br /> 
+[lang_message] : [message]<br /><br /> 
+[lang_clicklinkviewcollection] [list]';
+$lang["all__emailcollectionexternal"]='[fromusername] [lang_emailcollectionmessageexternal] <br /><br /> 
+[lang_message] : [message]<br /><br /> 
+[lang_clicklinkviewcollection] [list]';
+$lang["all__emailnotifyresourcessubmitted"]='<br />
+[lang_userresourcessubmitted]
+[list] <br />
+[lang_viewalluserpending] <br /><br /> 
+<a href="[url]">[url]</a><br /><br />
+[text_footer]';
+$lang["notify_resource_change_email"]='Een bron die je in de afgelopen [days] dagen hebt gedownload, is gewijzigd. Klik op de onderstaande link om de bron te bekijken.<br /><br /><a href=\'[url]\'>[url]</a>';
+$lang["notify_resource_change_notification"]='Een bron die je in de afgelopen [days] dagen hebt gedownload, is gewijzigd.';
+$lang["system_notification_email"]='[img_headerlogo]<br />
+[message]<br /><br /> 
+<a href="[url]">[url]</a><br /><br />
+[text_footer]';
+$lang["all__emailresearchrequestassigned"]='[lang_researchrequestassignedmessage]
+
+[text_footer]';
+$lang["all__emailnewresearchrequestwaiting"]='<br />
+[username] ([userfullname] - [useremail])
+[lang_haspostedresearchrequest]<br /><br />
+[lang_nameofproject]:[name]<br /><br />
+[lang_descriptionofproject]:[description]<br /><br />
+[lang_deadline]:[deadline]<br /><br />
+[lang_contacttelephone]:[contact]<br /><br />
+[lang_finaluse]: [finaluse]<br /><br />
+[lang_shaperequired]: [shape]<br /><br />
+[lang_noresourcesrequired]: [noresources]<br /><br />
+<a href="[url]">[url]</a><br /><br />
+<a href="[teamresearchurl]">[teamresearchurl]</a><br /><br />
+[text_footer]';
+$lang["all__emailnotifyresourcesunsubmitted"]='<br />
+[lang_userresourcesunsubmitted]
+[list] <br />
+[lang_viewalluserpending] <br /><br /> 
+<a href="[url]">[url]</a><br /><br />
+[text_footer]';
+$lang["all__emailresource"]='<br />
+[fromusername] [lang_hasemailedyouaresource]<br /><br />
+[message]<br /><br />
+<a href="[url]">[embed_thumbnail]</a><br /><br />
+[lang_clicktoviewresource]<br /><a href="[url]">[resourcename] - [url]</a><br /><br />
+[text_footer]';
+$lang["csv_export_filename"]='metadata_export_[search]_[time]';

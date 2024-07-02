@@ -836,8 +836,8 @@ $lang["userpending"]='Recursos contribuidos por usuarios pendientes de revisión
 $lang["viewuserpendingsubmission"]='Ver recursos contribuidos por usuarios pendientes de envío';
 $lang["userpendingsubmission"]='Recursos contribuidos por el usuario pendientes de envío';
 $lang["resourcespendingarchive"]='Recursos pendientes de archivar';
-$lang["previewstatus"]='Se han creado vistas previas para el recurso %file% de %filestotal%.';
-$lang["uploadedstatus"]='Recurso %file% de %filestotal% cargado - %path%';
+$lang["previewstatus"]='Se han creado vistas previas para el recurso [file] de %filestotal%.';
+$lang["uploadedstatus"]='Recurso [file] de %filestotal% cargado - %path%';
 $lang["upload_failed_for_path"]='Error al cargar el archivo en %path%';
 $lang["upload_summary"]='Resumen de carga';
 $lang["resources_uploaded-0"]='0 recursos cargados correctamente.';
@@ -884,7 +884,7 @@ $lang["research"]='Investigación';
 $lang["collectionprivate_attachedusermessage"]='%user% te ha agregado a su colección \'%colname%\'.';
 $lang["nomessage"]='Sin mensaje';
 $lang["nomessages"]='No hay mensajes';
-$lang["emailcollectionmessageexternal"]='Te ha enviado por correo electrónico una colección de recursos desde %applicationname%.';
+$lang["emailcollectionmessageexternal"]='Te ha enviado por correo electrónico una colección de recursos desde [applicationname].';
 $lang["zippedcollectiontextfile"]='Incluir archivo de texto con datos de recurso/colección.';
 $lang["archivesettings"]='Configuración de archivo';
 $lang["archive-zip"]='ZIP (abreviatura de "Zona de Interconexión de Procesamiento") - se refiere a un formato de archivo comprimido utilizado para reducir el tamaño de los archivos y facilitar su transferencia y almacenamiento';
@@ -907,8 +907,8 @@ $lang["didnotinclude"]='No se incluyó';
 $lang["lastmatching"]='Última coincidencia';
 $lang["ownedbyyou"]='Poseído por ti';
 $lang["edit_theme_category"]='Editar categoría de colección destacada';
-$lang["emailthemecollectionmessageexternal"]='Te ha enviado por correo electrónico colecciones de recursos desde %applicationname%.';
-$lang["emailthememessage"]='Te ha enviado por correo electrónico una selección de colecciones destacadas de %applicationname% que se han agregado a tu página \'Mis colecciones\'.';
+$lang["emailthemecollectionmessageexternal"]='Te ha enviado por correo electrónico colecciones de recursos desde [applicationname].';
+$lang["emailthememessage"]='Te ha enviado por correo electrónico una selección de colecciones destacadas de [applicationname] que se han agregado a tu página \'Mis colecciones\'.';
 $lang["clicklinkviewthemes"]='Utilice el enlace de abajo para ver las colecciones destacadas.';
 $lang["clicklinkviewcollections"]='Utilice los enlaces a continuación para ver las colecciones.';
 $lang["background_image"]='Imagen de fondo';
@@ -937,7 +937,7 @@ $lang["recreatepreviews_pending"]='Los recursos han sido marcados para la recrea
 $lang["retrypreviews"]='Reintentar la creación de la vista previa';
 $lang["relatedresources-filename_extension"]='Recursos relacionados - %EXTENSION';
 $lang["relatedresources-id"]='Recursos relacionados para %id%';
-$lang["relatedresources-restype"]='Recursos relacionados - %restype%';
+$lang["relatedresources-restype"]='Recursos relacionados - [restype]';
 $lang["relatedresources_onupload"]='Relacionar todos los recursos al cargar';
 $lang["youfoundresults"]='resultados';
 $lang["selected"]='seleccionado/a';
@@ -1380,7 +1380,6 @@ $lang["requestsenttext"]='Su solicitud de recurso ha sido enviada para su aproba
 $lang["requestupdated"]='Su solicitud de recurso ha sido actualizada';
 $lang["requestassignedtouser"]='Su solicitud de recurso ha sido asignada a % para su aprobación.';
 $lang["requestapprovedmail"]='Su solicitud ha sido aprobada. Haga clic en el enlace de abajo para ver y descargar los recursos solicitados.';
-$lang["requestapprovedmail_email"]='[img_headerlogo]<br/><br/>[mensaje]<br/>[caduca]<br/><br/>Haz clic en el enlace de abajo para ver y descargar los recursos solicitados.<br/><br/><a href=\'[url]\'>[url]</a>';
 $lang["requestdeclinedmail"]='Lo siento, su solicitud de los recursos en la siguiente colección ha sido rechazada.';
 $lang["requestdeclined_email"]='[img_headerlogo]<br/><br/>[message]<br/><br/>Haz clic en el enlace de abajo para ver los recursos solicitados.<br/><br/><a href=\'[url]\'>[url]</a>';
 $lang["resourceexpirymail"]='Los siguientes recursos han caducado:';
@@ -1580,7 +1579,7 @@ $lang["report_periodic_email_option_all_users"]='todos los usuarios';
 $lang["report_periodic_email_option_selected_user_groups"]='Grupo(s) de usuario(s) seleccionado(s)';
 $lang["report_periodic_email_unsubscribe_title"]='Cancelar la suscripción a correos electrónicos periódicos';
 $lang["report_periodic_email_unsubscribe_confirmation"]='Por favor, confirma que deseas darte de baja';
-$lang["report_periodic_email_report_attached"]='El informe \'%%REPORTTITLE%%\' está adjunto.';
+$lang["report_periodic_email_report_attached"]='El informe \'[report_title]\' está adjunto.';
 $lang["report-select-required"]='Por favor, seleccione un informe';
 $lang["columnheader-keyword"]='Palabra clave';
 $lang["columnheader-entered_count"]='Conteo ingresado';
@@ -1621,7 +1620,7 @@ $lang["writeaccess_sql_log"]='Acceso de escritura al registro SQL:';
 $lang["nowriteaccesstohomeanim"]='No se puede escribir Abra los permisos para habilitar la función de recorte de animación de inicio en el complemento de transformación.';
 $lang["blockedbrowsingoffilestore"]='Navegación bloqueada del directorio \'filestore\'';
 $lang["noblockedbrowsingoffilestore"]='La carpeta de almacenamiento de archivos parece ser navegable. Por favor, elimine \'Indexes\' de la lista de \'Options\' de Apache o desactive el módulo \'autoindex\' de Apache.';
-$lang["php_extension_not_enabled"]='La extensión de PHP %%EXTENSION%% no está habilitada';
+$lang["php_extension_not_enabled"]='La extensión de PHP [extension] no está habilitada';
 $lang["execution_failed"]='Salida inesperada al ejecutar el comando %command. La salida fue \'%output\'.';
 $lang["exif_extension"]='Extensión EXIF';
 $lang["archiver_utility"]='Utilidad de archivado';
@@ -1681,9 +1680,9 @@ $lang["restricted_access_only_to_resource_type"]='Acceso restringido solo al tip
 $lang["restricted_upload_for_resource_of_type"]='Carga restringida para recurso de tipo';
 $lang["deny_edit_resource_type"]='Negar acceso de edición al recurso de tipo';
 $lang["deny_edit_all_resource_types"]='Denegar el acceso de edición a todos los tipos de recursos, excepto aquellos especificados por los permisos "PERMITIR acceso de edición a recursos del tipo de recurso dado"';
-$lang["can_edit_resource_type"]='Puede editar recursos del tipo %%RESOURCETYPE%%. Se ignora si no se tiene el permiso "DENEGAR acceso de edición al tipo de recurso dado"';
+$lang["can_edit_resource_type"]='Puede editar recursos del tipo [resourcetype]. Se ignora si no se tiene el permiso "DENEGAR acceso de edición al tipo de recurso dado"';
 $lang["edit_access_to_workflow_state"]='Acceso de edición al estado del flujo de trabajo';
-$lang["edit_access_to_access"]='Acceso de edición para acceder al estado \'%STATE\'';
+$lang["edit_access_to_access"]='Acceso de edición para acceder al estado \'[state]\'';
 $lang["can_create_resources_and_upload_files-admins"]='Puede crear recursos / subir archivos<br>(usuarios administradores; los recursos se colocan en el estado \'Activo\')';
 $lang["can_create_resources_and_upload_files-general_users"]='Puede crear recursos / cargar archivos<br>(usuarios normales; los recursos pasan al estado \'Pendiente de envío\' a través de Mis contribuciones)';
 $lang["can_delete_resources"]='Puede eliminar recursos<br>(a los cuales el usuario tiene acceso de escritura)';
@@ -1808,7 +1807,6 @@ $lang["zipping"]='Compresión';
 $lang["zipcomplete"]='La descarga de su archivo Zip debería haber comenzado. Puede salir de esta página.';
 $lang["starttypingkeyword"]='Comience a escribir la palabra clave...';
 $lang["createnewentryfor"]='Crear nueva entrada para';
-$lang["confirmcreatenewentryfor"]='¿Estás seguro de que deseas crear una nueva entrada de lista de palabras clave para \'%%\'?';
 $lang["noentryexists"]='No existe la entrada para';
 $lang["editresourcepreviews"]='Editar vistas previas de recursos';
 $lang["can_assign_resource_requests"]='Puede asignar solicitudes de recursos a otros';
@@ -1977,8 +1975,8 @@ $lang["group_download_limit_title"]='Límite de descarga de recursos. Establecer
 $lang["group_download_limit_period"]='Límite de descarga por período (límite en los últimos X días). Establecer en 0 para un límite de descarga absoluto';
 $lang["download_limit_error"]='Se ha alcanzado el límite de descargas permitido.';
 $lang["download_limit_collection_error"]='Esta descarga de colección excedería su límite de descarga.';
-$lang["download_limit_summary"]='Has descargado %%DOWNLOADED%%/%%LIMIT%% recursos.';
-$lang["download_limit_request_text"]='Límite de descarga alcanzado: %%DOWNLOADED%%/%%LIMIT%%';
+$lang["download_limit_summary"]='Has descargado [downloaded]/[limit] recursos.';
+$lang["download_limit_request_text"]='Límite de descarga alcanzado: [downloaded]/[limit]';
 $lang["page-title_user_group_management_edit"]='Editar grupo de usuarios';
 $lang["page-subtitle_user_group_management_edit"]='Utilice esta sección para modificar las propiedades del grupo de usuarios.';
 $lang["action-title_remove_user_group_logo"]='Marque para eliminar el logotipo del grupo de usuarios';
@@ -2004,7 +2002,7 @@ $lang["resource_types_manage"]='Tipos de recursos';
 $lang["resource_type_new"]='Nuevo tipo de recurso';
 $lang["resource_type_field_new"]='Nuevo campo de metadatos';
 $lang["admin_advanced_field_properties"]='Propiedades avanzadas del campo';
-$lang["admin_delete_field_confirm"]='Hay %%AFFECTEDRESOURCES%% recurso(s) con datos en este campo. Algunos de los IDs de recurso afectados se enumeran a continuación. Los metadatos asociados con este campo se perderán si continúa. ¿Está seguro de que desea proceder con la eliminación?';
+$lang["admin_delete_field_confirm"]='Hay [affected_resources] recurso(s) con datos en este campo. Algunos de los IDs de recurso afectados se enumeran a continuación. Los metadatos asociados con este campo se perderán si continúa. ¿Está seguro de que desea proceder con la eliminación?';
 $lang["admin_delete_field_error"]='No se puede eliminar el campo. Por favor, contacte a su administrador del sistema. Este campo se utiliza para las siguientes opciones de configuración: -';
 $lang["admin_delete_field_error_scopes"]='No se puede eliminar el campo. Por favor, contacte a su administrador del sistema. Este campo todavía se utiliza en estos ámbitos:';
 $lang["admin_resource_type_create"]='Crear tipo de recurso llamado...';
@@ -2046,7 +2044,7 @@ $lang["property-groups"]='Grupos';
 $lang["property-user_group"]='Grupo de usuarios';
 $lang["property-user_group_parent"]='Grupo de usuario principal';
 $lang["property-user_group_remove_parent"]='(remover padre)';
-$lang["resource_type_delete_confirmation"]='Hay %%RESOURCECOUNT%% recurso(s) de este tipo.';
+$lang["resource_type_delete_confirmation"]='Hay [resource_count] recurso(s) de este tipo.';
 $lang["resource_type_delete_assoc_rtf_confirm"]='Hay %COUNT campo(s) de metadatos asociados con este tipo de recurso.';
 $lang["resource_type_delete_select_new"]='Por favor, seleccione el tipo de recurso al que se convertirán estos.';
 $lang["resourcetype-global_field"]='Global';
@@ -2059,7 +2057,7 @@ $lang["admin_field_deleted"]='Campo eliminado';
 $lang["action-move-up"]='Mover hacia arriba';
 $lang["action-move-down"]='Mover hacia abajo';
 $lang["action-move-to"]='Mover a';
-$lang["delete_user_group_checkbox_alert_message"]='Por favor, tenga en cuenta que esta acción también eliminará todo el texto de contenido que sea relevante para este grupo de usuarios. Se han encontrado %%RECORDSCOUNT%% registros en Administrar contenido.';
+$lang["delete_user_group_checkbox_alert_message"]='Por favor, tenga en cuenta que esta acción también eliminará todo el texto de contenido que sea relevante para este grupo de usuarios. Se han encontrado [recordscount] registros en Administrar contenido.';
 $lang["collection_download__write_metadata_on_download_label"]='¿Incrustar los metadatos del recurso en el archivo o archivos descargados? Habilitar esto ralentizará la descarga.';
 $lang["collection_email__introtextthemeshare"]='Completa el formulario a continuación para enviar por correo electrónico las colecciones destacadas en esta categoría de colecciones destacadas. Los destinatarios recibirán un correo electrónico que contiene enlaces a cada una de las colecciones destacadas.';
 $lang["done__resource_email"]='Se ha enviado un correo electrónico que contiene un enlace al recurso a los usuarios que especificaste.';
@@ -2203,7 +2201,7 @@ $lang["userpreference_tilenav"]='Utilizar un diseño de mosaico para los menús 
 $lang["userpreference_tilenavdefault"]='Utilizar un diseño de mosaico para los menús de navegación (configuración predeterminada; los usuarios pueden cambiar esto)';
 $lang["systemconfig"]='Configuración';
 $lang["systemconfig_customfont_label"]='Archivo de fuente personalizado';
-$lang["systemconfig_invalid_extension"]='Tipo de archivo no válido para esta selección. Por favor, elige entre: %%EXTENSIONS%%';
+$lang["systemconfig_invalid_extension"]='Tipo de archivo no válido para esta selección. Por favor, elige entre: [extensions]';
 $lang["systemconfig_linkedheaderimgsrc_label"]='Logotipo de la aplicación';
 $lang["systemconfig_header_favicon_label"]='Favicon de la aplicación';
 $lang["systemconfig_description"]='Las opciones en esta página son de sistema y pueden cambiar algunas de las funcionalidades disponibles para los usuarios. Por favor, tenga en cuenta que cualquier opción que también sea específica del usuario tendrá prioridad si está configurada.';
@@ -2431,10 +2429,10 @@ $lang["error_save_not_allowed_fc_has_children"]='No se puede guardar el cambio. 
 $lang["error_multiple_preview_tools"]='Por favor, desactiva la herramienta de vista previa actual y vuelve a intentarlo.';
 $lang["missing_folder"]='ERROR - No se ha establecido la ruta a la carpeta de carga.';
 $lang["error_upload_replace_file_fail"]='Error al reemplazar el archivo de recurso';
-$lang["error_upload_replace_no_matching_file"]='No se encontró ningún recurso válido para reemplazar con el nombre de archivo %%FILENAME%%';
-$lang["error_upload_replace_multiple_matching_files"]='Se encontraron múltiples recursos válidos con el nombre de archivo %%FILENAME%%';
-$lang["error_upload_invalid_file"]='Tipo de archivo no válido: %%FILETYPE%%';
-$lang["error_upload_duplicate_file"]='Carga de archivo duplicado, el archivo coincide con los recursos: %%RESOURCES%%';
+$lang["error_upload_replace_no_matching_file"]='No se encontró ningún recurso válido para reemplazar con el nombre de archivo [filename]';
+$lang["error_upload_replace_multiple_matching_files"]='Se encontraron múltiples recursos válidos con el nombre de archivo [filename]';
+$lang["error_upload_invalid_file"]='Tipo de archivo no válido: [filetype]';
+$lang["error_upload_duplicate_file"]='Carga de archivo duplicado, el archivo coincide con los recursos: [resources]';
 $lang["error_upload_file_move_failed"]='No se pudo mover el archivo cargado. Por favor, comprueba el tamaño del archivo que estás intentando subir.';
 $lang["error_fail_save"]='No se puede guardar';
 $lang["image_quality_100"]='Máximo';
@@ -2463,10 +2461,10 @@ $lang["oj-collection-download-failure-text"]='No se puede preparar el archivo de
 $lang["oj-batch-replace-local-success-text"]='La sustitución por lotes ha reemplazado con éxito %TOTALRESOURCES recursos';
 $lang["oj-batch-replace-local-failure-text"]='Reemplazo por lotes fallido. Por favor, revise los registros para ver los errores';
 $lang["oj-creation-failure-text"]='Ocurrió un error. No se pudo crear el trabajo sin conexión';
-$lang["oj-creation-success"]='Trabajo sin conexión %%JOBNUMBER%% creado. Se le notificará cuando se complete';
+$lang["oj-creation-success"]='Trabajo sin conexión [jobnumber] creado. Se le notificará cuando se complete';
 $lang["email_auto_digest_inactive"]='Esta es un resumen de tus mensajes no leídos';
 $lang["email_digest_disable"]='Puede desactivar estas notificaciones iniciando sesión y ajustando sus preferencias de usuario en el siguiente enlace:';
-$lang["user_pref_inactive_digest"]='¿Podrías enviarme un correo electrónico diario con todas las notificaciones no leídas si no he iniciado sesión en más de %%DAYS%% días?';
+$lang["user_pref_inactive_digest"]='¿Podrías enviarme un correo electrónico diario con todas las notificaciones no leídas si no he iniciado sesión en más de [days] días?';
 $lang["edit_copy_from_field"]='Copiar datos del campo';
 $lang["home_page"]='Página de inicio';
 $lang["login_word"]='Iniciar sesión';
@@ -2531,24 +2529,20 @@ $lang["date_format_error"]='Error: %row% \'%date%\' entrada no válida en [%fiel
 $lang["invalid_date_error"]='Error: la fila %row% \'%date%\' en [%field%] no es una fecha válida';
 $lang["invalid_date_error2"]='Error: valor de fecha no válido: \'%date%\'. Por favor, utilice el formato: \'aaaa-mm-dd hh:mm:ss\' (la hora es opcional)';
 $lang["invalid_date_generic"]='Ha ingresado una fecha inválida';
-$lang["error_server_missing_module"]='El servidor no tiene el software requerido: %%MODULE%%. Por favor, contacte a su administrador del sistema';
-$lang["error_check_config"]='Por favor, comprueba la opción de configuración %%CONFIG_OPTION%%';
+$lang["error_server_missing_module"]='El servidor no tiene el software requerido: [module]. Por favor, contacte a su administrador del sistema';
+$lang["error_check_config"]='Por favor, comprueba la opción de configuración [config_option]';
 $lang["useaspreviewimage"]='Usar como imagen de vista previa';
 $lang["filechecksum"]='Suma de verificación del archivo';
-$lang["system_notification"]='%%APPLICATION_NAME%% - notificación del sistema';
-$lang["system_notification_email"]='[img_headerlogo]<br />
-[mensaje]<br /><br />
-<a href="[url]">[url]</a><br /><br />
-[text_footer]';
+$lang["system_notification"]='[application_name] - notificación del sistema';
 $lang["error_edit_filter_invalid"]='El filtro de edición no está configurado correctamente para este grupo de usuarios. Por favor, contacte a su administrador';
 $lang["error_search_filter_invalid"]='El filtro de búsqueda no está configurado correctamente para este grupo de usuarios. Por favor, contacte a su administrador';
 $lang["action_lock"]='Bloquear';
 $lang["action_unlock"]='Desbloquear';
 $lang["status_locked"]='Bloqueado';
 $lang["status_unlocked"]='Desbloqueado';
-$lang["status_locked_by"]='Bloqueado por %%USER%%';
+$lang["status_locked_by"]='Bloqueado por [user]';
 $lang["status_locked_self"]='Has bloqueado este recurso';
-$lang["error_locked_by_user"]='El recurso está bloqueado por %%USER%%';
+$lang["error_locked_by_user"]='El recurso está bloqueado por [user]';
 $lang["error_locked_other_user"]='El recurso está bloqueado por otro usuario';
 $lang["error-edit_noaccess_resources"]='Sin acceso de edición a los recursos:';
 $lang["error-edit_locked_resources"]='Los siguientes recursos están bloqueados:';
@@ -2582,7 +2576,7 @@ $lang["job_priority"]='Prioridad';
 $lang["csv_export_offline_option"]='¿Generar archivo CSV sin conexión? Esto debería usarse para conjuntos de resultados grandes. Se le notificará a través de un mensaje de ResourceSpace una vez que el archivo CSV esté disponible';
 $lang["csv_export_file_ready"]='Su exportación CSV está lista';
 $lang["offline_processing_disabled"]='El procesamiento de trabajos sin conexión no está configurado en este sistema. Para habilitarlo, por favor contacte a su administrador del sistema';
-$lang["csv_export_offline_only"]='Se debe utilizar el procesamiento sin conexión al exportar datos para más de %%RESOURCE_COUNT%% recursos';
+$lang["csv_export_offline_only"]='Se debe utilizar el procesamiento sin conexión al exportar datos para más de [resource_count] recursos';
 $lang["setup_google_vision_settings"]='Configuraciones de Google Vision';
 $lang["setup_google_vision_enable"]='¿Activar el complemento de Google Vision?';
 $lang["tagged_notification"]='Has sido etiquetado en un comentario:';
@@ -2611,7 +2605,7 @@ $lang["notify_upload_share_new_subject"]='Nuevas cargas externas';
 $lang["my_shares"]='Mis recursos compartidos';
 $lang["manage_shares_title"]='Compartidos externos';
 $lang["share_purge_text"]='Eliminar compartidos caducados';
-$lang["shares_purged_message"]='Eliminadas %%DELETEDCOUNT%% compartidos';
+$lang["shares_purged_message"]='Eliminadas [deleted_count] compartidos';
 $lang["share_confirm_purge"]='¿Está seguro de que desea eliminar todas las comparticiones caducadas?';
 $lang["external_shares_view_existing"]='Ver las comparticiones de carga existentes para esta colección.';
 $lang["share_user"]='Compartido por';
@@ -2624,7 +2618,7 @@ $lang["log-reference"]='Entrada de registro';
 $lang["log_column"]='Datos de registro';
 $lang["log_value"]='Valor';
 $lang["error_slideshow_invalid"]='Número de secuencia no válido. Por favor, introduzca un valor numérico';
-$lang["error-file-permissions"]='No se puede realizar la operación de archivo. Por favor, compruebe los permisos de archivo en %%PATH%%';
+$lang["error-file-permissions"]='No se puede realizar la operación de archivo. Por favor, compruebe los permisos de archivo en [path]';
 $lang["new_message"]='Nuevo mensaje';
 $lang["message_recipients"]='Destinatario(s)';
 $lang["error_invalid_user"]='Usuario especificado no válido';
@@ -2639,13 +2633,13 @@ $lang["upload_view_log"]='Ver registro';
 $lang["code_sign_required"]='Firma de código en línea';
 $lang["code_sign_required_warning"]='Advertencia: El código en línea ha sido modificado y el código actualizado no ha sido firmado utilizando la utilidad de línea de comandos. Las macros realizadas en los metadatos pueden no completarse como se espera.';
 $lang["search_full_text"]='Buscar todo el texto (búsqueda de texto completo)';
-$lang["error_invalid_revert_option"]='El valor previamente almacenado \'%%VALUE%%\' no se pudo encontrar en las opciones actuales. Por favor, verifique si el nombre de esta opción ha cambiado y actualice manualmente el recurso si es necesario.';
-$lang["error_invalid_revert_date"]='La fecha previamente almacenada \'%%VALUE%%\' no es válida. Actualice el recurso manualmente si es necesario.';
+$lang["error_invalid_revert_option"]='El valor previamente almacenado \'[value]\' no se pudo encontrar en las opciones actuales. Por favor, verifique si el nombre de esta opción ha cambiado y actualice manualmente el recurso si es necesario.';
+$lang["error_invalid_revert_date"]='La fecha previamente almacenada \'[value]\' no es válida. Actualice el recurso manualmente si es necesario.';
 $lang["batch_edit_save_warning_message"]='Se encontraron errores al editar los siguientes recursos:';
 $lang["batch_edit_save_warning_alert"]='Se encontraron algunos errores al realizar esta operación. Por favor, consulte sus mensajes para obtener más detalles';
 
 $lang["property-parent"]='Padre';
-$lang["information_field_restype_deselect_cleanup"]='Para eliminar los datos de campo existentes de los tipos de recursos deseleccionados, haga clic en el siguiente enlace %%CLEANUP_LINK%%';
+$lang["information_field_restype_deselect_cleanup"]='Para eliminar los datos de campo existentes de los tipos de recursos deseleccionados, haga clic en el siguiente enlace [cleanup_link]';
 $lang["property-id"]='Id';
 $lang["mainmenu"]='Menú principal';
 $lang["strip"]='Eliminar';
@@ -2669,7 +2663,6 @@ $lang["fileextension-inside-brackets"]='[%EXTENSION]';
 $lang["fileextension"]='%EXTENSION';
 $lang["remove_custom_access_no_users_found"]='No se encontraron usuarios o grupos con acceso personalizado.';
 $lang["log-rtchange"]='Tipo de recurso editado';
-$lang["log-missinglang"]='[tipo] (falta idioma)';
 $lang["log-NOFIL"]='Marcado como sin archivo';
 $lang["log-FIL"]='Marcado como teniendo archivo';
 $lang["log-EDT"]='Recurso editado';
@@ -2739,17 +2732,7 @@ $lang["all__emailcollection"]='<br />
 [fromusername] [lang_emailcollectionmessage] <br /><br /> 
 [lang_message] : [message]<br /><br /> 
 [lang_clicklinkviewcollection] [list]';
-$lang["all__emailcollectionexternal"]='<br />
-[deusername] [lang_emailcollectionmessageexternal] <br /><br /> 
-[lang_message] : [mensaje]<br /><br /> 
-[lang_clicklinkviewcollection] [lista]';
 $lang["all__emailcontactadmin"]='<br />[fromusername] ([emailfrom])[lang_contactadminemailtext]<br /><br />[message]<br /><br /><a href="[url]">[embed_thumbnail]</a><br /><br />[text_footer]';
-$lang["all__emaillogindetails"]='<br />
-[bienvenido]<br /><br /> 
-[nuevos_detalles_de_inicio_de_sesión]<br /><br /> 
-[nombre_de_usuario] : [username] <br /><br />
-<a href="[url]">[url]</a><br /><br />
-[texto_pie_de_página]';
 $lang["all__emailnewresearchrequestwaiting"]='<br />
 [username] ([userfullname] - [useremail])
 [lang_haspostedresearchrequest]<br /><br />
@@ -2788,12 +2771,6 @@ $lang["all__emailresearchrequestcomplete"]='<br />
 [lang_clicklinkviewcollection] <br /><br /> 
 <a href="[url]">[url]</a><br /><br />
 [text_footer]';
-$lang["all__emailresource"]='<br />
-[fromusername] [lang_hasemailedyouaresource]<br /><br />
-[mensaje]<br /><br />
-<a href="[url]">[embed_thumbnail]</a><br /><br />
-[lang_clicktoviewresource]<br /><a href="[url]">[resourcename] - [url]</a><br /><br />
-[text_footer]';
 $lang["all__emailresourcerequest"]='[lang_username] : [username] <br />
 [list] <br />
 [details]<br /><br />
@@ -2831,7 +2808,6 @@ $lang["report_breakdown_pie"]='Desglose en gráfico circular';
 $lang["report_total"]='Total';
 $lang["actions_email_new_actions_title"]='Nuevas acciones';
 $lang["actions_email_new_actions_intro"]='Hay nuevas acciones por completar.';
-$lang["email_actions_truncated"]='Solo se muestran las 1000 acciones más recientes aquí. Tienes %%TOTAL%% acciones. Inicia sesión en %%APPLICATIONNAME%% para verlas todas.';
 $lang["annotate_select"]='Seleccionar campo...';
 $lang["error_upload_replace_file_fail_invalid_collection"]='No se pudo reemplazar el archivo del recurso. La referencia de la colección proporcionada no es válida.';
 $lang["image_quality_50"]='Bajo';
@@ -2848,13 +2824,8 @@ $lang["job_status_error"]='Ocurrió un error';
 $lang["filter_is_in"]='ES';
 $lang["file_integrity_fail_latest"]='Ver los últimos fallos de integridad de archivos';
 $lang["file_integrity_fail_all"]='Ver todos los recursos con fallos de integridad de archivos';
-$lang["all__file_integrity_fail_email"]='[img_headerlogo]<br />
-[resumen_integridad_archivo_fallido] <br /><br /> 
-[búsqueda_fallo_integridad_archivo] <br /><br /> 
-<a href="[url]">[url]</a><br /><br />
-[text_footer]';
 $lang["error-edit_noaccess_related_resources"]='No se pueden relacionar los recursos. Sin acceso a:';
-$lang["csv_export_filename"]='exportación_de_metadatos_%%SEARCH%%_%%TIME%%';
+$lang["csv_export_filename"]='exportación_de_metadatos_[search]_[time]';
 $lang["upload_share_email_template"]='<br />
 [from_name] [lang_upload_share_email_text] [applicationname]<br /><br /> 
 [lang_message] : [message]<br /><br />
@@ -2872,7 +2843,7 @@ $lang["all__emailnotifyuploadsharenew"]='<br />
 <a href="[url]">[url]</a><br /><br />
 [text_footer]';
 $lang["share_expired_icon_title"]='Caducado';
-$lang["error_invalid_date_format"]='"%%VALUE%%" es una fecha inválida. Todos los valores en este campo deben estar formateados como AAAA-MM-DD';
+$lang["error_invalid_date_format"]='"[value]" es una fecha inválida. Todos los valores en este campo deben estar formateados como AAAA-MM-DD';
 $lang["related_resource_create"]='Crear nuevo recurso relacionado';
 $lang["skip-to-main-content"]='Saltar al contenido principal';
 $lang["cleanup_invalid_nodes"]='Limpiar datos de campo de tipos de recursos no válidos';
@@ -2890,7 +2861,7 @@ $lang["pull_images_text"]='Usar imágenes de recursos relacionados si no hay dis
 $lang["system_user_default"]='SISTEMA';
 $lang["userlimitreached"]='Has alcanzado tu límite de usuarios. Debes deshabilitar o eliminar un usuario existente antes de poder crear nuevas cuentas o habilitar cuentas existentes.';
 $lang["user_api_session_title"]='Acceso API del sistema remoto';
-$lang["user_api_session_text"]='El sistema remoto \'%system%\' está solicitando acceso a %applicationname% usando tus credenciales. Haz clic en \'Conceder acceso\' solo si has iniciado esta solicitud';
+$lang["user_api_session_text"]='El sistema remoto \'%system%\' está solicitando acceso a [applicationname] usando tus credenciales. Haz clic en \'Conceder acceso\' solo si has iniciado esta solicitud';
 $lang["user_api_session_invalid_system"]='Sistema solicitado no válido';
 $lang["user_api_session_grant_access"]='Conceder acceso';
 $lang["user_api_session_grant_success"]='Clave emitida con éxito.';
@@ -2902,3 +2873,15 @@ $lang["action_unset_no_file"]='Marcar como archivo faltante';
 $lang["completed_set_no_file"]='Recurso marcado como sin archivo';
 $lang["completed_unset_no_file"]='Recurso marcado como archivo faltante';
 $lang["map_esridelorme"]='DeLorme';
+$lang["requestapprovedmail_email"]='[img_headerlogo]<br/><br/>[message]<br/>[expires]<br/><br/>Haga clic en el enlace a continuación para ver y descargar los recursos solicitados.<br/><br/><a href=\'[url]\'>[url]</a>';
+$lang["all__emailcollectionexternal"]='<br />
+[fromusername] [lang_emailcollectionmessageexternal] <br /><br /> 
+[lang_message] : [message]<br /><br /> 
+[lang_clicklinkviewcollection] [list]';
+$lang["all__file_integrity_fail_email"]='[img_headerlogo]<br />
+[lang_file_integrity_summary_failed] <br /><br /> 
+[lang_file_integrity_fail_search] <br /><br /> 
+<a href="[url]">[url]</a><br /><br />
+[text_footer]';
+$lang["log-missinglang"]='[type] (idioma faltante)';
+$lang["email_actions_truncated"]='Solo se muestran aquí las 1000 acciones más recientes. Tienes [total] acciones. Inicia sesión en [application_name] para verlas todas.';

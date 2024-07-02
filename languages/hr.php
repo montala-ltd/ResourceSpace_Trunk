@@ -116,7 +116,7 @@ $lang["editresearchrequests"]="Uredi istraživanje zahtjeva";
 $lang["savedsearch"]="Spremljena pretraživanja";
 $lang["mustspecifyoneusername"]="Morate navesti barem jedno korisničko ime";
 $lang["couldnotmatchallusernames"]="Nisu mogli odgovarati svih korisničkih imena";
-$lang["emailcollectionmessage"]="ima li e-poštom zbirka resursa od %applicationname% kojima je dodan u Vašu &#39;Moj kolekciźe&#39; stranicu.";
+$lang["emailcollectionmessage"]="ima li e-poštom zbirka resursa od [applicationname] kojima je dodan u Vašu &#39;Moj kolekciźe&#39; stranicu.";
 $lang["clicklinkviewcollection"]="Kliknite na link ispod da vidite u zbirke.";
 $lang["zippedcollectiontextfile"]="Uključi tekstualne datoteke sa resursima / prikupljanje podataka.";
 $lang["copycollectionremoveall"]="Ukloniti sve izvore prije kopiranja";
@@ -823,8 +823,8 @@ $lang["userpending"]='Resursi koje su korisnici dodali i čekaju pregled';
 $lang["viewuserpendingsubmission"]='Pregledaj resurse koje su korisnici dodali, a čekaju odobrenje';
 $lang["userpendingsubmission"]='Resursi koje su korisnici dodali i čekaju na predaju';
 $lang["resourcespendingarchive"]='Resursi na čekanju za arhiviranje';
-$lang["previewstatus"]='Stvoreni su pregledi za resurs %file% od %filestotal%.';
-$lang["uploadedstatus"]='Resurs %file% od %filestotal% je prenesen - %path%';
+$lang["previewstatus"]='Stvoreni su pregledi za resurs [file] od %filestotal%.';
+$lang["uploadedstatus"]='Resurs [file] od %filestotal% je prenesen - %path%';
 $lang["upload_failed_for_path"]='Neuspjelo učitavanje za %path%';
 $lang["upload_summary"]='Prijenos sažetka';
 $lang["resources_uploaded-0"]='0 resursa uspješno preneseno.';
@@ -869,7 +869,7 @@ $lang["research"]='Istraživanje';
 $lang["collectionprivate_attachedusermessage"]='%user% vas je dodao/la u svoju kolekciju \'%colname%\'.';
 $lang["nomessage"]='Nema poruke';
 $lang["nomessages"]='Nema poruka';
-$lang["emailcollectionmessageexternal"]='Poslao vam je e-poštom kolekciju resursa iz %applicationname%-a.';
+$lang["emailcollectionmessageexternal"]='Poslao vam je e-poštom kolekciju resursa iz [applicationname]-a.';
 $lang["archivesettings"]='Postavke arhive';
 $lang["archive-zip"]='ZIP';
 $lang["download-of-collections-not-enabled"]='Preuzimanje kolekcija nije omogućeno.';
@@ -892,8 +892,8 @@ $lang["total"]='Ukupno';
 $lang["lastmatching"]='Posljednje podudaranje';
 $lang["ownedbyyou"]='u vlasništvu vas';
 $lang["edit_theme_category"]='Uredi kategoriju istaknute zbirke';
-$lang["emailthemecollectionmessageexternal"]='Poslao vam je e-poštom kolekcije resursa iz %applicationname%-a.';
-$lang["emailthememessage"]='Poslao vam je e-poštu s odabranim kolekcijama iz %applicationname%-a koje su dodane na vašu stranicu "Moje kolekcije".';
+$lang["emailthemecollectionmessageexternal"]='Poslao vam je e-poštom kolekcije resursa iz [applicationname]-a.';
+$lang["emailthememessage"]='Poslao vam je e-poštu s odabranim kolekcijama iz [applicationname]-a koje su dodane na vašu stranicu "Moje kolekcije".';
 $lang["clicklinkviewthemes"]='Koristite donju poveznicu za pregled značajnih zbirki.';
 $lang["clicklinkviewcollections"]='Koristite donje poveznice za pregled zbirki.';
 $lang["background_image"]='Pozadinska slika';
@@ -922,7 +922,7 @@ $lang["recreatepreviews_pending"]='Resurs(i) su označeni za ponovno stvaranje p
 $lang["retrypreviews"]='Ponovno pokušaj stvaranje pregleda';
 $lang["relatedresources-filename_extension"]='Povezani resursi - %EXTENZIJA';
 $lang["relatedresources-id"]='Povezani resursi za %id%';
-$lang["relatedresources-restype"]='Povezani resursi - %restype%';
+$lang["relatedresources-restype"]='Povezani resursi - [restype]';
 $lang["relatedresources_onupload"]='Poveži sve resurse prilikom prijenosa';
 $lang["youfoundresource"]='resurs';
 $lang["youfoundresults"]='rezultati';
@@ -1461,7 +1461,7 @@ $lang["report_periodic_email_option_all_users"]='svi korisnici';
 $lang["report_periodic_email_option_selected_user_groups"]='odabrana grupa/e korisnika';
 $lang["report_periodic_email_unsubscribe_title"]='Odjavite se od periodičnih e-pošta';
 $lang["report_periodic_email_unsubscribe_confirmation"]='Molimo potvrdite da se želite odjaviti';
-$lang["report_periodic_email_report_attached"]='Izvješće \'%%REPORTTITLE%%\' je priloženo.';
+$lang["report_periodic_email_report_attached"]='Izvješće \'[report_title]\' je priloženo.';
 $lang["report-select-required"]='Molimo odaberite izvještaj';
 $lang["columnheader-keyword"]='Ključna riječ';
 $lang["columnheader-entered_count"]='Uneseni broj';
@@ -1503,7 +1503,7 @@ $lang["writeaccess_sql_log"]='Pristup za pisanje u SQL zapisnik:';
 $lang["nowriteaccesstohomeanim"]='Nije moguće zapisivati. Otvorite dozvole kako biste omogućili funkciju obrezivanja animacije u kućištu u dodatku za transformaciju.';
 $lang["blockedbrowsingoffilestore"]='Blokiran pregled direktorija \'filestore\'';
 $lang["noblockedbrowsingoffilestore"]='Mapa filestore izgleda kao da se može pregledavati. Molimo uklonite \'Indexes\' iz Apache \'Options\' liste ili onemogućite \'autoindex\' modul iz Apache-a.';
-$lang["php_extension_not_enabled"]='PHP ekstenzija %%EXTENSION%% nije omogućena';
+$lang["php_extension_not_enabled"]='PHP ekstenzija [extension] nije omogućena';
 $lang["execution_failed"]='Neočekivani izlaz prilikom izvršavanja naredbe %command. Izlaz je bio \'%output\'.';
 $lang["exif_extension"]='Proširenje EXIF-a';
 $lang["archiver_utility"]='Arhivska alatka';
@@ -1562,9 +1562,9 @@ $lang["restricted_access_only_to_resource_type"]='Ograničen pristup samo za tip
 $lang["restricted_upload_for_resource_of_type"]='Ograničen prijenos za resurs vrste';
 $lang["deny_edit_resource_type"]='Odbij pristup uređivanju resursa tipa';
 $lang["deny_edit_all_resource_types"]='Odbij pristup uređivanju svim vrstama resursa osim onih navedenih u dozvolama "DOPUSTI pristup uređivanju resursa određene vrste resursa"';
-$lang["can_edit_resource_type"]='Može uređivati resurse vrste %%RESOURCETYPE%%. Ignorira se ako dozvola "ZABRANI uređivanje pristupa zadanoj vrsti resursa" nije prisutna';
+$lang["can_edit_resource_type"]='Može uređivati resurse vrste [resourcetype]. Ignorira se ako dozvola "ZABRANI uređivanje pristupa zadanoj vrsti resursa" nije prisutna';
 $lang["edit_access_to_workflow_state"]='Uređivanje pristupa stanju radnog tijeka';
-$lang["edit_access_to_access"]='Pristup uređivanju za pristup stanju \'%STATE\'';
+$lang["edit_access_to_access"]='Pristup uređivanju za pristup stanju \'[state]\'';
 $lang["can_create_resources_and_upload_files-admins"]='Može stvarati resurse / učitavati datoteke<br>(administratori; resursi idu u stanje \'Aktivno\')';
 $lang["can_create_resources_and_upload_files-general_users"]='Može stvarati resurse / učitavati datoteke<br>(obični korisnici; resursi idu u stanje \'Na čekanju za predaju\' putem Mojih doprinosa)';
 $lang["can_delete_resources"]='Može brisati resurse<br>(za koje korisnik ima pravo pisanja)';
@@ -1692,7 +1692,6 @@ $lang["zipping"]='Komprimiranje u zip format';
 $lang["zipcomplete"]='Vaše preuzimanje Zip datoteke trebalo bi započeti. Možete napustiti ovu stranicu.';
 $lang["starttypingkeyword"]='Počnite tipkati ključnu riječ...';
 $lang["createnewentryfor"]='Stvorite novi unos za';
-$lang["confirmcreatenewentryfor"]='Jeste li sigurni da želite stvoriti novi unos popisa ključnih riječi za \'%%\'?';
 $lang["noentryexists"]='Nema unosa za';
 $lang["editresourcepreviews"]='Uredi pregled resursa';
 $lang["can_assign_resource_requests"]='Može dodijeliti zahtjeve za resursima drugima';
@@ -1866,8 +1865,8 @@ $lang["group_download_limit_title"]='Ograničenje preuzimanja resursa. Postavite
 $lang["group_download_limit_period"]='Razdoblje ograničenja preuzimanja (ograničenje u posljednjih X dana). Postavite na 0 za apsolutno ograničenje preuzimanja';
 $lang["download_limit_error"]='Dosegnuli ste ograničenje preuzimanja.';
 $lang["download_limit_collection_error"]='Ovaj bi download kolekcije premašio vaše ograničenje preuzimanja.';
-$lang["download_limit_summary"]='Preuzeli ste %%DOWNLOADED%%/%%LIMIT%% resursa.';
-$lang["download_limit_request_text"]='Dosegnut je limit preuzimanja: %%DOWNLOADED%%/%%LIMIT%%';
+$lang["download_limit_summary"]='Preuzeli ste [downloaded]/[limit] resursa.';
+$lang["download_limit_request_text"]='Dosegnut je limit preuzimanja: [downloaded]/[limit]';
 $lang["page-title_user_group_management_edit"]='Uredi korisničku grupu';
 $lang["page-subtitle_user_group_management_edit"]='Koristite ovaj odjeljak za izmjenu svojstava korisničke grupe.';
 $lang["action-title_remove_user_group_logo"]='Označite za uklanjanje logotipa grupe korisnika';
@@ -1892,7 +1891,7 @@ $lang["resource_types_manage"]='Vrste resursa';
 $lang["resource_type_new"]='Novi tip resursa';
 $lang["resource_type_field_new"]='Novo polje metapodataka';
 $lang["admin_advanced_field_properties"]='Napredna svojstva polja';
-$lang["admin_delete_field_confirm"]='Postoje %%AFFECTEDRESOURCES%% resurs(a) s podacima u ovom polju. Neki od pogođenih ID-ova resursa su navedeni u nastavku. Metapodaci povezani s ovim poljem bit će izgubljeni ako nastavite. Jeste li sigurni da želite nastaviti s brisanjem?';
+$lang["admin_delete_field_confirm"]='Postoje [affected_resources] resurs(a) s podacima u ovom polju. Neki od pogođenih ID-ova resursa su navedeni u nastavku. Metapodaci povezani s ovim poljem bit će izgubljeni ako nastavite. Jeste li sigurni da želite nastaviti s brisanjem?';
 $lang["admin_delete_field_error"]='Nije moguće izbrisati polje. Molimo kontaktirajte svog sistemskog administratora. Ovo polje se koristi za sljedeće konfiguracijske opcije: -';
 $lang["admin_delete_field_error_scopes"]='Nije moguće izbrisati polje. Molimo kontaktirajte svog sistemskog administratora. Ovo polje se još uvijek koristi u ovim opsezima:';
 $lang["admin_resource_type_create"]='Stvorite vrstu resursa nazvanu...';
@@ -1934,7 +1933,7 @@ $lang["property-groups"]='Grupe';
 $lang["property-user_group"]='Korisnička grupa';
 $lang["property-user_group_parent"]='Roditeljska korisnička grupa';
 $lang["property-user_group_remove_parent"]='(ukloni roditelja)';
-$lang["resource_type_delete_confirmation"]='Postoji %%RESOURCECOUNT%% resurs(a) ovog tipa.';
+$lang["resource_type_delete_confirmation"]='Postoji [resource_count] resurs(a) ovog tipa.';
 $lang["resource_type_delete_assoc_rtf_confirm"]='Postoje %COUNT polja metapodataka povezana s ovim tipom resursa.';
 $lang["resource_type_delete_select_new"]='Molimo odaberite vrstu resursa u koje će se ovo pretvoriti.';
 $lang["resourcetype-global_field"]='Global - Globalno';
@@ -1949,7 +1948,7 @@ $lang["admin_field_deleted"]='Obrisano polje';
 $lang["action-move-up"]='Pomakni gore';
 $lang["action-move-down"]='Pomakni dolje';
 $lang["action-move-to"]='Premjesti u';
-$lang["delete_user_group_checkbox_alert_message"]='Molimo imajte na umu da će ova radnja također izbrisati sav tekst sadržaja koji je bio relevantan za ovu grupu korisnika. Pronađeno je %%RECORDSCOUNT%% zapisa u Upravljanju sadržajem.';
+$lang["delete_user_group_checkbox_alert_message"]='Molimo imajte na umu da će ova radnja također izbrisati sav tekst sadržaja koji je bio relevantan za ovu grupu korisnika. Pronađeno je [recordscount] zapisa u Upravljanju sadržajem.';
 $lang["about__about"]='Vaš tekst o stranici ide ovdje.';
 $lang["all__footer"]='Pokreće ga <a target="_blank" href="https://www.resourcespace.com/">ResourceSpace Open Source Digital Asset Management</a>';
 $lang["all__researchrequest"]='Neka naš tim resursa pronađe resurse koje vam trebaju.';
@@ -2143,7 +2142,7 @@ $lang["userpreference_tilenav"]='Koristite raspored pločica za izbornike naviga
 $lang["userpreference_tilenavdefault"]='Koristite raspored pločica za izbornike navigacije (zadana postavka; korisnici to mogu promijeniti)';
 $lang["systemconfig"]='Konfiguracija';
 $lang["systemconfig_customfont_label"]='Prilagođena datoteka fonta';
-$lang["systemconfig_invalid_extension"]='Vrsta datoteke nije valjana za ovaj odabir. Molimo odaberite između: %%EXTENSIONS%%';
+$lang["systemconfig_invalid_extension"]='Vrsta datoteke nije valjana za ovaj odabir. Molimo odaberite između: [extensions]';
 $lang["systemconfig_linkedheaderimgsrc_label"]='Logo aplikacije';
 $lang["systemconfig_header_favicon_label"]='Favicon aplikacije';
 $lang["systemconfig_description"]='Opcije na ovoj stranici su sustavne i mogu promijeniti neke funkcionalnosti dostupne korisnicima. Imajte na umu da će bilo koja opcija koja je također specifična za korisnika imati prednost ako je postavljena.';
@@ -2373,10 +2372,10 @@ $lang["error_save_not_allowed_fc_has_children"]='Nije moguće spremiti promjenu.
 $lang["error_multiple_preview_tools"]='Molimo onemogućite trenutni alat za pregled i pokušajte ponovno.';
 $lang["missing_folder"]='GREŠKA - Putanja do mape za prijenos nije postavljena.';
 $lang["error_upload_replace_file_fail"]='Nije uspjelo zamijeniti datoteku resursa';
-$lang["error_upload_replace_no_matching_file"]='Nije pronađen valjani resurs za zamjenu s nazivom datoteke %%FILENAME%%';
-$lang["error_upload_replace_multiple_matching_files"]='Pronađeno je više valjanih resursa s nazivom datoteke %%FILENAME%%';
-$lang["error_upload_invalid_file"]='Nevažeći tip datoteke: %%FILETYPE%%';
-$lang["error_upload_duplicate_file"]='Dvostruko učitavanje datoteke, datoteka se podudara s resursima: %%RESOURCES%%';
+$lang["error_upload_replace_no_matching_file"]='Nije pronađen valjani resurs za zamjenu s nazivom datoteke [filename]';
+$lang["error_upload_replace_multiple_matching_files"]='Pronađeno je više valjanih resursa s nazivom datoteke [filename]';
+$lang["error_upload_invalid_file"]='Nevažeći tip datoteke: [filetype]';
+$lang["error_upload_duplicate_file"]='Dvostruko učitavanje datoteke, datoteka se podudara s resursima: [resources]';
 $lang["error_upload_file_move_failed"]='Neuspjelo premještanje prenesene datoteke. Molimo provjerite veličinu datoteke koju pokušavate prenijeti.';
 $lang["error_fail_save"]='Nije moguće spremiti';
 $lang["image_quality_100"]='Maksimum';
@@ -2405,10 +2404,10 @@ $lang["oj-collection-download-failure-text"]='Nije moguće pripremiti arhivu kol
 $lang["oj-batch-replace-local-success-text"]='Skupna zamjena uspješno je zamijenila %TOTALRESOURCES resursa';
 $lang["oj-batch-replace-local-failure-text"]='Zamjena u grupi nije uspjela. Molimo provjerite dnevnike za greške';
 $lang["oj-creation-failure-text"]='Došlo je do pogreške. Neuspjelo stvaranje posla izvan mreže';
-$lang["oj-creation-success"]='Kreiran je posao izvan mreže %%JOBNUMBER%%. Bit ćete obaviješteni kada se završi';
+$lang["oj-creation-success"]='Kreiran je posao izvan mreže [jobnumber]. Bit ćete obaviješteni kada se završi';
 $lang["email_auto_digest_inactive"]='Ovo je sažetak vaših nepročitanih poruka';
 $lang["email_digest_disable"]='Možete onemogućiti ove obavijesti prijavljivanjem i prilagođavanjem svojih korisničkih postavki na donjoj poveznici:';
-$lang["user_pref_inactive_digest"]='Pošalji mi dnevni e-mail sa svim nepročitanim obavijestima ako nisam prijavljen više od %%DAYS%% dana';
+$lang["user_pref_inactive_digest"]='Pošalji mi dnevni e-mail sa svim nepročitanim obavijestima ako nisam prijavljen više od [days] dana';
 $lang["edit_copy_from_field"]='Kopiraj podatke iz polja';
 $lang["home_page"]='Početna stranica';
 $lang["login_word"]='Prijava';
@@ -2474,24 +2473,20 @@ $lang["date_format_error"]='Greška: %row% \'%date%\' u [%field%] neispravan uno
 $lang["invalid_date_error"]='Greška: %row% \'%date%\' u [%field%] nije valjani datum';
 $lang["invalid_date_error2"]='Greška: nevažeća vrijednost datuma: \'%date%\'. Molimo koristite format: \'yyyy-mm-dd hh:mm:ss\' (vrijeme nije obavezno)';
 $lang["invalid_date_generic"]='Unijeli ste neispravan datum';
-$lang["error_server_missing_module"]='Poslužitelj nema potrebni softver: %%MODULE%%. Molimo kontaktirajte svog sistem administratora';
-$lang["error_check_config"]='Molimo provjerite konfiguracijsku opciju %%CONFIG_OPTION%%';
+$lang["error_server_missing_module"]='Poslužitelj nema potrebni softver: [module]. Molimo kontaktirajte svog sistem administratora';
+$lang["error_check_config"]='Molimo provjerite konfiguracijsku opciju [config_option]';
 $lang["useaspreviewimage"]='Koristi kao slika pregleda';
 $lang["filechecksum"]='Provjera kontrolne sume datoteke';
-$lang["system_notification"]='%%APPLICATION_NAME%% - obavijest sustava';
-$lang["system_notification_email"]='[img_headerlogo]<br />
-[poruka]<br /><br />
-<a href="[url]">[url]</a><br /><br />
-[tekst_podnožja]';
+$lang["system_notification"]='[application_name] - obavijest sustava';
 $lang["error_edit_filter_invalid"]='Filter za uređivanje nije ispravno konfiguriran za ovu korisničku grupu. Molimo kontaktirajte svog administratora';
 $lang["error_search_filter_invalid"]='Filter za pretraživanje nije ispravno konfiguriran za ovu grupu korisnika. Molimo kontaktirajte svog administratora';
 $lang["action_lock"]='Zaključaj';
 $lang["action_unlock"]='Otključaj';
 $lang["status_locked"]='Zaključano';
 $lang["status_unlocked"]='Otključano';
-$lang["status_locked_by"]='Zaključano od strane %%USER%%';
+$lang["status_locked_by"]='Zaključano od strane [user]';
 $lang["status_locked_self"]='Zaključali ste ovaj resurs';
-$lang["error_locked_by_user"]='Resurs je zaključan od strane korisnika %%USER%%';
+$lang["error_locked_by_user"]='Resurs je zaključan od strane korisnika [user]';
 $lang["error_locked_other_user"]='Resurs je zaključan od strane drugog korisnika';
 $lang["error-edit_noaccess_resources"]='Nema pristupa uređivanju resursa:';
 $lang["error-edit_locked_resources"]='Sljedeći resursi su zaključani:';
@@ -2524,7 +2519,7 @@ $lang["job_priority"]='Prioritet';
 $lang["csv_export_offline_option"]='Generirati CSV datoteku izvan mreže? Ovo bi trebalo koristiti za velike skupove rezultata. Bit ćete obaviješteni putem poruke u ResourceSpaceu kada CSV bude dostupan';
 $lang["csv_export_file_ready"]='Vaš CSV izvoz je spreman';
 $lang["offline_processing_disabled"]='Obrada poslova izvan mreže nije konfigurirana na ovom sustavu. Za omogućavanje obrade poslova izvan mreže, molimo kontaktirajte svog administratora sustava';
-$lang["csv_export_offline_only"]='Morate koristiti obradu izvan mreže kada izvozite podatke za više od %%RESOURCE_COUNT%% resursa';
+$lang["csv_export_offline_only"]='Morate koristiti obradu izvan mreže kada izvozite podatke za više od [resource_count] resursa';
 $lang["setup_google_vision_settings"]='Postavke Google Visiona';
 $lang["setup_google_vision_enable"]='Omogućiti dodatak Google Vision?';
 $lang["tagged_notification"]='Označeni ste u komentaru:';
@@ -2554,7 +2549,7 @@ $lang["notify_upload_share_new_subject"]='Novi vanjski prijenosi';
 $lang["my_shares"]='Moje dijeljenje';
 $lang["manage_shares_title"]='Vanjske dijeljene veze';
 $lang["share_purge_text"]='Izbriši istekle dijeljene resurse';
-$lang["shares_purged_message"]='Obrisano je %%DELETEDCOUNT%% dijeljenja';
+$lang["shares_purged_message"]='Obrisano je [deleted_count] dijeljenja';
 $lang["share_confirm_purge"]='Jeste li sigurni da želite izbrisati sve istekle dijeljene resurse?';
 $lang["external_shares_view_existing"]='Pregledaj postojeće dijeljene uploadove za ovu kolekciju.';
 $lang["share_user"]='Podijeljeno od';
@@ -2567,7 +2562,7 @@ $lang["log-reference"]='Zapisnik evidencije';
 $lang["log_column"]='Prijavljeni podaci';
 $lang["log_value"]='Vrijednost';
 $lang["error_slideshow_invalid"]='Nevažeći broj sekvence. Molimo unesite numeričku vrijednost';
-$lang["error-file-permissions"]='Nije moguće izvršiti operaciju datoteke. Molimo provjerite dozvole datoteke na %%PATH%%';
+$lang["error-file-permissions"]='Nije moguće izvršiti operaciju datoteke. Molimo provjerite dozvole datoteke na [path]';
 $lang["new_message"]='Nova poruka';
 $lang["message_recipients"]='Primatelj(i)';
 $lang["error_invalid_user"]='Naveden je nevažeći korisnik';
@@ -2582,15 +2577,15 @@ $lang["upload_view_log"]='Pregledaj zapisnik';
 $lang["code_sign_required"]='Potpisivanje koda u liniji';
 $lang["code_sign_required_warning"]='Upozorenje: Inline kôd je promijenjen i ažurirani kôd nije potpisan pomoću naredbenog retka. Makronaredbe izvedene na metapodacima možda neće biti dovršene kako se očekuje.';
 $lang["search_full_text"]='Pretraži sav tekst (pretraživanje punog teksta)';
-$lang["error_invalid_revert_option"]='Prethodno pohranjena vrijednost \'%%VALUE%%\' nije pronađena u trenutnim opcijama. Molimo provjerite je li se ime ove opcije promijenilo i ručno ažurirajte resurs ako je potrebno.';
-$lang["error_invalid_revert_date"]='Prethodno pohranjeni datum \'%%VALUE%%\' nije valjan. Ako je potrebno, ručno ažurirajte resurs.';
+$lang["error_invalid_revert_option"]='Prethodno pohranjena vrijednost \'[value]\' nije pronađena u trenutnim opcijama. Molimo provjerite je li se ime ove opcije promijenilo i ručno ažurirajte resurs ako je potrebno.';
+$lang["error_invalid_revert_date"]='Prethodno pohranjeni datum \'[value]\' nije valjan. Ako je potrebno, ručno ažurirajte resurs.';
 $lang["batch_edit_save_warning_message"]='Tijekom uređivanja sljedećih resursa došlo je do pogrešaka';
 $lang["batch_edit_save_warning_alert"]='Neki su se problemi pojavili prilikom izvođenja ove operacije. Molimo pogledajte svoje poruke za više detalja';
 
 $lang["fieldtitle-genre"]='Žanr';
 $lang["property-reference"]='Referenca';
 $lang["information-display_condition"]='Uvjet prikaza: ovo polje će se prikazati samo ako su ispunjeni sljedeći uvjeti. Polje koje se provjerava mora biti jedan od fiksnih tipova: padajući popis, popis s potvrdnim okvirima, radio gumbi, dinamička ključna riječ ili stablo kategorija. Koristi isti format kao filtar pretraživanja grupe, tj. kratkoime=vrijednost1|vrijednost2, kratkoimea=važećaopcija;kratkoimeb=važećaopcijab1|važećaopcijab2';
-$lang["information_field_restype_deselect_cleanup"]='Da biste uklonili postojeće podatke polja iz neodabranih vrsta resursa, kliknite na sljedeću poveznicu %%CLEANUP_LINK%%';
+$lang["information_field_restype_deselect_cleanup"]='Da biste uklonili postojeće podatke polja iz neodabranih vrsta resursa, kliknite na sljedeću poveznicu [cleanup_link]';
 $lang["property-id"]='Id';
 $lang["mainmenu"]='Glavni izbornik';
 $lang["strip"]='Ukloni';
@@ -2676,43 +2671,11 @@ $lang["resourcetypes_separator"]=',';
 $lang["collectiontypes_separator"]=',';
 $lang["user_group"]='korisnička grupa';
 $lang["fieldtitle-tick_to_delete_size"]='Označite za brisanje ove veličine';
-$lang["all__emailbulk"]='<br /><br />
-[tekst]<br /><br />
-[tekst_podnožje]';
-$lang["all__emailcollection"]='<br />
-[odkorisnickoime] [lang_emailcollectionmessage] <br /><br /> 
-[lang_poruka] : [poruka]<br /><br /> 
-[lang_kliknitepovezavidi] [popis]';
 $lang["all__emailcollectionexternal"]='<br />
 [fromusername] vam je poslao poruku o zbirci <br /><br /> 
 Poruka: [message]<br /><br /> 
 Kliknite na poveznicu za pregled zbirke: [list]';
 $lang["all__emailcontactadmin"]='<br />[fromusername] ([emailfrom])[lang_contactadminemailtext]<br /><br />[message]<br /><br /><a href="[url]">[embed_thumbnail]</a><br /><br />[text_footer]';
-$lang["all__emaillogindetails"]='<br />
-[dobrodošli]<br /><br /> 
-[novi_podaci_za_prijavu]<br /><br /> 
-[korisničko_ime] : [username] <br /><br />
-<a href="[url]">[url]</a><br /><br />
-[tekst_podnožja]';
-$lang["all__emailnewresearchrequestwaiting"]='<br />
-[korisničko ime] ([puno ime korisnika] - [email korisnika])
-[lang_haspostedresearchrequest]<br /><br />
-[naziv projekta]:[name]<br /><br />
-[opis projekta]:[description]<br /><br />
-[rok]:[deadline]<br /><br />
-[kontakt telefon]:[contact]<br /><br />
-[konačna upotreba]: [finaluse]<br /><br />
-[potreban oblik]: [shape]<br /><br />
-[broj potrebnih resursa]: [noresources]<br /><br />
-<a href="[url]">[url]</a><br /><br />
-<a href="[teamresearchurl]">[teamresearchurl]</a><br /><br />
-[text_footer]';
-$lang["all__emailnotifyresourcesapproved"]='<br />
-[Korisnički resursi odobreni]
-[popis] <br />
-[Pogledaj pridonijete resurse] <br /><br /> 
-<a href="[url]">[url]</a><br /><br />
-[tekst_podnožje]';
 $lang["all__emailnotifyresourcessubmitted"]='<br />
 [lang_userresourcessubmitted]
 [list] <br />
@@ -2725,12 +2688,6 @@ $lang["all__emailresearchrequestassigned"]='<br />
 $lang["all__emailresearchrequestcomplete"]='[lang_researchrequestcompletemessage] <br /><br /> 
 [lang_clicklinkviewcollection] <br /><br /> 
 <a href="[url]">[url]</a><br /><br />
-[text_footer]';
-$lang["all__emailresource"]='<br />
-[fromusername] [lang_vamjeposlaoresurs]<br /><br />
-[message]<br /><br />
-<a href="[url]">[embed_thumbnail]</a><br /><br />
-[lang_kliknitezapregledresursa]<br /><a href="[url]">[resourcename] - [url]</a><br /><br />
 [text_footer]';
 $lang["all__emailresourcerequest"]='<br />
 [lang_username] : [username] <br />
@@ -2769,7 +2726,7 @@ $lang["email_shares_options_summary"]='Ove opcije će se primjenjivati samo za d
 $lang["report_breakdown_pie"]='Razlaganje pita';
 $lang["actions_email_new_actions_title"]='Nove radnje';
 $lang["actions_email_new_actions_intro"]='Postoje nove radnje koje treba dovršiti.';
-$lang["email_actions_truncated"]='Prikazano je samo najnovijih 1000 radnji. Imate %%TOTAL%% radnji. Prijavite se u %%APPLICATIONNAME%% kako biste ih sve pregledali.';
+$lang["email_actions_truncated"]='Prikazano je samo najnovijih 1000 radnji. Imate [total] radnji. Prijavite se u [application_name] kako biste ih sve pregledali.';
 $lang["annotate_select"]='Odaberite polje...';
 $lang["error_upload_replace_file_fail_invalid_collection"]='Nije uspjelo zamijeniti datoteku resursa. Pružena referenca kolekcije je nevažeća.';
 $lang["image_quality_80"]='Web';
@@ -2794,7 +2751,7 @@ $lang["all__file_integrity_fail_email"]='[img_headerlogo]<br />
 $lang["collection_actiontype_999"]='Ostalo';
 $lang["error-edit_noaccess_related_resources"]='Nije moguće povezati resurse. Nema pristupa:';
 $lang["job_status_2"]='Dovršeno';
-$lang["csv_export_filename"]='izvoz_metapodataka_%%SEARCH%%_%%TIME%%';
+$lang["csv_export_filename"]='izvoz_metapodataka_[search]_[time]';
 $lang["upload_share_email_template"]='<br />
 [from_name] [lang_upload_share_email_text] [applicationname]<br /><br /> 
 [lang_message] : [message]<br /><br />
@@ -2811,7 +2768,7 @@ Kliknite na poveznicu za pregled kolekcije <br /><br />
 <a href="[url]">[url]</a><br /><br />
 [text_footer]';
 $lang["share_expired_icon_title"]='Isteklo';
-$lang["error_invalid_date_format"]='"%%VALUE%%" nije valjan datum. Sve vrijednosti u ovom polju moraju biti u formatu YYYY-MM-DD';
+$lang["error_invalid_date_format"]='"[value]" nije valjan datum. Sve vrijednosti u ovom polju moraju biti u formatu YYYY-MM-DD';
 $lang["related_resource_create"]='Kreiraj novi povezani resurs';
 $lang["skip-to-main-content"]='Preskoči na glavni sadržaj';
 $lang["cleanup_invalid_nodes"]='Očisti podatke polja od nevažećih vrsta resursa';
@@ -2829,7 +2786,7 @@ $lang["pull_images_text"]='Koristite slike iz povezanih resursa ako nisu dostupn
 $lang["system_user_default"]='SUSTAV';
 $lang["userlimitreached"]='Dosegnuli ste svoj korisnički limit. Postojeći korisnik mora biti onemogućen ili izbrisan prije nego što možete stvoriti nove račune ili omogućiti postojeće račune.';
 $lang["user_api_session_title"]='Pristup API-ju udaljenog sustava';
-$lang["user_api_session_text"]='Udaljeni sustav \'%system%\' traži pristup %applicationname% koristeći vaše vjerodajnice. Kliknite \'Dodijeli pristup\' samo ako ste vi pokrenuli ovaj zahtjev';
+$lang["user_api_session_text"]='Udaljeni sustav \'%system%\' traži pristup [applicationname] koristeći vaše vjerodajnice. Kliknite \'Dodijeli pristup\' samo ako ste vi pokrenuli ovaj zahtjev';
 $lang["user_api_session_invalid_system"]='Neispravan sustav zatražen';
 $lang["user_api_session_grant_access"]='Dodijeli pristup';
 $lang["user_api_session_grant_success"]='Ključ uspješno izdan.';
@@ -2842,10 +2799,50 @@ $lang["completed_set_no_file"]='Resurs označen kao da nema datoteku';
 $lang["completed_unset_no_file"]='Resurs označen kao datoteka nedostaje';
 $lang["hour-abbreviated"]='HH';
 $lang["map_esridelorme"]='DeLorme';
-$lang["all__emailnotifyresourcesunsubmitted"]='<br />
-[korisnički_resursi_neposlani]
-[popis] <br />
-[pogledaj_sve_korisničke_načekanju] <br /><br /> 
-<a href="[url]">[url]</a><br /><br />
-[tekst_podnožje]';
 $lang["themes__manage"]='Organizirajte i uredite istaknute kolekcije dostupne online. Istaknute kolekcije su posebno promovirane kolekcije. <br /><br /> <strong>1 Za stvaranje novog unosa pod Istaknutom kolekcijom - izgradite kolekciju</strong><br /> Odaberite <strong>Moje kolekcije</strong> iz glavnog gornjeg izbornika i postavite potpuno novu <strong>javnu</strong> kolekciju. Ne zaboravite uključiti naziv istaknute kolekcije tijekom postavljanja. Koristite postojeći naziv istaknute kolekcije za grupiranje kolekcije pod trenutnom istaknutom kolekcijom (pazite da ga upišete točno), ili odaberite novi naslov za stvaranje potpuno nove istaknute kolekcije. Nikada ne dopustite korisnicima da dodaju/uklanjaju resurse iz istaknutih kolekcija. <br /> <br /><strong>2 Za uređivanje sadržaja postojećeg unosa pod istaknutom kolekcijom</strong><br /> Odaberite <strong>uredi kolekciju</strong>. Stavke u toj kolekciji će se pojaviti u panelu <strong>Moje kolekcije</strong> na dnu ekrana. Koristite standardne alate za uređivanje, uklanjanje ili dodavanje resursa. <br /> <br /><strong>3 Za promjenu naziva istaknute kolekcije ili premještanje kolekcije da se pojavi pod drugom istaknutom kolekcijom</strong><br /> Odaberite <strong>uredi svojstva</strong> i uredite kategoriju istaknute kolekcije ili naziv kolekcije. Koristite postojeći naziv istaknute kolekcije za grupiranje kolekcije pod trenutnom istaknutom kolekcijom (pazite da ga upišete točno), ili odaberite novi naslov za stvaranje potpuno nove istaknute kolekcije. <br /> <br /><strong>4 Za uklanjanje kolekcije iz istaknute kolekcije</strong><br /> Odaberite <strong>uredi svojstva</strong> i izbrišite riječi u polju kategorije istaknute kolekcije.';
+$lang["all__emailcollection"]='<br />
+[fromusername] [lang_emailcollectionmessage] <br /><br /> 
+[lang_message] : [message]<br /><br /> 
+[lang_clicklinkviewcollection] [list]';
+$lang["all__emailresource"]='<br />
+[fromusername] [lang_hasemailedyouaresource]<br /><br />
+[message]<br /><br />
+<a href="[url]">[embed_thumbnail]</a><br /><br />
+[lang_clicktoviewresource]<br /><a href="[url]">[resourcename] - [url]</a><br /><br />
+[text_footer]';
+$lang["map_tf_group"]='Thunderforest';
+$lang["all__emailnewresearchrequestwaiting"]='<br />
+[username] ([userfullname] - [useremail])
+[lang_haspostedresearchrequest]<br /><br />
+[lang_nameofproject]:[name]<br /><br />
+[lang_descriptionofproject]:[description]<br /><br />
+[lang_deadline]:[deadline]<br /><br />
+[lang_contacttelephone]:[contact]<br /><br />
+[lang_finaluse]: [finaluse]<br /><br />
+[lang_shaperequired]: [shape]<br /><br />
+[lang_noresourcesrequired]: [noresources]<br /><br />
+<a href="[url]">[url]</a><br /><br />
+<a href="[teamresearchurl]">[teamresearchurl]</a><br /><br />
+[text_footer]';
+$lang["all__emailnotifyresourcesunsubmitted"]='<br />
+[lang_userresourcesunsubmitted]
+[list] <br />
+[lang_viewalluserpending] <br /><br /> 
+<a href="[url]">[url]</a><br /><br />
+[text_footer]';
+$lang["all__emailnotifyresourcesapproved"]='<br />
+[lang_userresourcesapproved]
+[list] <br />
+[lang_viewcontributedsubittedl] <br /><br /> 
+<a href="[url]">[url]</a><br /><br />
+[text_footer]';
+$lang["all__emaillogindetails"]='<br />
+[dobrodošli]<br /><br /> 
+[lang_noviprijavničkidetalji]<br /><br /> 
+[korisničko ime] : [username] <br /><br />
+<a href="[url]">[url]</a><br /><br />
+[text_footer]';
+$lang["system_notification_email"]='[img_headerlogo]<br />
+[message]<br /><br /> 
+<a href="[url]">[url]</a><br /><br />
+[text_footer]';

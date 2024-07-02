@@ -129,7 +129,7 @@ $lang["editresearchrequests"]="Editar peticions de material";
 $lang["savedsearch"]="Cerca guardada";
 $lang["mustspecifyoneusername"]="Has d'especificar un usuari com a mínim";
 $lang["couldnotmatchallusernames"]="No s'ha pogut trobar tots els noms d'usuaris";
-$lang["emailcollectionmessage"]="t'ha enviat una col·lecció de materials de %applicationname% i s'ha afegit a la teva secció 'Les meves col·leccions'."; # suffixed to user name e.g. "Fred has e-mailed you a collection.."
+$lang["emailcollectionmessage"]="t'ha enviat una col·lecció de materials de [applicationname] i s'ha afegit a la teva secció 'Les meves col·leccions'."; # suffixed to user name e.g. "Fred has e-mailed you a collection.."
 $lang["clicklinkviewcollection"]="Clica l'enllaç de sota per veure la col·lecció.";
 
 # Resource create / edit / view
@@ -738,8 +738,8 @@ $lang["userpending"]='Recursos contribuïts per l\'usuari pendents de revisió';
 $lang["viewuserpendingsubmission"]='Veure els recursos contribuïts pels usuaris pendents de revisió';
 $lang["userpendingsubmission"]='Recursos contribuïts per l\'usuari pendents de ser enviats';
 $lang["resourcespendingarchive"]='Recursos pendents d\'arxivament';
-$lang["previewstatus"]='S\'han creat previsualitzacions per al recurs %file% de %filestotal%.';
-$lang["uploadedstatus"]='Recurs %file% de %filestotal% pujat - %path%';
+$lang["previewstatus"]='S\'han creat previsualitzacions per al recurs [file] de %filestotal%.';
+$lang["uploadedstatus"]='Recurs [file] de %filestotal% pujat - %path%';
 $lang["upload_summary"]='Resum de càrrega';
 $lang["resources_uploaded-0"]='0 recursos pujats correctament.';
 $lang["resources_uploaded-1"]='1 recurs pujat correctament.';
@@ -786,7 +786,7 @@ $lang["research"]='Investigació';
 $lang["collectionprivate_attachedusermessage"]='%user% t\'ha afegit a la seva col·lecció \'%colname%\'.';
 $lang["nomessage"]='Cap missatge';
 $lang["nomessages"]='Cap missatge';
-$lang["emailcollectionmessageexternal"]='t\'ha enviat per correu electrònic una col·lecció de recursos des de %applicationname%.';
+$lang["emailcollectionmessageexternal"]='t\'ha enviat per correu electrònic una col·lecció de recursos des de [applicationname].';
 $lang["zippedcollectiontextfile"]='Inclou fitxer de text amb les dades del recurs/col·lecció.';
 $lang["archivesettings"]='Configuració d\'arxiu';
 $lang["download-of-collections-not-enabled"]='La descàrrega de col·leccions no està habilitada.';
@@ -810,8 +810,8 @@ $lang["total"]='Total';
 $lang["lastmatching"]='Última coincidència';
 $lang["ownedbyyou"]='en propietat teva';
 $lang["edit_theme_category"]='Editar la categoria de la col·lecció destacada';
-$lang["emailthemecollectionmessageexternal"]='T\'ha enviat per correu electrònic col·leccions de recursos des de %applicationname%.';
-$lang["emailthememessage"]='T\'ha enviat per correu electrònic una selecció de col·leccions destacades de %applicationname% que s\'han afegit a la teva pàgina \'Les meves col·leccions\'.';
+$lang["emailthemecollectionmessageexternal"]='T\'ha enviat per correu electrònic col·leccions de recursos des de [applicationname].';
+$lang["emailthememessage"]='T\'ha enviat per correu electrònic una selecció de col·leccions destacades de [applicationname] que s\'han afegit a la teva pàgina \'Les meves col·leccions\'.';
 $lang["clicklinkviewthemes"]='Utilitza l\'enllaç següent per veure les col·leccions destacades.';
 $lang["clicklinkviewcollections"]='Utilitza els enllaços següents per veure les col·leccions.';
 $lang["background_image"]='Imatge de fons';
@@ -840,7 +840,7 @@ $lang["recreatepreviews_pending"]='S\'ha marcat el/els recurs(sos) per a la recr
 $lang["retrypreviews"]='Tornar a intentar la creació de la previsualització';
 $lang["relatedresources-filename_extension"]='Recursos relacionats - %EXTENSION';
 $lang["relatedresources-id"]='Recursos relacionats amb %id%';
-$lang["relatedresources-restype"]='Recursos relacionats - %restype%';
+$lang["relatedresources-restype"]='Recursos relacionats - [restype]';
 $lang["relatedresources_onupload"]='Relaciona tots els recursos en pujar-los';
 $lang["youfoundresource"]='recurs';
 $lang["youfoundresults"]='resultats';
@@ -1289,10 +1289,6 @@ $lang["requestsent"]='La teva sol·licitud de recurs ha estat enviada per a apro
 $lang["requestsenttext"]='La teva sol·licitud de recurs ha estat enviada per a la seva aprovació i serà revisada en breu.';
 $lang["requestupdated"]='La teva sol·licitud de recurs ha estat actualitzada';
 $lang["requestassignedtouser"]='La teva sol·licitud de recurs ha estat assignada a % per a la seva aprovació.';
-$lang["requestapprovedmail"]='La teva sol·licitud ha estat aprovada. Fes clic a l\'enllaç de sota per veure i descarregar els recursos sol·licitats.';
-$lang["requestapprovedmail_email"]='[img_headerlogo]<br/><br/>[missatge]<br/>[caduca]<br/><br/>Feu clic a l\'enllaç següent per veure i descarregar els recursos sol·licitats.<br/><br/><a href=\'[url]\'>[url]</a>';
-$lang["requestdeclinedmail"]='Ho sentim, la teva sol·licitud dels recursos de la col·lecció següent ha estat denegada.';
-$lang["requestdeclined_email"]='[img_headerlogo]<br/><br/>[missatge]<br/><br/>Feu clic a l\'enllaç següent per veure els recursos sol·licitats.<br/><br/><a href=\'[url]\'>[url]</a>';
 $lang["resourceexpirymail"]='Els recursos següents han caducat:';
 $lang["resource_expiry_x_days"]='Un recurs que has descarregat anteriorment caduca en %X dia/dies';
 $lang["resourceexpiry"]='Caducitat del recurs';
@@ -1490,7 +1486,7 @@ $lang["report_periodic_email_option_all_users"]='tots els usuaris';
 $lang["report_periodic_email_option_selected_user_groups"]='grup(s) d\'usuari(s) seleccionat(s)';
 $lang["report_periodic_email_unsubscribe_title"]='Cancel·la la subscripció als correus electrònics periòdics';
 $lang["report_periodic_email_unsubscribe_confirmation"]='Si us plau, confirma que vols donar-te de baixa';
-$lang["report_periodic_email_report_attached"]='L\'informe \'%%REPORTTITLE%%\' està adjunt.';
+$lang["report_periodic_email_report_attached"]='L\'informe \'[report_title]\' està adjunt.';
 $lang["report-select-required"]='Si us plau, seleccioneu un informe';
 $lang["columnheader-keyword"]='Paraula clau';
 $lang["columnheader-entered_count"]='Comptador d\'entrades';
@@ -1534,7 +1530,7 @@ $lang["writeaccess_sql_log"]='Accés d\'escriptura al registre SQL:';
 $lang["nowriteaccesstohomeanim"]='No es possible escriure. Obriu els permisos per habilitar la funció de retall de l\'animació de la pàgina principal en el connector de transformació.';
 $lang["blockedbrowsingoffilestore"]='Navegació bloquejada del directori \'filestore\'';
 $lang["noblockedbrowsingoffilestore"]='La carpeta del magatzem de fitxers sembla que es pot navegar. Si us plau, elimina \'Indexes\' de la llista d\'\'Options\' d\'Apache o desactiva el mòdul \'autoindex\' d\'Apache.';
-$lang["php_extension_not_enabled"]='L\'extensió PHP %%EXTENSION%% no està habilitada';
+$lang["php_extension_not_enabled"]='L\'extensió PHP [extension] no està habilitada';
 $lang["execution_failed"]='Sortida inesperada en executar la comanda %command. La sortida ha estat \'%output\'.';
 $lang["exif_extension"]='Extensió EXIF';
 $lang["archiver_utility"]='Utilitat d\'arxivat';
@@ -1594,9 +1590,9 @@ $lang["restricted_access_only_to_resource_type"]='Accés restringit només al ti
 $lang["restricted_upload_for_resource_of_type"]='Càrrega restringida per a recursos del tipus';
 $lang["deny_edit_resource_type"]='Refusar l\'accés d\'edició al recurs del tipus';
 $lang["deny_edit_all_resource_types"]='Negar l\'accés d\'edició a tots els tipus de recursos excepte aquells especificats per les permisos "PERMETRE l\'accés d\'edició als recursos del tipus de recurs donat"';
-$lang["can_edit_resource_type"]='Pot editar recursos del tipus %%RESOURCETYPE%%. S\'ignora si no es té el permís "DENEGAR accés d\'edició al tipus de recurs donat"';
+$lang["can_edit_resource_type"]='Pot editar recursos del tipus [resourcetype]. S\'ignora si no es té el permís "DENEGAR accés d\'edició al tipus de recurs donat"';
 $lang["edit_access_to_workflow_state"]='Accés d\'edició a l\'estat del flux de treball';
-$lang["edit_access_to_access"]='Accés d\'edició per accedir a l\'estat \'%STATE\'';
+$lang["edit_access_to_access"]='Accés d\'edició per accedir a l\'estat \'[state]\'';
 $lang["can_create_resources_and_upload_files-admins"]='Pot crear recursos / pujar fitxers<br>(usuaris administradors; els recursos passen a l\'estat \'Actiu\')';
 $lang["can_create_resources_and_upload_files-general_users"]='Pot crear recursos / pujar fitxers<br>(usuaris normals; els recursos van a l\'estat \'Pendent d\'enviament\' a través de \'Les meves contribucions\')';
 $lang["can_delete_resources"]='Pot eliminar recursos (als quals l\'usuari té accés d\'escriptura)';
@@ -1726,7 +1722,6 @@ $lang["zipping"]='Comprimir en zip';
 $lang["zipcomplete"]='La descàrrega del teu fitxer Zip hauria d\'haver començat. Pots deixar aquesta pàgina.';
 $lang["starttypingkeyword"]='Comença a escriure la paraula clau...';
 $lang["createnewentryfor"]='Crear una nova entrada per a';
-$lang["confirmcreatenewentryfor"]='Esteu segur que voleu crear una nova entrada de llista de paraules clau per a \'%%\'?';
 $lang["noentryexists"]='No existe cap entrada per a això';
 $lang["editresourcepreviews"]='Editar previsualitzacions dels recursos';
 $lang["can_assign_resource_requests"]='Pot assignar les sol·licituds de recursos a altres persones';
@@ -1900,8 +1895,8 @@ $lang["group_download_limit_title"]='Límit de descàrrega de recursos. Establir
 $lang["group_download_limit_period"]='Límit de descàrrega per període (límit en els últims X dies). Establiu 0 per a un límit de descàrrega absolut';
 $lang["download_limit_error"]='S\'ha arribat al límit de descàrregues.';
 $lang["download_limit_collection_error"]='Aquesta descàrrega de col·lecció superaria el teu límit de descàrrega.';
-$lang["download_limit_summary"]='Heu descarregat %%DOWNLOADED%%/%%LIMIT%% recursos.';
-$lang["download_limit_request_text"]='Límit de descàrregues assolit: %%DOWNLOADED%%/%%LIMIT%%';
+$lang["download_limit_summary"]='Heu descarregat [downloaded]/[limit] recursos.';
+$lang["download_limit_request_text"]='Límit de descàrregues assolit: [downloaded]/[limit]';
 $lang["page-title_user_group_management_edit"]='Editar grup d\'usuaris';
 $lang["page-subtitle_user_group_management_edit"]='Utilitzeu aquesta secció per modificar les propietats del grup d\'usuaris.';
 $lang["action-title_remove_user_group_logo"]='Marqueu per eliminar el logotip del grup d\'usuaris';
@@ -1927,7 +1922,7 @@ $lang["resource_types_manage"]='Tipus de recursos';
 $lang["resource_type_new"]='Nou tipus de recurs';
 $lang["resource_type_field_new"]='Nou camp de metadades';
 $lang["admin_advanced_field_properties"]='Propietats avançades del camp';
-$lang["admin_delete_field_confirm"]='Hi ha %%AFFECTEDRESOURCES%% recurs(sos) amb dades en aquest camp. Alguns dels identificadors de recurs afectats es llisten a continuació. Les metadades associades a aquest camp es perdran si continues. Esteu segur que voleu procedir amb l\'eliminació?';
+$lang["admin_delete_field_confirm"]='Hi ha [affected_resources] recurs(sos) amb dades en aquest camp. Alguns dels identificadors de recurs afectats es llisten a continuació. Les metadades associades a aquest camp es perdran si continues. Esteu segur que voleu procedir amb l\'eliminació?';
 $lang["admin_delete_field_error"]='No es pot eliminar el camp. Si us plau, contacteu amb l\'administrador del sistema. Aquest camp s\'utilitza per a les següents opcions de configuració: -';
 $lang["admin_delete_field_error_scopes"]='No es possible eliminar el camp. Si us plau, contacteu amb l\'administrador del sistema. Aquest camp encara s\'utilitza en aquests àmbits:';
 $lang["admin_resource_type_create"]='Crea un tipus de recurs anomenat...';
@@ -1969,7 +1964,7 @@ $lang["property-groups"]='Grups';
 $lang["property-user_group"]='Grup d\'usuaris';
 $lang["property-user_group_parent"]='Grup d\'usuari pare';
 $lang["property-user_group_remove_parent"]='(eliminar pare)';
-$lang["resource_type_delete_confirmation"]='Hi ha %%RESOURCECOUNT%% recurs(sos) d\'aquest tipus.';
+$lang["resource_type_delete_confirmation"]='Hi ha [resource_count] recurs(sos) d\'aquest tipus.';
 $lang["resource_type_delete_assoc_rtf_confirm"]='Hi ha %COUNT camp(s) de metadades associat(s) amb aquest tipus de recurs.';
 $lang["resource_type_delete_select_new"]='Si us plau, seleccioneu el tipus de recurs al qual es convertiran aquests.';
 $lang["resourcetype-global_field"]='Global';
@@ -1984,7 +1979,7 @@ $lang["admin_field_deleted"]='Camp eliminat';
 $lang["action-move-up"]='Desplaçar cap amunt';
 $lang["action-move-down"]='Desplaçar cap avall';
 $lang["action-move-to"]='Moure a';
-$lang["delete_user_group_checkbox_alert_message"]='Si us plau, tingueu en compte que aquesta acció també eliminarà tot el text de contingut que era rellevant per a aquest grup d\'usuaris. S\'han trobat %%RECORDSCOUNT%% registres a Gestió de contingut.';
+$lang["delete_user_group_checkbox_alert_message"]='Si us plau, tingueu en compte que aquesta acció també eliminarà tot el text de contingut que era rellevant per a aquest grup d\'usuaris. S\'han trobat [recordscount] registres a Gestió de contingut.';
 $lang["about__about"]='El text sobre tu persona va aquí.';
 $lang["all__footer"]='Funciona amb <a target="_blank" href="https://www.resourcespace.com/">ResourceSpace Open Source Digital Asset Management</a>';
 $lang["all__researchrequest"]='Permeteu que el nostre equip de recursos trobi els recursos que necessiteu.';
@@ -2044,8 +2039,6 @@ $lang["user_preferences__introtext"]='Introduïu una nova contrasenya a continua
 $lang["user_preferences__introtext_new"]='Si us plau, introdueix una contrasenya a continuació.';
 $lang["user_request__introtext"]='Si us plau, ompliu el formulari següent per sol·licitar un compte d\'usuari.';
 $lang["notify_resource_change_email_subject"]='S\'ha modificat un recurs';
-$lang["notify_resource_change_email"]='Un recurs que vas descarregar fa [dies] dies ha estat modificat. Fes clic a l\'enllaç de sota per veure el recurs.<br /><br /><a href=\'[url]\'>[url]</a>';
-$lang["notify_resource_change_notification"]='Un recurs que vas descarregar en els últims [dies] dies ha estat modificat.';
 $lang["passwordresetemail"]='Si us plau, feu clic a l\'enllaç següent per restablir la vostra contrasenya.';
 $lang["password_reset_email_html"]='Nom d\'usuari: [username]<br /><br />Si us plau, feu clic a l\'enllaç següent per restablir la vostra contrasenya.<br /><br /><a href="[url]" target="_blank" >[url]</a>';
 $lang["passwordnewemail"]='Si us plau, feu clic a l\'enllaç següent per establir una nova contrasenya per al vostre compte.';
@@ -2171,7 +2164,7 @@ $lang["userpreference_tilenav"]='Utilitza un disseny de quadricula per als menú
 $lang["userpreference_tilenavdefault"]='Utilitza un disseny de quadricula per als menús de navegació (configuració per defecte; els usuaris poden canviar-ho).';
 $lang["systemconfig"]='Configuració';
 $lang["systemconfig_customfont_label"]='Fitxer de font personalitzada';
-$lang["systemconfig_invalid_extension"]='Tipus de fitxer no vàlid per a aquesta selecció. Si us plau, escolliu entre: %%EXTENSIONS%%';
+$lang["systemconfig_invalid_extension"]='Tipus de fitxer no vàlid per a aquesta selecció. Si us plau, escolliu entre: [extensions]';
 $lang["systemconfig_linkedheaderimgsrc_label"]='Logotip de l\'aplicació';
 $lang["systemconfig_header_favicon_label"]='Icona de la pàgina web de l\'aplicació';
 $lang["systemconfig_description"]='Les opcions d\'aquesta pàgina són a nivell de sistema i poden canviar algunes de les funcionalitats disponibles per als usuaris. Tingueu en compte que qualsevol opció que també sigui específica de l\'usuari tindrà prioritat si està configurada.';
@@ -2401,10 +2394,10 @@ $lang["error_save_not_allowed_fc_has_children"]='No es possible desar la modific
 $lang["error_multiple_preview_tools"]='Si us plau, desactiveu l\'eina de previsualització actual i torneu-ho a provar.';
 $lang["missing_folder"]='ERROR - No s\'ha establert la ruta de la carpeta de càrrega.';
 $lang["error_upload_replace_file_fail"]='No s\'ha pogut reemplaçar el fitxer del recurs';
-$lang["error_upload_replace_no_matching_file"]='No s\'ha trobat cap recurs vàlid per substituir amb el nom de fitxer %%FILENAME%%';
-$lang["error_upload_replace_multiple_matching_files"]='S\'han trobat diversos recursos vàlids amb el nom de fitxer %%FILENAME%%';
-$lang["error_upload_invalid_file"]='Tipus de fitxer no vàlid: %%FILETYPE%%';
-$lang["error_upload_duplicate_file"]='Pujada de fitxer duplicat, el fitxer coincideix amb els recursos: %%RESOURCES%%';
+$lang["error_upload_replace_no_matching_file"]='No s\'ha trobat cap recurs vàlid per substituir amb el nom de fitxer [filename]';
+$lang["error_upload_replace_multiple_matching_files"]='S\'han trobat diversos recursos vàlids amb el nom de fitxer [filename]';
+$lang["error_upload_invalid_file"]='Tipus de fitxer no vàlid: [filetype]';
+$lang["error_upload_duplicate_file"]='Pujada de fitxer duplicat, el fitxer coincideix amb els recursos: [resources]';
 $lang["error_upload_file_move_failed"]='No s\'ha pogut moure el fitxer carregat. Si us plau, comproveu la mida del fitxer que esteu intentant carregar.';
 $lang["error_fail_save"]='No es pot desar';
 $lang["image_quality_100"]='Màxim';
@@ -2433,10 +2426,10 @@ $lang["oj-collection-download-failure-text"]='No es pot preparar l\'arxiu de col
 $lang["oj-batch-replace-local-success-text"]='La substitució per lots ha reemplaçat amb èxit %TOTALRESOURCES recursos';
 $lang["oj-batch-replace-local-failure-text"]='Substitució per lots fallida. Si us plau, comprova els registres per a errors';
 $lang["oj-creation-failure-text"]='S\'ha produït un error. No s\'ha pogut crear la tasca sense connexió';
-$lang["oj-creation-success"]='S\'ha creat la tasca %%JOBNUMBER%% fora de línia. Se us notificarà quan s\'hagi completat';
+$lang["oj-creation-success"]='S\'ha creat la tasca [jobnumber] fora de línia. Se us notificarà quan s\'hagi completat';
 $lang["email_auto_digest_inactive"]='Aquesta és un resum dels teus missatges no llegits';
 $lang["email_digest_disable"]='Podeu desactivar aquestes notificacions iniciant sessió i ajustant les vostres preferències d\'usuari al següent enllaç: -';
-$lang["user_pref_inactive_digest"]='Envia\'m un correu electrònic diari amb totes les notificacions no llegides si no he iniciat sessió durant més de %%DAYS%% dies?';
+$lang["user_pref_inactive_digest"]='Envia\'m un correu electrònic diari amb totes les notificacions no llegides si no he iniciat sessió durant més de [days] dies?';
 $lang["edit_copy_from_field"]='Copiar dades del camp';
 $lang["home_page"]='Pàgina d\'inici';
 $lang["login_word"]='Iniciar sessió';
@@ -2502,23 +2495,19 @@ $lang["date_format_error"]='Error: %row% \'%date%\' entrada no vàlida a la(s) p
 $lang["invalid_date_error"]='Error: %row% \'%date%\' a [%field%] no és una data vàlida';
 $lang["invalid_date_error2"]='Error: valor de data no vàlid: \'%date%\'. Si us plau, utilitzeu el format: \'aaaa-mm-dd hh:mm:ss\' (l\'hora és opcional)';
 $lang["invalid_date_generic"]='Has introduït una data no vàlida';
-$lang["error_server_missing_module"]='El servidor no té el programari necessari: %%MODULE%%. Si us plau, contacteu amb l\'administrador del sistema';
-$lang["error_check_config"]='Si us plau, comprova l\'opció de configuració %%CONFIG_OPTION%%';
+$lang["error_server_missing_module"]='El servidor no té el programari necessari: [module]. Si us plau, contacteu amb l\'administrador del sistema';
+$lang["error_check_config"]='Si us plau, comprova l\'opció de configuració [config_option]';
 $lang["useaspreviewimage"]='Utilitza com a imatge de previsualització';
 $lang["filechecksum"]='Suma de verificació del fitxer';
-$lang["system_notification_email"]='[img_headerlogo]<br />
-[missatge]<br /><br />
-<a href="[url]">[url]</a><br /><br />
-[text_peu]';
 $lang["error_edit_filter_invalid"]='El filtre d\'edició no està configurat correctament per a aquest grup d\'usuaris. Si us plau, contacteu amb l\'administrador';
 $lang["error_search_filter_invalid"]='El filtre de cerca no està configurat correctament per a aquest grup d\'usuaris. Si us plau, contacteu amb l\'administrador';
 $lang["action_lock"]='Bloquejar';
 $lang["action_unlock"]='Desbloquejar';
 $lang["status_locked"]='Bloquejat';
 $lang["status_unlocked"]='Desbloquejat';
-$lang["status_locked_by"]='Bloquejat per %%USER%%';
+$lang["status_locked_by"]='Bloquejat per [user]';
 $lang["status_locked_self"]='Has bloquejat aquest recurs';
-$lang["error_locked_by_user"]='El recurs està bloquejat per %%USER%%';
+$lang["error_locked_by_user"]='El recurs està bloquejat per [user]';
 $lang["error_locked_other_user"]='El recurs està bloquejat per un altre usuari';
 $lang["error-edit_noaccess_resources"]='No hi ha accés d\'edició als recursos:';
 $lang["error-edit_locked_resources"]='Els recursos següents estan bloquejats:';
@@ -2552,7 +2541,7 @@ $lang["job_priority"]='Prioritat';
 $lang["csv_export_offline_option"]='Generar fitxer CSV sense connexió? Això s\'hauria d\'utilitzar per conjunts de resultats grans. Se us notificarà a través d\'un missatge de ResourceSpace una vegada que el fitxer CSV estigui disponible';
 $lang["csv_export_file_ready"]='La vostra exportació CSV està llesta';
 $lang["offline_processing_disabled"]='El processament de tasques fora de línia no està configurat en aquest sistema. Per habilitar-ho, si us plau, contacteu amb l\'administrador del sistema';
-$lang["csv_export_offline_only"]='S\'ha d\'utilitzar el processament sense connexió quan s\'exporten dades per a més de %%RESOURCE_COUNT%% recursos';
+$lang["csv_export_offline_only"]='S\'ha d\'utilitzar el processament sense connexió quan s\'exporten dades per a més de [resource_count] recursos';
 $lang["setup_google_vision_settings"]='Configuració de Google Vision';
 $lang["setup_google_vision_enable"]='Activar el connector de Google Vision?';
 $lang["tagged_notification"]='Has estat etiquetat/ada en un comentari:';
@@ -2582,7 +2571,7 @@ $lang["notify_upload_share_new_subject"]='Nous carregues externes';
 $lang["my_shares"]='Les meves accions';
 $lang["manage_shares_title"]='Comparticions externes';
 $lang["share_purge_text"]='Eliminar les comparticions caducades';
-$lang["shares_purged_message"]='S\'han eliminat %%DELETEDCOUNT%% comparticions';
+$lang["shares_purged_message"]='S\'han eliminat [deleted_count] comparticions';
 $lang["share_confirm_purge"]='Esteu segur que voleu eliminar totes les comparticions caducades?';
 $lang["external_shares_view_existing"]='Veure les comparticions d\'enviament existents per a aquesta col·lecció.';
 $lang["share_user"]='Compartit per';
@@ -2595,7 +2584,7 @@ $lang["log-reference"]='Entrada de registre';
 $lang["log_column"]='Dades de registre';
 $lang["log_value"]='Valor';
 $lang["error_slideshow_invalid"]='Número de seqüència no vàlid. Si us plau, introdueix un valor numèric';
-$lang["error-file-permissions"]='No es possible realitzar l\'operació del fitxer. Si us plau, comproveu els permisos del fitxer a %%PATH%%';
+$lang["error-file-permissions"]='No es possible realitzar l\'operació del fitxer. Si us plau, comproveu els permisos del fitxer a [path]';
 $lang["new_message"]='Missatge nou';
 $lang["message_recipients"]='Destinatari(s)';
 $lang["error_invalid_user"]='Usuari especificat no vàlid';
@@ -2610,8 +2599,8 @@ $lang["upload_view_log"]='Veure registre';
 $lang["code_sign_required"]='Signatura de codi en línia';
 $lang["code_sign_required_warning"]='Avís: El codi en línia ha estat modificat i el codi actualitzat no ha estat signat utilitzant l\'eina de línia de comandes. Les macros realitzades en metadades poden no completar-se com s\'esperava.';
 $lang["search_full_text"]='Cerca en tot el text (cerca de text complet)';
-$lang["error_invalid_revert_option"]='El valor emmagatzemat anteriorment \'%%VALUE%%\' no s\'ha pogut trobar en les opcions actuals. Si us plau, comprova si el nom d\'aquesta opció ha canviat i actualitza manualment el recurs si és necessari.';
-$lang["error_invalid_revert_date"]='La data emmagatzemada anteriorment \'%%VALUE%%\' no és vàlida. Si cal, actualitzeu el recurs manualment.';
+$lang["error_invalid_revert_option"]='El valor emmagatzemat anteriorment \'[value]\' no s\'ha pogut trobar en les opcions actuals. Si us plau, comprova si el nom d\'aquesta opció ha canviat i actualitza manualment el recurs si és necessari.';
+$lang["error_invalid_revert_date"]='La data emmagatzemada anteriorment \'[value]\' no és vàlida. Si cal, actualitzeu el recurs manualment.';
 $lang["batch_edit_save_warning_message"]='S\'han trobat errors en editar els recursos següents:';
 $lang["batch_edit_save_warning_alert"]='S\'han produït alguns errors en realitzar aquesta operació. Si us plau, consulteu els vostres missatges per obtenir més detalls';
 $lang["fieldtype-text_box_single_line"]='Casella de text (una sola línia)';
@@ -2634,12 +2623,12 @@ $lang["columnheader-expires"]='Caduca';
 $lang["report-resources_with_zero_downloads"]='Recursos sense cap descàrrega';
 $lang["view__storyextract"]='Extracte de la història:';
 $lang["tile_custm"]='Personalitzat';
-$lang["system_notification"]='%%APPLICATION_NAME%% - notificació del sistema';
+$lang["system_notification"]='[application_name] - notificació del sistema';
 
 $lang["resourcetype-document-2"]='Documents';
 $lang["fieldtitle-notes"]='Notes';
 $lang["fieldtitle-channel_mode"]='Mode canal';
-$lang["information_field_restype_deselect_cleanup"]='Per eliminar les dades de camp existents dels tipus de recursos deseleccionats, feu clic en el següent enllaç %%CLEANUP_LINK%%';
+$lang["information_field_restype_deselect_cleanup"]='Per eliminar les dades de camp existents dels tipus de recursos deseleccionats, feu clic en el següent enllaç [cleanup_link]';
 $lang["property-id"]='Id';
 $lang["mainmenu"]='Menú principal';
 $lang["xlthumbs"]='Molt gran';
@@ -2661,7 +2650,6 @@ $lang["fileextension-inside-brackets"]='[%EXTENSIÓ]';
 $lang["fileextension"]='%EXTENSIÓ';
 $lang["log-o"]='Canviat contribuït per';
 $lang["log-rtchange"]='Tipus de recurs editat';
-$lang["log-missinglang"]='[tipus] (falta idioma)';
 $lang["log-NOFIL"]='Marcat com a sense fitxer';
 $lang["log-FIL"]='Marcat com a que té fitxer';
 $lang["log-EDT"]='Recurs editat';
@@ -2735,12 +2723,6 @@ $lang["all__emailcollectionexternal"]='<br />
 [lang_message] : [message]<br /><br /> 
 [lang_clicklinkviewcollection] [list]';
 $lang["all__emailcontactadmin"]='<br />[fromusername] ([emailfrom])[lang_contactadminemailtext]<br /><br />[message]<br /><br /><a href="[url]">[embed_thumbnail]</a><br /><br />[text_footer]';
-$lang["all__emaillogindetails"]='<br />
-[benvingut]<br /><br /> 
-[nous_detalls_d\'inici_de_sessió]<br /><br /> 
-[nom_d\'usuari] : [username] <br /><br />
-<a href="[url]">[url]</a><br /><br />
-[text_peu_de_pàgina]';
 $lang["all__emailnewresearchrequestwaiting"]='[username] ([userfullname] - [useremail])
 [lang_haspostedresearchrequest]<br /><br />
 [lang_nameofproject]:[name]<br /><br />
@@ -2752,24 +2734,6 @@ $lang["all__emailnewresearchrequestwaiting"]='[username] ([userfullname] - [user
 [lang_noresourcesrequired]: [noresources]<br /><br />
 <a href="[url]">[url]</a><br /><br />
 <a href="[teamresearchurl]">[teamresearchurl]</a><br /><br />
-[text_footer]';
-$lang["all__emailnotifyresourcesapproved"]='<br />
-[lang_userresourcesapproved]
-[llista] <br />
-[lang_viewcontributedsubittedl] <br /><br /> 
-<a href="[url]">[url]</a><br /><br />
-[text_footer]';
-$lang["all__emailnotifyresourcessubmitted"]='<br />
-[lang_userresourcessubmitted]
-[llista] <br />
-[lang_viewalluserpending] <br /><br /> 
-<a href="[url]">[url]</a><br /><br />
-[text_footer]';
-$lang["all__emailnotifyresourcesunsubmitted"]='<br />
-[lang_userresourcesunsubmitted]
-[llista] <br />
-[lang_viewalluserpending] <br /><br /> 
-<a href="[url]">[url]</a><br /><br />
 [text_footer]';
 $lang["all__emailresearchrequestassigned"]='[lang_researchrequestassignedmessage]
 
@@ -2784,11 +2748,6 @@ $lang["all__emailresource"]='<br />
 <a href="[url]">[embed_thumbnail]</a><br /><br />
 [lang_clicktoviewresource]<br /><a href="[url]">[resourcename] - [url]</a><br /><br />
 [text_footer]';
-$lang["all__emailresourcerequest"]='[lang_username] : [username] <br />
-[llista] <br />
-[detalls]<br /><br />
-[lang_clicktoviewresource] <br /><br />
-<a href="[url]">[url]</a>';
 $lang["dash"]='Quadre de comandament';
 $lang["last"]='Últim';
 $lang["upgrade_script"]='Script d\'actualització';
@@ -2821,7 +2780,7 @@ $lang["email_shares_options_summary"]='Aquestes opcions només s\'aplicaran per 
 $lang["report_breakdown_pie"]='Desglossament en forma de pastís';
 $lang["actions_email_new_actions_title"]='Accions noves';
 $lang["actions_email_new_actions_intro"]='Hi ha noves accions per completar.';
-$lang["email_actions_truncated"]='Només es mostren aquí les 1000 accions més recents. Tens %%TOTAL%% accions. Inicia sessió a %%APPLICATIONNAME%% per veure-les totes.';
+$lang["email_actions_truncated"]='Només es mostren aquí les 1000 accions més recents. Tens [total] accions. Inicia sessió a [application_name] per veure-les totes.';
 $lang["annotate_select"]='Selecciona camp...';
 $lang["error_upload_replace_file_fail_invalid_collection"]='No s\'ha pogut substituir l\'arxiu del recurs. La referència de la col·lecció subministrada no és vàlida.';
 $lang["image_quality_50"]='Baix';
@@ -2838,13 +2797,8 @@ $lang["job_status_error"]='S\'ha produït un error';
 $lang["filter_is_in"]='ÉS';
 $lang["file_integrity_fail_latest"]='Veure els últims errors d\'integritat dels fitxers';
 $lang["file_integrity_fail_all"]='Veure tots els recursos amb errors d\'integritat de fitxers';
-$lang["all__file_integrity_fail_email"]='[img_headerlogo]<br />
-[resum_integritat_fitxer_fallida] <br /><br /> 
-[cerca_fallida_integritat_fitxer] <br /><br /> 
-<a href="[url]">[url]</a><br /><br />
-[text_footer]';
 $lang["error-edit_noaccess_related_resources"]='No es poden relacionar els recursos. No hi ha accés a:';
-$lang["csv_export_filename"]='exportació_de_metadades_%%SEARCH%%_%%TIME%%';
+$lang["csv_export_filename"]='exportació_de_metadades_[search]_[time]';
 $lang["upload_share_email_template"]='<br />
 [from_name] [lang_upload_share_email_text] [applicationname]<br /><br /> 
 [lang_message] : [message]<br /><br />
@@ -2862,7 +2816,7 @@ $lang["all__emailnotifyuploadsharenew"]='<br />
 [text_footer]';
 $lang["help__introtext"]='<iframe src="https://www.resourcespace.com/knowledge-base/?from_rs=true" style="width:1235px;height:600px;border:none;margin:-20px;" id="knowledge_base" />';
 $lang["share_expired_icon_title"]='Caducat';
-$lang["error_invalid_date_format"]='"%%VALUE%%" no és una data vàlida. Tots els valors en aquest camp han d\'estar formats com YYYY-MM-DD';
+$lang["error_invalid_date_format"]='"[value]" no és una data vàlida. Tots els valors en aquest camp han d\'estar formats com YYYY-MM-DD';
 $lang["related_resource_create"]='Crear nou recurs relacionat';
 $lang["skip-to-main-content"]='Salta al contingut principal';
 $lang["cleanup_invalid_nodes"]='Neteja les dades del camp de tipus de recursos no vàlids';
@@ -2880,7 +2834,7 @@ $lang["pull_images_text"]='Utilitza imatges dels recursos relacionats si no n\'h
 $lang["system_user_default"]='SISTEMA';
 $lang["userlimitreached"]='Has assolit el límit d\'usuaris. Cal desactivar o eliminar un usuari existent abans de poder crear nous comptes o habilitar comptes existents.';
 $lang["user_api_session_title"]='Accés a l\'API del sistema remot';
-$lang["user_api_session_text"]='El sistema remot \'%system%\' està sol·licitant accés a %applicationname% utilitzant les teves credencials. Fes clic a \'Concedir accés\' només si has iniciat aquesta sol·licitud';
+$lang["user_api_session_text"]='El sistema remot \'%system%\' està sol·licitant accés a [applicationname] utilitzant les teves credencials. Fes clic a \'Concedir accés\' només si has iniciat aquesta sol·licitud';
 $lang["user_api_session_invalid_system"]='Sistema sol·licitat no vàlid';
 $lang["user_api_session_grant_access"]='Concedir accés';
 $lang["user_api_session_grant_success"]='Clau emesa amb èxit.';
@@ -2894,3 +2848,32 @@ $lang["completed_unset_no_file"]='Recurs marcat com a fitxer desaparegut';
 $lang["hour-abbreviated"]='HH';
 $lang["map_esridelorme"]='DeLorme';
 $lang["filter_and"]='I';
+$lang["log-missinglang"]='[type] (idioma faltant)';
+$lang["requestapprovedmail"]='La teva sol·licitud ha estat aprovada. Fes clic a l\'enllaç següent per veure i descarregar els recursos sol·licitats.';
+$lang["requestapprovedmail_email"]='[img_headerlogo]<br/><br/>[message]<br/>[expires]<br/><br/>Feu clic a l\'enllaç següent per veure i descarregar els recursos sol·licitats.<br/><br/><a href=\'[url]\'>[url]</a>';
+$lang["requestdeclinedmail"]='Ho sentim, la teva sol·licitud per als recursos de la col·lecció següent ha estat rebutjada.';
+$lang["requestdeclined_email"]='[img_headerlogo]<br/><br/>[message]<br/><br/>Feu clic a l\'enllaç següent per veure els recursos sol·licitats.<br/><br/><a href=\'[url]\'>[url]</a>';
+$lang["notify_resource_change_email"]='Un recurs que vas descarregar fa [days] dies ha estat modificat. Fes clic a l\'enllaç següent per veure el recurs.<br /><br /><a href=\'[url]\'>[url]</a>';
+$lang["notify_resource_change_notification"]='Un recurs que vas descarregar fa [days] dies ha estat modificat.';
+$lang["system_notification_email"]='[img_headerlogo]<br />
+[message]<br /><br /> 
+<a href="[url]">[url]</a><br /><br />
+[text_footer]';
+$lang["all__file_integrity_fail_email"]='[img_headerlogo]<br />
+[lang_file_integrity_summary_failed] <br /><br /> 
+[lang_file_integrity_fail_search] <br /><br /> 
+<a href="[url]">[url]</a><br /><br />
+[text_footer]';
+$lang["all__emailnotifyresourcesapproved"]='[lang_userresourcesapproved]
+[list]
+[lang_viewcontributedsubittedl]
+
+<a href="[url]">[url]</a>
+
+[text_footer]';
+$lang["all__emailnotifyresourcesunsubmitted"]='<br />
+[lang_userresourcesunsubmitted]
+[list] <br />
+[lang_viewalluserpending] <br /><br /> 
+<a href="[url]">[url]</a><br /><br />
+[text_footer]';

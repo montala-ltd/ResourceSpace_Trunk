@@ -287,8 +287,8 @@ $lang["uploadresourcebatch"]='Încărcați un lot de resurse';
 $lang["uploadinprogress"]='Încărcare și creare previzualizare în curs de desfășurare';
 $lang["donotmoveaway"]='IMPORTANT: Nu navigați departe de această pagină până când încărcarea nu s-a finalizat!';
 $lang["pleaseselectfiles"]='Vă rugăm să selectați unul sau mai multe fișiere pentru încărcare.';
-$lang["previewstatus"]='Am creat previzualizări pentru resursa %file% dintr-un total de %filestotal%.';
-$lang["uploadedstatus"]='Resursa %file% din %filestotal% a fost încărcată - %path%';
+$lang["previewstatus"]='Am creat previzualizări pentru resursa [file] dintr-un total de %filestotal%.';
+$lang["uploadedstatus"]='Resursa [file] din %filestotal% a fost încărcată - %path%';
 $lang["upload_failed_for_path"]='Încărcarea a eșuat pentru %path%';
 $lang["uploadcomplete"]='Încărcare completă';
 $lang["resources_uploaded-0"]='0 resurse încărcate cu succes.';
@@ -373,11 +373,11 @@ $lang["research"]='Cercetare';
 $lang["savedsearch"]='Căutare salvată';
 $lang["mustspecifyoneusername"]='Trebuie să specificați cel puțin un nume de utilizator';
 $lang["couldnotmatchallusernames"]='Nu s-au putut potrivi toate numele de utilizator';
-$lang["emailcollectionmessage"]='ți-a trimis prin e-mail o colecție de resurse din %applicationname% care a fost adăugată la pagina ta "colecțiile mele".';
+$lang["emailcollectionmessage"]='ți-a trimis prin e-mail o colecție de resurse din [applicationname] care a fost adăugată la pagina ta "colecțiile mele".';
 $lang["collectionprivate_attachedusermessage"]='%user% te-a adăugat în colecția lor \'%colname%\'.';
 $lang["nomessage"]='Nicio mesaj';
 $lang["nomessages"]='Nicio mesaj';
-$lang["emailcollectionmessageexternal"]='ți-a trimis prin e-mail o colecție de resurse din %applicationname%.';
+$lang["emailcollectionmessageexternal"]='ți-a trimis prin e-mail o colecție de resurse din [applicationname].';
 $lang["clicklinkviewcollection"]='Folosiți link-ul de mai jos pentru a vizualiza colecția.';
 $lang["zippedcollectiontextfile"]='Includere fișierul text cu datele resursei/colecției.';
 $lang["archivesettings"]='Setări arhivă';
@@ -404,8 +404,8 @@ $lang["total"]='Total';
 $lang["lastmatching"]='Ultima potrivire';
 $lang["ownedbyyou"]='deținut de tine';
 $lang["edit_theme_category"]='Editați categoria de colecție prezentată';
-$lang["emailthemecollectionmessageexternal"]='ți-a trimis prin e-mail colecții de resurse din %applicationname%.';
-$lang["emailthememessage"]='ți-a trimis prin e-mail o selecție de colecții recomandate din %applicationname% care au fost adăugate la pagina ta "Colecțiile mele".';
+$lang["emailthemecollectionmessageexternal"]='ți-a trimis prin e-mail colecții de resurse din [applicationname].';
+$lang["emailthememessage"]='ți-a trimis prin e-mail o selecție de colecții recomandate din [applicationname] care au fost adăugate la pagina ta "Colecțiile mele".';
 $lang["clicklinkviewthemes"]='Folosește link-ul de mai jos pentru a vizualiza colecțiile prezentate.';
 $lang["clicklinkviewcollections"]='Folosiți link-urile de mai jos pentru a vizualiza colecțiile.';
 $lang["background_image"]='Imagine de fundal';
@@ -457,7 +457,7 @@ $lang["properties"]='Proprietăți';
 $lang["relatedresources"]='Resurse asociate';
 $lang["relatedresources-filename_extension"]='Resurse asociate - %EXTENSION';
 $lang["relatedresources-id"]='Resurse asociate pentru %id%';
-$lang["relatedresources-restype"]='Resurse asociate - %restype%';
+$lang["relatedresources-restype"]='Resurse asociate - [restype]';
 $lang["relatedresources_onupload"]='Asociază toate resursele la încărcare';
 $lang["indexedsearchable"]='Câmpuri indexate și căutabile';
 $lang["clearform"]='Șterge formularul';
@@ -1470,7 +1470,7 @@ $lang["report_periodic_email_option_all_users"]='toți utilizatorii';
 $lang["report_periodic_email_option_selected_user_groups"]='grupurile de utilizatori selectate';
 $lang["report_periodic_email_unsubscribe_title"]='Dezabonare de la e-mail-uri periodice';
 $lang["report_periodic_email_unsubscribe_confirmation"]='Vă rugăm să confirmați că doriți să vă dezabonați';
-$lang["report_periodic_email_report_attached"]='Raportul \'%%REPORTTITLE%%\' este atașat.';
+$lang["report_periodic_email_report_attached"]='Raportul \'[report_title]\' este atașat.';
 $lang["report-select-required"]='Vă rugăm să selectați un raport';
 $lang["columnheader-keyword"]='Cuvinte cheie';
 $lang["columnheader-entered_count"]='Numărul introdus';
@@ -1511,7 +1511,7 @@ $lang["writeaccess_sql_log"]='Acces de scriere la jurnalul SQL:';
 $lang["nowriteaccesstohomeanim"]='Nu se poate scrie. Deschideți permisiunile pentru a activa funcția de decupare a animației acasă în modul de transformare din plugin.';
 $lang["blockedbrowsingoffilestore"]='Navigarea în directorul \'filestore\' este blocată';
 $lang["noblockedbrowsingoffilestore"]='Dosarul de stocare a fișierelor pare să fie navigabil. Vă rugăm să eliminați „Indexes” din lista de opțiuni Apache sau să dezactivați modulul „autoindex” din Apache.';
-$lang["php_extension_not_enabled"]='Extensia PHP %%EXTENSION%% nu este activată';
+$lang["php_extension_not_enabled"]='Extensia PHP [extension] nu este activată';
 $lang["execution_failed"]='Ieșire neașteptată la executarea comenzii %command. Ieșirea a fost \'%output\'.';
 $lang["exif_extension"]='Extensie EXIF';
 $lang["archiver_utility"]='Utilitar de arhivare';
@@ -1571,9 +1571,9 @@ $lang["restricted_access_only_to_resource_type"]='Acces restricționat doar la t
 $lang["restricted_upload_for_resource_of_type"]='Încărcare restricționată pentru resursa de tipul';
 $lang["deny_edit_resource_type"]='Refuzați accesul de editare la resursa de tipul';
 $lang["deny_edit_all_resource_types"]='Refuzați accesul de editare pentru toate tipurile de resurse, cu excepția celor specificate prin permisiunile "PERMITE accesul de editare la resursele de tipul de resursă dat"';
-$lang["can_edit_resource_type"]='Poate edita resurse de tip %%RESOURCETYPE%%. Ignorat dacă permisiunea "Interzice accesul la editare pentru tipul de resursă dat" nu este prezentă';
+$lang["can_edit_resource_type"]='Poate edita resurse de tip [resourcetype]. Ignorat dacă permisiunea "Interzice accesul la editare pentru tipul de resursă dat" nu este prezentă';
 $lang["edit_access_to_workflow_state"]='Acces de editare la starea fluxului de lucru';
-$lang["edit_access_to_access"]='Acces de editare pentru a accesa starea \'%STATE\'';
+$lang["edit_access_to_access"]='Acces de editare pentru a accesa starea \'[state]\'';
 $lang["can_create_resources_and_upload_files-admins"]='Poate crea resurse / încărca fișiere<br>(utilizatori admin; resursele sunt plasate în starea \'Activă\')';
 $lang["can_create_resources_and_upload_files-general_users"]='Poate crea resurse / încărca fișiere<br>(utilizatori normali; resursele ajung în starea \'Așteaptă aprobare\' prin Contribuțiile mele)';
 $lang["can_delete_resources"]='Poate șterge resursele<br>(la care utilizatorul are acces de scriere)';
@@ -1702,7 +1702,6 @@ $lang["zipping"]='Împachetare în format zip';
 $lang["zipcomplete"]='Descărcarea fișierului Zip ar trebui să înceapă. Puteți părăsi această pagină.';
 $lang["starttypingkeyword"]='Începeți să tastați cuvinte cheie...';
 $lang["createnewentryfor"]='Creați o nouă intrare pentru';
-$lang["confirmcreatenewentryfor"]='Sunteți sigur că doriți să creați o nouă intrare în lista de cuvinte cheie pentru \'%%\'?';
 $lang["noentryexists"]='Nu există nicio intrare pentru';
 $lang["editresourcepreviews"]='Editarea previzualizărilor resurselor';
 $lang["can_assign_resource_requests"]='Poți atribui cererile de resurse altor persoane';
@@ -1876,8 +1875,8 @@ $lang["group_download_limit_title"]='Limita de descărcare a resurselor. Seteaz�
 $lang["group_download_limit_period"]='Perioada limită de descărcare (limită în ultimele X zile). Setează la 0 pentru o limită absolută de descărcare';
 $lang["download_limit_error"]='Limita ta de descărcare a fost atinsă.';
 $lang["download_limit_collection_error"]='Această descărcare de colecție ar depăși limita ta de descărcare.';
-$lang["download_limit_summary"]='Ați descărcat %%DOWNLOADED%%/%%LIMIT%% resurse.';
-$lang["download_limit_request_text"]='Limita de descărcare a fost atinsă: %%DOWNLOADED%%/%%LIMIT%%';
+$lang["download_limit_summary"]='Ați descărcat [downloaded]/[limit] resurse.';
+$lang["download_limit_request_text"]='Limita de descărcare a fost atinsă: [downloaded]/[limit]';
 $lang["page-title_user_group_management_edit"]='Editare grup utilizatori';
 $lang["page-subtitle_user_group_management_edit"]='Folosește această secțiune pentru a modifica proprietățile grupului de utilizatori.';
 $lang["action-title_remove_user_group_logo"]='Bifați pentru a elimina logo-ul grupului de utilizatori';
@@ -1903,7 +1902,7 @@ $lang["resource_types_manage"]='Tipuri de resurse';
 $lang["resource_type_new"]='Tip nou de resursă';
 $lang["resource_type_field_new"]='Câmp nou de metadate';
 $lang["admin_advanced_field_properties"]='Proprietăți avansate ale câmpului';
-$lang["admin_delete_field_confirm"]='Există %%AFFECTEDRESOURCES%% resursă/resurse cu date în acest câmp. Unele dintre ID-urile resurselor afectate sunt enumerate mai jos. Metadatele asociate acestui câmp vor fi pierdute dacă continuați. Sunteți sigur că doriți să continuați cu ștergerea?';
+$lang["admin_delete_field_confirm"]='Există [affected_resources] resursă/resurse cu date în acest câmp. Unele dintre ID-urile resurselor afectate sunt enumerate mai jos. Metadatele asociate acestui câmp vor fi pierdute dacă continuați. Sunteți sigur că doriți să continuați cu ștergerea?';
 $lang["admin_delete_field_error"]='Imposibil de șters câmpul. Vă rugăm să contactați administratorul sistemului. Acest câmp este utilizat pentru următoarele opțiuni de configurare: -';
 $lang["admin_delete_field_error_scopes"]='Imposibil de șters câmpul. Vă rugăm să contactați administratorul sistemului. Acest câmp este încă utilizat în aceste domenii:';
 $lang["admin_resource_type_create"]='Creați un tip de resursă numit...';
@@ -1945,7 +1944,7 @@ $lang["property-groups"]='Grupuri';
 $lang["property-user_group"]='Grup de utilizatori';
 $lang["property-user_group_parent"]='Grupul părinte al utilizatorilor';
 $lang["property-user_group_remove_parent"]='(șterge părintele)';
-$lang["resource_type_delete_confirmation"]='Există %%RESOURCECOUNT%% resursă/resurse de acest tip.';
+$lang["resource_type_delete_confirmation"]='Există [resource_count] resursă/resurse de acest tip.';
 $lang["resource_type_delete_assoc_rtf_confirm"]='Există %COUNT câmp(uri) de metadate asociate cu acest tip de resurse.';
 $lang["resource_type_delete_select_new"]='Vă rugăm să selectați tipul de resursă în care acestea vor fi convertite.';
 $lang["resourcetype-global_field"]='Global - Global';
@@ -1960,7 +1959,7 @@ $lang["admin_field_deleted"]='Câmp șters';
 $lang["action-move-up"]='Mută în sus';
 $lang["action-move-down"]='Mută în jos';
 $lang["action-move-to"]='Mută în';
-$lang["delete_user_group_checkbox_alert_message"]='Vă rugăm să rețineți că această acțiune va șterge și tot conținutul text care era relevant pentru acest grup de utilizatori. Au fost găsite %%RECORDSCOUNT%% înregistrări în Gestionarea conținutului.';
+$lang["delete_user_group_checkbox_alert_message"]='Vă rugăm să rețineți că această acțiune va șterge și tot conținutul text care era relevant pentru acest grup de utilizatori. Au fost găsite [recordscount] înregistrări în Gestionarea conținutului.';
 $lang["about__about"]='Textul tău despre se introduce aici.';
 $lang["all__footer"]='Funcționează cu ajutorul <a target="_blank" href="https://www.resourcespace.com/">ResourceSpace Open Source Digital Asset Management</a>';
 $lang["all__researchrequest"]='Permiteți echipei noastre de resurse să găsească resursele de care aveți nevoie.';
@@ -2019,8 +2018,6 @@ $lang["user_preferences__introtext_new"]='Vă rugăm să introduceți o parolă 
 $lang["user_request__introtext"]='Vă rugăm să completați formularul de mai jos pentru a solicita un cont de utilizator.';
 $lang["view__storyextract"]='Fragment din poveste:';
 $lang["notify_resource_change_email_subject"]='Un resurs a fost modificat';
-$lang["notify_resource_change_email"]='Un resursă pe care ați descărcat-o în ultimele [zile] zile a fost modificată. Apăsați pe link-ul de mai jos pentru a vizualiza resursa.<br /><br /><a href=\'[url]\'>[url]</a>';
-$lang["notify_resource_change_notification"]='Un resurs pe care l-ați descărcat în ultimele [zile] zile a fost modificat.';
 $lang["passwordresetemail"]='Vă rugăm să dați clic pe link-ul de mai jos pentru a vă reseta parola.';
 $lang["password_reset_email_html"]='Nume de utilizator: [username]<br /><br />Vă rugăm să faceți clic pe link-ul de mai jos pentru a vă reseta parola.<br /><br /><a href="[url]" target="_blank" >[url]</a>';
 $lang["passwordnewemail"]='Vă rugăm să faceți clic pe link-ul de mai jos pentru a seta o nouă parolă pentru contul dumneavoastră.';
@@ -2150,7 +2147,7 @@ $lang["userpreference_tilenav"]='Folosește o dispunere în stil de dale pentru 
 $lang["userpreference_tilenavdefault"]='Folosiți o dispunere în stil de dale pentru meniurile de navigare (setarea implicită; utilizatorii pot schimba aceasta).';
 $lang["systemconfig"]='Configurare';
 $lang["systemconfig_customfont_label"]='Fișier font personalizat';
-$lang["systemconfig_invalid_extension"]='Tipul de fișier nu este valid pentru această selecție. Vă rugăm să alegeți din: %%EXTENSIONS%%';
+$lang["systemconfig_invalid_extension"]='Tipul de fișier nu este valid pentru această selecție. Vă rugăm să alegeți din: [extensions]';
 $lang["systemconfig_linkedheaderimgsrc_label"]='Sigla aplicației';
 $lang["systemconfig_header_favicon_label"]='Pictogramă aplicație';
 $lang["systemconfig_description"]='Opțiunile de pe această pagină sunt valabile la nivel de sistem și pot schimba unele dintre funcționalitățile disponibile utilizatorilor. Vă rugăm să rețineți că orice opțiune specifică utilizatorului va avea prioritate dacă este setată.';
@@ -2382,10 +2379,9 @@ $lang["error_save_not_allowed_fc_has_children"]='Nu se poate salva modificarea. 
 $lang["error_multiple_preview_tools"]='Vă rugăm să dezactivați instrumentul de previzualizare curent și apoi încercați din nou.';
 $lang["missing_folder"]='EROARE - Calea către folderul de încărcare nu a fost setată.';
 $lang["error_upload_replace_file_fail"]='Nu s-a putut înlocui fișierul resursă';
-$lang["error_upload_replace_no_matching_file"]='Nu a fost găsit niciun resursă validă pentru înlocuirea cu numele de fișier %%FILENAME%%';
-$lang["error_upload_replace_multiple_matching_files"]='Au fost găsite mai multe resurse valide cu numele de fișier %%FILENAME%%';
-$lang["error_upload_invalid_file"]='Tip de fișier nevalid: %%FILETYPE%%';
-$lang["error_upload_duplicate_file"]='Încărcare fișier duplicat, fișierul se potrivește cu resursele: %%RESURSE%%';
+$lang["error_upload_replace_no_matching_file"]='Nu a fost găsit niciun resursă validă pentru înlocuirea cu numele de fișier [filename]';
+$lang["error_upload_replace_multiple_matching_files"]='Au fost găsite mai multe resurse valide cu numele de fișier [filename]';
+$lang["error_upload_invalid_file"]='Tip de fișier nevalid: [filetype]';
 $lang["error_upload_file_move_failed"]='Nu s-a putut muta fișierul încărcat. Vă rugăm să verificați dimensiunea fișierului pe care încercați să îl încărcați.';
 $lang["error_fail_save"]='Imposibil de salvat';
 $lang["image_quality_100"]='Valoare maximă';
@@ -2413,10 +2409,9 @@ $lang["oj-collection-download-failure-text"]='Imposibil de pregătit arhiva cole
 $lang["oj-batch-replace-local-success-text"]='Înlocuirea în lot a înlocuit cu succes %TOTALRESOURCES resurse';
 $lang["oj-batch-replace-local-failure-text"]='Înlocuirea în lot a eșuat. Vă rugăm să verificați jurnalele pentru erori';
 $lang["oj-creation-failure-text"]='A apărut o eroare. Crearea sarcinii offline a eșuat';
-$lang["oj-creation-success"]='A fost creat un job offline %%NUMĂRDESLUCRARE%%. Veți fi notificat când acesta va fi finalizat';
 $lang["email_auto_digest_inactive"]='Aceasta este o prezentare sumară a mesajelor tale necitite';
 $lang["email_digest_disable"]='Puteți dezactiva aceste notificări autentificându-vă și ajustând preferințele utilizatorului la link-ul de mai jos:';
-$lang["user_pref_inactive_digest"]='Trimite-mi un email zilnic cu toate notificările necitite dacă nu am fost autentificat timp de mai mult de %%DAYS%% zile?';
+$lang["user_pref_inactive_digest"]='Trimite-mi un email zilnic cu toate notificările necitite dacă nu am fost autentificat timp de mai mult de [days] zile?';
 $lang["edit_copy_from_field"]='Copiați datele din câmp';
 $lang["home_page"]='Pagina principală';
 $lang["login_word"]='Autentificare';
@@ -2482,24 +2477,20 @@ $lang["date_format_error"]='Eroare: %row% \'%date%\' intrare invalidă în [%fie
 $lang["invalid_date_error"]='Eroare: %row% \'%date%\' în [%field%] nu este o dată validă';
 $lang["invalid_date_error2"]='Eroare: valoare de dată invalidă: \'%date%\'. Vă rugăm să utilizați formatul: \'yyyy-mm-dd hh:mm:ss\' (ora este opțională)';
 $lang["invalid_date_generic"]='Ați introdus o dată invalidă';
-$lang["error_server_missing_module"]='Server-ul lipsește de software-ul necesar: %%MODULE%%. Vă rugăm să contactați administratorul sistemului';
-$lang["error_check_config"]='Vă rugăm să verificați opțiunea de configurare %%CONFIG_OPTION%%';
+$lang["error_server_missing_module"]='Server-ul lipsește de software-ul necesar: [module]. Vă rugăm să contactați administratorul sistemului';
+$lang["error_check_config"]='Vă rugăm să verificați opțiunea de configurare [config_option]';
 $lang["useaspreviewimage"]='Folosește ca imagine de previzualizare';
 $lang["filechecksum"]='Suma de verificare a fișierului';
-$lang["system_notification"]='%%APPLICATION_NAME%% - notificare de sistem';
-$lang["system_notification_email"]='[img_headerlogo]<br />
-[mesaj]<br /><br />
-<a href="[url]">[url]</a><br /><br />
-[text_subsol]';
+$lang["system_notification"]='[application_name] - notificare de sistem';
 $lang["error_edit_filter_invalid"]='Filtrul de editare nu este configurat corect pentru acest grup de utilizatori. Vă rugăm să contactați administratorul';
 $lang["error_search_filter_invalid"]='Filtrul de căutare nu este configurat corect pentru acest grup de utilizatori. Vă rugăm să contactați administratorul dumneavoastră';
 $lang["action_lock"]='Blocați';
 $lang["action_unlock"]='Deblocare';
 $lang["status_locked"]='Blocat';
 $lang["status_unlocked"]='Deblocat';
-$lang["status_locked_by"]='Blocat de către %%USER%%';
+$lang["status_locked_by"]='Blocat de către [user]';
 $lang["status_locked_self"]='Ați blocat acest resursă';
-$lang["error_locked_by_user"]='Resursa este blocată de către %%USER%%';
+$lang["error_locked_by_user"]='Resursa este blocată de către [user]';
 $lang["error_locked_other_user"]='Resursa este blocată de către un alt utilizator';
 $lang["error-edit_noaccess_resources"]='Nu aveți acces de editare la resurse:';
 $lang["error-edit_locked_resources"]='Următoarele resurse sunt blocate:';
@@ -2533,7 +2524,7 @@ $lang["job_priority"]='Prioritate';
 $lang["csv_export_offline_option"]='Generați fișierul CSV offline? Acest lucru ar trebui utilizat pentru seturi mari de rezultate. Veți fi notificat printr-un mesaj ResourceSpace odată ce fișierul CSV este disponibil';
 $lang["csv_export_file_ready"]='Exportul tău CSV este pregătit';
 $lang["offline_processing_disabled"]='Procesarea de sarcini offline nu este configurată în acest sistem. Pentru a o activa, vă rugăm să contactați administratorul sistemului';
-$lang["csv_export_offline_only"]='Trebuie utilizat procesarea offline atunci când se exportă date pentru mai mult de %%RESOURCE_COUNT%% resurse';
+$lang["csv_export_offline_only"]='Trebuie utilizat procesarea offline atunci când se exportă date pentru mai mult de [resource_count] resurse';
 $lang["setup_google_vision_settings"]='Setări Google Vision';
 $lang["setup_google_vision_enable"]='Activare plugin Google Vision?';
 $lang["tagged_notification"]='Ați fost etichetat(ă) într-un comentariu:';
@@ -2563,7 +2554,7 @@ $lang["notify_upload_share_new_subject"]='Noi încărcări externe';
 $lang["my_shares"]='Părțile mele';
 $lang["manage_shares_title"]='Distribuiri externe';
 $lang["share_purge_text"]='Ștergeți partajările expirate';
-$lang["shares_purged_message"]='Șterse %%DELETEDCOUNT%% partajări';
+$lang["shares_purged_message"]='Șterse [deleted_count] partajări';
 $lang["share_confirm_purge"]='Sunteți sigur că doriți să ștergeți toate partajările expirate?';
 $lang["external_shares_view_existing"]='Vizualizați partajările de încărcare existente pentru această colecție.';
 $lang["share_user"]='Distribuit de';
@@ -2576,7 +2567,7 @@ $lang["log-reference"]='Înregistrare jurnal';
 $lang["log_column"]='Datele jurnalului (de activitate)';
 $lang["log_value"]='Valoare';
 $lang["error_slideshow_invalid"]='Numărul de secvență invalid. Vă rugăm să introduceți o valoare numerică';
-$lang["error-file-permissions"]='Imposibil de efectuat operația de fișier. Vă rugăm să verificați permisiunile de fișier pentru %%PATH%%';
+$lang["error-file-permissions"]='Imposibil de efectuat operația de fișier. Vă rugăm să verificați permisiunile de fișier pentru [path]';
 $lang["new_message"]='Mesaj nou';
 $lang["message_recipients"]='Destinatar(i)';
 $lang["error_invalid_user"]='Utilizator specificat nevalid';
@@ -2591,13 +2582,13 @@ $lang["upload_view_log"]='Vizualizare jurnal';
 $lang["code_sign_required"]='Semnarea codului în linie';
 $lang["code_sign_required_warning"]='Atenție: Codul inline a fost modificat și codul actualizat nu a fost semnat folosind utilitarul de linie de comandă. Macro-urile efectuate asupra metadatelor pot să nu se finalizeze așa cum era de așteptat.';
 $lang["search_full_text"]='Căutare în text complet (căutare text complet)';
-$lang["error_invalid_revert_option"]='Valoarea stocată anterior \'%%VALUE%%\' nu a putut fi găsită în opțiunile curente. Vă rugăm să verificați dacă numele acestei opțiuni a fost schimbat și să actualizați manual resursa dacă este necesar.';
-$lang["error_invalid_revert_date"]='Data stocată anterior \'%%VALUE%%\' nu este validă. Vă rugăm să actualizați resursa manual dacă este necesar.';
+$lang["error_invalid_revert_option"]='Valoarea stocată anterior \'[value]\' nu a putut fi găsită în opțiunile curente. Vă rugăm să verificați dacă numele acestei opțiuni a fost schimbat și să actualizați manual resursa dacă este necesar.';
+$lang["error_invalid_revert_date"]='Data stocată anterior \'[value]\' nu este validă. Vă rugăm să actualizați resursa manual dacă este necesar.';
 $lang["batch_edit_save_warning_message"]='Au fost întâmpinate erori în timpul editării următoarelor resurse -';
 $lang["batch_edit_save_warning_alert"]='Au fost întâmpinate unele erori în timpul efectuării acestei operațiuni. Vă rugăm să consultați mesajele pentru mai multe detalii';
 
 $lang["property-tab_name"]='Nume filă';
-$lang["information_field_restype_deselect_cleanup"]='Pentru a elimina datele existente ale câmpului din tipurile de resurse deselectate, faceți clic pe următorul link %%CLEANUP_LINK%%';
+$lang["information_field_restype_deselect_cleanup"]='Pentru a elimina datele existente ale câmpului din tipurile de resurse deselectate, faceți clic pe următorul link [cleanup_link]';
 $lang["property-id"]='Id';
 $lang["mainmenu"]='Meniu principal';
 $lang["xlthumbs"]='Foarte mare';
@@ -2695,21 +2686,7 @@ $lang["user_group"]='grup de utilizatori';
 $lang["all__emailbulk"]='<br /><br />
 [text]<br /><br />
 [text_footer]';
-$lang["all__emailcollection"]='<br />
-[de la utilizator] [lang_emailcollectionmessage] <br /><br /> 
-[lang_message] : [mesaj]<br /><br /> 
-[lang_clicklinkviewcollection] [listă]';
-$lang["all__emailcollectionexternal"]='<br />
-[de la utilizator] [lang_emailcollectionmessageexternal] <br /><br /> 
-[mesaj] : [message]<br /><br /> 
-[faceți clic pe link pentru a vizualiza colecția] [list]';
 $lang["all__emailcontactadmin"]='<br />[fromusername] ([emailfrom])[lang_contactadminemailtext]<br /><br />[message]<br /><br /><a href="[url]">[embed_thumbnail]</a><br /><br />[text_footer]';
-$lang["all__emaillogindetails"]='<br />
-[bun venit]<br /><br /> 
-[detalii_noi_autentificare]<br /><br /> 
-[nume_utilizator] : [username] <br /><br />
-<a href="[url]">[url]</a><br /><br />
-[text_footer]';
 $lang["all__emailnewresearchrequestwaiting"]='[username] ([userfullname] - [useremail])
 [lang_haspostedresearchrequest]<br /><br />
 [lang_nameofproject]:[name]<br /><br />
@@ -2792,7 +2769,7 @@ $lang["report_breakdown_pie"]='Diagramă circulară';
 $lang["report_please_enter_name"]='Vă rugăm să introduceți un nume de raport pentru a salva acest raport.';
 $lang["actions_email_new_actions_title"]='Acțiuni noi';
 $lang["actions_email_new_actions_intro"]='Există acțiuni noi de finalizat.';
-$lang["email_actions_truncated"]='Sunt afișate doar cele mai recente 1000 de acțiuni. Aveți %%TOTAL%% acțiuni. Conectați-vă la %%APPLICATIONNAME%% pentru a le vizualiza pe toate.';
+$lang["email_actions_truncated"]='Sunt afișate doar cele mai recente 1000 de acțiuni. Aveți [total] acțiuni. Conectați-vă la [application_name] pentru a le vizualiza pe toate.';
 $lang["annotate_select"]='Selectează câmpul...';
 $lang["error_upload_replace_file_fail_invalid_collection"]='Nu s-a reușit înlocuirea fișierului resursei. Referința colecției furnizate este invalidă.';
 $lang["image_quality_80"]='Web';
@@ -2817,7 +2794,7 @@ Căutarea integrității fișierului a eșuat <br /><br />
 <a href="[url]">[url]</a><br /><br />
 [text_footer]';
 $lang["error-edit_noaccess_related_resources"]='Nu se pot relaționa resursele. Fără acces la:';
-$lang["csv_export_filename"]='exportare_metadata_%%SEARCH%%_%%TIME%%';
+$lang["csv_export_filename"]='exportare_metadata_[search]_[time]';
 $lang["upload_share_email_template"]='<br />
 [from_name] [lang_upload_share_email_text] [applicationname]<br /><br /> 
 [lang_message] : [message]<br /><br />
@@ -2833,7 +2810,7 @@ $lang["all__emailnotifyuploadsharenew"]='[lang_notify_upload_share_new]
 <a href="[url]">[url]</a><br /><br />
 [text_footer]';
 $lang["share_expired_icon_title"]='Expirat';
-$lang["error_invalid_date_format"]='"%%VALUE%%" este o dată nevalidă. Toate valorile din acest câmp trebuie să fie formate ca YYYY-MM-DD';
+$lang["error_invalid_date_format"]='"[value]" este o dată nevalidă. Toate valorile din acest câmp trebuie să fie formate ca YYYY-MM-DD';
 $lang["related_resource_create"]='Creează resursă nouă asociată';
 $lang["skip-to-main-content"]='Sari la conținutul principal';
 $lang["cleanup_invalid_nodes"]='Curăță datele câmpului de tipuri de resurse nevalide';
@@ -2851,7 +2828,7 @@ $lang["pull_images_text"]='Folosește imagini din resursele conexe dacă nu sunt
 $lang["system_user_default"]='SISTEM';
 $lang["userlimitreached"]='Ați atins limita de utilizatori. Un utilizator existent trebuie dezactivat sau șters înainte de a putea crea conturi noi sau activa conturi existente.';
 $lang["user_api_session_title"]='Acces API sistem la distanță';
-$lang["user_api_session_text"]='Sistemul la distanță \'%system%\' solicită acces la %applicationname% folosind acreditările tale. Apasă \'Acordă acces\' doar dacă ai inițiat această cerere';
+$lang["user_api_session_text"]='Sistemul la distanță \'%system%\' solicită acces la [applicationname] folosind acreditările tale. Apasă \'Acordă acces\' doar dacă ai inițiat această cerere';
 $lang["user_api_session_invalid_system"]='Sistem solicitat invalid';
 $lang["user_api_session_grant_access"]='Acordă acces';
 $lang["user_api_session_grant_success"]='Cheia a fost emisă cu succes.';
@@ -2862,3 +2839,15 @@ $lang["action_set_no_file"]='Marchează ca neavând fișier';
 $lang["action_unset_no_file"]='Marchează ca fișier lipsă';
 $lang["completed_set_no_file"]='Resursa marcată ca neavând fișier';
 $lang["completed_unset_no_file"]='Resursa marcată ca fișier lipsă';
+$lang["notify_resource_change_email"]='O resursă pe care ai descărcat-o în ultimele [days] zile a fost modificată. Fă clic pe linkul de mai jos pentru a vizualiza resursa.<br /><br /><a href=\'[url]\'>[url]</a>';
+$lang["notify_resource_change_notification"]='O resursă pe care ai descărcat-o în ultimele [days] zile a fost modificată.';
+$lang["all__emailcollection"]='<br />
+[fromusername] [lang_emailcollectionmessage] <br /><br /> 
+[lang_message] : [message]<br /><br /> 
+[lang_clicklinkviewcollection] [list]';
+$lang["system_notification_email"]='[img_headerlogo]<br />
+[message]<br /><br /> 
+<a href="[url]">[url]</a><br /><br />
+[text_footer]';
+$lang["error_upload_duplicate_file"]='Încărcare fișier duplicat, fișierul se potrivește cu resursele: [resources]';
+$lang["oj-creation-success"]='Lucrarea offline [jobnumber] a fost creată. Veți fi notificat când va fi finalizată';

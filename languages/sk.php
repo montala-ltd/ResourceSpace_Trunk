@@ -311,8 +311,8 @@ $lang["uploadresourcebatch"]="Nahrajte dávku zdrojov";
 $lang["uploadinprogress"]="Prebieha nahrávanie a tvorba ukážky";
 $lang["donotmoveaway"]="DÔLEŽITÉ: Neodchádzajte z tejto stránky, pokiaľ sa nahrávanie nedokončí";
 $lang["pleaseselectfiles"]="Vyberte jeden alebo viac súborov na odovzdanie.";
-$lang["previewstatus"]="Boli vytvorené ukážky pre %file% z %filestotal% zdrojov."; # %file%, %filestotal% will be replaced, e.g. Created previews for resource 2 of 2.
-$lang["uploadedstatus"]="Nahraných %file% z %filestotal% súborov - %path%"; # %file%, %filestotal% and %path% will be replaced, e.g. Resource 2 of 2 uploaded - pub/pictures/astro-images/JUPITER9.JPG
+$lang["previewstatus"]="Boli vytvorené ukážky pre [file] z %filestotal% zdrojov."; # [file], %filestotal% will be replaced, e.g. Created previews for resource 2 of 2.
+$lang["uploadedstatus"]="Nahraných [file] z %filestotal% súborov - %path%"; # [file], %filestotal% and %path% will be replaced, e.g. Resource 2 of 2 uploaded - pub/pictures/astro-images/JUPITER9.JPG
 $lang["upload_failed_for_path"]="Nahrávanie %path% zlyhalo"; # %path% will be replaced, e.g. Upload failed for abc123.jpg
 $lang["uploadcomplete"]="Nahrávanie bolo dokončené";
 $lang["upload_summary"]="Zhrnutie";
@@ -406,10 +406,10 @@ $lang["research"]="Výskum";
 $lang["savedsearch"]="Uložené vyhľadávanie";
 $lang["mustspecifyoneusername"]="Musíte zadať aspoň jedno používateľské meno";
 $lang["couldnotmatchallusernames"]="Nepodarilo sa spárovať všetky používateľské mená";
-$lang["emailcollectionmessage"]="Vám poslal e-mailom zbierku zdrojov z aplikácie %applicationname%. Táto zbierka bola pridaná na Vašu stránku 'moje zbierky'."; # suffixed to user name e.g. "Fred ti poslal e-mailom zbierku ..."
+$lang["emailcollectionmessage"]="Vám poslal e-mailom zbierku zdrojov z aplikácie [applicationname]. Táto zbierka bola pridaná na Vašu stránku 'moje zbierky'."; # suffixed to user name e.g. "Fred ti poslal e-mailom zbierku ..."
 $lang['collectionprivate_attachedusermessage']="%user% Vám umožnil prístup do svojej zbierky '%colname%'.";
 $lang["nomessage"]="Žiadna správa";
-$lang["emailcollectionmessageexternal"]="Vám poslal e-mailom zbierku zdrojov z aplikácie %applicationname%."; # suffixed to user name e.g. "Fred ti poslal e-mailom zbierku ..."
+$lang["emailcollectionmessageexternal"]="Vám poslal e-mailom zbierku zdrojov z aplikácie [applicationname]."; # suffixed to user name e.g. "Fred ti poslal e-mailom zbierku ..."
 $lang["clicklinkviewcollection"]="Kliknutím na odkaz nižšie zobrazíte zbierku.";
 $lang["zippedcollectiontextfile"]="Zahrnúť textový súbor s údajmi o zdroji/zbierke.";
 $lang["archivesettings"]="Nastavenia archívu";
@@ -436,8 +436,8 @@ $lang["total"]="Celkom";
 $lang["lastmatching"]="Posledná zhoda";
 $lang["ownedbyyou"]="Vami vlastnené";
 $lang["edit_theme_category"]="Upravte kategóriu odporúčanej zbierky";
-$lang["emailthemecollectionmessageexternal"]="Vám poslal e-mailom zbierky zdrojov z %applicationname%."; 
-$lang["emailthememessage"]="Vám poslal e-mailom výber odporúčaných zbierok z %applicationname%, ktoré boli pridané na Vašu stránku \"Moje zbierky\".";
+$lang["emailthemecollectionmessageexternal"]="Vám poslal e-mailom zbierky zdrojov z [applicationname]."; 
+$lang["emailthememessage"]="Vám poslal e-mailom výber odporúčaných zbierok z [applicationname], ktoré boli pridané na Vašu stránku \"Moje zbierky\".";
 $lang["clicklinkviewthemes"]="Kliknutím na odkaz nižšie zobrazíte vybrané zbierky.";
 $lang["clicklinkviewcollections"]="Kliknutím na odkazy nižšie zobrazíte zbierky.";
 
@@ -479,7 +479,7 @@ $lang["properties"]="Vlastnosti";
 $lang["relatedresources"]="Súvisiace zdroje";
 $lang["relatedresources-filename_extension"]="Súvisiace zdroje - %EXTENSION"; # Use %EXTENSION, %extension or %Extension as a placeholder. The placeholder will be replaced with the filename extension, using the same case. E.g. "Súvisiace zdroje -% ROZŠÍRENIE " -> " Súvisiace zdroje - JPG"
 $lang["relatedresources-id"]="Zdroje súvisiace s %id%"; # %id% will be replaced, e.g. Related Resources - ID57
-$lang["relatedresources-restype"]="Súvisiace zdroje - %restype%"; # Use %RESTYPE%, %restype% or %Restype% as a placeholder. The placeholder will be replaced with the resource type in plural, using the same case. E.g. "Súvisiace zdroje -% restype% " -> " Súvisiace zdroje - fotografie"
+$lang["relatedresources-restype"]="Súvisiace zdroje - [restype]"; # Use [restype], [restype] or [restype] as a placeholder. The placeholder will be replaced with the resource type in plural, using the same case. E.g. "Súvisiace zdroje -% restype% " -> " Súvisiace zdroje - fotografie"
 $lang["relatedresources_onupload"]="Pri odovzdávaní prepojiť zdroje";
 $lang["indexedsearchable"]="Indexované polia, ktoré je možné prehľadávať";
 $lang["clearform"]="Čistá forma";
@@ -1590,7 +1590,7 @@ $lang["can_see_resource_type"]="Môže vidieť zdroj typu '%TYPE'. Zrušením za
 $lang["restricted_access_only_to_resource_type"]="Prístup obmedzený len na prostriedky typu";
 $lang["restricted_upload_for_resource_of_type"]="Nepovoliť nahrávanie zdrojov typu";
 $lang["edit_access_to_workflow_state"]="Upraviť prístup k stavu pracovného postupu";
-$lang["edit_access_to_access"]="Upraviť prístup k stavu prístupu '%STATE'. Zrušením začiarknutia tohto políčka <strong> pridáte </strong> povolenie „ea%REF“";
+$lang["edit_access_to_access"]="Upraviť prístup k stavu prístupu '[state]'. Zrušením začiarknutia tohto políčka <strong> pridáte </strong> povolenie „ea%REF“";
 $lang["can_create_resources_and_upload_files-admins"]="Môže vytvárať zdroje / nahrávať súbory <br> (správcovia; zdroje prejdú hneď do stavu „Aktívny“)";
 $lang["can_create_resources_and_upload_files-general_users"]="Môže vytvárať zdroje / nahrávať súbory <br> (bežní používatelia; zdroje prejdú do stavu „Čakajúce na odovzdanie“, v sekcii Moje príspevky)";
 $lang["can_delete_resources"]="Môže odstraňovať zdroje <br> (ku ktorým má používateľ prístup na zápis). Zrušením zaškrtnuntia tejto možnosti sa <strong> pridáva </strong> povolenie „D“";
@@ -1738,7 +1738,6 @@ $lang["zipcomplete"]="Bolo zahájené sťahovanie archívu ZIP. Môžete opusti�
 
 $lang["starttypingkeyword"]="Začanite písať kľúčové slovo...";
 $lang["createnewentryfor"]="Vytvoriť nový záznam pre";
-$lang["confirmcreatenewentryfor"]="Naozaj chcete vytvoriť novú položku zoznamu kľúčových slov pre '%%'?";
 $lang["noentryexists"]="Neexistuje žiadny záznam o";
 
 $lang["editresourcepreviews"]="Upraviť ukážky zdrojov";
@@ -1890,7 +1889,7 @@ $lang["download_collection"]="Stiahnutie zbierky";
 $lang["all-resourcetypes"] = "zdroje"; # Will be used as %resourcetypes% if all resourcetypes are searched.
 $lang["all-collectiontypes"] = "zbierky"; # Will be used as %collectiontypes% if all collection types are searched.
 $lang["resourcetypes-no_collections"] = "Všetky %resourcetypes%"; # Use %RESOURCETYPES%, %resourcetypes% or %Resourcetypes% as a placeholder. The placeholder will be replaced with the resourcetype in plural (or $lang["all-resourcetypes"]), using the same case. E.g. "Všetky% resourcetypes% " -> " Všetky fotografie"
-$lang["no_resourcetypes-collections"] = "Všetky %collectiontypes%"; # Use %COLLECTIONTYPES%, %collectiontypes% or %Collectiontypes% as a placeholder. The placeholder will be replaced with the collectiontype (or $lang["all-collectiontypes"]), using the same case. E.g. "Všetky zbierky%% " -> " Všetky moje zbierky"
+$lang["no_resourcetypes-collections"] = "Všetky %collectiontypes%"; 
 $lang["resourcetypes-collections"] = "Všetky %resourcetypes% a všetky %collectiontypes%"; # Please find the comments for $lang["resourcetypes-no_collections"] and $lang["no_resourcetypes-collections"]!
 $lang["resourcetypes_separator"] = ", "; # The separator to be used when converting the array of searched resourcetype to a string. E.g. ", " -> " fotografie, dokumenty"
 $lang["collectiontypes_separator"] = ", "; # The separator to be used when converting the array of searched collections to a string. E.g. ", " -> " verejné zbierky, témy"
@@ -2002,7 +2001,7 @@ $lang["resource_type_field_new"]    = "Nové pole metaúdajov";
 ##########################################################################################
 
 $lang["admin_advanced_field_properties"]="Rozšírené vlastnosti poľa";
-$lang["admin_delete_field_confirm"]="Existujú %%AFFECTEDRESOURCES%% zdrojov s prostriedkami v tomto poli. ID niekoľkých ovplyvnených prostriedkov sú uvedené nižšie. Ak budete pokračovať, metadáta spojené s týmto poľom sa stratia. Naozaj chcete pokračovať v mazaní?";
+$lang["admin_delete_field_confirm"]="Existujú [affected_resources] zdrojov s prostriedkami v tomto poli. ID niekoľkých ovplyvnených prostriedkov sú uvedené nižšie. Ak budete pokračovať, metadáta spojené s týmto poľom sa stratia. Naozaj chcete pokračovať v mazaní?";
 $lang["admin_resource_type_create"]="Vytvoriť typ prostriedku s názvom ...";
 $lang["admin_resource_type_field"]="Správa polí metadát";
 $lang["admin_resource_type_field_count"]="Polia metaúdajov";
@@ -2039,7 +2038,7 @@ $lang["property-groups"]="Skupiny";
 $lang["property-user_group"]="Skupina používateľov";
 $lang["property-user_group_parent"]="Nadradená skupina používateľov";
 $lang["property-user_group_remove_parent"]="(odstrániť nadradenú skupinu používateľov)";
-$lang["resource_type_delete_confirmation"]="Existuje %%RESOURCECOUNT%% zdrojov tohto typu.";
+$lang["resource_type_delete_confirmation"]="Existuje [resource_count] zdrojov tohto typu.";
 $lang["resource_type_delete_select_new"]="Vyberte typ zdroja, na ktorý si želáte konvertovať.";
 $lang["resourcetype-global_field"]="Globálne";
 $lang["search_title_hasdata"]="Zdroje obsahujúce údaje v poli";
@@ -2052,7 +2051,7 @@ $lang['admin_field_deleted'] = "Zmazané pole";
 $lang['action-move-up'] = 'Posunúť nahor';
 $lang['action-move-down'] = 'Posunúť nadol';
 $lang['action-move-to'] = 'Presunúť do';
-$lang['delete_user_group_checkbox_alert_message'] = 'Upozorňujeme, že táto akcia odstráni aj všetky texty systému, ktoré sú relevantné pre túto skupinu používateľov. V správe textov systému sa nachádza %%RECORDSCOUNT%% záznamov.';
+$lang['delete_user_group_checkbox_alert_message'] = 'Upozorňujeme, že táto akcia odstráni aj všetky texty systému, ktoré sú relevantné pre túto skupinu používateľov. V správe textov systému sa nachádza [recordscount] záznamov.';
 
 
 
@@ -2570,7 +2569,7 @@ $lang["oj-batch-replace-local-failure-text"] = "Dávkové nahradenie zlyhalo. Sk
 
 $lang["email_auto_digest_inactive"] = "Toto je súhrn vašich neprečítaných správ";
 $lang["email_digest_disable"]       = "Tieto upozornenia môžete deaktivovať prihlásením a úpravou používateľských preferencií na nižšie uvedenom odkaze:-";
-$lang["user_pref_inactive_digest"]  = "Poslať denný e-mail so všetkými neprečítanými upozorneniami, ak ste neboli prihlásený dlhšie ako %%DAYS%% dní?";
+$lang["user_pref_inactive_digest"]  = "Poslať denný e-mail so všetkými neprečítanými upozorneniami, ak ste neboli prihlásený dlhšie ako [days] dní?";
 $lang["edit_copy_from_field"]       = "Skopírujte údaje z poľa";
 
 $lang['home_page'] = "Domovská stránka";
@@ -2667,8 +2666,6 @@ $lang['group_download_limit_title'] = "Limit na sťahovanie zdrojov. Nastavte nu
 $lang['group_download_limit_period'] = "Obdobie platnosti limitu sťahovania zdrojov (limit za posledných X dní). Totálny limit počtu stiahnutí zdrojov nastavením hodnoty na 0";
 $lang['download_limit_error'] = "Dosiahli ste limit sťahovania zdrojv.";
 $lang['download_limit_collection_error'] = "Stiahnutím tejto zbierky zdrojov by ste prekročili Váš limit stiahnutí.";
-$lang['download_limit_summary'] = "Stiahli ste %% DOWNLOADED %% z celkového limitu %% LIMIT %% zdrojov.";
-$lang['download_limit_request_text'] = "Bol dosiahnutý limit sťahovania: %% STIAHNUTÉ %% / %% LIMIT %%";
 
 $lang["admin_delete_field_error"]="Pole sa nepodarilo odstrániť. Obráťte sa na správcu systému. Toto pole sa používa pre nasledujúce možnosti konfigurácie:-";
 $lang["manage_metadata_text"]="Táto stránka sa používa na úpravu dostupných možností poľa. Týmto sa automaticky aktualizujú aj existujúce vybraté možnosti zdrojov";
@@ -2684,20 +2681,20 @@ $lang["unknown_date_format_error"]         = "Chyba: %row% '%date%' v poli [%fie
 $lang["date_format_error"]                 = "Chyba: %row% '%date%' v poli [%field%] neplatný záznam %parts% ";
  # %row% row number if in csv or similar, %date% field data, %field% field name
 $lang["invalid_date_error"]                 = "Chyba: %row% '%date%' v poli [%field%] nie je platný dátum";
-$lang["error_server_missing_module"]        = "Na serveri chýba požadovaný softvér: %%MODULE%%. Obráťte sa na správcu systému";
-$lang["error_check_config"]                 = "Skontrolujte konfiguračnú možnosť %%CONFIG_OPTION%%";
+$lang["error_server_missing_module"]        = "Na serveri chýba požadovaný softvér: [module]. Obráťte sa na správcu systému";
+$lang["error_check_config"]                 = "Skontrolujte konfiguračnú možnosť [config_option]";
 $lang["useaspreviewimage"]                  = "Použiť ako ukážku obrázka";
 $lang["filechecksum"]                       = "Kontrolný súčet";
-$lang["system_notification"]                = "%%APPLICATION_NAME%% - notifikácia";
+$lang["system_notification"]                = "[application_name] - notifikácia";
 $lang["system_notification_email"]          = "[img_headerlogo]<br />\n[message]<br /><br /> \n<a href=\"[url]\">[url]</a><br /><br />\n[text_footer]\n";
 $lang["error_edit_filter_invalid"]          = "Filter pre editáciu nieje správne nakonfigurovaný pre túto skupinu používateľov. Prosím kontaktujte správcu";
 $lang["action_lock"]                        = "Zamknúť";
 $lang["action_unlock"]                      = "Odomknúť";
 $lang["status_locked"]                      = "Zamknutý";
 $lang["status_unlocked"]                    = "Odomnutý";
-$lang["status_locked_by"]                   = "Zamkol %%USER%%";
+$lang["status_locked_by"]                   = "Zamkol [user]";
 $lang["status_locked_self"]                 = "Tento zdroj ste uzamkli";
-$lang["error_locked_by_user"]               = "Tento zdroj uzamkol %%USER%%";
+$lang["error_locked_by_user"]               = "Tento zdroj uzamkol [user]";
 $lang["error_locked_other_user"]            = "Tento zdroj je uzamknutý iným používateľom";
 $lang["error-edit_noaccess_resources"]      = "K editácii nasledovných zdrojov nemáte oprávnenie: ";
 $lang["error-edit_locked_resources"]        = "Nasledujúce zdroje sú uzamknuté: ";
@@ -2731,7 +2728,7 @@ $lang["job_value"]                          = "Hodnota";
 $lang['csv_export_offline_option']          = "Generovať súbor CSV na pozadí? Použite pre veľké dátové sety. O pripravenosti CSV budete notifikovaný emailom";
 $lang["csv_export_file_ready"]              = "Váš export do CSV je pripravený";
 $lang["offline_processing_disabled"]        = "Vykonávanie úloh na pozadí nieje povolené. Pre povolenie kontaktujte správcu systému";
-$lang['csv_export_offline_only']            = "Vykonávanie úloh na pozadí je vyžadované pre export viac než %%RESOURCE_COUNT%% zdrojov";
+$lang['csv_export_offline_only']            = "Vykonávanie úloh na pozadí je vyžadované pre export viac než [resource_count] zdrojov";
 
 $lang["setup_google_vision_settings"]       = "Nastavenia Google Vision";
 $lang["setup_google_vision_enable"]         = "Aktivovať doplnok Google Vision?";
@@ -2767,7 +2764,7 @@ $lang["all__emailnotifyuploadsharenew"]     = "<br />\n[lang_notify_upload_share
 $lang["my_shares"]                          = "Moje zdieľania";
 $lang["manage_shares_title"]                = "Externé zdieľania";
 $lang["share_purge_text"]                   = "Odstrániť expirované zdieľania";
-$lang["shares_purged_message"]              = "Bolo odstránenných %%DELETEDCOUNT%% zdieľaní";
+$lang["shares_purged_message"]              = "Bolo odstránenných [deleted_count] zdieľaní";
 $lang["share_confirm_purge"]                = "Určite chcete odstránit všetky expirované zdieľania?";
 $lang["external_shares_view_existing"]      = "Zobraziť existujúce zdieľania pre nahratie zdrojov, pre túto zbierku.";
 $lang["share_user"]                         = "Zdieľa";
@@ -2928,10 +2925,10 @@ $lang["success"]='Úspech';
 $lang["user_pref_autorotate"]='Automatické otáčanie obrázkov pri nahrávaní?';
 $lang["run_report_on_search_results"]='Spustiť správu o týchto výsledkoch';
 $lang["report_error_no_reports_supporting_search_results"]='Nie sú žiadne správy, ktoré by podporovali spustenie na výsledkoch vyhľadávania.';
-$lang["report_periodic_email_report_attached"]='Správa \'%%REPORTTITLE%%\' je pripojená.';
+$lang["report_periodic_email_report_attached"]='Správa \'[report_title]\' je pripojená.';
 $lang["report-select-required"]='Prosím, vyberte správu';
 $lang["writeaccess_sql_log"]='Prístup na zápis do SQL logu:';
-$lang["php_extension_not_enabled"]='Razširitev PHP %%EXTENSION%% ni omogočena';
+$lang["php_extension_not_enabled"]='Razširitev PHP [extension] ni omogočena';
 $lang["server_apcu_check_fail"]='Razširitev php-apcu ni nameščena. Omogočite jo za hitrejše in bolj zanesljive prenose';
 $lang["error_suggest_apcu"]='Prosím, kontaktujte svojho systémového administrátora, aby povolil modul php-apcu';
 $lang["upload_error_unknown"]='Nastala je nepričakovana napaka. Preverite, ali je ime datoteke veljavno. Če težava vztraja, se obrnite na skrbnika sistema';
@@ -2978,7 +2975,7 @@ $lang["userpreference_hide_search_resource_types"]='Skryť typy zdrojov pri jedn
 $lang["userpreference_tilenav"]='Použite dlaždicový rozloženie pre navigačné menu';
 $lang["userpreference_tilenavdefault"]='Použite dlaždicový rozloženie pre navigačné menu (predvolené nastavenie; používatelia si môžu toto zmeniť).';
 $lang["systemconfig_customfont_label"]='Používateľský súbor písma';
-$lang["systemconfig_invalid_extension"]='Typ súboru nie je platný pre túto voľbu. Prosím, vyberte z: %%EXTENSIONS%%';
+$lang["systemconfig_invalid_extension"]='Typ súboru nie je platný pre túto voľbu. Prosím, vyberte z: [extensions]';
 $lang["systemconfig_terms_upload_label"]='Podmienky pre zdieľanie externého nahrávania';
 $lang["systemconfig_only_show_modified"]='Zobraziť iba upravené hodnoty';
 $lang["error_generic_misconfiguration"]='Prosím, kontaktujte svojho systémového administrátora a požiadajte ho, aby vyriešil problémy zistené na stránke "Kontrola inštalácie".';
@@ -2997,10 +2994,10 @@ $lang["error_save_not_allowed_fc_has_children"]='Nemožno uložiť zmenu. Prosí
 $lang["error_multiple_preview_tools"]='Prosím, zakážte aktuálny nástroj náhľadu a skúste to znova.';
 $lang["missing_folder"]='CHYBA - Cesta k adresáru pre nahrávanie nebola nastavená.';
 $lang["error_upload_replace_file_fail"]='Nepodarilo sa nahradiť súbor zdroja';
-$lang["error_upload_replace_no_matching_file"]='Nebol nájdený žiadny platný zdroj na nahradenie súboru s názvom %%FILENAME%%';
-$lang["error_upload_replace_multiple_matching_files"]='Bolo nájdených viacero platných zdrojov s názvom súboru %%FILENAME%%';
-$lang["error_upload_invalid_file"]='Neplatný typ súboru: %%FILETYPE%%';
-$lang["error_upload_duplicate_file"]='Duplicitné nahranie súboru, súbor sa zhoduje s prostriedkami: %%RESOURCES%%';
+$lang["error_upload_replace_no_matching_file"]='Nebol nájdený žiadny platný zdroj na nahradenie súboru s názvom [filename]';
+$lang["error_upload_replace_multiple_matching_files"]='Bolo nájdených viacero platných zdrojov s názvom súboru [filename]';
+$lang["error_upload_invalid_file"]='Neplatný typ súboru: [filetype]';
+$lang["error_upload_duplicate_file"]='Duplicitné nahranie súboru, súbor sa zhoduje s prostriedkami: [resources]';
 $lang["error_upload_file_move_failed"]='Nepodarilo sa presunúť nahraný súbor. Skontrolujte veľkosť súboru, ktorý sa snažíte nahrať.';
 $lang["error_fail_save"]='Nemožné uložiť';
 $lang["filter_migrate_success"]='Filter bol úspešne presunutý.';
@@ -3016,7 +3013,7 @@ $lang["log-reference"]='Záznam v protokole';
 $lang["log_column"]='Záznam dát';
 $lang["log_value"]='Hodnota';
 $lang["error_slideshow_invalid"]='Neplatné číslo sekvence. Prosím, zadejte číselnou hodnotu';
-$lang["error-file-permissions"]='Nemožné vykonať operáciu súboru. Skontrolujte oprávnenia súboru v %%PATH%%';
+$lang["error-file-permissions"]='Nemožné vykonať operáciu súboru. Skontrolujte oprávnenia súboru v [path]';
 $lang["new_message"]='Nová správa';
 $lang["message_recipients"]='Príjemca(-ovia)';
 $lang["error_invalid_user"]='Neplatný používateľ určený';
@@ -3031,12 +3028,12 @@ $lang["upload_view_log"]='Zobraziť záznam';
 $lang["code_sign_required"]='Podpisovanie kódu v riadku';
 $lang["code_sign_required_warning"]='Upozornenie: Vložený kód bol zmenený a aktualizovaný kód nebol podpísaný pomocou príkazového riadku. Makrá vykonané na metadátach sa nemusia dokončiť podľa očakávaní.';
 $lang["search_full_text"]='Vyhľadávať všetok text (vyhľadávanie v plnom texte)';
-$lang["error_invalid_revert_option"]='Predtým uložená hodnota \'%%VALUE%%\' sa v aktuálnych možnostiach nenašla. Skontrolujte, či sa zmenilo meno tejto možnosti a ak je to potrebné, ručne aktualizujte zdroj.';
-$lang["error_invalid_revert_date"]='Predtým uložený dátum \'%%VALUE%%\' je neplatný. Ak je to potrebné, aktualizujte zdrojový súbor manuálne.';
+$lang["error_invalid_revert_option"]='Predtým uložená hodnota \'[value]\' sa v aktuálnych možnostiach nenašla. Skontrolujte, či sa zmenilo meno tejto možnosti a ak je to potrebné, ručne aktualizujte zdroj.';
+$lang["error_invalid_revert_date"]='Predtým uložený dátum \'[value]\' je neplatný. Ak je to potrebné, aktualizujte zdrojový súbor manuálne.';
 $lang["batch_edit_save_warning_message"]='Pri úprave nasledujúcich zdrojov sa vyskytli chyby';
 $lang["batch_edit_save_warning_alert"]='Pri vykonávaní tejto operácie sa vyskytli niektoré chyby. Pre viac informácií sa pozrite do svojich správ';
 
-$lang["information_field_restype_deselect_cleanup"]='Če želite odstraniti obstoječe podatke polja iz neizbranih vrst virov, kliknite na naslednjo povezavo %%CLEANUP_LINK%%';
+$lang["information_field_restype_deselect_cleanup"]='Če želite odstraniti obstoječe podatke polja iz neizbranih vrst virov, kliknite na naslednjo povezavo [cleanup_link]';
 $lang["mainmenu"]='Glavni meni';
 $lang["edit_multiple_existing_values"]='Obstoječe ključne besede na virih v tej izbiri';
 $lang["edit_multiple_show_more"]='Pokaži več';
@@ -3084,24 +3081,11 @@ $lang["write_access_to"]='Dostop za pisanje do';
 $lang["error-invalid_name"]='Neveljavno ime';
 $lang["inactive_entry_matched"]='Neaktivni vnos ustreza za';
 $lang["user_group"]='uporabniška skupina';
-$lang["all__emailbulk"]='<br /><br />
-[besedilo]<br /><br />
-[besedilo_noga]';
-$lang["all__emailcollection"]='<br />
-[oduporabnika] [lang_emailcollectionmessage] <br /><br /> 
-[lang_sporočilo] : [sporočilo]<br /><br /> 
-[lang_kliknitezapogledzbirke] [seznam]';
 $lang["all__emailcollectionexternal"]='<br />
 [fromusername] [lang_emailcollectionmessageexternal] <br /><br /> 
 [lang_message] : [message]<br /><br /> 
 [lang_clicklinkviewcollection] [list]';
 $lang["all__emailcontactadmin"]='<br />[fromusername] ([emailfrom])[lang_contactadminemailtext]<br /><br />[message]<br /><br /><a href="[url]">[embed_thumbnail]</a><br /><br />[text_footer]';
-$lang["all__emaillogindetails"]='<br />
-[welcome]<br /><br /> 
-[nove_podrobnosti_prijave]<br /><br /> 
-[uporabniško_ime] : [username] <br /><br />
-<a href="[url]">[url]</a><br /><br />
-[besedilo_podpis]';
 $lang["all__emailnewresearchrequestwaiting"]='[username] ([userfullname] - [useremail])
 [lang_haspostedresearchrequest]<br /><br />
 [lang_nameofproject]:[name]<br /><br />
@@ -3114,44 +3098,11 @@ $lang["all__emailnewresearchrequestwaiting"]='[username] ([userfullname] - [user
 <a href="[url]">[url]</a><br /><br />
 <a href="[teamresearchurl]">[teamresearchurl]</a><br /><br />
 [text_footer]';
-$lang["all__emailnotifyresourcesapproved"]='<br />
-[lang_userresourcesapproved]
-[seznam] <br />
-[lang_viewcontributedsubittedl] <br /><br /> 
-<a href="[url]">[url]</a><br /><br />
-[besedilo_podnožja]';
-$lang["all__emailnotifyresourcessubmitted"]='<br />
-[lang_userresourcessubmitted]
-[seznam] <br />
-[lang_viewalluserpending] <br /><br /> 
-<a href="[url]">[url]</a><br /><br />
-[besedilo_podnožja]';
-$lang["all__emailnotifyresourcesunsubmitted"]='<br />
-[lang_userresourcesunsubmitted]
-[seznam] <br />
-[lang_viewalluserpending] <br /><br /> 
-<a href="[url]">[url]</a><br /><br />
-[besedilo_podnožja]';
-$lang["all__emailresearchrequestassigned"]='[lang_researchrequestassignedmessage]
-
-[besedilo_noga]';
 $lang["all__emailresearchrequestcomplete"]='<br />
 [lang_researchrequestcompletemessage] <br /><br /> 
 [lang_clicklinkviewcollection] <br /><br /> 
 <a href="[url]">[url]</a><br /><br />
 [text_footer]';
-$lang["all__emailresource"]='<br />
-[fromusername] [lang_vamposlalvir]<br /><br />
-[message]<br /><br />
-<a href="[url]">[embed_thumbnail]</a><br /><br />
-[lang_kliknitezaviditeresurs]<br /><a href="[url]">[resourcename] - [url]</a><br /><br />
-[text_footer]';
-$lang["all__emailresourcerequest"]='<br />
-[lang_username] : [username] <br />
-[seznam] <br />
-[podrobnosti]<br /><br />
-[lang_clicktoviewresource] <br /><br />
-<a href="[url]">[url]</a>';
 $lang["help__introtext"]='<iframe src="https://www.resourcespace.com/knowledge-base/?from_rs=true" style="width:1235px;height:600px;border:none;margin:-20px;" id="knowledge_base" />';
 $lang["upgrade_script"]='Skript za nadgradnjo';
 $lang["upgrade_026_notification"]='Aktualizacija je zastarala nekatere možnosti konfiguracije, ki jih vaš %entity% prepisuje.
@@ -3177,7 +3128,7 @@ $lang["external_shares_options"]='Možnosti zunanje delitve';
 $lang["email_shares_options_summary"]='Te možnosti bodo veljale samo za delitve, ustvarjene z uporabo zunanjega e-poštnega naslova';
 $lang["actions_email_new_actions_title"]='Nove akcije';
 $lang["actions_email_new_actions_intro"]='Obstajajo nova dejanja, ki jih je treba dokončati.';
-$lang["email_actions_truncated"]='Prikazanih je le zadnjih 1000 dejanj. Imate %%TOTAL%% dejanj. Prijavite se v %%APPLICATIONNAME%%, da si jih ogledate vse.';
+$lang["email_actions_truncated"]='Prikazanih je le zadnjih 1000 dejanj. Imate [total] dejanj. Prijavite se v [application_name], da si jih ogledate vse.';
 $lang["annotate_select"]='Izberite polje...';
 $lang["error_upload_replace_file_fail_invalid_collection"]='Nepodarilo sa nahradiť súbor zdroja. Dodaná referencia kolekcie je neplatná.';
 $lang["iiif"]='IIIF';
@@ -3192,9 +3143,9 @@ $lang["job_status_error"]='Prišlo je do napake';
 $lang["file_integrity_fail_latest"]='Ogled najnovejših napak celovitosti datotek';
 $lang["file_integrity_fail_all"]='Oglejte si vse vire z napakami celovitosti datotek';
 $lang["error-edit_noaccess_related_resources"]='Ni mogoče povezati virov. Brez dostopa do:';
-$lang["csv_export_filename"]='izvoz_metapodatkov_%%SEARCH%%_%%TIME%%';
+$lang["csv_export_filename"]='izvoz_metapodatkov_[search]_[time]';
 $lang["share_expired_icon_title"]='Poteklo';
-$lang["error_invalid_date_format"]='"%%VALUE%%" je neveljaven datum. Vsa vrednosti v tem polju morajo biti v formatu LLLL-MM-DD';
+$lang["error_invalid_date_format"]='"[value]" je neveljaven datum. Vsa vrednosti v tem polju morajo biti v formatu LLLL-MM-DD';
 $lang["related_resource_create"]='Ustvari nov povezan vir';
 $lang["skip-to-main-content"]='Preskoči na glavno vsebino';
 $lang["cleanup_invalid_nodes"]='Vyčistiť údaje poľa z neplatných typov zdrojov';
@@ -3212,7 +3163,7 @@ $lang["pull_images_text"]='Uporabite slike iz povezanih virov, če niso na voljo
 $lang["system_user_default"]='SISTEM';
 $lang["userlimitreached"]='Dosegli ste omejitev uporabnikov. Obstoječega uporabnika je treba onemogočiti ali izbrisati, preden lahko ustvarite nove račune ali omogočite obstoječe račune.';
 $lang["user_api_session_title"]='Dostop do API oddaljenega sistema';
-$lang["user_api_session_text"]='Oddaljeni sistem \'%system%\' zahteva dostop do %applicationname% z uporabo vaših poverilnic. Kliknite \'Dovoli dostop\' samo, če ste to zahtevo sprožili vi';
+$lang["user_api_session_text"]='Oddaljeni sistem \'%system%\' zahteva dostop do [applicationname] z uporabo vaših poverilnic. Kliknite \'Dovoli dostop\' samo, če ste to zahtevo sprožili vi';
 $lang["user_api_session_invalid_system"]='Neveljaven sistem zahtevan';
 $lang["user_api_session_grant_access"]='Dodeli dostop';
 $lang["user_api_session_grant_success"]='Ključ uspešno izdan.';
@@ -3224,3 +3175,45 @@ $lang["action_unset_no_file"]='Označi kot manjkajočo datoteko';
 $lang["completed_set_no_file"]='Viro označen kot brez datoteke';
 $lang["completed_unset_no_file"]='Označeno kot manjkajoča datoteka';
 $lang["map_esridelorme"]='DeLorme';
+$lang["all__emailnotifyresourcesapproved"]='<br />
+[lang_userresourcesapproved]
+[list] <br />
+[lang_viewcontributedsubittedl] <br /><br /> 
+<a href="[url]">[url]</a><br /><br />
+[text_footer]';
+$lang["all__emailresource"]='<br />
+[fromusername] [lang_hasemailedyouaresource]<br /><br />
+[message]<br /><br />
+<a href="[url]">[embed_thumbnail]</a><br /><br />
+[lang_clicktoviewresource]<br /><a href="[url]">[resourcename] - [url]</a><br /><br />
+[text_footer]';
+$lang["all__emailresearchrequestassigned"]='<br />
+[lang_researchrequestassignedmessage]<br /><br />
+[text_footer]';
+$lang["all__emailnotifyresourcessubmitted"]='<br />
+[lang_userresourcessubmitted]
+[list] <br />
+[lang_viewalluserpending] <br /><br /> 
+<a href="[url]">[url]</a><br /><br />
+[text_footer]';
+$lang["all__emailbulk"]='<br /><br />
+[text]<br /><br />
+[text_footer]';
+$lang["all__emaillogindetails"]='<br />
+[welcome]<br /><br /> 
+[lang_newlogindetails]<br /><br /> 
+[lang_username] : [username] <br /><br />
+<a href="[url]">[url]</a><br /><br />
+[text_footer]';
+$lang["all__emailnotifyresourcesunsubmitted"]='<br />
+[lang_userresourcesunsubmitted]
+[list] <br />
+[lang_viewalluserpending] <br /><br /> 
+<a href="[url]">[url]</a><br /><br />
+[text_footer]';
+$lang["all__emailcollection"]='<br />
+[fromusername] [lang_emailcollectionmessage] <br /><br /> 
+[lang_message] : [message]<br /><br /> 
+[lang_clicklinkviewcollection] [list]';
+$lang["download_limit_summary"]='Prenesli ste [downloaded]/[limit] virov.';
+$lang["download_limit_request_text"]='Dosežen limit prenosa: [downloaded]/[limit]';
