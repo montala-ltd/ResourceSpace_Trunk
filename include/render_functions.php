@@ -2000,12 +2000,12 @@ function display_field($n, $field, $newtab=false,$modal=false)
           {
           ?>
           <div class="Question" class="stdwidth" style="display:none;" id="displayexisting_<?php echo (int) $n; ?>" data-rtfid="<?php echo (int) $field['ref']; ?>">
-            <label></label>
+            <div class="questionSpacer"></div>
             <p><?php echo escape($lang["edit_multiple_existing_values"]) . ':'; ?></p>
-            <label></label>
+            <div class="questionSpacer"></div>
             <div>
               <div class="displayexisting_options" id="displayexisting_options_<?php echo (int) $n; ?>" data-questionid="<?php echo (int) $n; ?>"></div>
-              <label></label>
+              <div class="questionSpacer"></div>
               <input type="button" id="displayexisting_options_more_<?php echo (int) $n; ?>" style="display:none;" value="+ <?php echo escape($lang["edit_multiple_show_more"]); ?>" onclick="showMoreSelectedOptions(<?php echo (int) $n; ?>);">
               </div>
           </div>
@@ -2030,7 +2030,7 @@ function display_field($n, $field, $newtab=false,$modal=false)
         {
         ?>
         <div id="ActionPrompt_<?php echo (int) $n; ?>">
-          <label></label>
+          <div class="questionSpacer"></div>
           <p id="ActionPromptText_<?php echo (int) $n; ?>"></p>
        </div>
      <?php
@@ -5814,7 +5814,8 @@ function render_antispam_question()
 
     $capimage = imagecreate($width, $height);
     $textcolor = imagecolorallocate($capimage, 34, 34, 34);
-    $green = ImageColorAllocate($capimage, 121, 188, 65); 
+    $green = ImageColorAllocate($capimage, 121, 188, 65);
+    imagecolorallocate($capimage, 245, 245, 245);
     ImageRectangle($capimage,0,0,$width-1,$height-1,$green); 
     imageline($capimage, 0, $height/2, $width, $height/2, $green); 
     imageline($capimage, $width*4/5, 2, $width*4/5, $height, $green);
