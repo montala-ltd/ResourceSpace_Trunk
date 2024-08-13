@@ -2941,6 +2941,11 @@ function update_field($resource, $field, $value, array &$errors = array(), $log=
                 $data_joins_field_value = implode($GLOBALS['field_column_string_separator'], $node_names);
                 }
             } // End of adding/removing nodes
+        else
+            {
+            // No node changes were made e.g. blocked adding new value with bdk permission. Nothing to log. Prevents resource_log()
+            $log = false;
+            }
         }
     else
         {
@@ -6527,7 +6532,7 @@ function resource_type_config_override($resource_type, $only_onchange=true)
         $config_options=ps_value("select config_options value from resource_type where ref=?",array("i",$resource_type), "","schema");
         if ($config_options!="")
             {
-            override_rs_variables_by_eval($GLOBALS, $config_options);
+            override_rs_variables_by_eval($GLOBALS, $config_options, 'resource_type');
             }
         }
     }
