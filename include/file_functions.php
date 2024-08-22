@@ -397,7 +397,7 @@ function is_valid_rs_path(string $path, array $override_paths = []): bool
         }
     }
 
-    // Check if path contains symlinks, if so don't use the value returned by realpath() as it is unlikley to match the expected paths
+    // Check if path contains symlinks, if so don't use the value returned by realpath() as it is unlikely to match the expected paths
     $symlink = false;
     $path_parts = array_filter(explode("/", $path));
     $checkpath = "";
@@ -419,19 +419,13 @@ function is_valid_rs_path(string $path, array $override_paths = []): bool
             dirname(__DIR__) . '/gfx',
             $GLOBALS['storagedir'],
             $GLOBALS['syncdir'],
+            $GLOBALS['fstemplate_alt_storagedir'],
         ];
         if (isset($GLOBALS['tempdir'])) {
             $default_paths[] = $GLOBALS['tempdir'];
         }
     }
-    $allowed_paths = array_filter(
-        array_map(
-            'trim',
-            array_unique(
-                array_merge($default_paths, $GLOBALS['extra_allowed_filestore_paths'])
-            )
-        )
-    );
+    $allowed_paths = array_filter(array_map('trim', array_unique($default_paths)));
     debug('allowed_paths = ' . implode(', ', $allowed_paths));
 
     foreach ($allowed_paths as $allowed_path) {
