@@ -135,6 +135,14 @@ tr[id^="ResourceShell"].Selected { background-color: #d5eafa; /* Used a tint of 
     color: #d4d4d4;
     text-decoration:none;
 }
+.ListviewStyle 
+    {
+    border-collapse: collapse;
+    }
+.ListviewStyle td, .ListviewTitleStyle th
+    {
+    border:1px solid #ddd;
+    }
 
 .Question select .optionWeekend { background-color: #ccc; }
 .lockedQuestion {background-color: #ddd; }
@@ -182,7 +190,7 @@ div.autocomplete ul li {color: #000;}
 #RatingStarLink0 {color: #888;}
 
 .Listview .ListViewSubTable,.Listview .ListViewSubTable td,.Listview .ListViewSubTable tr {background-image: none;}
-.Listview {background-color: white;border-radius:6px;}
+.Listview {background-color: white;}
 .highlight {color: #000;background-color: #ff0;}
 .Tab a {padding: 8px 1rem;background: rgba(255, 255, 255, 0.4);}
 .TabBar { background-color: #ededed; }
