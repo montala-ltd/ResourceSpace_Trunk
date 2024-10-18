@@ -180,7 +180,7 @@ function get_plugin_yaml($plugin, $validate=true, $translate=true)
         $plugin_lang_file=dirname(__FILE__) . "/../plugins/" . $plugin_yaml["name"] . "/languages/" . $language . ".php";
         if (file_exists($plugin_lang_file))
             {
-            include_once($plugin_lang_file);
+            include_once $plugin_lang_file;
             if (isset($lang["plugin-" . $plugin_yaml["name"] . "-title"]))
                 {
                 // Append the translated title so the English title is still visible, this is so it's still possible to find the relevant plugin
@@ -924,37 +924,41 @@ function config_multi_group_select($name, $label, $current=array(), $width=420)
 {
     global $lang;
     ?>
-    <div class="Question" >
-        <label for="<?php echo $name?>" title="<?php echo escape(str_replace('%cvn', $name, $lang['plugins-configvar'])); ?>"><?php echo escape($label); ?></label>
+    <div class="Question">
+        <label for="<?php echo escape($name); ?>" title="<?php echo escape(str_replace('%cvn', $name, $lang['plugins-configvar'])); ?>">
+            <?php echo escape($label); ?>
+        </label>
         <fieldset 
-            name="<?php echo escape($name)?>"
-            id="<?php echo $name?>"
+            name="<?php echo escape($name); ?>"
+            id="<?php echo escape($name); ?>"
             class="MultiRTypeSelect"
-            style="width:<?php echo (int) $width;?>px">
-            <div style="max-height:147px;overflow:auto">
+            style="width:<?php echo (int) $width; ?>px"
+        >
+            <div style="max-height:147px; overflow:auto">
                 <?php
-                $usergroups=get_usergroups();
-                foreach ($usergroups as $usergroup)
-                    {
-                    ?><span id="usergroup<?php echo (int) $usergroup['ref']; ?>">
+                $usergroups = get_usergroups();
+                foreach ($usergroups as $usergroup) { ?>
+                    <span id="usergroup<?php echo (int) $usergroup['ref']; ?>">
                         <input
                             type="checkbox"
-                            value="<?php echo (int) $usergroup['ref'];?>"
-                            name="<?php echo escape($name) . '[]' ?>"
-                            id="<?php echo escape($name . $usergroup['ref']) ?>"
-                            <?php echo ((in_array($usergroup['ref'],$current))?' checked="checked"':'')?>
-                            />
-                        <label><?php echo escape($usergroup['name']);?></label>
+                            value="<?php echo (int) $usergroup['ref']; ?>"
+                            name="<?php echo escape($name) . '[]'; ?>"
+                            id="<?php echo escape($name . $usergroup['ref']); ?>"
+                            <?php echo in_array($usergroup['ref'], $current) ? ' checked="checked"' : ''; ?>
+                        />
+                        <label for="<?php echo escape($name . $usergroup['ref']); ?>">
+                            <?php echo escape($usergroup['name']); ?>
+                        </label>
                         <br />
-                    </span><?php
+                    </span>
+                    <?php
                 }
                 ?>
             </div>
         </fieldset>
-    <div class="clearerleft"></div>
-  </div>
-
-<?php
+        <div class="clearerleft"></div>
+    </div>
+    <?php
 }
 
 /**
