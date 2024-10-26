@@ -19,6 +19,25 @@ if ($access!=0)
     exit("Access denied");
     }
 
+function curlprogress($resource,$download_size, $downloaded, $upload_size, $uploaded)
+    {
+    // Give an estimate of completion based on the % of upload. There is also the DALL-E 2 processing time but the bulk of the time seems to be the upload due to using PNG for images.
+    global $lang;
+    if ($uploaded>0)
+        {
+        $percent=floor(($uploaded/$upload_size)*100);
+        $percent*=7;$percent+=10; // It lags behind a lot, after experimentation, this gives a more reasonable estimate of completion time.
+        if ($percent>=100)
+            {
+            set_processing_message($lang["openai_image_edit__completing"]);
+            }
+        else
+            {
+            set_processing_message($lang["openai_image_edit__sending"] . " (" . $percent . "%)");
+            }
+        }
+    }
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     set_processing_message($lang["openai_image_edit__preparing_images"]);
@@ -39,6 +58,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $ch = curl_init($url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_PROGRESSFUNCTION, 'curlprogress');
+    curl_setopt($ch, CURLOPT_NOPROGRESS, false);
     curl_setopt($ch, CURLOPT_HTTPHEADER, [
         "Authorization: Bearer $openai_gpt_api_key",
         "Content-Type: multipart/form-data"
@@ -57,10 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Attach the form data
     curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-
-    // Update the status message
-    set_processing_message($lang["openai_image_edit__completing"]);
-
+    
     // Execute the request and get the response
     $response = curl_exec($ch);
 
@@ -92,11 +110,15 @@ include "../../../include/header.php";
 ?>
 
 <img id="image" src="get_png.php?ref=<?php echo $ref ?>" alt="" hidden>
-<canvas id="canvas"></canvas>
-<div class="toolbox openai-image-edit">
+<div id="canvas-container" class="canvas-container" style="position: relative;visibility:hidden;">
+    <canvas id="canvas"></canvas>
+    <canvas id="overlayCanvas" style="position: absolute; top: 0; left: 0; pointer-events: none;"></canvas>
+</div>
+
+<div id="toolbox" class="toolbox openai-image-edit" style="visibility:hidden;">
 <div id="tools">
 <label for="penSize"><?php echo escape($lang["openai_image_edit__pensize"]) ?></label><br>
-<input type="range" id="penSize" min="1" max="100" value="75">
+<input type="range" id="penSize" min="10" max="200" value="75">
 <br><br>
 <label for="prompt"><?php echo escape($lang["openai_image_edit__prompt"]) ?></label><br>
 <textarea id="prompt" rows="5" required placeholder="Prompt for regeneration">Complete image as appropriate</textarea>
@@ -126,6 +148,7 @@ include "../../../include/header.php";
 </div>
 
 <script>
+CentralSpaceShowProcessing();
 submit_url='../pages/edit.php?ref=<?php echo $ref ?>&<?php echo $CSRF_token_identifier?>=<?php echo generateCSRFToken($usersession, "openai_image_edit"); ?>';
 alternative_url='../pages/save_alternative.php?ref=<?php echo $ref ?>&<?php echo $CSRF_token_identifier?>=<?php echo generateCSRFToken($usersession, "openai_image_edit"); ?>';
 
