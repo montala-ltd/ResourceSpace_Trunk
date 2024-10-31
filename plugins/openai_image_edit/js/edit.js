@@ -118,9 +118,8 @@ document.getElementById('submitBtn').addEventListener('click', async () => {
 
     const mask = tempCanvas.toDataURL('image/png');
     const prompt = document.getElementById('prompt').value;
-    const originalImage = image.src;
 
-    CentralSpaceShowProcessing();
+    CentralSpaceShowProcessing(0,defaultLoadingMessage);
 
     // Send mask and image to the backend via AJAX
 
@@ -151,13 +150,13 @@ document.getElementById('submitBtn').addEventListener('click', async () => {
         // Redraw the canvas with the new image once it loads
         image.onload = () => {
 
-            // I have no idea why this is necessary or why it does anything, but without it the following drawImage() fails to draw anything.
-            canvas.width = canvas.width;
-            canvas.height = canvas.height;
+        // I have no idea why this is necessary or why it does anything, but without it the following drawImage() fails to draw anything.
+        canvas.width = canvas.width;
+        canvas.height = canvas.height;
 
-            ctx.drawImage(image, 0, 0);  // Draw new image
+        ctx.drawImage(image, 0, 0);  // Draw new image
 
-            document.getElementById('downloadOptions').style.visibility='visible';
+        document.getElementById('downloadOptions').style.visibility='visible';
         };
     } else {
         console.error('Failed to get a valid image URL from OpenAI.');
@@ -187,7 +186,7 @@ document.getElementById('downloadBtn').addEventListener('click', () => {
     if (document.getElementById('downloadAction').value=='alternative')
         {
         // Save as alternative file
-        CentralSpaceShowProcessing();
+        CentralSpaceShowProcessing(0);
 
         // Prepare form data
         const formData = new URLSearchParams({
