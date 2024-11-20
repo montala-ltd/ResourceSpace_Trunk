@@ -1581,3 +1581,26 @@ function api_get_processing_message()
     {
     return get_processing_message();
     }
+
+/**
+ * Expose {@see checkperm} to the API
+ * 
+ * @param string $perm  The permissions string to check for. 
+ * @return bool
+ */
+function api_checkperm($perm)
+    {
+    return checkperm($perm);
+    }
+
+/**
+ * Expose {@see get_resource_access} to the API
+ * 
+* @param int $resource The reference ID of the resource.
+* @return false|int The access level for the resource, or false if an number was not supplied.
+*/
+function api_get_resource_access($resource)
+    {
+    if (!is_int_loose($resource)) {return false;}
+    return get_resource_access($resource);
+    }
