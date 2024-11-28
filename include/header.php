@@ -28,6 +28,16 @@ if($ajax != "" && $current_css_reload != 0 && $current_css_reload != $css_reload
     }
 rs_setcookie("css_reload_key", $css_reload_key);
 
+$noauth_page = in_array(
+    $pagename,
+    [
+        "login",
+        "user_change_password",
+        "user_request",
+        "done",
+    ]
+);
+
 if ($ajax=="" && !hook("replace_header")) { 
 
 if(!isset($thumbs) && ($pagename!="login") && ($pagename!="user_password") && ($pagename!="user_request"))
@@ -39,16 +49,6 @@ if(!isset($thumbs) && ($pagename!="login") && ($pagename!="user_password") && ($
         rs_setcookie("thumbs", $thumbs, 1000,"","",false,false);
         }
     }
-
-$noauth_page = in_array(
-    $pagename,
-    array(
-        "login",
-        "user_change_password",
-        "user_request",
-        "done",
-    ));
-
 ?><!DOCTYPE html>
 <html lang="<?php echo $language ?>">   
 
@@ -228,7 +228,7 @@ if($browse_on)
 
 <?php if ($keyboard_navigation)
     {
-    include dirname(__FILE__) . "/keyboard_navigation.php";
+    include __DIR__ . "/keyboard_navigation.php";
     }
 hook("additionalheaderjs");?>
 
@@ -442,7 +442,7 @@ if ($pagename != "preview")
         <?php
         if(!($pagename == "terms" && isset($_SERVER["HTTP_REFERER"]) && strpos($_SERVER["HTTP_REFERER"],"login") !== false && $terms_login))
             {
-            include dirname(__FILE__) . "/header_links.php";
+            include __DIR__ . "/header_links.php";
             }
         ?>
         </div>
@@ -608,7 +608,7 @@ if (checkperm("s") || (is_anonymous_user() && $show_anonymous_login_panel))
         ?>
         <div id="SearchBarContainer" class="ui-layout-east" >
         <?php
-        include dirname(__FILE__)."/searchbar.php";
+        include __DIR__."/searchbar.php";
 
         ?>
         </div>
@@ -686,10 +686,9 @@ if(!$disable_geocoding)
 
 ?>
 <script>
- 
-<?php
-echo "linkreload = " . (($k != "" || $internal_share_access) ? "false" : "true") . ";";
-?>
+// Set some vars for this page to enable/disable functionality
+linkreload = <?php echo ($k != "" || $internal_share_access) ? "false" : "true" ?>;
+b_progressmsgs = <?php echo $noauth_page ? "false" : "true" ?>;
 
 jQuery(document).ready(function()
     {

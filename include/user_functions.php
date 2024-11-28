@@ -670,7 +670,7 @@ function save_user($ref)
 
         hook('on_delete_user', "", array($ref));
 
-        include_once dirname(__FILE__) ."/dash_functions.php";
+        include_once __DIR__ ."/dash_functions.php";
         empty_user_dash($ref);
 
         log_activity("{$current_user_data['username']} ({$ref})", LOG_CODE_DELETED, null, 'user', null, $ref);
@@ -718,6 +718,10 @@ function save_user($ref)
                          FROM user
                         WHERE ref <> ? AND ($conditions)";
         $c = ps_value($matchsql, array_merge($params, ["i",$ref], $typeparams), 0);
+        if ($c > 0 && checkperm("U")) {
+            // Return an ambiguous message if delegated user admin
+            return $lang["useralreadyexists"];
+        }
         switch ($c) {
             case 1:
                 return $lang["useralreadyexists"]; // An account with that username already exists
@@ -1041,12 +1045,12 @@ function auto_create_user_account($hash="")
 
     $newusername = make_username(getval("name",""),$user_email);
 
-    #check if account already exists
-    $check=ps_value("SELECT email value FROM user WHERE email = ?",["s",$user_email],"");
-    if ($check!="")
-        {
-        return $lang["useremailalreadyexists"];
-        }
+    // Check if account already exists
+    $emailmatches = ps_value("SELECT COUNT(*) value FROM user WHERE email = ?",["s",$user_email], 0);
+    if ($emailmatches > 0) {
+        // Return an ambiguous message if delegated user admin
+        return (checkperm("U") ? $lang["useralreadyexists"] : $lang["useremailalreadyexists"]);
+    }
 
     # Prepare to create the user.
     $password = make_password();
@@ -1103,7 +1107,7 @@ function auto_create_user_account($hash="")
     // Create dash tiles for the new user
     if($home_dash)
         {
-        include_once dirname(__FILE__) . '/dash_functions.php';
+        include_once __DIR__ . '/dash_functions.php';
 
         create_new_user_dash($new);
         build_usergroup_dash($usergroup, $new);
@@ -1344,7 +1348,7 @@ function new_user($newuser, $usergroup = 0)
     #Create Default Dash for the new user
     if($home_dash)
         {
-        include_once dirname(__FILE__)."/dash_functions.php";
+        include_once __DIR__."/dash_functions.php";
         create_new_user_dash($newref);
         }
     
@@ -3151,8 +3155,8 @@ function get_languages_notify_users(array $languages = array())
     global $applicationname,$defaultlanguage;
     
     $language_strings_all   = array();
-    $lang_file_en           = dirname(__FILE__)."/../languages/en.php";
-    $lang_file_default      = dirname(__FILE__)."/../languages/" . safe_file_name($defaultlanguage) . ".php";
+    $lang_file_en           = __DIR__."/../languages/en.php";
+    $lang_file_default      = __DIR__."/../languages/" . safe_file_name($defaultlanguage) . ".php";
 
      // add en and default language lang array values - always need en as some lang arrays do not contain all strings
     include $lang_file_en;
@@ -3180,7 +3184,7 @@ function get_languages_notify_users(array $languages = array())
         include $lang_file_en;
         include $lang_file_default;
 
-        $lang_file = dirname(__FILE__)."/../languages/" . safe_file_name($language) . ".php";
+        $lang_file = __DIR__."/../languages/" . safe_file_name($language) . ".php";
 
         if (file_exists($lang_file))
             {
