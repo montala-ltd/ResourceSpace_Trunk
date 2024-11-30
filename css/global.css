@@ -1254,7 +1254,6 @@ a.HomePanel:hover {
     padding-top: 5px;
     text-transform: capitalize;
 }
-.plugin-category-container .CollapsiblePluginList {margin-top:10px; margin-left: 30px;}
 .plugin-category-container{margin-bottom:10px;}
 .plugin-upload{margin-top:20px;}
 #SearchSystemPages, .ResultsFilterTopRight {
@@ -2578,7 +2577,7 @@ input[type="text"]#iconpicker-input {
 .PluginDisplay
     {
     width:400px;
-    height:150px;
+    height:115px;
     float: left;
     border-radius: 10px;
     margin: 10px 20px 10px 0;
@@ -2600,8 +2599,8 @@ input[type="text"]#iconpicker-input {
 .PluginDisplay p   
     {
     margin: 10px 0;
-    height:50px;
-    overflow-y: auto; /* Scroll if content overflows */
+    height:30px;
+    overflow: hidden;
     }
 
 .PluginDisplay .PluginTools   
@@ -2610,9 +2609,9 @@ input[type="text"]#iconpicker-input {
     text-align: right;
     }
 
-.PluginDisplay .PluginTools    a
+.PluginDisplay .PluginTools a
     {
-    padding-left:10px;
+    padding-left:20px;
     }
 
 .plugin-title
