@@ -80,15 +80,22 @@ function render_content_menu(): void
     <?php
 }
 
-function render_new_content_button(string $id): void
+/**
+ * Render the new content button
+ * @param string $id The HTML id of the button
+ * @param array{class: list<string>} $ctx
+ */
+function render_new_content_button(string $id, array $ctx): void
 {
     if (!acl_can_edit_brand_guidelines()) {
         return;
     }
+
+    $extra_class = array_filter($ctx['class'] ?? [], fn($class) => is_string($class) && trim($class) !== '');
     ?>
     <button
         id="<?php echo escape($id); ?>"
-        class="add-new-content-container"
+        class="add-new-content-container <?php echo escape(implode(' ', $extra_class)); ?>"
         onclick="showOptionsMenu(this, 'menu-content');"
     >
         <i class="fa-solid fa-plus"></i>
@@ -130,14 +137,15 @@ function render_new_block_element_button(string $class, int $type): void
  * ]);
  * ```
  * @param array{ref: int, name: string, hex: string, rgb: string, cmyk: string} $value Colour value to render
+ * @param array{top_right_menu_class: list<string>} $ctx
  */
-function render_block_colour_item(array $value): void
+function render_block_colour_item(array $value, array $ctx): void
 {
     $ref = (int) $value['ref'];
     $hex = ltrim($value['hex'], '#');
     ?>
     <div id="page-content-item-<?php echo $ref; ?>" class="guidelines-colour-block">
-        <?php render_item_top_right_menu($ref); ?>
+        <?php render_item_top_right_menu($ref, $ctx['top_right_menu_class'] ?? []); ?>
         <div class="guidelines-colour-block--colour" style="background-color: #<?php echo escape($hex); ?>"></div>
         <div class="guidelines-colour-block--details">
             <span><?php echo escape(i18n_get_translated($value['name'])); ?></span>
@@ -159,8 +167,9 @@ function render_block_colour_item(array $value): void
  * Render the table of contents (TOC) items.
  * @param array $item A section/page record {@see get_all_pages()}
  * @param bool $is_current Specify if the input item is the currently selected page
+ * @param array{class: list<string>, top_right_menu_class: list<string>} $ctx
  */
-function render_navigation_item(array $item, bool $is_current = false): void
+function render_navigation_item(array $item, bool $is_current = false, array $ctx = []): void
 {
     $can_edit_brand_guidelines = acl_can_edit_brand_guidelines();
     $show_individual_menu = true;
@@ -190,7 +199,8 @@ function render_navigation_item(array $item, bool $is_current = false): void
         $onclick = '';
     }
 
-    $class = implode(' ', $class);
+    $extra_class = array_filter($ctx['class'] ?? [], fn($class) => is_string($class) && trim($class) !== '');
+    $class = implode(' ', array_merge($class, $extra_class));
 
     ?>
     <li class="grid-container">
@@ -202,21 +212,24 @@ function render_navigation_item(array $item, bool $is_current = false): void
     } elseif (is_section($item) && $item['ref'] === 0) {
         ?>
         <h2 class="grid-item">
-            <a class="<?php echo $class; ?>" href="<?php echo $url; ?>" onclick="<?php echo $onclick; ?>"><?php
+            <a class="<?php echo escape($class); ?>" href="<?php echo $url; ?>" onclick="<?php echo $onclick; ?>"><?php
                 echo escape(i18n_get_translated($item['name']));
             ?></a>
         </h2>
         <?php
     } else {
         ?>
-        <a class="<?php echo $class; ?>" href="<?php echo $url; ?>" onclick="<?php echo $onclick; ?>"><?php
+        <a class="<?php echo escape($class); ?>" href="<?php echo $url; ?>" onclick="<?php echo $onclick; ?>"><?php
             echo escape(i18n_get_translated($item['name']));
         ?></a>
         <?php
     }
 
     if ($can_edit_brand_guidelines && $show_individual_menu) {
-        render_item_top_right_menu((int) $item['ref'], ['grid-item']);
+        render_item_top_right_menu(
+            (int) $item['ref'],
+            ['grid-item', ...($ctx['top_right_menu_class'] ?? [])]
+        );
     }
     ?>
     </li>
@@ -249,8 +262,9 @@ function render_item_top_right_menu(int $ref, array $class = []): void
 /**
  * Render resource content item.
  * @param array $item A decoded page content item. {@see guidelines.php}
+ * @param array{top_right_menu_class: list<string>} $ctx
  */
-function render_resource_item(array $item): void
+function render_resource_item(array $item, array $ctx): void
 {
     $ref = (int) $item['ref'];
     $layout = $item['content']['layout'];
@@ -261,6 +275,7 @@ function render_resource_item(array $item): void
         $resource_view_url,
         get_nopreview_html('default')
     );
+    $top_right_menu_class = $ctx['top_right_menu_class'] ?? [];
 
     $resource_data = get_resource_data($item['content']['resource_id']);
     if ($resource_data !== false) {
@@ -300,7 +315,7 @@ function render_resource_item(array $item): void
         } else {
             echo $no_preview_link;
         }
-        render_item_top_right_menu($ref, ['grid-item']);
+        render_item_top_right_menu($ref, ['grid-item', ...$top_right_menu_class]);
         ?>
         </div>
         <?php
@@ -344,7 +359,7 @@ function render_resource_item(array $item): void
             }
             echo $no_preview_link;
         }
-        render_item_top_right_menu($ref, ['grid-item']);
+        render_item_top_right_menu($ref, ['grid-item', ...$top_right_menu_class]);
         ?>
         </div>
         <?php
@@ -365,7 +380,7 @@ function render_resource_item(array $item): void
             } else {
                 echo $no_preview_link;
             }
-            render_item_top_right_menu($ref, ['grid-item']);
+            render_item_top_right_menu($ref, ['grid-item', ...$top_right_menu_class]);
             ?>
         </div>
         <?php

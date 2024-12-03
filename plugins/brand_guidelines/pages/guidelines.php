@@ -30,6 +30,18 @@ $page_contents = array_filter(
 );
 $page_contents_grouped = group_content_items($page_contents);
 
+// Persistent (cookie based) toggle view/edit mode
+$show_edit_mode_view = (bool) getval('show_edit_mode_view', false, false, 'is_positive_int_loose');
+if ($show_edit_mode_view) {
+    $top_right_menu_extra_class = [];
+    $view_edit_display_class = [];
+    $show_hide_top_right_menu = [];
+} else {
+    $top_right_menu_extra_class = ['DisplayNone'];
+    $view_edit_display_class = ['class' => $top_right_menu_extra_class];
+    $show_hide_top_right_menu = ['top_right_menu_class' => $top_right_menu_extra_class];
+}
+
 include_once RESOURCESPACE_BASE_PATH . '/include/header.php';
 render_individual_menu();
 render_content_menu();
@@ -43,7 +55,7 @@ render_content_menu();
         <ul>
     <?php
     foreach ($all_pages as $s => $section) {
-        render_navigation_item($section, false);
+        render_navigation_item($section, false, $show_hide_top_right_menu);
 
         if (isset($section['children'])) {
             foreach ($section['children'] as $p => $page) {
@@ -56,7 +68,8 @@ render_content_menu();
                             && $s === array_key_first($all_pages)
                             && $p === array_key_first($section['children'])
                         )
-                    )
+                    ),
+                    $show_hide_top_right_menu
                 );
 
                 if (acl_can_edit_brand_guidelines() && $p === array_key_last($section['children'])) {
@@ -66,7 +79,8 @@ render_content_menu();
                             'name' => $lang['brand_guidelines_new_page'],
                             'parent' => $section['ref'],
                         ],
-                        false
+                        false,
+                        $view_edit_display_class
                     );
                 }
             }
@@ -77,7 +91,8 @@ render_content_menu();
                     'name' => $lang['brand_guidelines_new_page'],
                     'parent' => $section['ref'],
                 ],
-                false
+                false,
+                $view_edit_display_class
             );
         }
     }
@@ -89,7 +104,8 @@ render_content_menu();
                 'name' => $lang['brand_guidelines_new_section'],
                 'parent' => 0,
             ],
-            false
+            false,
+            $view_edit_display_class
         );
     }
     ?>
@@ -101,14 +117,17 @@ render_content_menu();
                 <span><?php echo escape($selected_page_title); ?></span>
                 <?php
                 if (acl_can_edit_brand_guidelines()) {
+                    $view_edit_btn_label = escape(
+                        $show_edit_mode_view ? $lang['brand_guidelines_view_mode'] : $lang['brand_guidelines_edit_mode']
+                    );
                     ?>
                     <button
                         id="toggle-view-edit-mode"
-                        title="<?php echo escape($lang['brand_guidelines_view_mode']); ?>"
-                        aria-label="<?php echo escape($lang['brand_guidelines_view_mode']); ?>"
+                        title="<?php echo $view_edit_btn_label; ?>"
+                        aria-label="<?php echo $view_edit_btn_label; ?>"
                         onclick="return toggleViewEditMode(this);"
                     >
-                        <i class="fa fa-fw fa-regular fa-eye"></i>
+                        <i class="fa fa-fw <?php echo $show_edit_mode_view ? 'fa-regular fa-eye' : 'fa-pencil'; ?>"></i>
                     </button>
                     <?php
                 }
@@ -123,7 +142,7 @@ render_content_menu();
                         <div class="rich-text-content grid-item"><?php
                             echo richtext_input_parser($item['content']['richtext']);
                         ?></div><?php
-                        render_item_top_right_menu($item['ref'], ['grid-item']);
+                        render_item_top_right_menu($item['ref'], ['grid-item', ...$top_right_menu_extra_class]);
 ?>
                     </div>
                     <?php
@@ -132,7 +151,7 @@ render_content_menu();
                     && $item['content']['layout'] === 'full-width'
                 ) {
                     $new_content_btn_id = $item['ref'];
-                    render_resource_item($item);
+                    render_resource_item($item, $show_hide_top_right_menu);
                 } elseif ($item['type'] === BRAND_GUIDELINES_CONTENT_TYPES['group']) {
                     $members = implode(',', array_column($item['members'], 'ref'));
                     $new_content_btn_id = "group-{$members}";
@@ -141,7 +160,7 @@ render_content_menu();
                     ?>
                     <div class="group" data-members="<?php echo escape($members); ?>">
                     <?php
-                    render_item_top_right_menu(0);
+                    render_item_top_right_menu(0, $top_right_menu_extra_class);
 
                     if ($is_resource_group) {
                         ?>
@@ -153,13 +172,16 @@ render_content_menu();
                         $new_block_item_btn = '';
                         if ($group_item['type'] === BRAND_GUIDELINES_CONTENT_TYPES['colour']) {
                             $new_block_item_btn = 'new guidelines-colour-block';
-                            render_block_colour_item(array_merge(
-                                ['ref' => $group_item['ref']],
-                                $group_item['content']
-                            ));
+                            render_block_colour_item(
+                                array_merge(
+                                    ['ref' => $group_item['ref']],
+                                    $group_item['content']
+                                ),
+                                $show_hide_top_right_menu
+                            );
                         } elseif ($group_item['type'] === BRAND_GUIDELINES_CONTENT_TYPES['resource']) {
                             $new_block_item_btn = "new image-{$group_item['content']['layout']}";
-                            render_resource_item($group_item);
+                            render_resource_item($group_item, $show_hide_top_right_menu);
                         }
                     }
 
@@ -171,6 +193,9 @@ render_content_menu();
                         )
                     ) {
                         // Render the new block element for everything except second half-width item
+                        if (!$show_edit_mode_view) {
+                            $new_block_item_btn .= ' DisplayNone';
+                        }
                         render_new_block_element_button($new_block_item_btn, $group_item['type']);
                     }
 
@@ -184,11 +209,11 @@ render_content_menu();
                     <?php
                 }
 
-                render_new_content_button("add-new-content-after-{$new_content_btn_id}");
+                render_new_content_button("add-new-content-after-{$new_content_btn_id}", $view_edit_display_class);
             }
 
             if ($available_pages !== [] && $page_contents === []) {
-                render_new_content_button('add-new-content-end');
+                render_new_content_button('add-new-content-end', $view_edit_display_class);
             }
             ?>
         </div>
@@ -199,16 +224,20 @@ render_content_menu();
         const btn = jQuery(el);
         const view_mode_txt = '<?php echo escape($lang['brand_guidelines_view_mode']); ?>';
         const edit_mode_txt = '<?php echo escape($lang['brand_guidelines_edit_mode']); ?>';
+        const show_edit_mode_view = getCookie('show_edit_mode_view');
 
-        if (btn.prop('title') === view_mode_txt) {
-            btn.prop('title', edit_mode_txt);
-            btn.attr('aria-label', edit_mode_txt);
-        } else {
+        // The view state is the default mode - see server side logic based on $show_edit_mode_view
+        if (show_edit_mode_view !== 'undefined' && show_edit_mode_view === '1') {
             btn.prop('title', view_mode_txt);
             btn.attr('aria-label', view_mode_txt);
+            SetCookie('show_edit_mode_view', 0);
+        } else {
+            btn.prop('title', edit_mode_txt);
+            btn.attr('aria-label', edit_mode_txt);
+            SetCookie('show_edit_mode_view', 1);
         }
 
-        jQuery('.add-new-content-container, button.new, .guidelines-sidebar li a.new')
+        jQuery('.add-new-content-container, button.new, .guidelines-sidebar li a.new, .top-right-menu')
             .toggleClass('DisplayNone');
 
         return jQuery('#toggle-view-edit-mode i.fa').toggleClass(['fa-eye', 'fa-regular', 'fa-pencil']);
