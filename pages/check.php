@@ -488,7 +488,7 @@ function get_utility_version(string $utilityname)
 
     # Check execution and find out version.
     $version_command = $utility_fullpath . " " . $version_argument;
-    $utilities_with_version_on_STDERR = ['python', 'antiword', 'pdftotext'];
+    $utilities_with_version_on_STDERR = ['python', 'antiword', 'pdftotext', 'fits'];
     $version = run_command($version_command, in_array($utilityname, $utilities_with_version_on_STDERR));
     $version_check = call_user_func_array(
         $utility['version_check']['callback']['fct_name'],
@@ -497,7 +497,7 @@ function get_utility_version(string $utilityname)
     $name = $version_check['utility']['display_name'] ?? $name;
     $expected = $version_check['found'];
 
-    if ($expected == false) {
+    if (!$expected) {
         # There was a correct path but the version check failed - unexpected output when executing the command.
         $error_msg = "{$lang["status-fail"]}:<br />"
             . str_replace(['%command', '%output'], [$version_command, $version], $lang['execution_failed']);

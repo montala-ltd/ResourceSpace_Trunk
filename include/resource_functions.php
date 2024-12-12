@@ -1917,7 +1917,7 @@ function save_resource_data_multi($collection,$editsearch = array(), $postvals =
                     $oldnodenames = explode(NODE_NAME_STRING_SEPARATOR,$hookval);
                     foreach($oldnodenames as $oldnodename)
                         {
-                        if(trim($oldnodename) == "" && $fields[$n]["required"] == false)
+                        if (trim($oldnodename) == "" && !$fields[$n]["required"])
                             {
                             $valid_hook_nodes = true;
                             }
@@ -3854,7 +3854,7 @@ function get_resource_types($types = "", $translate = true, $ignore_access = fal
             {
             if(!isset($return[$resource_types[$n]["ref"]]))
                 {
-                if ($translate==true)
+                if ($translate)
                     {
                     # Translate name
                     $resource_types[$n]["name"]=lang_or_i18n_get_translated($resource_types[$n]["name"], "resourcetype-");
@@ -4358,7 +4358,9 @@ function get_custom_access($resource, $usergroup, $return_default = true)
     {
     global $custom_access;
 
-    if ($custom_access == false) {return false;}
+    if (!$custom_access) {
+        return false;
+    }
 
     $result = ps_value("select access value from resource_custom_access where resource = ? and usergroup = ?", array("i", $resource, "i", $usergroup), '');
 
@@ -4527,7 +4529,7 @@ function createTempFile($path, $uniqid, $filename)
     $tmpfile = "{$tmp_dir}/{$filename}";
 
     $copy_hook = hook('createtempfile_copy', '', array($path, $tmpfile));
-    if($copy_hook == false)
+    if (!$copy_hook)
         {
         copy($path, $tmpfile);
         }
@@ -5370,8 +5372,8 @@ function get_resource_access($resource)
     {
     global $customgroupaccess,$customuseraccess, $internal_share_access, $k,$uploader_view_override, $userref, $open_access_for_contributor,
         $userref,$usergroup, $usersearchfilter, $search_all_workflow_states,
-        $userderestrictfilter, $userdata, $custom_access;
-    
+        $userderestrictfilter, $userdata, $custom_access, $resource_access_cache;
+
     $passthru="no";
 
     // get_resource_data doesn't contain permissions, so fix for the case that such an array could be passed into this function unintentionally.
@@ -5393,18 +5395,23 @@ function get_resource_access($resource)
     $access=$resourcedata["access"];
     $resource_type=$resourcedata['resource_type'];
 
+    if (isset($resource_access_cache[$ref]))
+        {
+        return $resource_access_cache[$ref];
+        }
+
     // Set a couple of flags now that we can check later on if we need to check whether sharing is permitted based on whether access has been specifically granted to user/group
     $customgroupaccess=false;
     $customuseraccess=false;
 
     if('' != $k)
         {
-
         # External access - check how this was shared.
         $extaccess = ps_value("SELECT access `value` FROM external_access_keys WHERE resource = ? AND access_key = ? AND (expires IS NULL OR expires > NOW())", array("i",$ref,"s",$k), -1);
 
         if(-1 != $extaccess && (!$internal_share_access || ($internal_share_access && $extaccess < $access)))
             {
+            $resource_access_cache[$ref] = (int) $extaccess;
             return (int) $extaccess;
             }
         }
@@ -5412,7 +5419,8 @@ function get_resource_access($resource)
     if (checkperm("z" . $resourcedata['archive']) && !($uploader_view_override && $resourcedata['created_by'] == $userref))
         {
         // User has no access to this archive state
-        return 2;
+        $resource_access_cache[$ref] = RESOURCE_ACCESS_CONFIDENTIAL;
+        return RESOURCE_ACCESS_CONFIDENTIAL;
         }
 
     $usersearchfilter_isvalid = false;
@@ -5435,10 +5443,11 @@ function get_resource_access($resource)
         {
         # Permission to access all resources
         # Always return 0
-        return 0;
+        $resource_access_cache[$ref] = RESOURCE_ACCESS_FULL;
+        return RESOURCE_ACCESS_FULL;
         }
 
-    if ($access == 3)
+    if ($access == RESOURCE_ACCESS_CUSTOM_GROUP)
         {
         $customgroupaccess = true;
         # Load custom access level
@@ -5448,7 +5457,7 @@ function get_resource_access($resource)
             if ($access === false)
                 {
                 # Custom access disabled? Always return 'open' access for resources marked as custom.
-                $access = 0;
+                $access = RESOURCE_ACCESS_FULL;
                 $customgroupaccess = false;
                 }
             }
@@ -5461,22 +5470,23 @@ function get_resource_access($resource)
             else
                 {
                 # Custom access disabled? Always return 'open' access for resources marked as custom.
-                $access = 0;
+                $access = RESOURCE_ACCESS_FULL;
                 $customgroupaccess = false;
                 }
             }
         }
 
-    if ($access == 1 && get_edit_access($ref,$resourcedata['archive'],$resourcedata))
+    if ($access == RESOURCE_ACCESS_RESTRICTED && get_edit_access($ref,$resourcedata['archive'],$resourcedata))
         {
         # If access is restricted and user has edit access, grant open access.
-        $access = 0;
+        $access = RESOURCE_ACCESS_FULL;
         }
 
     if ($open_access_for_contributor && $resourcedata['created_by'] == $userref)
         {
         # If user has contributed resource, grant open access and ignore any further filters.
-        return 0;
+        $resource_access_cache[$ref] = RESOURCE_ACCESS_FULL;
+        return RESOURCE_ACCESS_FULL;
         }
 
     # Check for user-specific and group-specific access (overrides any other restriction)
@@ -5484,7 +5494,7 @@ function get_resource_access($resource)
     // We need to check for custom access either when access is set to be custom or
     // when the user group has restricted access to all resource types or specific resource types
     // are restricted
-    if ($access!=0 || !checkperm('g') || checkperm('X' . $resource_type) || checkperm("rws{$resourcedata['archive']}"))
+    if ($access != RESOURCE_ACCESS_FULL || !checkperm('g') || checkperm('X' . $resource_type) || checkperm("rws{$resourcedata['archive']}"))
         {
         if ($passthru=="no")
             {
@@ -5500,23 +5510,27 @@ function get_resource_access($resource)
     if (isset($userspecific) && $userspecific !== false)
         {
         $customuseraccess=true;
+        $resource_access_cache[$ref] = (int) $userspecific;
         return (int) $userspecific;
         }        
     if (isset($groupspecific) && $groupspecific !== false)
         {
         $customgroupaccess=true;
+        $resource_access_cache[$ref] = (int) $groupspecific;
         return (int) $groupspecific;
         }
 
     if (checkperm('T'.$resource_type))
         {
         // this resource type is always confidential/hidden for this user group
-        return 2;
+        $resource_access_cache[$ref] = RESOURCE_ACCESS_CONFIDENTIAL;
+        return RESOURCE_ACCESS_CONFIDENTIAL;
         }
 
     if ($usersearchfilter_isset && !$usersearchfilter_isvalid)
         {
-        return 2; # Not found in results, so deny
+        $resource_access_cache[$ref] = RESOURCE_ACCESS_CONFIDENTIAL;
+        return RESOURCE_ACCESS_CONFIDENTIAL; # Not found in results, so deny
         }
 
     /*
@@ -5526,17 +5540,17 @@ function get_resource_access($resource)
     UNLESS user/ group has been granted custom (override) access
     */
     if (
-        $access == 0
+        $access == RESOURCE_ACCESS_FULL
         && ((!checkperm("g") || checkperm("rws{$resourcedata['archive']}") || checkperm('X'.$resource_type))
         && !$customgroupaccess
         && !$customuseraccess)
         )
         {
-        $access = 1;
+        $access = RESOURCE_ACCESS_RESTRICTED;
         }
 
     // Check for a derestrict filter, this allows exceptions for users without the 'g' permission who normally have restricted accesss to all available resources)
-    if ($access==1 && !checkperm("g") && !checkperm("rws{$resourcedata['archive']}") && !checkperm('X'.$resource_type) && trim((string) $userderestrictfilter) != "")
+    if ($access == RESOURCE_ACCESS_RESTRICTED && !checkperm("g") && !checkperm("rws{$resourcedata['archive']}") && !checkperm('X'.$resource_type) && trim((string) $userderestrictfilter) != "")
         {
         if( strlen(trim((string) $userderestrictfilter)) > 0
             && !is_numeric($userderestrictfilter)
@@ -5569,12 +5583,13 @@ function get_resource_access($resource)
             $matchedfilter = filter_check($userderestrictfilter, get_resource_nodes($ref));
             if($matchedfilter)
                 {
-                $access=0;
+                $access = RESOURCE_ACCESS_FULL;
                 $customgroupaccess = true;
                 }
             }        
         }
 
+    $resource_access_cache[$ref] = (int) $access;
     return (int) $access;
     }
 
@@ -6235,7 +6250,7 @@ function get_page_count($resource,$alternative=-1)
         $cmdparams = [
             '[FILE]' => new CommandPlaceholderArg($file, 'is_valid_rs_path'),
         ];
-        if ($exiftool_fullpath == false) {
+        if (!$exiftool_fullpath) {
             # Try with ImageMagick instead
             $command = get_utility_path("im-identify") . ' -format %n [FILE]';
             $pages = trim(run_command($command, false, $cmdparams));
@@ -6451,7 +6466,9 @@ function get_original_imagesize($ref="",$path="", $extension="jpg", $forcefromfi
 
         # Locate imagemagick.
         $identify_fullpath = get_utility_path("im-identify");
-        if ($identify_fullpath==false) {exit("Could not find ImageMagick 'identify' utility at location '$imagemagick_path'.");}
+        if (!$identify_fullpath) {
+            exit("Could not find ImageMagick 'identify' utility at location '$imagemagick_path'.");
+        }
         # Get image's dimensions.
         $identcommand = $identify_fullpath . ' -format %wx%h '. escapeshellarg($prefix . $file) .'[0]';
         $identoutput=run_command($identcommand);
@@ -6728,7 +6745,7 @@ function update_archive_status($resource, $archive, $existingstates = array(), $
 
     ps_query("UPDATE resource SET archive = ? WHERE ref IN (" . ps_param_insert(count($resource)) . ")",array_merge(["i",$archive],ps_param_fill($resource,"i")));
 
-    # Resources should be removed from collections when being moved into the deletion state as specified in config,default.php
+    # Resources should be removed from collections when being moved into the deletion state as specified in config.default.php
     if ($resource_deletion_state == $archive) {
         foreach ($resource as $ref) {
             $in_collections = ps_query('SELECT collection, resource FROM collection_resource WHERE resource = ?', ['i', $ref]);

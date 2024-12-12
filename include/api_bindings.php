@@ -335,7 +335,7 @@ function api_get_resource_path($ref, $not_used=null, $size="", $generate=true, $
     foreach($refs as $ref)
         {
         $resource = get_resource_data($ref);
-        if($resource == false || !is_numeric($ref) || !resource_download_allowed($ref,$size,$resource["resource_type"],$alternative))
+        if (!$resource || !is_numeric($ref) || !resource_download_allowed($ref,$size,$resource["resource_type"],$alternative))
             {
             $return[$ref] = "";
             continue;
@@ -1223,9 +1223,9 @@ function api_get_profile_image($user)
     return get_profile_image($user);
     }
 
-function api_get_system_status()
+function api_get_system_status($basic=false)
     {
-    return get_system_status();
+    return get_system_status($basic);
     }
 
 function api_relate_all_resources($related)

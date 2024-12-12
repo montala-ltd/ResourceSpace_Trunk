@@ -28,6 +28,7 @@ function render_search_field($field,$fields,$value="",$autoupdate=false,$class="
 
     # Certain edit_fields/x.php functions check for bulk edit which must be defined as false prior to rendering the search field  
     $multiple=false;
+    $field['ref'] = (int) $field['ref'];
 ?>
 <!-- RENDERING FIELD=<?php echo $field['ref'] . " " . escape($field['name']);?> -->
 <?php
@@ -205,7 +206,7 @@ function render_search_field($field,$fields,$value="",$autoupdate=false,$class="
                                 $jquery_selector = "input[name=\"{$checkname}\"]";
 
                                 # If however its a drop down list then we should be processing select elements
-                                if ($fields[$cf]['display_as_dropdown'] == true)
+                                if ($fields[$cf]['display_as_dropdown'])
                                     {
                                     $checkname       = "nodes_searched[{$fields[$cf]['ref']}]";
                                     $jquery_selector = "select[name=\"{$checkname}\"]";
@@ -332,7 +333,7 @@ function render_search_field($field,$fields,$value="",$autoupdate=false,$class="
                         $jquery_condition_selector = "input[name=\"{$checkname}[]\"]:checked:enabled";
 
                         # If however its a drop down list then we should be searching for selected option
-                        if ($scriptcondition['display_as_dropdown'] == true)
+                        if ($scriptcondition['display_as_dropdown'])
                             {
                             $jquery_condition_selector = "select[name=\"{$checkname}\"] option:selected";
                             }
@@ -424,7 +425,7 @@ function render_search_field($field,$fields,$value="",$autoupdate=false,$class="
                                 jQuery('#field_<?php echo $field['ref']; ?>-m').val('');
                                 jQuery('#field_<?php echo $field['ref']; ?>-d').val('');
                             <?php } else { ?>
-                                jQuery(idname<?php echo (int) $field['ref']; ?> + ' #field_<?php echo (int) $field['ref']; ?>').val('');
+                                jQuery(idname<?php echo $field['ref']; ?> + ' #field_<?php echo $field['ref']; ?>').val('');
                             <?php 
                                 }
                         } ?>
@@ -479,7 +480,7 @@ function render_search_field($field,$fields,$value="",$autoupdate=false,$class="
             {
             echo (string)$field["resource_types"];
             }
-        ?>" id="question_<?php echo $n ?>" data-has_display_condition="<?php echo !$displaycondition ? '1' : '0'; ?>" data-question_field_ref="<?php echo (int) $field['ref']; ?>"<?php
+        ?>" id="question_<?php echo $n ?>" data-has_display_condition="<?php echo !$displaycondition ? '1' : '0'; ?>" data-question_field_ref="<?php echo $field['ref']; ?>"<?php
         if (strlen((string) $field["tooltip_text"])>=1)
             {
             echo "title=\"" . escape(lang_or_i18n_get_translated($field["tooltip_text"], "fieldtooltip-")) . "\"";
@@ -7363,7 +7364,12 @@ function render_resource_tools_size_download_options(array $resource, array $ctx
             'download_column' => cast_echo_to_string('add_download_column', [$ref, $size, $downloadthissize]),
         ];
 
-        if ($downloadthissize && $size['allow_preview'] == 1 && !hook('previewlinkbar')) {
+        if (
+            $downloadthissize 
+            && $size['allow_preview'] == 1 
+            && !hook('previewlinkbar')
+            && file_exists($size['path'])
+        ) {
             $GLOBALS['data_viewsize'] = $size['id']; # relied upon by some plugins (e.g lightbox)
 
             // Fake $size key entry used in JS land to update the View button before showing it to the user
