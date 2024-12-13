@@ -77,15 +77,15 @@ if (getval("save",'') != '' && enforcePostRequest(false))
 
         hook('before_usage_redirect');
         $url_parts = [];
-        if(strpos($url, '?') != false)
+        if (strpos($url, '?') !== false)
             {
             parse_str(explode('?',$url)[1],$url_parts);
             }
-        if(strpos($url, 'download.php') != false && count($url_parts) > 0 && $url_parts['noattatch'] = true)
+        if (strpos($url, 'download.php') !== false && count($url_parts) > 0 && $url_parts['noattatch'] = true)
             {
             $redirect_url = $url;
             }
-        elseif(strpos($url, 'download.php') != false && (strpos($url, $baseurl_short) !== false || strpos($url, $baseurl) !== false))
+        elseif(strpos($url, 'download.php') !== false && (strpos($url, $baseurl_short) !== false || strpos($url, $baseurl) !== false))
             {
             $download_url_suffix_params['url'] = $url;
             }
@@ -146,7 +146,8 @@ if(isset($download_usage_prevent_options))
    
         <?php  if(!$remove_usage_textbox && !$usage_textbox_below)  {  echo html_usagecomments($usagecomment,$error);   }   ?>
 
-        <div class="Question"><label><?php echo escape($lang["indicateusagemedium"]); ?></label>
+        <div class="Question">
+            <label for="usage"><?php echo escape($lang["indicateusagemedium"]); ?></label>
             <select class="stdwidth" name="usage" id="usage" <?php if(isset($download_usage_prevent_options)){ echo 'onchange="checkvalidusage();"';}?>>
                 <option value=""><?php echo escape($lang["select"]); ?></option>
                 <?php 

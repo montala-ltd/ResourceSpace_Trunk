@@ -14,7 +14,7 @@ if (!in_array($plugin_name, $plugins)) {
 }
 
 // Validate modules config (this is configurable on a different page - setup_module.php)
-$museumplus_modules_config = plugin_decode_complex_configs(getval('museumplus_modules_saved_config', $museumplus_modules_saved_config));
+$museumplus_modules_config = plugin_decode_complex_configs($museumplus_modules_saved_config);
 if(!is_array($museumplus_modules_config))
     {
     $error = $lang['museumplus_error_unknown_type_saved_config'];
@@ -129,7 +129,7 @@ $museumplus_modules_conf_html .= "</table>
 $page_def[] = config_add_html($museumplus_modules_conf_html);
 if(trim($museumplus_modules_saved_config) !== '')
     {
-    $page_def[] = config_add_hidden_input('museumplus_modules_saved_config');
+    $page_def[] = config_add_hidden('museumplus_modules_saved_config');
     }
 
 
@@ -174,9 +174,6 @@ function museumplus_delete_module_conf(element, id)
         })
         .done(function(response, textStatus, jqXHR)
             {
-            // Update the saved configs hidden input
-            jQuery('input:hidden[name=museumplus_modules_saved_config]').val(response.data.modules_saved_configs)
-
             // Remove config record
             var button = jQuery(element);
             var record = jQuery(button).closest('tr');

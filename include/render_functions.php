@@ -1615,7 +1615,7 @@ function render_text_question($label, $input, $additionaltext="", $numeric=false
         }
     ?>
     <div id="question_<?php echo $input; ?>" class="<?php echo implode(" ", $div_class); ?>" >
-        <label><?php echo $label; ?></label>
+        <label for="<?php echo escape($input); ?>_input"><?php echo $label; ?></label>
         <?php
         printf('<input name="%s" id="%s_input" type="%s" value="%s"%s/>',
             escape($input),
@@ -4279,7 +4279,7 @@ function display_field_data(array $field,$valueonly=false,$fixedwidth=452)
         debug('Calling value_filter...');
         eval(eval_check_signed($field['value_filter']));
         }
-    elseif ($field["type"]==FIELD_TYPE_DATE_AND_OPTIONAL_TIME && strpos($value,":")!=false)
+    elseif ($field["type"] == FIELD_TYPE_DATE_AND_OPTIONAL_TIME && strpos($value,":") !== false)
         {
         // Show the time as well as date if entered
         $value=nicedate($value,true,true);
@@ -6038,7 +6038,7 @@ function escape(string $unsafe): string
  * HTML aware function to break up long words onto multiple lines for
  * PDF generation where CSS text wrapping can't be used
  * 
- * @param  string $html     HTML/Text to be processed
+ * @param  string $html     HTML/text to be processed
  * @param  int    $length   Maximum word length
  * @return string 
  * 
@@ -6060,8 +6060,8 @@ function html_break_long_words(string $html, int $length): string {
 
             foreach ($words as $word) {
                 if (strlen($word) > $length) {
-                    // Insert <br> tags
-                    $word = chunk_split($word, $length, '<br>');
+                    // Insert <br> tags between chunks only
+                    $word = wordwrap($word, $length, '<br>', true);
                 }
                 $output .= $word;
             }
