@@ -64,6 +64,8 @@ $use_mysqli_ssl = false;
 
 // $mysqli_ssl_server_cert = '/etc/ssl/certs/server.pem';
 // $mysqli_ssl_ca_cert     = '/etc/ssl/certs/ca_chain.pem';
+// $mysqli_ssl_ca_path     = '/etc/ssl/certs';
+$mysqli_ssl_verify_server_cert = true;
 
 // Optimisation options
 /**
@@ -2335,7 +2337,7 @@ $iconthumbs=true;
 // Option to make filling in usage text box a non-requirement.
 $usage_comment_blank=false;
 
-// Option to add a link to the resource view page that allows a user to email the $email_notify address about the resource
+// Option to add a link to the resource view page and notify (message/email) all users in groups with t and e0 permissions.
 $resource_contact_link=false;
 
 // Hide Welcome Text
