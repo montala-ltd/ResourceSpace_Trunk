@@ -5771,15 +5771,12 @@ function get_edit_access($resource, int $status=-999, array &$resourcedata = [])
         }
 
     # Must have edit permission to this resource first and foremost, before checking the filter.
-    if ((!checkperm("e" . $status) && !checkperm("ert" . $resourcedata['resource_type']))
-        ||
-        (checkperm("XE" . $resourcedata['resource_type']))
-        ||
-        (checkperm("XE") && !checkperm("XE-" . $resourcedata['resource_type']))
-        )
-        {
+    if (
+        (!checkperm("e{$status}") && !checkperm("ert{$resourcedata['resource_type']}"))
+        || !acl_can_edit_in_resource_type($resourcedata['resource_type'])
+    ) {
         return false;
-        }
+    }
 
     # Cannot edit if z permission
     if (checkperm("z" . $status)) {return false;}
@@ -8460,6 +8457,7 @@ function notify_resource_change($resource)
 function add_verbatim_keywords(&$keywords, $string, $resource_type_field, $called_from_search=false)
     {
     global $resource_field_verbatim_keyword_regex,$resource_field_checkbox_match_full;
+    global $resource_field_verbatim_keyword_regex_index_intact;
 
     // add ",<string>" if specified resource_type_field is found within $resource_field_checkbox_match_full array.
     if( !$called_from_search &&
@@ -8482,6 +8480,12 @@ function add_verbatim_keywords(&$keywords, $string, $resource_type_field, $calle
     if (!empty($resource_field_verbatim_keyword_regex[$resource_type_field]))
         {
         preg_match_all($resource_field_verbatim_keyword_regex[$resource_type_field], $string, $matches);
+        if (
+            isset($matches[0][0]) 
+            && ($resource_field_verbatim_keyword_regex_index_intact[$resource_type_field] ?? false)
+            ) {
+                $keywords = [];
+            }
         foreach ($matches as $match)
             {
             foreach ($match as $sub_match)
@@ -9754,4 +9758,19 @@ function get_resources_to_validate(int $days = 0): array
                     WHERE ref > 0 AND no_file = 0 {$filtersql}
                     ORDER BY integrity_fail DESC, last_verified ASC",
                     $params);
+}
+
+/**
+ * Access control check that user can edit (a resource) in a particular Resource Type (RT). Main use is to hide
+ * inapplicable RTs.
+ *
+ * @param int $ref Resource type ID
+ */
+function acl_can_edit_in_resource_type(int $ref): bool
+{
+    return checkperm("ert{$ref}")
+        || !(
+            checkperm("XE{$ref}")
+            || checkperm("XE") && !checkperm("XE-{$ref}")
+        );
 }

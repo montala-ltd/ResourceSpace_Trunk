@@ -1180,7 +1180,7 @@ function check_node_indexed(array $node, $partial_index = false)
 */
 function add_node_keyword_mappings(array $node, $partial_index = false,bool $is_date=false,bool $is_html=false)
     {
-    global $node_keyword_index_chars,$resource_field_verbatim_keyword_regex_index_intact;
+    global $node_keyword_index_chars;
     if('' == trim($node['ref']) && '' == trim($node['name']) && '' == trim($node['resource_type_field']))
         {
         return false;
@@ -1216,11 +1216,7 @@ function add_node_keyword_mappings(array $node, $partial_index = false,bool $is_
         // Only index the first 500 characters
         $translation = mb_substr($translation,0,$node_keyword_index_chars);
 
-        if ($resource_field_verbatim_keyword_regex_index_intact[$node['resource_type_field']] ?? false) {
-            $keywords = [];
-        } else {
-            $keywords = split_keywords($translation, true, $partial_index,$is_date, $is_html);
-        }
+        $keywords = split_keywords($translation, true, $partial_index,$is_date, $is_html);
 
         add_verbatim_keywords($keywords, $translation, $node['resource_type_field']);
 
@@ -3205,10 +3201,11 @@ function suggest_dynamic_keyword_nodes(int $field, string $keyword, bool $readon
     $fielderror = false;
     if (!$exactmatch && !$readonly) {
         # Ensure regexp filter is honoured if one is present
-        if (strlen(trim((string)$fielddata["regexp_filter"])) >= 1) {
-            if (preg_match("#^" . str_replace($GLOBALS['regexp_slash_replace'], '\\', $fielddata["regexp_filter"]) . "$#",$keyword,$matches) <= 0) {
-                $fielderror = true;
-            }
+        if (
+            strlen(trim((string)$fielddata["regexp_filter"])) >= 1
+            && preg_match("#^" . str_replace($GLOBALS['regexp_slash_replace'], '\\', $fielddata["regexp_filter"]) . "$#",$keyword,$matches) <= 0
+        ) {
+            $fielderror = true;
         }
 
         if (!$fielderror) {
