@@ -7528,13 +7528,26 @@ function get_OR_fields()
 * Returns the HTML necessary to represent a resource with the given extension when no image preview exists.
 *
 * @param string     $extension       File extension
+* @param int        $resource_type   Optional, the resource type of the resource, used to find an icon at the resource type level if an icon for this extension is not defined.
 *
 * @return string
 */
-function get_nopreview_html(string $extension): string
+function get_nopreview_html(string $extension, $resource_type = null): string
 {
     $extension = strtolower(trim($extension));
-    return "<i class='nopreview fa fa-solid " . (FONTAWESOME_EXTENSIONS[$extension] ?? FONTAWESOME_EXTENSIONS["default"]) . "'></i>";
+
+    if (isset(FONTAWESOME_EXTENSIONS[$extension])) {
+        // Use the icon set for this file extension
+        $icon = FONTAWESOME_EXTENSIONS[$extension];
+    } else {
+        // No icon for this specific extension Get default for this resource type and cache it.
+        $icon = ps_value("select icon value from resource_type where ref=?", ["i",$resource_type], "", "resourcetypeicon");
+        if ($icon == "") {
+            $default = FONTAWESOME_EXTENSIONS["default"];
+        }
+    }
+
+    return "<i class='nopreview fa fa-solid " . $icon . "'></i>";
 }
 
 /**
@@ -8107,7 +8120,7 @@ function get_resource_table_joins()
     if ($additional_joins) {
         $joins = array_merge($joins, $additional_joins);
     }
-    
+
     $joins = array_unique($joins);
     $n = 0;
     foreach ($joins as $join) {
