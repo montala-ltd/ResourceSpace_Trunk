@@ -6169,7 +6169,17 @@ function update_archive_status($resource, $archive, $existingstates = array(), $
 
 function delete_resources_in_collection($collection)
 {
-    global $resource_deletion_state,$userref,$lang;
+    if (
+        !is_int_loose($collection)
+        || checkperm("D")
+        || !allow_multi_edit($collection)
+        || !collection_writeable($collection)
+    ) {
+        debug("Unable to delete resources in collection: $collection");
+        return false;
+    }
+
+    global $resource_deletion_state, $lang;
 
     // Always find all resources in deleted state and delete them permanently:
     // Note: when resource_deletion_state is null it will find all resources in collection and delete them permanently
@@ -8775,14 +8785,14 @@ function get_resource_preview(array $resource, array $sizes = [], int $access = 
                 break;
             }
         }
-        if (!$validimage && (int)$resource['has_image'] !== RESOURCE_PREVIEWS_NONE && $try_pulled_resource) {
+        if (!$validimage && (int)$resource['has_image'] === RESOURCE_PREVIEWS_NONE && $try_pulled_resource) {
             // If configured, try and use a preview from a related resource
             $pullresource = related_resource_pull($resource);
             if ($pullresource !== false) {
                 $resource = $pullresource;
+                $preview = get_resource_preview($resource, $sizes, get_resource_access($resource), $watermark, $page, false);
+                $validimage = $preview !== false; 
             }
-            $preview = get_resource_preview($resource, $sizes, $access, $watermark, $page, false);
-            $validimage = $preview !== false; 
         }
     }
     if (!$validimage) {
