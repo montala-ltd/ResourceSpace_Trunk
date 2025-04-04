@@ -15,7 +15,7 @@ ob_implicit_flush(true);
 global $mysql_db;
 
 // Limit the number of resources processed in one run (optional safety limit)
-$limit = 1000;
+$limit = 10000;
 
 // Get resources needing vector generation or update - look at the modified date vs. the creation date on the text vector, and also the image checksum on the vector vs the one on the resource record. This catches both metadata and image updates.
 $sql = "
@@ -42,6 +42,32 @@ if(empty($resources))
     echo "No resources needing vector update.\n";
     exit;
 }
+
+function vector_visualise(array $vector): string
+{
+    $chars = str_split(" .:;i1tfLCG08@"); 
+    $out = "";
+    $chunks = array_chunk($vector, 8);
+
+    foreach ($chunks as $chunk)
+    {
+        $mean = array_sum($chunk) / count($chunk);
+        $sum_squares = 0;
+        foreach ($chunk as $v)
+            $sum_squares += pow($v - $mean, 2);
+        $std_dev = sqrt($sum_squares / count($chunk));
+
+        // Clamp & scale std dev for visualisation (tune this if needed)
+        $scaled = min(1.0, $std_dev * 5); // exaggerate a bit
+        $index = (int)round($scaled * (count($chars) - 1));
+        $out .= $chars[$index];
+    }
+
+    return $out;
+}
+
+
+
 
 foreach($resources as $resource)
 {
@@ -81,11 +107,15 @@ foreach($resources as $resource)
     */
 
     // Store both vectors in DB
+    $vector = array_map('floatval', $vector); // ensure float values
+    $blob = pack('f*', ...$vector);
+
     ps_query("DELETE FROM resource_clip_vector WHERE resource = ?", ['i', $ref]);
     ps_query(
-        "INSERT INTO resource_clip_vector (resource, vector, checksum, is_text) VALUES (?, ?, ?, false)",
-        ['i', $ref, 's', json_encode($vector), 's', $checksum]
-    );
+        "INSERT INTO resource_clip_vector (resource, vector_blob, checksum, is_text) VALUES (?, ?, ?, false)",
+        ['i', $ref, 's', $blob, 's', $checksum]
+    ); // Note the blob must be inserted as 's' type as ps_query() does not correctly handle 'b' yet (send_long_data() is needed)
+    
     /*
     ps_query(
         "INSERT INTO resource_clip_vector (resource, vector, checksum, is_text) VALUES (?, ?, ?, true)",
@@ -93,7 +123,7 @@ foreach($resources as $resource)
     );
     */
 
-    echo "✓ Vector stored for resource $ref\n";
+    echo "✓ Vector stored for resource $ref [" . vector_visualise($vector) . "] length: " . count($vector) . ", blob size: " . strlen($blob) . "\n";
 }
 
 echo "Done.\n";

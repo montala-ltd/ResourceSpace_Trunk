@@ -12,6 +12,7 @@ import mysql.connector
 from typing import Optional
 import time
 import faiss
+import threading
 
 
 # Command-line arguments
@@ -49,7 +50,6 @@ faiss_indexes = {}        # { db_name: faiss.IndexFlatIP }
 def load_vectors_for_db(db_name, force_reload=False):
     global cached_vectors, loaded_max_ref, faiss_indexes
 
-    # Use existing cache if not forcing reload
     if db_name in cached_vectors and not force_reload:
         return cached_vectors[db_name]
 
@@ -59,12 +59,18 @@ def load_vectors_for_db(db_name, force_reload=False):
         cursor = conn.cursor()
 
         last_ref = loaded_max_ref.get(db_name, 0)
+
+        start = time.time()
         cursor.execute(
-            "SELECT resource, vector FROM resource_clip_vector WHERE is_text=0 and resource > %s ORDER BY resource",
+            "SELECT resource, vector_blob FROM resource_clip_vector WHERE is_text=0 AND resource > %s ORDER BY resource",
             (last_ref,)
         )
         rows = cursor.fetchall()
         conn.close()
+        elapsed_ms = round((time.time() - start) * 1000)
+        print(f"📥 Vector load from MySQL took {elapsed_ms}ms")
+        start = time.time()
+
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"DB error: {e}")
 
@@ -74,15 +80,31 @@ def load_vectors_for_db(db_name, force_reload=False):
     new_vectors = []
     new_ids = []
 
-    for resource, vector_json in rows:
-        try:
-            vector = np.array(eval(vector_json), dtype=np.float32)
-            vector /= np.linalg.norm(vector)
-        except Exception:
-            continue  # skip malformed vectors
+    for resource, blob in rows:
+        if len(blob) != 2048:
+            print(f"❌ Skipping resource {resource}: blob is {len(blob)} bytes, expected 2048")
+            continue
 
-        new_vectors.append(vector)
-        new_ids.append(resource)
+        try:
+            vector = np.frombuffer(blob, dtype=np.float32).copy()
+
+
+            if vector.shape != (512,):
+                print(f"❌ Skipping resource {resource}: vector shape {vector.shape}, expected (512,)")
+                continue
+
+            norm = np.linalg.norm(vector)
+            if norm == 0 or np.isnan(norm):
+                print(f"⚠️  Skipping resource {resource}: invalid norm ({norm})")
+                continue
+
+            vector /= norm
+            new_vectors.append(vector)
+            new_ids.append(resource)
+
+        except Exception as e:
+            print(f"❌ Exception parsing vector for resource {resource}: {e}")
+            continue
 
     if db_name in cached_vectors:
         old_vectors, old_ids = cached_vectors[db_name]
@@ -98,7 +120,7 @@ def load_vectors_for_db(db_name, force_reload=False):
 
     # Rebuild or update FAISS index
     if db_name not in faiss_indexes:
-        index = faiss.IndexFlatIP(512)  # cosine similarity
+        index = faiss.IndexFlatIP(512)
         if len(vectors) > 0:
             index.add(vectors)
         faiss_indexes[db_name] = index
@@ -106,8 +128,12 @@ def load_vectors_for_db(db_name, force_reload=False):
         if new_vectors:
             faiss_indexes[db_name].add(np.stack(new_vectors))
 
+    elapsed_ms = round((time.time() - start) * 1000)
+    print(f"⚙️  Vector processing and indexing took {elapsed_ms}ms")
     print(f"✅ Cached {len(ids)} vectors for DB: {db_name}")
     return cached_vectors[db_name]
+
+
 
 
 
@@ -147,13 +173,14 @@ async def search(
     db: str = Form(...),
     text: str = Form(None),
     image: UploadFile = File(None),
+    resource: int = Form(None),
+    ref: str = Form(None),
     top_k: int = Form(5)
 ):
-    if not text and not image:
-        raise HTTPException(status_code=400, detail="Provide either text or image")
+    if not any([text, image, resource, ref]):
+        raise HTTPException(status_code=400, detail="Provide one of: text, image, resource, or ref")
 
     print(f"▶️ SEARCH: db={db}, top_k={top_k}")
-
     vectors, resource_ids = load_vectors_for_db(db)
     print(f"🧠 Vectors loaded: {len(resource_ids)} resources")
 
@@ -161,12 +188,18 @@ async def search(
         return JSONResponse(content=[])
 
     try:
+        index = faiss_indexes.get(db)
+        if not index:
+            raise HTTPException(status_code=500, detail="FAISS index not found")
+
+        # --- Create query vector ---
         if text:
             print("🔤 Text query")
             tokens = clip.tokenize([text]).to(device)
             with torch.no_grad():
                 query_vector = model.encode_text(tokens)
-        else:
+
+        elif image:
             print("🖼️ Image query")
             contents = await image.read()
             img = Image.open(io.BytesIO(contents)).convert("RGB")
@@ -174,26 +207,63 @@ async def search(
             with torch.no_grad():
                 query_vector = model.encode_image(img_input)
 
+        elif resource is not None or ref is not None:
+            # Determine which field to query
+            column = "resource" if resource is not None else "ref"
+            value = resource if resource is not None else ref
+            print(f"🔁 Query from DB vector: {column} = {value}")
+
+            conn = mysql.connector.connect(**DB_CONFIG, database=db)
+            cursor = conn.cursor()
+            cursor.execute(f"SELECT vector_blob FROM resource_clip_vector WHERE {column} = %s AND is_text=0", (value,))
+            row = cursor.fetchone()
+            conn.close()
+
+            if not row or not row[0] or len(row[0]) != 2048:
+                raise HTTPException(status_code=404, detail=f"Valid vector_blob not found for {column}={value}")
+
+            query_vector = np.frombuffer(row[0], dtype=np.float32).copy()
+            if query_vector.shape != (512,):
+                raise HTTPException(status_code=400, detail="Malformed vector shape")
+            norm = np.linalg.norm(query_vector)
+            if norm == 0 or np.isnan(norm):
+                raise HTTPException(status_code=400, detail="Invalid vector norm")
+            query_vector = torch.tensor(query_vector).unsqueeze(0)
+
+        else:
+            raise HTTPException(status_code=400, detail="Invalid input combination")
+
+        # --- Search ---
         query_vector = query_vector / query_vector.norm(dim=-1, keepdim=True)
         query_np = query_vector.cpu().numpy().flatten()
         print("✅ Query vector created")
 
-        index = faiss_indexes.get(db)
-        if not index:
-            raise HTTPException(status_code=500, detail="FAISS index not found")
-
         print("🔍 Performing FAISS search")
         print(f"FAISS index size: {index.ntotal}")
         start = time.time()
-        D, I = index.search(query_np.reshape(1, -1), top_k)
+        D, I = index.search(query_np.reshape(1, -1), top_k + 1)
         elapsed_ms = round((time.time() - start) * 1000)
         print(f"FAISS search took {elapsed_ms}ms")
         print(f"🎯 Search results: {I[0]}")
 
-        results = [
-            {"resource": int(resource_ids[i]), "score": float(D[0][j])}
-            for j, i in enumerate(I[0])
-        ]
+        results = []
+        for i, score in zip(I[0], D[0]):
+            if i < 0:
+                continue
+            candidate_id = int(resource_ids[i])
+
+            # Skip self-match for resource/ref queries
+            if (resource is not None and candidate_id == resource) or \
+               (ref is not None and candidate_id == ref):
+                continue
+
+            results.append({
+                "resource": candidate_id,
+                "score": float(score)
+            })
+
+            if len(results) == top_k:
+                break
 
         print("Returning", len(results), "results")
         return JSONResponse(content=results)
@@ -204,11 +274,11 @@ async def search(
 
 
 
-@app.post("/similar")
-async def find_similar(
+
+@app.post("/duplicates")
+async def find_duplicates(
     db: str = Form(...),
-    resource: int = Form(...),
-    top_k: int = Form(5)
+    threshold: float = Form(0.9)
 ):
     vectors, resource_ids = load_vectors_for_db(db)
 
@@ -216,53 +286,37 @@ async def find_similar(
         return JSONResponse(content=[])
 
     try:
-        # Connect to DB to fetch the vector for the specified resource
-        conn = mysql.connector.connect(**DB_CONFIG, database=db)
-        cursor = conn.cursor()
-        cursor.execute("SELECT vector FROM resource_clip_vector WHERE resource = %s", (resource,))
-        row = cursor.fetchone()
-        conn.close()
-
-        if not row:
-            raise HTTPException(status_code=404, detail=f"Vector not found for resource {resource}")
-
-        query_vector = np.array(eval(row[0]), dtype=np.float32)
-        query_vector /= np.linalg.norm(query_vector)
-
         index = faiss_indexes.get(db)
         if not index:
             raise HTTPException(status_code=500, detail="FAISS index not found")
 
-        # Perform similarity search
-        D, I = index.search(query_vector.reshape(1, -1), top_k + 1)  # +1 to skip self
-        top_indices = I[0]
-        top_indices = [i for i in top_indices if i >= 0]
-
-        sims = D[0]
-
         results = []
-        for i, score in zip(top_indices, sims):
-            candidate_id = int(resource_ids[i])
-            if candidate_id == resource:
-                continue  # Skip the same resource
-            results.append({
-                "resource": candidate_id,
-                "score": float(score)
-            })
-            if len(results) == top_k:
-                break
+        top_k = 50  # You can increase this if you want more candidates
+
+        D, I = index.search(vectors, top_k)  # batch search all against all
+
+        for i, (distances, indices) in enumerate(zip(D, I)):
+            for j, score in zip(indices, distances):
+                if score >= threshold and i != j:
+                    a = int(resource_ids[i])
+                    b = int(resource_ids[j])
+                    if a < b:  # avoid duplicates (a,b) vs (b,a)
+                        results.append({
+                            "resource": a,
+                            "resource_match": b,
+                            "score": float(score)
+                        })
 
         return JSONResponse(content=results)
 
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Similarity error: {e}")
+        raise HTTPException(status_code=500, detail=f"Duplicate detection error: {e}")
 
 
 
 
 
-import threading
-import time
+
 
 def background_vector_loader():
     while True:

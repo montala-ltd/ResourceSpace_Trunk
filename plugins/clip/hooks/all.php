@@ -23,29 +23,48 @@ function HookClipAllAddspecialsearch($search,$select,$sql_join,$sql_filter)
         }
     elseif (substr($search, 0, 12) == '!clipsimilar') 
         {
-        $function="similar";
+        $function="search";
         $resource=substr($search,12);
         if (!is_numeric($resource)) {return false;}
         $min_score = $clip_similar_cutoff; 
         }
+    elseif (substr($search, 0, 13) == '!clipspecific') 
+        {
+        $function="search";
+        $ref=substr($search,13);
+        if (!is_numeric($ref)) {return false;}
+        $min_score = $clip_similar_cutoff; 
+        }
+    elseif (substr($search, 0, 15) == '!clipduplicates') 
+        {
+        $function="duplicates";
+        $min_score = $clip_duplicate_cutoff;
+        }
     elseif (substr($search, 0, 14) == '!clipduplicate') 
         {
-        $function="similar";
+        $function="search";
         $resource=substr($search,14);
         if (!is_numeric($resource)) {return false;}
         $min_score = $clip_duplicate_cutoff;
+
+        if (checkperm("a"))
+            {
+            // Admin only - show resources in all states
+            $sql_filter->parameters=[];
+            $sql_filter->sql="true";
+            }
         }
     else
         {
         return false;
         }
 
-    $clip_service_url = $clip_service_url . "/" . $function;
+    $clip_service_call = $clip_service_url . "/" . $function;
     global $mysql_db;
 
     // Send search to Python service
     $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $clip_service_url);
+    curl_setopt($ch, CURLOPT_URL, $clip_service_call);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_POST, true);
     curl_setopt($ch, CURLOPT_HTTPHEADER, [
@@ -54,7 +73,7 @@ function HookClipAllAddspecialsearch($search,$select,$sql_join,$sql_filter)
     ]);
 
 
-    if ($function=="search")
+    if ($function=="search" && !isset($resource) && !isset($ref))
     {
         curl_setopt($ch, CURLOPT_POSTFIELDS, [
             'db' => $mysql_db,
@@ -62,12 +81,27 @@ function HookClipAllAddspecialsearch($search,$select,$sql_join,$sql_filter)
             'top_k' => $clip_results_limit_search
         ]);
     }
-    if ($function=="similar")
+    if ($function=="search" && isset($resource))
     {
         curl_setopt($ch, CURLOPT_POSTFIELDS, [
             'db' => $mysql_db,
             'resource' => $resource,
             'top_k' => $clip_results_limit_similar
+        ]);
+    }
+    if ($function=="search" && isset($ref))
+    {
+        curl_setopt($ch, CURLOPT_POSTFIELDS, [
+            'db' => $mysql_db,
+            'ref' => $ref,
+            'top_k' => $clip_results_limit_similar
+        ]);
+    }
+    if ($function=="duplicates")
+    {
+        curl_setopt($ch, CURLOPT_POSTFIELDS, [
+            'db' => $mysql_db,
+            'threshold' => $clip_duplicate_cutoff
         ]);
     }
 
@@ -125,4 +159,13 @@ function HookClipAllSearch_pipeline_setup($search,$select,$sql_join,$sql_filter)
         }
     global $keysearch;
     $keysearch=false; // Disable keyword searching if using natural language search
+    }
+
+
+function HookClipAllSearchbarafterbuttons()
+    {
+    global $lang,$baseurl;
+    ?>
+    <p><i aria-hidden="true" class="fa fa-fw fa-brain"></i>&nbsp;<a onclick="return CentralSpaceLoad(this,true);" href="<?php echo $baseurl ?>/plugins/clip/pages/search.php"><?php echo escape($lang["clip-ai-smart-search"]) ?></a></p>
+    <?php
     }
