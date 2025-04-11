@@ -4555,8 +4555,6 @@ function collection_download_process_data_only_types(array $dl_data, &$zip)
                 $resource_ref_escaped = $result[$n]['ref'];
                 ps_query("UPDATE resource SET new_hit_count = GREATEST(hit_count, new_hit_count) + 1 WHERE ref = ?", array("i",$resource_ref_escaped));
             }
-
-            continue;
         }
     }
 }
@@ -6542,9 +6540,10 @@ function reorder_all_featured_collections_with_parent(?int $parent): array
 function process_collection_download(array $dl_data): array
 {
     // Set elements that may not have been set e.g. a job created in an earlier version
-    foreach (['archiver', 'collection_download_tar', 'include_alternatives', 'k'] as $unset_var)
-    if (!isset($dl_data[$unset_var])) {
-        $dl_data[$unset_var] = false;
+    foreach (['archiver', 'collection_download_tar', 'include_alternatives', 'k'] as $unset_var) {
+        if (!isset($dl_data[$unset_var])) {
+            $dl_data[$unset_var] = false;
+        }
     }
 
     $collection                 = (int) ($dl_data['collection'] ?? 0);
