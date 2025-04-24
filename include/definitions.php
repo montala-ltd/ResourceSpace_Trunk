@@ -865,6 +865,7 @@ const API_NATIVE_WHITELIST = [
     'put_resource_data',
     'get_processing_message',
     'delete_resources_in_collection',
+    'faces_tag'
 ];
 
 const DEFAULT_DOWNLOAD_FILENAME_FORMAT = 'RS%resource_%filename%size.%extension';
@@ -1085,3 +1086,7 @@ const FIELD_SORT_METHODS = [
     'default' => 0,
     'dot-notation' => 1,
 ];
+
+// How many times should the system attempt to generate previews? 
+// The preview attempts for a resource are reset if preview generation is manually initiated
+const SYSTEM_MAX_PREVIEW_ATTEMPTS = 5;
