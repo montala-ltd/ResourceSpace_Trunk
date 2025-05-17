@@ -41,8 +41,16 @@ function HookFacesViewCustompanels()
         $face_path = get_resource_path($ref, true, "", false, "jpg");
         $face_url  = get_resource_path($ref, false, "", false, "jpg");
     }
+    if (!file_exists($face_path)) {
+        $face_path = get_resource_path($ref, true, "", false, "jpeg");
+        $face_url  = get_resource_path($ref, false, "", false, "jpeg");
+    }
+    if (!file_exists($face_path)) {
+        // No suitable image exists
+        return false;
+    }
 
-// Get dimensions of the image
+    // Get dimensions of the image
     list($image_width, $image_height) = getimagesize($face_path);
     ?>
 <div class="RecordBox">
@@ -53,7 +61,7 @@ function HookFacesViewCustompanels()
         <table class="ListviewStyle">
             <tr>
                 <th><?php echo escape($lang["faces-detected-face"]) ?></th>
-                <!--<th><?php echo escape($lang["faces-confidence"]) ?></th>-->
+                <th><?php echo escape($lang["faces-confidence"]) ?></th>
                 <th><?php echo escape($lang["faces-name"]) ?></th>
                 <th><?php echo escape($lang["actions"]) ?></th>
             </tr>
@@ -104,7 +112,7 @@ function HookFacesViewCustompanels()
                     <td>
                         <div style="<?php echo $style ?>"></div>
                     </td>
-                    <!--<td><?php echo round($face["det_score"] * 100, 2) ?>%</td>-->
+                    <td><?php echo round($face["det_score"] * 100, 2) ?>%</td>
                     <td>
                         <?php if (!$edit_access) {
                             $value = "";
