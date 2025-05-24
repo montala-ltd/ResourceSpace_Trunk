@@ -5898,7 +5898,7 @@ function get_original_imagesize($ref = "", $path = "", $extension = "jpg", $forc
     if (function_exists('mime_content_type')) {
         $mime_content_type = mime_content_type($file);
     } else {
-        $mime_content_type = get_mime_type($file);
+        $mime_content_type = get_mime_type($file)[0];
     }
 
     $o_size = ps_query("SELECT " . columns_in("resource_dimensions") . " FROM resource_dimensions WHERE resource=?", array("i",$ref));
@@ -8511,10 +8511,8 @@ function update_resource_type_order($neworder)
  * Check if file can be rendered in browser via download.php
  *
  * @param  string $path Path to file
- *
- * @return bool
  */
-function allow_in_browser($path)
+function allow_in_browser($path): bool
 {
     if (!file_exists($path) || is_dir($path)) {
         return false;
@@ -8535,23 +8533,17 @@ function allow_in_browser($path)
     }
 
     if (function_exists('mime_content_type')) {
-        $type = mime_content_type($path);
+        $type = array_values(array_filter([mime_content_type($path)]));
     } else {
         $type = get_mime_type($path);
     }
-    if ($type == "application/octet-stream") {
-        # Not properly detected, try and get mime type via exiftool if possible
-        $exiftool_fullpath = get_utility_path("exiftool");
-        if ($exiftool_fullpath != false) {
-            $command = $exiftool_fullpath . " -s -s -s -t -mimetype %PATH";
-            $cmd_args['%PATH'] = $path;
-            $type = run_command($command, false, $cmd_args);
-        }
+
+    // Unsure? Try and get mime type via exiftool if possible
+    if ($type === ['application/octet-stream']) {
+        $type = get_mime_type($path, null, true);
     }
-    if (in_array($type, $permitted_mime)) {
-        return true;
-    }
-    return false;
+
+    return array_intersect($permitted_mime, $type) !== [];
 }
 
 /**
@@ -8763,11 +8755,12 @@ function related_resource_pull(array $resource)
  * @param bool      $watermark              Look for watermarked versions?
  * @param int       $page                   Page to look for
  * @param bool      $try_pulled_resource    Should we try to use an image from a pulled resource if the current resource doesn't have a usable preview
+ * @param int       $alt                    Int ref of alternative file 
  *
  * @return array | bool         array, or false if no image is found
  *
  */
-function get_resource_preview(array $resource, array $sizes = [], int $access = -1, bool $watermark = false, int $page = 1, bool $try_pulled_resource = true)
+function get_resource_preview(array $resource, array $sizes = [], int $access = -1, bool $watermark = false, int $page = 1, bool $try_pulled_resource = true, int $alt = -1)
 {
     global $userref, $open_access_for_contributor, $sizes_always_allowed;
     if (empty($sizes)) {
@@ -8775,7 +8768,7 @@ function get_resource_preview(array $resource, array $sizes = [], int $access = 
     }
 
     $preview["url"] = "";
-    if (isset($resource['thm_url'])) {
+    if (isset($resource['thm_url']) && $alt === -1) {
         // Option to override thumbnail image in search results, e.g. by plugin using process_search_results hook
         $preview["url"] = $resource['thm_url'];
         $preview["height"] = $resource["thumb_height"];
@@ -8798,7 +8791,7 @@ function get_resource_preview(array $resource, array $sizes = [], int $access = 
         }
         $validimage = false;
         foreach ($sizes as $size) {
-            if (!resource_download_allowed($resource['ref'], $size, $resource['resource_type'])) {
+            if (!resource_download_allowed($resource['ref'], $size, $resource['resource_type'], $alt)) {
                 continue;
             }
 
@@ -8812,11 +8805,12 @@ function get_resource_preview(array $resource, array $sizes = [], int $access = 
                 true,
                 $page,
                 $use_watermark,
-                $resource['file_modified']
+                $resource['file_modified'],
+                $alt
             );
             if (file_exists($img_file)) {
                 $preview["path"] = $img_file;
-                $preview["url"] = get_resource_path($resource['ref'], false, $size, false, $resource['preview_extension'], true, $page, $use_watermark, $resource['file_modified']);
+                $preview["url"] = get_resource_path($resource['ref'], false, $size, false, $resource['preview_extension'], true, $page, $use_watermark, $resource['file_modified'], $alt);
                 $GLOBALS["use_error_exception"] = true;
                 try {
                     list($preview["width"], $preview["height"]) = getimagesize($img_file);
@@ -8829,7 +8823,7 @@ function get_resource_preview(array $resource, array $sizes = [], int $access = 
                 break;
             }
         }
-        if (!$validimage && (int)$resource['has_image'] === RESOURCE_PREVIEWS_NONE && $try_pulled_resource) {
+        if (!$validimage && (int)$resource['has_image'] === RESOURCE_PREVIEWS_NONE && $try_pulled_resource && $alt === -1) {
             // If configured, try and use a preview from a related resource
             $pullresource = related_resource_pull($resource);
             if ($pullresource !== false) {
