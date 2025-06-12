@@ -76,6 +76,10 @@ ini_set("zend.exception_ignore_args", "Off");
 
 error_reporting($config_error_reporting);
 
+// Check this is a real browser. This is intentionally before DB connection (and before remote config which will connect to the DB) as with a DDOS
+// scenario we want to be exiting as early as possible if the cookie is not present.
+if ($browser_check) {browser_check();}
+
 # -------------------------------------------------------------------------------------------
 # Remote config support - possibility to load the configuration from a remote system.
 #
