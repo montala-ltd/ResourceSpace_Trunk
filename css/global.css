@@ -665,6 +665,8 @@ a:hover .fa,.fa:hover {text-decoration:none !important;} /* Never underline a Fo
 .BasicsBox .VerticalNav li {padding:0 0.35em 0 0;margin:0 0.5em 0.5em 0;}
 .nopadding,.nopadding .VerticalNav ul {padding:0;margin:0;}
 .nopad, .BasicsBox .nopad {padding:0;}
+.BasicsBoxPadded {padding: 10px 15px 0 15px;}
+.BasicsBoxPadded h1 {margin-bottom: 5px;font-size: 2em;}
 
 /* Themes */
 .ThemeBox {float: left;width: 250px;margin: 0 15px 15px 0;padding: 0;}
@@ -1857,7 +1859,7 @@ a.Enabled, a:visited.Enabled {
     margin: 2px
 }
 
-.ReportSheet {padding:10px;}
+.ReportSheet {padding:20px;}
 .ReportSummary td {padding:10px;}
 .ReportMetric {font-size:200%;padding-left:5px;}
 .ReportAddToDash {font-size:65%;}
