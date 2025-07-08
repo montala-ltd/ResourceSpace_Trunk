@@ -6053,8 +6053,11 @@ function get_original_imagesize($ref = "", $path = "", $extension = "jpg", $forc
  */
 function generate_resource_access_key($resource, $userref, $access, $expires, $email, $group = "", $sharepwd = "")
 {
-    if (checkperm("noex")) {
-        // Shouldn't ever happen, but catch in case not already checked
+    global $username, $anonymous_login;
+
+    if (checkperm("noex") || (isset($anonymous_login) && $username == $anonymous_login)) {
+        // "noex" users shouldn't ever get here, but catch in case not already checked
+        // also block anon users from generating keys as they're unneeded.
         return false;
     }
 
