@@ -46,7 +46,7 @@ $lang["consent_status_expired"] = 'Süresi dolmuş onaylar';
 $lang["consent_view_linked_resources_short"] = 'Görüntüle';
 $lang["consent_no_archiving"] = 'Değişiklik Yok';
 $lang["consent_notification_expiring_soon"] = 'Yakında Süresi Dolacak Onaylar';
-$lang["consent_notification_message"] = 'Yakında süresi dolacak bazı onaylar var. Onları <a href=\'%URL\'>buradan</a> görüntüleyin';
 $lang["consent_notification_user_pref"] = 'Bu bildirimleri alıp almayacağınızı değiştirin';
 $lang["consent_notification_global_pref"] = 'Bu bildirimleri herkes için devre dışı bırakın';
 $lang["consent_notification_link"] = 'Onları burada görüntüle';
+$lang["consent_notification_message"] = 'Yakında sona erecek bazı onaylar var.';

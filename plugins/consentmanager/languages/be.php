@@ -43,7 +43,7 @@ $lang["consent_status_expired"] = 'Тэрміны дзеяння згаджэн�
 $lang["consent_view_linked_resources_short"] = 'Прагляд';
 $lang["consent_no_archiving"] = 'Без зменаў';
 $lang["consent_notification_expiring_soon"] = 'Згоды, якія хутка скончацца';
-$lang["consent_notification_message"] = 'Існуюць некаторыя згоды, якія хутка скончацца. Паглядзіце іх <a href=\'%URL\'>тут</a>';
 $lang["consent_notification_user_pref"] = 'Змяніце, ці хочаце вы атрымліваць гэтыя апавяшчэнні';
 $lang["consent_notification_global_pref"] = 'Адключыць гэтыя апавяшчэнні для ўсіх';
 $lang["consent_notification_link"] = 'Глядзіце іх тут';
+$lang["consent_notification_message"] = 'Некаторыя згоды хутка скончацца.';

@@ -42,7 +42,7 @@ $lang["license_status_expired"] = 'Тэрміны дзеяння ліцэнзі�
 $lang["license_view_linked_resources_short"] = 'Прагляд';
 $lang["license_no_archiving"] = 'Без зменаў';
 $lang["license_notification_expiring_soon"] = 'Ліцэнзіі, якія хутка скончацца';
-$lang["license_notification_message"] = 'Існуюць некаторыя ліцэнзіі, якія хутка скончацца. Паглядзець іх <a href=\'%URL\'>тут</a>';
 $lang["license_notification_user_pref"] = 'Змяніць, ці атрымліваць гэтыя апавяшчэнні';
 $lang["license_notification_global_pref"] = 'Адключыць гэтыя апавяшчэнні для ўсіх';
 $lang["license_notification_link"] = 'Паглядзець іх тут';
+$lang["license_notification_message"] = 'Некаторыя ліцэнзіі хутка скончацца.';
