@@ -2022,7 +2022,7 @@ function upload_preview($ref)
 */
 function extract_text($ref, $extension, $path = "")
 {
-    global $extracted_text_field,$antiword_path,$pdftotext_path,$lang;
+    global $extracted_text_field,$pdftotext_path,$lang;
 
     resource_log($ref, LOG_CODE_TRANSFORMED, '', '', '', $lang['embedded_metadata_extract_option']);
 
@@ -2034,20 +2034,6 @@ function extract_text($ref, $extension, $path = "")
     if (!file_exists($path)) {
         debug("ERROR: Unable to extract text for resource $ref. The source file does not exist at: $path");
         return false;
-    }
-
-    # Microsoft Word extraction using AntiWord.
-    if ($extension == "doc" && isset($antiword_path)) {
-        $command = get_utility_path('antiword');
-        if (!$command) {
-            debug("ERROR: Antiword executable not found at '$antiword_path'");
-            return false;
-        }
-        $text = run_command(
-            "{$command} -m UTF-8 %%PATH%%",
-            false,
-            ["%%PATH%%" => new CommandPlaceholderArg($path, "is_valid_rs_path")],
-        );
     }
 
     # Microsoft OfficeOpen (docx,xlsx) extraction
@@ -2585,7 +2571,7 @@ function delete_previews($resource, $alternative = -1)
 
     $fullsizejpgpath = get_resource_path($resource, true, "", false, "jpg", -1, 1, false, "", $alternative);
     // Delete the full size original if not a JPG resource
-    if ($extension !== "" && strtolower($extension) != "jpg" && file_exists($fullsizejpgpath) && $alternative == -1) {
+    if ($extension !== "" && strtolower((string) $extension) != "jpg" && file_exists($fullsizejpgpath) && $alternative == -1) {
         unlink($fullsizejpgpath);
     }
 
@@ -3163,7 +3149,13 @@ function transform_file(string $sourcepath, string $outputpath, array $actions)
 
     $cmd_args['%outputpath'] = new CommandPlaceholderArg($outputpath, 'is_valid_rs_path');
     $command .= $profile . ' %outputpath';
+
     run_command($command, false, $cmd_args);
+
+    file_put_contents(get_temp_dir() . "/temp.txt", $command, FILE_APPEND);
+    file_put_contents(get_temp_dir() . "/temp.txt", PHP_EOL, FILE_APPEND);
+    file_put_contents(get_temp_dir() . "/temp.txt", $cmd_args, FILE_APPEND);
+        file_put_contents(get_temp_dir() . "/temp.txt", PHP_EOL, FILE_APPEND);
 
     if (file_exists($outputpath)) {
         // See if we have got exiftool
@@ -3562,7 +3554,13 @@ function transform_apply_icc_profile(int $ref, string $original_file_path): arra
         return array();
     }
 
-    global $icc_preview_options, $icc_preview_profile_embed, $icc_preview_profile;
+    global $icc_preview_options, $icc_preview_profile_embed, $icc_preview_profile, $imagemagick_preserve_profiles;
+
+    if ($imagemagick_preserve_profiles) {
+        // Don't touch the ICC profile
+        return array();
+    }
+
     $targetprofile = __DIR__ . '/../iccprofiles/' . $icc_preview_profile;
 
     $transform_actions['icc_profile']['command'] = " -strip -profile %%ICCPATH%% " . $icc_preview_options . " -profile %%TARGETPROFILE%% " . ($icc_preview_profile_embed ? " " : " -strip ");
