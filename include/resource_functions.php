@@ -544,7 +544,7 @@ function put_resource_data($resource, $data)
  * @param  integer  $user               User ID, -1 for current user
  * @param  string   $origin             Source of resource, should not be blank
  * @param  string   $file_extension     If specified
- * @param  bool     $run_macro          Run autocomplate macros, can be disabled if they are ran later in process
+ * @param  bool     $run_macro          Run autocomplete macros, can be disabled if they are run later in process
  *
  * @return mixed    false if invalid inputs given, integer of resource reference if resource is created
  */
@@ -2007,6 +2007,7 @@ function save_resource_data_multi($collection, $editsearch = array(), $postvals 
     } // End of foreach field loop
 
     // Perform the actual updates
+    set_processing_message(str_replace(["[field_count]", "[resource_count]"], [count($fields), count($list)], $lang["processing_batch_edit_save"]));
     db_begin_transaction("save_resource_data_multi");
     // Add/remove nodes for all resources
     if (count($all_nodes_to_add) > 0) {
