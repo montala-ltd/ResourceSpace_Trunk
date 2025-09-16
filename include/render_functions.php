@@ -755,7 +755,7 @@ function render_search_field($field,$fields,$value="",$autoupdate=false,$class="
               for ($d=1;$d<=12;$d++)
                 {
                 $m=str_pad($d,2,"0",STR_PAD_LEFT);
-                ?><option <?php if ($d==$found_month) { ?>selected<?php } ?> value="<?php echo $m?>"><?php echo escape($lang["months_list"][$d-1])?></option><?php
+                ?><option <?php if ($d==$found_month) { ?>selected<?php } ?> value="<?php echo $m?>"><?php echo escape($lang["months_list"][$d-1]); ?></option><?php
                 }
               ?>
             </select>
@@ -2488,7 +2488,7 @@ function render_date_range_field($name,$value,$forsearch=true,$autoupdate=false,
                 for ($d=1;$d<=12;$d++)
                     {
                     $m=str_pad($d,2,"0",STR_PAD_LEFT);
-                    ?><option <?php if ($d==$found_start_month) { ?>selected<?php } ?> value="<?php echo $m?>"><?php echo escape($lang["months_list"][$d-1])?></option><?php
+                    ?><option <?php if ($d==$found_start_month) { ?>selected<?php } ?> value="<?php echo $m?>"><?php echo escape($lang["months_list"][$d-1]); ?></option><?php
                     }?>
             </select>
             <?php
@@ -2509,7 +2509,7 @@ function render_date_range_field($name,$value,$forsearch=true,$autoupdate=false,
                 for ($d=1;$d<=12;$d++)
                     {
                     $m=str_pad($d,2,"0",STR_PAD_LEFT);
-                    ?><option <?php if ($d==$found_start_month) { ?>selected<?php } ?> value="<?php echo $m?>"><?php  echo escape($lang["months_list"][$d-1])  ?></option><?php
+                    ?><option <?php if ($d==$found_start_month) { ?>selected<?php } ?> value="<?php echo $m?>"><?php echo escape($lang["months_list"][$d-1]); ?></option><?php
                     }?>
             </select>
             <label class="accessibility-hidden" for="<?php echo escape($name) ?>_start-d"><?php echo escape($lang["day"]); ?></label>
@@ -2607,7 +2607,7 @@ function render_date_range_field($name,$value,$forsearch=true,$autoupdate=false,
                 for ($d=1;$d<=12;$d++)
                     {
                     $m=str_pad($d,2,"0",STR_PAD_LEFT);
-                    ?><option <?php if ($d==$found_end_month) { ?>selected<?php } ?> value="<?php echo $m?>"><?php echo escape($lang["months_list"][$d-1])?></option><?php
+                    ?><option <?php if ($d==$found_end_month) { ?>selected<?php } ?> value="<?php echo $m?>"><?php echo escape($lang["months_list"][$d-1]); ?></option><?php
                     }?>
             </select>
             <?php
@@ -2627,7 +2627,7 @@ function render_date_range_field($name,$value,$forsearch=true,$autoupdate=false,
                 for ($d=1;$d<=12;$d++)
                     {
                     $m=str_pad($d,2,"0",STR_PAD_LEFT);
-                    ?><option <?php if ($d==$found_end_month) { ?>selected<?php } ?> value="<?php echo $m?>"><?php echo escape($lang["months_list"][$d-1]) ?></option><?php
+                    ?><option <?php if ($d==$found_end_month) { ?>selected<?php } ?> value="<?php echo $m?>"><?php echo escape($lang["months_list"][$d-1]); ?></option><?php
                     }?>
             </select>
             <label class="accessibility-hidden" for="<?php echo escape($name) ?>_end-d"><?php echo escape($lang["day"]); ?></label>
@@ -7463,10 +7463,10 @@ function render_resource_view_image(array $resource, array $context)
                     if($GLOBALS["image_preview_zoom"])
                         {
                         # Process rotation from preview tweaks and use it to display the openseadragon preview in the correct orientation.
+                        $osd_preview_rotation = 0;
                         if (isset($resource['preview_tweaks']))
                             {
                             $preview_tweak_parts = explode('|', $resource['preview_tweaks']);
-                            $osd_preview_rotation = 0;
                             if ($preview_tweak_parts[0] > 0 && is_numeric($preview_tweak_parts[0]))
                                 {
                                 $osd_preview_rotation = 360 - $preview_tweak_parts[0];
