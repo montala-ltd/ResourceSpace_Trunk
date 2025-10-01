@@ -1281,10 +1281,6 @@ function new_user($newuser, $usergroup = 0)
 {
     global $lang,$home_dash,$user_limit;
 
-    if (!checkPermission_manage_users() || !can_set_admin_usergroup($usergroup)) {
-        return false;
-    }
-
     # Username already exists?
     $c = ps_value("SELECT COUNT(*) value FROM user WHERE username = ?", ["s",$newuser], 0);
     if ($c > 0) {
@@ -3576,9 +3572,11 @@ function get_processing_message()
     global $userref,$userprocessing_messages;
 
     if ($userprocessing_messages != "") {
+        debug('Clearing out all processing messages.');
         ps_query("UPDATE user SET processing_messages='' WHERE ref=?", ["i",$userref]); // Clear out messages as now collected.
         return explode(";;", $userprocessing_messages);
     } else {
+        debug('No processing messages available');
         return false;
     }
 }
@@ -3593,6 +3591,7 @@ function get_processing_message()
 $set_processing_message_first_call = true;
 function set_processing_message(string $message)
 {
+    debug_function_call(__FUNCTION__, func_get_args());
     global $userref,$userprocessing_messages,$set_processing_message_first_call;
     if (PHP_SAPI === "cli" ||  defined("API_CALL")) {
         // Messages don't work unless using browser
