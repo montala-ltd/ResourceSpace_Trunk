@@ -33,6 +33,8 @@ function upload_file($ref, $no_exif = false, $revert = false, $autorotate = fals
     global $unoconv_extensions, $merge_filename_with_title, $merge_filename_with_title_default;
     global $file_checksums_offline, $file_upload_block_duplicates, $replace_batch_existing, $valid_upload_paths;
 
+    $ref = (int) $ref;
+
     # FStemplate support - do not allow samples from the template to be replaced
     if (resource_file_readonly($ref)) {
         debug("Resource record is read only - template.");
@@ -2185,6 +2187,7 @@ function AutoRotateImage($src_image, $ref = false)
     # from a non-ingested image to properly rotate a preview image
     global $imagemagick_path, $camera_autorotation_ext;
 
+    $src_image = safe_file_name($src_image);
     debug("AutoRotateImage(src_image = $src_image, ref = $ref)");
 
     if (!isset($imagemagick_path)) {
@@ -2269,7 +2272,7 @@ function AutoRotateImage($src_image, $ref = false)
 
         # we'll remove the exiftool created file copy (as a result of using -TagsFromFile)
         if (file_exists($new_image . '_original')) {
-            unlink($new_image . '_original');
+            unlink(safe_file_name($new_image) . '_original');
         }
     }
 
@@ -3855,14 +3858,14 @@ function create_previews_using_im(
                 }
                 $addcheckbdpre = "-size " . ceil($cb_width) . "x" . ceil($cb_height);
                 if ($extension == "svg") {
-                    $addcheckbdpre = $addcheckbdpre  . " -scale " . $cb_scale . "% -background none tile:pattern:checkerboard -modulate 150,100 ";
+                    $addcheckbdpre .= " tile:pattern:checkerboard -background none -modulate 150,100 -scale " . $cb_scale . "% -crop %%CB_CROP%% +repage ";
                 } else {
                     $addcheckbdpre .= " tile:pattern:checkerboard -modulate 150,100 -scale " . $cb_scale . "% -crop %%CB_CROP%% +repage ";
-                    $cmdparams["%%CB_CROP%%"] = new CommandPlaceholderArg(
-                        (int)$sw . "x" . (int)$sh . "+0+0",
-                        [CommandPlaceholderArg::class, 'alwaysValid']
-                    );
                 }
+                $cmdparams["%%CB_CROP%%"] = new CommandPlaceholderArg(
+                    (int)$sw . "x" . (int)$sh . "+0+0",
+                    [CommandPlaceholderArg::class, 'alwaysValid']
+                );
                 $addcheckbdafter = "-compose over -composite ";
             }
 
