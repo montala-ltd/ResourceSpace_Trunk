@@ -291,8 +291,8 @@ $exif_comment = 18;
 $exif_model = 52;
 $exif_date = 12;
 
-// Use Exiftool to see all the embedded metadata of an applicable resource file. Restricted to Super Admins (those who 
-// can manage the system and view confidential resources).
+// If exiftool is installed, you can optionally enable the metadata report available on the View page.
+// You may want to enable it on the usergroup level by overriding this config option in System Setup.
 $metadata_report = false;
 
 // Option to turn on metadata download in view.php.
@@ -1581,6 +1581,7 @@ $ffmpeg_audio_extensions = array(
     'rm',
     'gsm',
     'weba',
+    'opus',
 );
 
 // The audio settings for mp3 previews
