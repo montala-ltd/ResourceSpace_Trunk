@@ -290,7 +290,7 @@ function redirect(string $url)
         # redirect to an absolute URL
         header("Location: " . $baseurl . str_replace($baseurl_short, "/", $url));
     } else {
-        $extra_slash = substr($baseurl, -1, 1) == '/' ? '' : '/';
+        $extra_slash = substr($baseurl, -1, 1) == '/' || strlen($baseurl) == strlen($url) ? '' : '/';
         if (url_starts_with($baseurl . $extra_slash, $url)) {
             // Base url has already been added
             header("Location: " . $url);
@@ -1189,9 +1189,6 @@ function send_mail_phpmailer($email, $subject, $message = "", $from = "", $reply
 {
     # Include footer
     global $header_colour_style_override, $email_from;
-    include_once __DIR__ . '/../lib/PHPMailer/PHPMailer.php';
-    include_once __DIR__ . '/../lib/PHPMailer/Exception.php';
-    include_once __DIR__ . '/../lib/PHPMailer/SMTP.php';
 
     if (check_email_invalid($email)) {
         return false;
