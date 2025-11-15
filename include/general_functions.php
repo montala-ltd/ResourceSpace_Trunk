@@ -290,7 +290,7 @@ function redirect(string $url)
         # redirect to an absolute URL
         header("Location: " . $baseurl . str_replace($baseurl_short, "/", $url));
     } else {
-        $extra_slash = substr($baseurl, -1, 1) == '/' || strlen($baseurl) == strlen($url) ? '' : '/';
+        $extra_slash = substr($baseurl, -1, 1) === '/' || $baseurl === $url ? '' : '/';
         if (url_starts_with($baseurl . $extra_slash, $url)) {
             // Base url has already been added
             header("Location: " . $url);
@@ -3827,11 +3827,13 @@ function html_find_and_replace(string $findstring, string $replacestring, string
 * Utility function to remove unwanted HTML tags and attributes.
 * Note: if $html is a full page, developers should allow html and body tags.
 *
-* @param string $html       HTML string
-* @param array  $tags       Extra tags to be allowed
-* @param array  $attributes Extra attributes to be allowed
+* @param   string  $html         HTML string
+* @param   array   $tags         Extra tags to be allowed
+* @param   array   $attributes   Extra attributes to be allowed
+*
+* @return  mixed   Normally a string however if anything but a string is supplied, return type will be as supplied.
 */
-function strip_tags_and_attributes($html, array $tags = array(), array $attributes = array()): string
+function strip_tags_and_attributes($html, array $tags = array(), array $attributes = array())
 {
     global $permitted_html_tags, $permitted_html_attributes;
 
