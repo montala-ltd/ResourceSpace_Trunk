@@ -1421,7 +1421,8 @@ function send_mail_phpmailer($email, $subject, $message = "", $from = "", $reply
         $mail->IsHTML(true);
 
         // Standardise line breaks
-        $body = str_replace(["\r\n","\r","\n","<br/>","<br>"], "<br />", $body);
+        $body = str_replace(["\r\n","\r","\n"], "", $body); // HTML supplied - not considering these.
+        $body = str_replace(["<br/>","<br>"], "<br />", $body);
 
         // Remove any sequences of three or more line breaks with doubles
         while (strpos($body, "<br /><br /><br />") !== false) {
@@ -2481,16 +2482,25 @@ function get_imagemagick_path($utilityname, $exeNames, &$checked_path)
         # ImageMagick convert path not configured.
         return false;
     }
-    $path = get_executable_path($imagemagick_path, $exeNames, $checked_path);
-    if ($path === false) {
-        # Support 'magick' also, ie. ImageMagick 7+
-        return get_executable_path(
+
+    // Check if magick exists first for IM 7+
+    $im7_check = get_executable_path(
             $imagemagick_path,
             array("unix" => "magick", "win" => "magick.exe"),
-            $checked_path
-        ) . ' ' . $utilityname;
+            $checked_path);
+
+    if ($im7_check === false) {
+        //IM 7+ is not present, fall back to looking for IM 6 utilities
+        return get_executable_path($imagemagick_path, $exeNames, $checked_path);
+    } else {
+        // convert uses just magick
+        // composite, identify and mogrify use the syntax magick <command_type>
+        if (in_array($utilityname, ['composite','identify','mogrify'])) {
+            $im7_check .= ' ' . $utilityname;
+        }
+
+        return $im7_check;
     }
-    return $path;
 }
 
 /**
