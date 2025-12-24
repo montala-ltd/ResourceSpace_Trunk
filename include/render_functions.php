@@ -3795,8 +3795,9 @@ function render_selected_collection_actions()
         "share_collection",
         "download_collection",
         "license_batch",
-        "consent_batch",
         'delete_all_in_collection',
+        'link_consent_batch',
+        'unlink_consent_batch'
     );
 
     if($refs_to_remove > 0)
@@ -4909,7 +4910,7 @@ function render_featured_collections(array $ctx, array $items)
                     "{$baseurl_short}pages/upload_batch.php", 
                     [
                         'collection_add' => $fc['ref'], 
-                        'entercolname' => $fc['name']
+                        'entercolname' => urlencode($fc['name'])
                     ]
                 )
                 : generateURL(
@@ -4953,7 +4954,7 @@ function render_featured_collections(array $ctx, array $items)
                     array(
                         'create'            => 'true',
                         'tltype'            => 'srch',
-                        'title'             => "{$fc['name']}",
+                        'title'             => urlencode($fc['name']),
                         'freetext'          => 'true',
                         'tile_audience'     => 'false',
                         'all_users'         => 1,
@@ -5013,7 +5014,7 @@ function render_featured_collections(array $ctx, array $items)
                             'create'            => 'true',
                             'tltype'            => 'fcthm',
                             'tlstyle'           => 'thmbs',
-                            'title'             => "{$fc['name']}",
+                            'title'             => urlencode($fc['name']),
                             'freetext'          => 'true',
                             'tile_audience'     => 'false',
                             'promoted_resource' => (isset($render_ctx["images"]) ? 'true' : ""),
