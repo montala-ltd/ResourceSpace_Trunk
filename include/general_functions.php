@@ -5079,12 +5079,6 @@ function get_system_status(bool $basic = false)
         'non_ingested' => get_non_ingested_resources(),        
     ];
 
-    // Return last API access
-    $return['results']['last_api_access'] = [
-        'status' => 'OK',
-        'info' => get_sysvar("last_api_access")
-    ];
-
     // Return bandwidth usage last 30 days
     $return['results']['download_bandwidth_last_30_days_gb'] = [
         'status' => 'OK',
@@ -6029,3 +6023,42 @@ function allow_unicode_characters(string $text, array $allowlist = []): string
         preg_replace('/[^\p{L}\p{N}\s' . implode('', array_map(preg_quote(...), $allowlist)) . ']+/u', '', $text)
     );
 }
+
+/**
+ *  Add or update the value used for paging for the current page to the list of stored pager cookies
+ * 
+ * @param int $per_page value to be stored
+ */
+
+function set_per_page_cookie(int $per_page): void
+{
+    global $pagename;
+
+    if (!is_positive_int_loose($per_page)) {
+        return;
+    }
+
+    $pager_cookie = $_COOKIE['pager'] ?? '{}';
+    $pager_cookie = json_decode($pager_cookie, true);
+
+    $pager_cookie[$pagename] = $per_page;
+    rs_setcookie('pager', json_encode($pager_cookie), 1);
+}
+
+/**
+ *  Retrieve the pager cookie for the current page. 
+ *  This function also clears the per_page and per_page_list cookies
+ */
+function get_per_page_cookie(): int
+{
+    global $pagename, $default_perpage_list;
+
+    $pager_cookie = $_COOKIE['pager'] ?? '{}';
+    $pager_cookie = json_decode($pager_cookie, true);
+
+    rs_setcookie('per_page_list', '', -1);
+    rs_setcookie('per_page', '', -1);
+
+    return $pager_cookie[$pagename] ?? $default_perpage_list;
+}
+
