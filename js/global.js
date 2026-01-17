@@ -748,7 +748,7 @@ function relateresources(ref,related,action, ctx)
 /*
 When an object of class "CollapsibleSectionHead" is clicked then next element is collapsed or expanded.
  */
-function registerCollapsibleSections(use_cookies)
+function registerCollapsibleSections(use_cookies, callback, data)
     {
     // Default params
     use_cookies = (typeof use_cookies !== 'undefined') ? use_cookies : true;
@@ -785,7 +785,9 @@ function registerCollapsibleSections(use_cookies)
                 }
 
             cur.stop(); // Stop existing animation if any
-            cur.slideToggle();
+            cur.slideToggle(400, function () {
+                if (callback) callback(this);
+            });
 
             jQuery("#" + cur_id).trigger("ToggleCollapsibleSection", [{section_id: cur_id, state: cur_state}]);
 
@@ -2342,10 +2344,16 @@ function updatePageTitle(pagename, pluginname = '') {
     updatePageBackground();
 }
 
+/** 
+ * Remove residual background images from the page if the user is not currently on a page that supports them.  
+*/
 function updatePageBackground() {
     if(!valid_img_bg_pages.includes(pagename)) {
         jQuery('body').css('{background-image: none}');
-        jQuery('body').find('.slide').forEach(el => el.remove());
+        let slides = jQuery('body').find('.slide');
+        if (slides.length > 0) {
+            slides.each(function(){jQuery(this).css({"background-image": "none"});});
+        }
     }
 }
 /**

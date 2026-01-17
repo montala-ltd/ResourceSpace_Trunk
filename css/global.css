@@ -329,6 +329,7 @@ div#CentralSpaceContainer.SlimHeaderFixedPosition { margin-top: 100px; }
 .TopInpageNav a:link, .TopInpageNav a:visited, .BottomInpageNav a:link, .BottomInpageNav a:visited , #CentralSpaceLogin a:link, #CentralSpaceLogin a:visited {text-decoration:none;}
 .TopInpageNav a:hover, .TopInpageNav a:active, .BottomInpageNav a:hover, .BottomInpageNav a:active, #CentralSpaceLogin a:hover, #CentralSpaceLogin a:active {text-decoration:underline;}
 .InpageNavLeftBlock span.Selected {font-weight: bold;}
+.InpageNavLeftBlock .ActionsContainer {height: 1.8rem;}
 
 
 .HorizontalNav ul {padding:0.2em 0;margin:0;list-style:none;white-space: nowrap; font-size: 0;}
@@ -2971,3 +2972,47 @@ label {
     line-height: 1.4;
     vertical-align: baseline;
 }
+
+
+/* job details log viewer */
+
+#job-details-log {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    white-space: pre-wrap;
+    padding: 1rem;
+    height: 25vh;
+    overflow-y: scroll;
+    margin-bottom: 20px;  
+    scrollbar-width: thin;
+}
+
+#job-details-log::-webkit-scrollbar {
+  width: 12px;
+}
+
+#job-details-log > .line { display: block; }
+
+.job-configure-error {
+    clear: left; 
+    display: block; 
+    margin-left: 310px; 
+    margin-top: 5px;
+}
+
+.job-configure-error > [class^="icon-"] {
+    width: 1em;
+    height: 1em;
+    vertical-align: middle;
+    transform: translateY(-0.125em);
+}
+
+.Question.is-disabled {
+  opacity: 0.45;
+}
+
+.FormHelp.JobFormHelp {
+    padding:0;
+    margin-bottom: 0px;
+    clear:left; 
+}
+
