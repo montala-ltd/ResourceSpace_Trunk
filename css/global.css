@@ -111,6 +111,8 @@
     --colour-typography-1000: var(--colour-neutral-1000);
 
     /* Form colours */
+    --form-destructive-background: var(--colour-feedback-error-lighter);
+    --form-destructive-text: var(--colour-feedback-error-dark);
     --form-field-border: var(--colour-neutral-700);
     --form-focus: var(--colour-brand-primary-default);
     --form-form-chip-background: var(--colour-brand-primary-lightest);
@@ -2170,10 +2172,7 @@ form.FormFilter button.ClearButton {
 #CentralSpaceResources  
     {
         display: flex;
-        /* width: 1920px; */
         padding: var(--space-24);
-        /* align-items: flex-start;
-        align-content: flex-start; */
         gap: var(--space-32) var(--space-32);
         flex-wrap: wrap;
     }
@@ -3735,7 +3734,6 @@ a.text-link:visited {
 
 .resource-card-title {
     color: var(--colour-typography-900);
-    font-family: "Atkinson Hyperlegible Next";
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -3745,7 +3743,6 @@ a.text-link:visited {
 
 .resource-card-field {
     color: var(--colour-typography-600);
-    font-family: "Atkinson Hyperlegible Next";
     font-size: 13px;
     font-style: normal;
     font-weight: 400;
@@ -3791,7 +3788,6 @@ a.text-link:visited {
     gap: 4px;
     border-radius: var(--space-16);
     white-space: nowrap;
-    font-family: "Atkinson Hyperlegible Next";
     font-size: 13px;
     font-style: normal;
     font-weight: 400;
@@ -3908,7 +3904,6 @@ a.text-link:visited {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 1px;
     align-self: stretch;
     background: var(--form-form-divider);
 }
@@ -3926,6 +3921,10 @@ a.text-link:visited {
     font-style: normal;
     font-weight: 500;
     line-height: normal;
+}
+
+.menu-item + .menu-item {
+    margin-top: 1px;
 }
 
 .menu-item:hover { 
@@ -3954,18 +3953,22 @@ a.text-link:visited {
 }
 
 .flyout-menu.is-confirm .menu-item-danger {
-    color: var(--colour-feedback-error-dark);
-    background: var(--colour-feedback-error-lighter);
+    color: var(--form-destructive-text);
+    background: var(--form-destructive-background);
 }
 
 .flyout-menu.is-confirm .menu-item-danger:hover {
-    color: var(--colour-feedback-error-dark);
-    background: var(--colour-feedback-error-lighter);
+    color: var(--form-destructive-text);
+    background: var(--form-destructive-background);
 }
 
 .flyout-menu.is-confirm .menu-item-danger:active {
-    color: var(--colour-feedback-error-dark);
-    background: var(--colour-feedback-error-lighter);
+    color: var(--form-destructive-text);
+    background: var(--form-destructive-background);
+}
+
+.flyout-menu.is-confirm .menu-confirm {
+    margin-top: 1px;
 }
 
 .menu-confirm {
@@ -3974,18 +3977,15 @@ a.text-link:visited {
     padding: 0;
     flex-direction: column;
     align-items: flex-start;
-    gap: 10px;
     align-self: stretch;
     grid-template-rows: 0fr;
     transition: grid-template-rows 250ms ease;
     background: var(--colour-surface-50);
 }
 
-.menu-confirm.is-permanent {
-    background: var(--colour-feedback-error-lightest);
+.menu-confirm-inner > * + * {
+    margin-top: 10px;
 }
-
-
 .menu-confirm-text {
     color: var(--colour-typography-900);
     font-size: 14px;
@@ -4002,21 +4002,14 @@ a.text-link:visited {
     font-weight: 600;
     cursor: pointer;
     border-radius: var(--space-4);
-    color: var(--colour-feedback-error-default);
-    border: 1px solid var(--colour-feedback-error-default);
-    background: var(--colour-feedback-error-lightest);
+    color: var(--colour-global-white);
+    background: var(--colour-feedback-error-default);
     opacity: 0;
     transform: translateY(-4px);
     pointer-events: none;
     transition:
         opacity 200ms ease 150ms,
         transform 200ms ease 100ms;
-}
-
-.menu-confirm.is-permanent .menu-confirm-btn {
-    color: var(--colour-surface-50);
-    border: 1px solid var(--colour-feedback-error-default);
-    background: var(--colour-feedback-error-default)
 }
 
 .flyout-menu.is-confirm .menu-confirm-btn {
@@ -4030,7 +4023,6 @@ a.text-link:visited {
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    gap: 10px;
     padding: 0 var(--space-12);
     opacity: 0;
     transition: opacity 250ms ease;
